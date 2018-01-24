@@ -47,6 +47,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');
     Route::get('/testzone', 'ZoneToolsController@index');
+
+    Route::get('/DiagHuespedAjax','GuestToolsController@checkGuest');
+    Route::get('/DiagHuespedAjax2', 'GuestToolsController@checkWebSer');
+
+    Route::get('/DiagServidorAjax', 'ServerToolsController@checkRad');
+    Route::get('/DiagServidorAjax2','ServerToolsController@checkWB');
+
   //- Perfil
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/data_config', 'ProfileController@show');
