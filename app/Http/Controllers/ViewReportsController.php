@@ -22,7 +22,7 @@ class ViewReportsController extends Controller
 
       //$hotel = Hotel::select(['Nombre_hotel'])->find($value);
       $hotel = Hotel::find($value);
-      $hotel->typereports->toArray();
+      $hotel->typereports->toJson();
   
       return $hotel;
       //$selectnivel= DB::table('NivelesReportes')->select('ReporteID','Nivel')->where('HotelID', '=', $value)->get();

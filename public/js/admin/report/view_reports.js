@@ -9,15 +9,34 @@ $('#select_one').on('change', function(e){
   var _token = $('input[name="_token"]').val();
 
   if (id != ''){
+    let countTR = 0;
       $.ajax({
         type: "POST",
         url: "./typereport",
         data: { numero : id , _token : _token },
         success: function (data){
           console.log(data);
-          // $('#select_two').empty();
-          // $('#select_two').append('<option value="" selected>Elije</option>');
-          //
+          countTR = data.typereports.length;
+          console.log(countTR);
+
+          if (countTR === 0) {
+            console.log('Nating');
+            $('#select_two').empty();
+            $('#select_two').append('<option value="" selected>Elije</option>');
+          }else{
+            $('#select_two').empty();
+            $('#select_two').append('<option value="" selected>Elije</option>');
+
+            for (var i = 0; i < countTR; i++) {
+              console.log(data.typereports[i].name);
+              $("#select_two option").prop("selected", false);
+              $('#select_two').append('<option value="'+data.typereports[i].name+'" selected>'+ data.typereports[i].name +'</option>');
+              $('#select_two').val(data.typereports[i].name).trigger('change');
+            }
+
+          }
+
+
           // $('#calendar_fecha').val('');
           // $('#calendar_fecha').datepicker('setDate', null);
           // $('#calendar_fecha').attr('disabled', false);
