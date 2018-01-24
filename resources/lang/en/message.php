@@ -106,7 +106,7 @@ return [
     'date' => 'Fecha',
     'generate' => 'Generar',
     'export' => 'Exportar',
-
+    'cadena' => 'Cadena',
 
     'subtitle_view_report' => 'Administración',
     'breadcrumb_view_report' => 'Administración de reportes',
