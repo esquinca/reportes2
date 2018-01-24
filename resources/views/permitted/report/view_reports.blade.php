@@ -71,23 +71,21 @@
               </div>
 
 
-              <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="box box-solid">
                   <div class="box-body">
                     <div class="media">
                       <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                          Encuestas - Nacionalidades
+                          Generado el día @php
+                            $mytime = Carbon\Carbon::now();
+                            echo $mytime->toDateTimeString();
+                          @endphp
                       </h4>
                       <div class="media">
                           <div class="media-body">
                               <div class="clearfix">
                                   <div style="margin-top: 0">
-                                    <div id="main_nationality" style="width: 100%; min-height: 250px; border:1px solid #ccc;padding:10px;"></div>
-                                    Grafica
-                                    @php
-                                      $mytime = Carbon\Carbon::now();
-                                      echo $mytime->toDateTimeString();
-                                    @endphp
+                                    <div id="main_nationality" style="width: 100%; min-height: 250px; border:1px solid #ccc;padding:10px;"></div>                                    
                                   </div>
                               </div>
                           </div>
@@ -96,77 +94,7 @@
                    </div>
                 </div>
               </div>
-              <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
-                <div class="box box-solid">
-                  <div class="box-body">
-                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                        Encuestas - Edades
-                    </h4>
 
-                    <div class="media">
-                        <div class="media-body">
-                            <div class="clearfix">
-                                <div style="margin-top: 0">
-                                  <div id="main_ages" style="width: 100%; min-height: 250px; border:1px solid #ccc;padding:10px;"></div>
-                                  Grafica
-                                  @php
-                                    $mytime = Carbon\Carbon::now();
-                                    echo $mytime->toDateTimeString();
-                                  @endphp
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
-                <div class="box box-solid">
-                  <div class="box-body">
-                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                        Encuestas - Dominios
-                    </h4>
-                    <div class="media">
-                        <div class="media-body">
-                            <div class="clearfix">
-                                <div style="margin-top: 0">
-                                  <div id="main_domains" style="width: 100%; min-height: 350px; border:1px solid #ccc;padding:10px;"></div>
-                                  Grafica
-                                  @php
-                                    $mytime = Carbon\Carbon::now();
-                                    echo $mytime->toDateTimeString();
-                                  @endphp
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
-                <div class="box box-solid">
-                  <div class="box-body">
-                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                        Encuestas - Tours
-                    </h4>
-
-                    <div class="media">
-                        <div class="media-body">
-                            <div class="clearfix">
-                                <div style="margin-top: 0">
-                                  <div id="main_tours" style="width: 100%; min-height: 350px; border:1px solid #ccc;padding:10px;"></div>
-                                  Grafica
-                                  @php
-                                    $mytime = Carbon\Carbon::now();
-                                    echo $mytime->toDateTimeString();
-                                  @endphp
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
-                </div>
-              </div>
           </div>
       </div>
     @else
