@@ -2,6 +2,7 @@
 
 namespace App;
 use App\Menu;
+use App\Hotel;
 use Spatie\Permission\Traits\HasRoles; //<--Se añade la siguiente linea
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,5 +32,9 @@ class User extends Authenticatable
     public function menus()
     {
       return $this->belongsToMany(Menu::class);
+    }
+    public function hotels()
+    {
+      return $this->belongsToMany(Hotel::class);
     }
 }

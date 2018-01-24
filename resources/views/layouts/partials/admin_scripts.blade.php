@@ -27,7 +27,8 @@
 <script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js.map')}}"></script> -->
 <script src="{{ asset('bower_components/datatables.net/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('bower_components/datatables.net/js/buttons.print.min.js')}}"></script>
-
+<!-- Select2 -->
+<script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
 <!-- Bootstrap Form Validation -->
 <script src="{{ asset('/js/validator.js') }}"></script>
 <!-- Funciones reutilizables -->

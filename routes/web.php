@@ -35,12 +35,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/move_equipment', 'MoveEquipmentController@index');
     Route::get('/group_equipment', 'GroupEquipmentController@index');
   //- Reportes
+    Route::get('/viewreports' , 'ViewReportsController@index');
+    Route::post('/typereport','ViewReportsController@typerep');
   //Calificaciones
-    Route::get('create_survey_admin' , 'CreateSurveyController@index');
-    Route::get('fill_survey_admin' , 'CaptureSurveyController@index');
-    Route::get('edit_survey_admin' , 'EditSurveyController@index');
-    Route::get('survey_results' , 'ResultsSurveyController@index');
-    Route::get('configure_survey_admin' , 'ConfigurationSurveyController@index');
+    Route::get('/create_survey_admin' , 'CreateSurveyController@index');
+    Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
+    Route::get('/edit_survey_admin' , 'EditSurveyController@index');
+    Route::get('/survey_results' , 'ResultsSurveyController@index');
+    Route::get('/configure_survey_admin' , 'ConfigurationSurveyController@index');
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');

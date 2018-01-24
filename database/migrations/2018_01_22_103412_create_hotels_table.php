@@ -36,10 +36,10 @@ class CreateHotelsTable extends Migration
             $table->binary('temp')->nullable();
             $table->text('Fecha_inicioP')->nullable();
             $table->text('Fecha_terminoP')->nullable();
-            $table->text('Responsable')->nullable();
-            $table->text('AreaTraSistemas')->nullable();
-            $table->text('TelefonoSistemas')->nullable();
-            $table->text('CorreoSistemas')->nullable();
+            // $table->text('Responsable')->nullable();
+            // $table->text('AreaTraSistemas')->nullable();
+            // $table->text('TelefonoSistemas')->nullable();
+            // $table->text('CorreoSistemas')->nullable();
             // $table->('itconcierges_id');
             $table->text('Latitude')->nullable();
             $table->text('Longitude')->nullable();

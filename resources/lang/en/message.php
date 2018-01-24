@@ -100,4 +100,14 @@ return [
 
     'subtitle_configuration_survey' => 'Operación configuración',
     'breadcrumb_configuration_survey' => 'Configuración Encuesta',
+    //reportes
+    'hotel' => 'Hotel',
+    'type' => 'Tipo',
+    'date' => 'Fecha',
+    'generate' => 'Generar',
+    'export' => 'Exportar',
+
+
+    'subtitle_view_report' => 'Administración',
+    'breadcrumb_view_report' => 'Administración de reportes',
 ];
