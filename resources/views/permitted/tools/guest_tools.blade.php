@@ -27,7 +27,6 @@
 @section('content')
     @if( auth()->user()->can('View guest review') )
 
-
 <section id='invoiceContep' name='invoiceContep' class="invoice">
   <div id="titulos" name="titulos" class="row">
       <div class="col-xs-12">

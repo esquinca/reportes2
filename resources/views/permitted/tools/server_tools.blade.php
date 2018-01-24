@@ -72,10 +72,6 @@
     </div>
 </section>
 
-
-
-
-
     @else
       @include('default.denied')
     @endif
@@ -89,3 +85,4 @@
   @else
     <!--NO VER-->
   @endif
+@endpush

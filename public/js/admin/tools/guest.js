@@ -20,7 +20,7 @@ $('#btnDiag').on('click', function(e){
 		});
 	}else{
 		$.get('/DiagHuespedAjax?hotelCode=' + codigoH + '&roomNum=' + roomNumba, function(data){
-			console.log(data);
+			//console.log(data);
 			swal({
 				title: "Buscando",
 				text: "La información será desplegada a continuación",
@@ -42,10 +42,10 @@ $('#btnDiag').on('click', function(e){
 		});
 
 		$.get('/DiagHuespedAjax2?hotelCode=' + codigoH + '&roomNum=' + roomNumba, function(data){
-			console.log(data);
+			//console.log(data);
 
 			var parseo2 = JSON.parse(data);
-			console.log(parseo2);
+			//console.log(parseo2);
 			$('#fila-p2').show();
 			$('#results2').val("");
 			$('#results2').val("Web Service Palace:\n");
