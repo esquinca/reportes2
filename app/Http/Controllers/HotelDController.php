@@ -31,4 +31,16 @@ class HotelDController extends Controller
       return view('permitted.inventory.det_hotel',compact('cadena'));
     }
   }
+
+  public function hotel_cadena(Request $request)
+  {
+    $value= $request->numero;
+    $hoteles = Hotel::find($value);
+    $hoteles->hotelCadena->toJson();
+
+    dd($hoteles);
+
+
+  }
+
 }

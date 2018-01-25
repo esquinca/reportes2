@@ -10,10 +10,10 @@ $('#select_one').on('change', function(e){
     let countTR = 0;
       $.ajax({
         type: "POST",
-        url: "./",
+        url: "./hotel_cadena",
         data: { numero : id , _token : _token },
         success: function (data){
-
+          console.log(data);
         },
         error: function (data) {
           console.log('Error:', data);
