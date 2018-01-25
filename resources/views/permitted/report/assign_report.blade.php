@@ -47,15 +47,14 @@
                           <label for="select_two" class="control-label">{{ trans('message.type') }}: </label>
                           <select id="select_two" name="select_two"  class="form-control select2" required>
                             <option value="" selected> Elija </option>
+                            @forelse ($types as $data_types)
+                              <option value="{{ $data_types->id }}"> {{ $data_types->name }} </option>
+                            @empty
+                            @endforelse
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="calendar_fecha" class="control-label">{{ trans('message.date') }}:</label>
-                          <input type="text" class="form-control datepickermonth" id="calendar_fecha" placeholder="Example: 2017-12">
-                        </div>
-                        <div class="form-group">
                             <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
-                            <button type="button" class="btn btn-success btngeneral"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }}</button>
                         </div>
                     </div>
                    </div>

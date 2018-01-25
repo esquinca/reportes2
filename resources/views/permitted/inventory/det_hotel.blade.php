@@ -45,7 +45,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="select_two" class="control-label">{{ trans('message.type') }}: </label>
+                        <label for="select_two" class="control-label">{{ trans('message.hotel') }}: </label>
                         <select id="select_two" name="select_two"  class="form-control select2" required>
                           <option value="" selected> Elija </option>
                         </select>

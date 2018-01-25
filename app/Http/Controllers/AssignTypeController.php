@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cadena;
 use App\Hotel;
 use App\Reference;
+use App\Typereport;
 class AssignTypeController extends Controller
 {
   /**
@@ -17,11 +18,14 @@ class AssignTypeController extends Controller
   {
     if (auth()->user()->hasanyrole('SuperAdmin|Admin')) {
       $hotels = Hotel::select('id', 'Nombre_hotel')->get();
-      return view('permitted.report.assign_report',compact('hotels'));
+      $types = Typereport::all();
+      dd($types);
+      return view('permitted.report.assign_report',compact('hotels', 'types'));
     }
     else {
       $hotels = auth()->user()->hotels;
-      return view('permitted.report.assign_report',compact('hotels'));
+      $types = Typereport::all();
+      return view('permitted.report.assign_report',compact('hotels', 'types'));
     }
   }
 }

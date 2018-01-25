@@ -20,6 +20,9 @@ class CreateHotelsTable extends Migration
             $table->string('Telefono');
             $table->string('Pais');
             $table->string('Estado');
+            //Primera llave foranea
+            $table->integer('cadena_id')->unsigned();
+            $table->foreign('cadena_id')->references('id')->on('cadenas');
             //Segunda llave foranea
             $table->integer('vertical_id')->unsigned();
             $table->foreign('vertical_id')->references('id')->on('verticals');

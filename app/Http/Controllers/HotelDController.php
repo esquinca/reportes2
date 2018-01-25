@@ -24,11 +24,7 @@ class HotelDController extends Controller
       $cadena_total =array();
       foreach ($hotel as $data)
       {
-        $hoteles = Hotel::find($data->id);
-        $hoteles->hotelCadena->toArray();
-        $id_rec_cadena= $hoteles['hotelCadena'][0]->id;
-
-        $name_cadena = Cadena::select(['id','name'])->find($id_rec_cadena);
+        $name_cadena = Cadena::select(['id','name'])->find($data->cadena_id);
         array_push($cadena_total, $name_cadena);
       }
       $cadena = array_values(array_unique($cadena_total));
@@ -39,9 +35,7 @@ class HotelDController extends Controller
   public function hotel_cadena(Request $request)
   {
     $value= $request->numero;
-    $hoteles = Hotel::find($value);
-    $hoteles->hotelCadena->toJson();
-
+    $hoteles = Hotel::where('cadena_id', $value) ;
     dd($hoteles);
 
 
