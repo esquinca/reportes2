@@ -19,7 +19,6 @@ class AssignTypeController extends Controller
     if (auth()->user()->hasanyrole('SuperAdmin|Admin')) {
       $hotels = Hotel::select('id', 'Nombre_hotel')->get();
       $types = Typereport::all();
-      dd($types);
       return view('permitted.report.assign_report',compact('hotels', 'types'));
     }
     else {
@@ -27,5 +26,16 @@ class AssignTypeController extends Controller
       $types = Typereport::all();
       return view('permitted.report.assign_report',compact('hotels', 'types'));
     }
+  }
+  public function show(Request $request)
+  {
+    $resultados = Typereport::all();
+    return json_encode($resultados);
+  }
+  public function edit(Request $request)
+  {
+    $id= $request->sector;
+    $resultados = Typereport::find($id);
+    return json_encode($resultados);
   }
 }

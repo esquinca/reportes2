@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/group_equipment', 'GroupEquipmentController@index');
   //- Reportes
     Route::get('/type_report' , 'AssignTypeController@index');
+    Route::post('/data_type_report' , 'AssignTypeController@show');
+    Route::post('/show_edit_type_report' , 'AssignTypeController@edit');
 
     Route::get('/viewreports' , 'ViewReportsController@index');
     Route::post('/typereport','ViewReportsController@typerep');

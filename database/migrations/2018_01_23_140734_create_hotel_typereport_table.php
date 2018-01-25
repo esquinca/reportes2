@@ -14,7 +14,7 @@ class CreateHotelTypereportTable extends Migration
     public function up()
     {
         Schema::create('hotel_typereport', function (Blueprint $table) {
-            //$table->increments('id');
+            $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->integer('typereport_id')->unsigned();
             $table->foreign('hotel_id')->references('id')->on('hotels');
