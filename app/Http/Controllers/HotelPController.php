@@ -24,8 +24,12 @@ class HotelPController extends Controller
       $cadena_total =array();
       foreach ($hotel as $data)
       {
-          $name_cadena = Cadena::select(['id','name'])->find($data->cadena_id);
-          array_push($cadena_total, $name_cadena);
+        $hoteles = Hotel::find($data->id);
+        $hoteles->hotelCadena->toArray();
+        $id_rec_cadena= $hoteles['hotelCadena'][0]->id;
+
+        $name_cadena = Cadena::select(['id','name'])->find($id_rec_cadena);
+        array_push($cadena_total, $name_cadena);
       }
       $cadena = array_values(array_unique($cadena_total));
       return view('permitted.inventory.det_project',compact('cadena'));
