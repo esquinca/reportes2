@@ -15,12 +15,12 @@ $('#select_one').on('change', function(e){
         url: "./typereport",
         data: { numero : id , _token : _token },
         success: function (data){
-          console.log(data);
+          //console.log(data);
           countTR = data.typereports.length;
-          console.log(countTR);
+          //console.log(countTR);
 
           if (countTR === 0) {
-            console.log('Nating');
+            //console.log('Nating');
             $('#select_two').empty();
             $('#select_two').append('<option value="" selected>Elije</option>');
           }else{

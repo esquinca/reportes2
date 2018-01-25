@@ -57,6 +57,7 @@
 
 @push('scripts')
   @if( auth()->user()->can('View distribucion') )
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD07V9hwyUjrRCXiJHo9YdftE0VJIbRP8"></script>
     <script src="{{ asset('js/admin/inventory/distribucion.js')}}"></script>
   @else

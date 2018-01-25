@@ -35,9 +35,11 @@ class HotelDController extends Controller
   public function hotel_cadena(Request $request)
   {
     $value= $request->numero;
-    $hoteles = Hotel::where('cadena_id', $value) ;
-    dd($hoteles);
+    //$cadena = 44;
+    $hoteles = Hotel::where('cadena_id', $value)->get();
 
+    return $hoteles;
+    //dd($hoteles);
 
   }
 

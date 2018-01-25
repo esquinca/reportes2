@@ -2,6 +2,8 @@ var map;
 var marker;
 var markas = [];
 var infowindow;
+var markerCluster;
+
 $(function() {
   init();
 });
@@ -43,6 +45,9 @@ function addLocation(){
           }
         })(marker, i));
       }
+      markerCluster = new MarkerClusterer(map, markas,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
     },
     error: function (data) {
       console.log('Error:', data);
