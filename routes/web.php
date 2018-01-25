@@ -77,4 +77,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
+    Route::get('/acm1pt', 'HotelDController@hotel_cadena');
+
 });
