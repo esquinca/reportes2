@@ -32,4 +32,5 @@ class HotelPController extends Controller
     }
   }
 
+
 }
