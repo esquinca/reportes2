@@ -27,7 +27,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/detailed_hotels', 'HotelCController@index');
     Route::get('/detailed_proyect', 'HotelPController@index');
     Route::get('/detailed_cover', 'CoverController@index');
+    /*Distribution*/
     Route::get('/detailed_distribution', 'DistributionController@index');
+    Route::post('/geoHotel', 'DistributionController@show');
+
   //- Equipos
     Route::get('/up_equipment', 'AddEquipmentController@index');
     Route::get('/down_equipment', 'RemovedEquipmentController@index');

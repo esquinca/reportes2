@@ -21,12 +21,13 @@ class HotelDController extends Controller
     }
     else {
       $hotel = auth()->user()->hotels;
-      $cadena =array();
+      $cadena_total =array();
       foreach ($hotel as $data)
       {
           $name_cadena = Cadena::select(['id','name'])->find($data->cadena_id);
-          array_push($cadena, $name_cadena);
+          array_push($cadena_total, $name_cadena);
       }
+      $cadena = array_values(array_unique($cadena_total));
       return view('permitted.inventory.det_hotel',compact('cadena'));
     }
   }
