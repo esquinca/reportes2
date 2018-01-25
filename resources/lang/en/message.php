@@ -110,4 +110,7 @@ return [
 
     'subtitle_view_report' => 'Administración',
     'breadcrumb_view_report' => 'Administración de reportes',
+
+    'subtitle_assign_report' => 'Asignación',
+    'breadcrumb_assign_report' => 'Asignación de reportes',
 ];

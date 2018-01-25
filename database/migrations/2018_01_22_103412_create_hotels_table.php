@@ -18,10 +18,6 @@ class CreateHotelsTable extends Migration
             $table->string('Nombre_hotel');
             $table->string('Direccion');
             $table->string('Telefono');
-            //Primera llave foranea
-            $table->integer('cadena_id')->unsigned();
-            $table->foreign('cadena_id')->references('id')->on('cadenas');
-            //---------------------
             $table->string('Pais');
             $table->string('Estado');
             //Segunda llave foranea

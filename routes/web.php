@@ -38,6 +38,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/move_equipment', 'MoveEquipmentController@index');
     Route::get('/group_equipment', 'GroupEquipmentController@index');
   //- Reportes
+    Route::get('/type_report' , 'AssignTypeController@index');
+
     Route::get('/viewreports' , 'ViewReportsController@index');
     Route::post('/typereport','ViewReportsController@typerep');
   //Calificaciones

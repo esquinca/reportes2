@@ -1673,7 +1673,6 @@ class UsersTableSeeder extends Seeder
         $hotel_1->Nombre_hotel='Aldea Thai';
         $hotel_1->Direccion='Playa del Carmen Centro, 77710';
         $hotel_1->Telefono='Sin informacion';
-        $hotel_1->cadena_id=$cadena_4->id;
         $hotel_1->Pais='México';
         $hotel_1->Estado='Quintana Roo';
         $hotel_1->vertical_id=$vertical_d->id;
@@ -1692,7 +1691,6 @@ class UsersTableSeeder extends Seeder
         $hotel_2->Nombre_hotel='Aluxes';
         $hotel_2->Direccion='Av. Adolfo Lopez Mateos S/N, Centro, 77400';
         $hotel_2->Telefono='Sin informacion';
-        $hotel_2->cadena_id=$cadena_6->id;
         $hotel_2->Pais='México';
         $hotel_2->Estado='Quintana Roo';
         $hotel_2->vertical_id=$vertical_d->id;
@@ -1711,7 +1709,6 @@ class UsersTableSeeder extends Seeder
         $hotel_3->Nombre_hotel='Azul Beach';
         $hotel_3->Direccion='Carretera Cancún – Puerto Morelos Km 27.5';
         $hotel_3->Telefono='Sin informacion';
-        $hotel_3->cadena_id=$cadena_29->id;
         $hotel_3->Pais='México';
         $hotel_3->Estado='Quintana Roo';
         $hotel_3->vertical_id=$vertical_d->id;
@@ -1730,7 +1727,6 @@ class UsersTableSeeder extends Seeder
         $hotel_4->Nombre_hotel='Azul Sensatori';
         $hotel_4->Direccion='Carretera Federal Cancún-Puerto Morelos';
         $hotel_4->Telefono='Sin informacion';
-        $hotel_4->cadena_id=$cadena_29->id;
         $hotel_4->Pais='México';
         $hotel_4->Estado='Quintana Roo';
         $hotel_4->vertical_id=$vertical_d->id;
@@ -1749,7 +1745,6 @@ class UsersTableSeeder extends Seeder
         $hotel_5->Nombre_hotel='Azul Five';
         $hotel_5->Direccion='El Limonar Fraccion 2, Acceso Xcalacoco, 7771';
         $hotel_5->Telefono='Sin informacion';
-        $hotel_5->cadena_id=$cadena_29->id;
         $hotel_5->Pais='México';
         $hotel_5->Estado='Quintana Roo';
         $hotel_5->vertical_id=$vertical_d->id;
@@ -1768,7 +1763,6 @@ class UsersTableSeeder extends Seeder
         $hotel_6->Nombre_hotel='Beach Palace';
         $hotel_6->Direccion='Km 11.5, Blvd. Kukulcan, Zona Hotelera, 77500';
         $hotel_6->Telefono='Sin informacion';
-        $hotel_6->cadena_id=$cadena_44->id;
         $hotel_6->Pais='México';
         $hotel_6->Estado='Quintana Roo';
         $hotel_6->vertical_id=$vertical_d->id;
@@ -1787,7 +1781,6 @@ class UsersTableSeeder extends Seeder
         $hotel_7->Nombre_hotel='Bluebay';
         $hotel_7->Direccion='Carretera Chetumal-Puerto Juarez Km. 300';
         $hotel_7->Telefono='Sin informacion';
-        $hotel_7->cadena_id=$cadena_10->id;
         $hotel_7->Pais='México';
         $hotel_7->Estado='Quintana Roo';
         $hotel_7->vertical_id=$vertical_d->id;
@@ -1806,7 +1799,6 @@ class UsersTableSeeder extends Seeder
         $hotel_8->Nombre_hotel='Cancun Bay';
         $hotel_8->Direccion='Blvd. Kulkucan Km. 3.5, Zona Hotelera';
         $hotel_8->Telefono='Sin informacion';
-        $hotel_8->cadena_id=$cadena_11->id;
         $hotel_8->Pais='México';
         $hotel_8->Estado='Quintana Roo';
         $hotel_8->vertical_id=$vertical_d->id;
@@ -1825,7 +1817,6 @@ class UsersTableSeeder extends Seeder
         $hotel_9->Nombre_hotel='Casa Maya';
         $hotel_9->Direccion='Blvd. Kukulcán Km. 5.5, Zona Hotelera';
         $hotel_9->Telefono='Sin informacion';
-        $hotel_9->cadena_id=$cadena_12->id;
         $hotel_9->Pais='México';
         $hotel_9->Estado='Quintana Roo';
         $hotel_9->vertical_id=$vertical_d->id;
@@ -1844,7 +1835,6 @@ class UsersTableSeeder extends Seeder
         $hotel_10->Nombre_hotel='Cozumel Palace';
         $hotel_10->Direccion='Av. Rafael E. Melgar Km 15, Zona Hotelera';
         $hotel_10->Telefono='Sin informacion';
-        $hotel_10->cadena_id=$cadena_44->id;
         $hotel_10->Pais='México';
         $hotel_10->Estado='Quintana Roo';
         $hotel_10->vertical_id=$vertical_d->id;
@@ -1863,7 +1853,6 @@ class UsersTableSeeder extends Seeder
         $hotel_11->Nombre_hotel='Dorado Maroma';
         $hotel_11->Direccion='Carretera Federal Cancun Tulum Km. 55.3';
         $hotel_11->Telefono='Sin informacion';
-        $hotel_11->cadena_id=$cadena_29->id;
         $hotel_11->Pais='México';
         $hotel_11->Estado='Quintana Roo';
         $hotel_11->vertical_id=$vertical_d->id;
@@ -1882,7 +1871,6 @@ class UsersTableSeeder extends Seeder
         $hotel_12->Nombre_hotel='Dorado Seaside';
         $hotel_12->Direccion='Carr Cancun-Tulum km 95, 77710 Kantenah, Q.R';
         $hotel_12->Telefono='Sin informacion';
-        $hotel_12->cadena_id=$cadena_29->id;
         $hotel_12->Pais='México';
         $hotel_12->Estado='Quintana Roo';
         $hotel_12->vertical_id=$vertical_d->id;
@@ -1901,7 +1889,6 @@ class UsersTableSeeder extends Seeder
         $hotel_13->Nombre_hotel='Dorado Royal';
         $hotel_13->Direccion='Carretera Cancún - Tulum Km. 45, 77710 Tulum';
         $hotel_13->Telefono='Sin informacion';
-        $hotel_13->cadena_id=$cadena_44->id;
         $hotel_13->Pais='México';
         $hotel_13->Estado='Quintana Roo';
         $hotel_13->vertical_id=$vertical_d->id;
@@ -1920,7 +1907,6 @@ class UsersTableSeeder extends Seeder
         $hotel_14->Nombre_hotel='Gran Caribe Real';
         $hotel_14->Direccion='Blvd. Kukulcan Km. 11.5, Zona Hotelera, 77500';
         $hotel_14->Telefono='Sin informacion';
-        $hotel_14->cadena_id=$cadena_47->id;
         $hotel_14->Pais='México';
         $hotel_14->Estado='Quintana Roo';
         $hotel_14->vertical_id=$vertical_d->id;
@@ -1939,7 +1925,6 @@ class UsersTableSeeder extends Seeder
         $hotel_15->Nombre_hotel='Gran Porto';
         $hotel_15->Direccion='Av. Constituyentes 1 x 10 y 5ta';
         $hotel_15->Telefono='Sin informacion';
-        $hotel_15->cadena_id=$cadena_47->id;
         $hotel_15->Pais='México';
         $hotel_15->Estado='Quintana Roo';
         $hotel_15->vertical_id=$vertical_d->id;
@@ -1958,7 +1943,6 @@ class UsersTableSeeder extends Seeder
         $hotel_16->Nombre_hotel='H10 Ocean Coral Turqueza';
         $hotel_16->Direccion='Carretera Cancún - Playa del Carmen';
         $hotel_16->Telefono='Sin informacion';
-        $hotel_16->cadena_id=$cadena_22->id;
         $hotel_16->Pais='México';
         $hotel_16->Estado='Quintana Roo';
         $hotel_16->vertical_id=$vertical_d->id;
@@ -1977,7 +1961,6 @@ class UsersTableSeeder extends Seeder
         $hotel_17->Nombre_hotel='H10 Ocean Maya Royale';
         $hotel_17->Direccion='Carretera Federal Chetumal Km. 299, 77710';
         $hotel_17->Telefono='Sin informacion';
-        $hotel_17->cadena_id=$cadena_22->id;
         $hotel_17->Pais='México';
         $hotel_17->Estado='Quintana Roo';
         $hotel_17->vertical_id=$vertical_d->id;
@@ -1996,7 +1979,6 @@ class UsersTableSeeder extends Seeder
         $hotel_18->Nombre_hotel='Hard Rock Punta Cana';
         $hotel_18->Direccion='Bv. Turístico del Este Km. 28';
         $hotel_18->Telefono='Sin informacion';
-        $hotel_18->cadena_id=$cadena_23->id;
         $hotel_18->Pais='México';
         $hotel_18->Estado='Quintana Roo';
         $hotel_18->vertical_id=$vertical_d->id;
@@ -2015,7 +1997,6 @@ class UsersTableSeeder extends Seeder
         $hotel_19->Nombre_hotel='Hacienda Tres Rios';
         $hotel_19->Direccion='Carretera Federal Cancún-Tulum Km. 54';
         $hotel_19->Telefono='Sin informacion';
-        $hotel_19->cadena_id=$cadena_49->id;
         $hotel_19->Pais='México';
         $hotel_19->Estado='Quintana Roo';
         $hotel_19->vertical_id=$vertical_d->id;
@@ -2034,7 +2015,6 @@ class UsersTableSeeder extends Seeder
         $hotel_20->Nombre_hotel='Hyatt Zilara';
         $hotel_20->Direccion='Blvd.Kukulcan KM 11.5, Zona Hotelera, 77500';
         $hotel_20->Telefono='Sin informacion';
-        $hotel_20->cadena_id=$cadena_47->id;
         $hotel_20->Pais='México';
         $hotel_20->Estado='Quintana Roo';
         $hotel_20->vertical_id=$vertical_d->id;
@@ -2053,7 +2033,6 @@ class UsersTableSeeder extends Seeder
         $hotel_21->Nombre_hotel='Iberostar Cancun';
         $hotel_21->Direccion='Blvd. Kukulcan, Zona Hotelera, 77500';
         $hotel_21->Telefono='Sin informacion';
-        $hotel_21->cadena_id=$cadena_25->id;
         $hotel_21->Pais='México';
         $hotel_21->Estado='Quintana Roo';
         $hotel_21->vertical_id=$vertical_d->id;
@@ -2072,7 +2051,6 @@ class UsersTableSeeder extends Seeder
         $hotel_22->Nombre_hotel='Iberostar Cozumel';
         $hotel_22->Direccion='Carretera Costera Sur Km. 17782';
         $hotel_22->Telefono='Sin informacion';
-        $hotel_22->cadena_id=$cadena_25->id;
         $hotel_22->Pais='México';
         $hotel_22->Estado='Quintana Roo';
         $hotel_22->vertical_id=$vertical_d->id;
@@ -2091,7 +2069,6 @@ class UsersTableSeeder extends Seeder
         $hotel_23->Nombre_hotel='Iberostar Paraiso';
         $hotel_23->Direccion='Blvd. Kukulkan Km 17, Zona Hotelera';
         $hotel_23->Telefono='Sin informacion';
-        $hotel_23->cadena_id=$cadena_25->id;
         $hotel_23->Pais='México';
         $hotel_23->Estado='Quintana Roo';
         $hotel_23->vertical_id=$vertical_d->id;
@@ -2110,7 +2087,6 @@ class UsersTableSeeder extends Seeder
         $hotel_24->Nombre_hotel='Iberostar Playacar';
         $hotel_24->Direccion='Av. Xaman-Ha Lote Hotelero 2';
         $hotel_24->Telefono='Sin informacion';
-        $hotel_24->cadena_id=$cadena_25->id;
         $hotel_24->Pais='México';
         $hotel_24->Estado='Quintana Roo';
         $hotel_24->vertical_id=$vertical_d->id;
@@ -2129,7 +2105,6 @@ class UsersTableSeeder extends Seeder
         $hotel_25->Nombre_hotel='Isla Palace';
         $hotel_25->Direccion='Blvd. Kukulcan Km. 11.5, Zona Hotelera, 77500';
         $hotel_25->Telefono='Sin informacion';
-        $hotel_25->cadena_id=$cadena_44->id;
         $hotel_25->Pais='México';
         $hotel_25->Estado='Quintana Roo';
         $hotel_25->vertical_id=$vertical_d->id;
@@ -2420,6 +2395,33 @@ class UsersTableSeeder extends Seeder
         $hotel_typereport_20 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_23->id , 'typereport_id' => $typereport_1->id]);
         $hotel_typereport_21 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_24->id , 'typereport_id' => $typereport_1->id]);
         $hotel_typereport_22 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_25->id , 'typereport_id' => $typereport_1->id]);
+
+      //Añadimos las cadenas a los hoteles
+      $cadena_hotel_1 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_4->id , 'hotel_id' => $hotel_1->id]);  
+      $cadena_hotel_2 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_6->id , 'hotel_id' => $hotel_2->id]);  
+      $cadena_hotel_3 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_29->id , 'hotel_id' => $hotel_3->id]);  
+      $cadena_hotel_4 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_29->id , 'hotel_id' => $hotel_4->id]);  
+      $cadena_hotel_5 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_29->id , 'hotel_id' => $hotel_5->id]);  
+      $cadena_hotel_6 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_44->id , 'hotel_id' => $hotel_6->id]);  
+      $cadena_hotel_7 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_10->id , 'hotel_id' => $hotel_7->id]);  
+      $cadena_hotel_8 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_11->id , 'hotel_id' => $hotel_8->id]);  
+      $cadena_hotel_9 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_12->id , 'hotel_id' => $hotel_9->id]);  
+      $cadena_hotel_10 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_44->id , 'hotel_id' => $hotel_10->id]); 
+      $cadena_hotel_11 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_29->id , 'hotel_id' => $hotel_11->id]);  
+      $cadena_hotel_12 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_29->id , 'hotel_id' => $hotel_12->id]);  
+      $cadena_hotel_13 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_44->id , 'hotel_id' => $hotel_13->id]);  
+      $cadena_hotel_14 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_47->id , 'hotel_id' => $hotel_14->id]);  
+      $cadena_hotel_15 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_47->id , 'hotel_id' => $hotel_15->id]);  
+      $cadena_hotel_16 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_22->id , 'hotel_id' => $hotel_16->id]);  
+      $cadena_hotel_17 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_22->id , 'hotel_id' => $hotel_17->id]);  
+      $cadena_hotel_18 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_23->id , 'hotel_id' => $hotel_18->id]);  
+      $cadena_hotel_19 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_49->id , 'hotel_id' => $hotel_19->id]);  
+      $cadena_hotel_20 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_47->id , 'hotel_id' => $hotel_20->id]);  
+      $cadena_hotel_21 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_25->id , 'hotel_id' => $hotel_21->id]);  
+      $cadena_hotel_22 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_25->id , 'hotel_id' => $hotel_22->id]);  
+      $cadena_hotel_23 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_25->id , 'hotel_id' => $hotel_23->id]);  
+      $cadena_hotel_24 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_25->id , 'hotel_id' => $hotel_24->id]);  
+      $cadena_hotel_25 = DB::table('cadena_hotel')->insert(['cadena_id' => $cadena_44->id , 'hotel_id' => $hotel_25->id]);  
 
     }
 }
