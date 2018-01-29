@@ -22,9 +22,9 @@
 <script src="{{ asset('bower_components/datatables.net/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{ asset('bower_components/datatables.net/js/buttons.flash.min.js')}}"></script>
 <script src="{{ asset('bower_components/datatables.net/js/jszip.min.js')}}"></script>
-<!-- <script src="{{ asset('bower_components/datatables.net/js/1/vfs_fonts.js')}}"></script>
 <script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js.map')}}"></script> -->
+<script src="{{ asset('bower_components/datatables.net/js/1/vfs_fonts.js')}}"></script>
+<!-- <script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js.map')}}"></script> -->
 <script src="{{ asset('bower_components/datatables.net/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('bower_components/datatables.net/js/buttons.print.min.js')}}"></script>
 <!-- Select2 -->
