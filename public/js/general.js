@@ -336,6 +336,126 @@ function graph_barras_two(title, campoa, campob) {
   });
 }
 
+function graph_barras_three(title, campoa, campob, titlepral, subtitulopral) {
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+    title: {
+       text: titlepral,
+       subtext: subtitulopral,
+       textStyle: {
+        color: '#449D44',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif',
+        fontSize: 18,
+        align: 'left',
+        verticalAlign: 'top',
+        width: '100%',
+        textBorderColor: 'transparent',
+        textBorderWidth: 0,
+        textShadowColor: 'transparent',
+        textShadowBlur: 0,
+        textShadowOffsetX: 0,
+        textShadowOffsetY: 0,
+      },
+   },
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    toolbox: {
+        show : false,
+        feature : {
+            dataView : {show: false, readOnly: false, title : 'Datos', lang: ['Vista de datos', 'Cerrar', 'Actualizar']},
+            magicType : {
+              show: true,
+              type: ['line', 'bar'],
+              title : {
+                line : 'Gráfico de líneas',
+                bar : 'Gráfico de barras',
+                stack : 'Acumular',
+                tiled : 'Tiled',
+                force: 'Cambio de diseño orientado a la fuerza',
+                chord: 'Interruptor del diagrama de acordes',
+                pie: 'Gráfico circular',
+                funnel: 'Gráfico de embudo'
+              },
+            },
+            restore : {show: false, title : 'Recargar'},
+            saveAsImage : {show: true , title : 'Guardar'}
+        }
+    },
+    calculable : true,
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : campoa,
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel : {
+               show:true,
+               interval: 'auto',    // {number}
+               rotate: 20,
+               margin: 10,
+               formatter: '{value}',
+               textStyle: {
+                  //  color: 'blue',
+                   fontFamily: 'sans-serif',
+                   fontSize: 8,
+                   fontStyle: 'italic',
+                   fontWeight: 'bold'
+               }
+            }
+            //
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'Cantidad',
+            type:'bar',
+            barWidth: '60%',
+            data:campob,
+            itemStyle: {
+              normal: {
+                  color: function(params) {
+                      // build a color map as your need.
+                      var colorList = [
+                        '#DD4B39','#00C0EF', '#605CA8', '#FF851B','#00A65A',
+                        '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+                          '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+                          '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+                      ];
+                      return colorList[params.dataIndex]
+                  }
+              }
+            }
+        }
+    ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
 function graph_pie_default(title, campoa, campob){
   var myChart = echarts.init(document.getElementById(title));
   var option = {
@@ -390,6 +510,69 @@ function graph_pie_default_two(title, campoa, campob){
             show: true,
             text: 'Resumen',
             subtext: 'Concepto & Unidad',
+            x:'center',
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'center',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            // type: 'scroll',
+            orient: 'horizontal',
+            // right: 10,
+            // top: 10,
+            bottom: 10,
+            data: campoa
+        },
+        series : [
+            {
+                name: 'Información',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:campob,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_pie_default_three(title, campoa, campob, titlepral, subtitulopral){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitulopral,
             x:'center',
             textStyle: {
              color: '#449D44',
@@ -502,6 +685,108 @@ function graph_area_one_default(title, campoa, campob){
                    interval: 'auto',    // {number}
                    rotate: 30,
                    margin: 30,
+                   formatter: '{value}',
+                   textStyle: {
+                      //  color: 'blue',
+                       fontFamily: 'sans-serif',
+                       fontSize: 8,
+                       fontStyle: 'italic',
+                       fontWeight: 'bold'
+                   }
+                }
+
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+          {
+              name:'邮件营销',
+              type:'line',
+              stack: '总量',
+              itemStyle: {
+                  normal: {
+                      color: 'rgba(63, 191, 142, 1)'
+                  }
+              },
+              areaStyle: {
+                normal: {
+                    color: 'rgba(63, 191, 142, 0.5)'
+                }
+
+                },
+              data:campob,
+          }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_area_three_default(title, campoa, campob, titlepral, subtitulopral, alignlabel, rotatelabel, marginlabel){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitulopral,
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'left',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+          trigger: 'axis',
+          axisPointer: {
+              type: 'cross',
+              label: {
+                  backgroundColor: '#6a7985'
+              }
+          }
+        },
+        legend: {
+            data: campoa
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data: campoa,
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLabel : {
+                   align: alignlabel,
+                   show:true,
+                   interval: 'auto',    // {number}
+                   rotate: rotatelabel,
+                   margin: marginlabel,
                    formatter: '{value}',
                    textStyle: {
                       //  color: 'blue',
@@ -1382,7 +1667,7 @@ var Configuration_table_responsive= {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
         className: 'btn btn-danger',
-      }      
+      }
   ],
   "processing": true,
 
@@ -1411,6 +1696,106 @@ var Configuration_table_responsive= {
     }
   }
 };
+
+var Configuration_table_responsive_with_pdf_two= {
+  dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    buttons: [
+      {
+        extend: 'excelHtml5',
+        text: '<i class="fa fa-file-excel-o"></i> Excel',
+        titleAttr: 'Excel',
+        title: function ( e, dt, node, config ) {
+          return 'Equipamiento de  '+ $('#clientpral').text();
+        },
+        className: 'btn btn-info custombtntable',
+      },
+      {
+        extend: 'csvHtml5',
+        text: '<i class="fa fa-file-text-o"></i> CSV',
+        titleAttr: 'CSV',
+        title: function ( e, dt, node, config ) {
+          return 'Equipamiento de  '+ $('#clientpral').text();
+        },
+        className: 'btn btn-danger',
+      },
+      {
+        extend: 'pdf',
+        text: '<i class="fa fa-file-pdf-o"></i>  PDF',
+        title: function ( e, dt, node, config ) {
+          return 'Equipamiento de  '+ $('#clientpral').text();
+        },
+        customize: function ( doc ) {
+          doc.content.splice( 0, 0, {
+            margin: [0, 0, 0, 12],
+            alignment: 'left',
+            columns : [
+              {
+                alignment: 'center',
+                image:
+                'data:image/png;base64,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'
+              },
+              {
+                text: [
+                  { text: '\n\nCliente: ', fontSize: 10, bold: true },
+                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+
+                  { text: 'Dirección: ', fontSize: 10, bold: true },
+                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+
+                  { text: 'País: ', fontSize: 10, bold: true },
+                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+
+                  { text: 'Estado: ', fontSize: 10, bold: true },
+                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+
+                  { text: 'Servicio: ', fontSize: 10, bold: true},
+                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+                ]
+              },
+              {
+
+              },
+            ]
+          } );
+        },
+        exportOptions: {
+            modifier: {
+                page: 'current'
+            }
+        },
+        className: 'btn bg-olive',
+      }
+  ],
+  "processing": true,
+
+  language:{
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+  }
+};
+
 
 var Configuration_table_responsive_with_pdf= {
   dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +

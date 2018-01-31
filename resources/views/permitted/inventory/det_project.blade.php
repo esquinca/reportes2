@@ -45,38 +45,164 @@
                         </select>
                       </div>
                       <div class="form-group">
-                          <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
-                          <button type="button" class="btn btn-success btngeneral"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }}</button>
+                        <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                        <button type="button" class="btn btn-success btn-export hidden-xs"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }} Portada</button>
                       </div>
                   </div>
                  </div>
               </div>
             </div>
 
+            <div id="captura_pdf_general" class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="hojitha"   style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
+                  <div class="row pad-top-botm ">
+                      <div class="col-lg-3 col-md-3 col-sm-3 ">
+                         <img class="logo-sit" src="{{ asset('/images/users/logo.svg') }}" style="padding-bottom:20px;" />
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 ">
+                        <strong>Cliente: </strong><p id="clientpral" style="display: inline;"> Hard Rock</p>
+                        <br />
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-3 ">
+                         <img class="logo-sit" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
+                      </div>
+                  </div>
 
-            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="box box-solid">
-                <div class="box-body">
-                  <div class="media">
-                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                        Generado el día @php
-                          $mytime = Carbon\Carbon::now();
-                          echo $mytime->toDateTimeString();
-                        @endphp
-                    </h4>
-                    <div class="media">
-                        <div class="media-body">
-                            <div class="clearfix">
-                                <div style="margin-top: 0">
-                                  <div id="main_nationality" style="width: 100%; min-height: 250px; border:1px solid #ccc;padding:10px;"></div>
-                                </div>
-                            </div>
-                        </div>
+                  <div class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                          <hr />
+                          <span>
+                              <strong>Email : </strong>  info@sitwifi.com
+                          </span>
+                          <span>
+                              <strong>Telf : </strong>  8-84-46-30
+                          </span>
+                           <span>
+                              <strong>Expedición: </strong>  @php
+                                $mytime = Carbon\Carbon::now();
+                                echo $mytime->toDateTimeString();
+                              @endphp
+                          </span>
+                          <hr />
+                      </div>
+                  </div>
+
+                  <div  class="row pad-top-botm client-info">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="clearfix">
+                        <div id="main_aps" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="clearfix">
+                        <div id="main_switch" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                      </div>
                     </div>
                   </div>
-                 </div>
+
+                  <div class="row pad-top-botm client-info">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="clearfix">
+                          <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="clearfix">
+                            <div id="main_modelos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                    </div>
+                  </div>
+
+                  <div  class="row text-center contact-info">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <hr />
+                        <span>
+                            <strong>Resumen</strong>
+                        </span>
+                      <hr />
+                    </div>
+                  </div>
+
+                  <div class="row pad-top-botm client-info">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <table id="table_resume" class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>Hotel.</th>
+                              <th>No. APS</th>
+                              <th>No. SW.</th>
+                              <th>No. ZD</th>
+                              <th>No. Sonda</th>
+                              <th>No. Sonicwall</th>
+                              <th>No. ZQ</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                    </div>
+                  </div>
+
+                  <div  class="row text-center contact-info">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <hr />
+                        <span>
+                            <strong>Equipamientos</strong>
+                        </span>
+                      <hr />
+                    </div>
+                  </div>
+
+
+                  <div class="row pad-top-botm client-info">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        </br>
+                        <table id="table_rent_prest" class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>Hotel.</th>
+                              <th>Rentas APS</th>
+                              <th>Rentas SW.</th>
+                              <th>Rentas ZD</th>
+                              <th>Prestamo APS</th>
+                              <th>Prestamo SW.</th>
+                              <th>Prestamo ZD</th>
+                              <th>Ventas APS</th>
+                              <th>Ventas SW.</th>
+                              <th>Ventas ZD</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        </br>
+                        <table id="table_demo_stock" class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>Hotel.</th>
+                              <th>Demo APS</th>
+                              <th>Demo SW.</th>
+                              <th>Demo ZD</th>
+                              <th>Stock APS</th>
+                              <th>Stock SW.</th>
+                              <th>Stock ZD</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                        </table>
+                    </div>
+
+                  </div>
+
               </div>
             </div>
+
+
 
         </div>
     </div>
@@ -87,7 +213,10 @@
 
 @push('scripts')
   @if( auth()->user()->can('View detailed for proyect') )
+    <script src="{{ asset('bower_components/jsPDF/dist/jspdf.min.js')}}"></script>
+    <script src="{{ asset('bower_components/html2canvas/html2canvas.js')}}"></script>
     <script src="{{ asset('js/admin/inventory/hotelp.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
   @else
     <!--NO VER-->
   @endif

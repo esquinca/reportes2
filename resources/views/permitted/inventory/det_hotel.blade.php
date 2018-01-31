@@ -272,42 +272,7 @@
     <script src="{{ asset('bower_components/jsPDF/dist/jspdf.min.js')}}"></script>
     <script src="{{ asset('bower_components/html2canvas/html2canvas.js')}}"></script>
     <script src="{{ asset('js/admin/inventory/hoteld.js')}}"></script>
-    <style media="screen">
-    .logo-sit {
-      width: 300px;
-      height: 100px;
-      float: right;
-    }
-    .pad-top-botm {
-        padding-bottom:10px;
-        padding-top:20px;
-    }
-    h4 {
-        text-transform:uppercase;
-    }
-    /* =============================================================
-       PAGE STYLES
-     ============================================================ */
-
-    .contact-info span {
-        font-size:14px;
-        padding:0px 50px 0px 50px;
-    }
-
-    .contact-info hr {
-        margin-top: 0px;
-    margin-bottom: 0px;
-    }
-
-    .client-info {
-        font-size:15px;
-    }
-
-    .ttl-amts {
-        text-align:right;
-        padding-right:50px;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
   @else
     <!--NO VER-->
   @endif
