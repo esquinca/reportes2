@@ -704,7 +704,7 @@ function graph_area_one_default(title, campoa, campob){
         ],
         series : [
           {
-              name:'邮件营销',
+              name:'Cantidad',
               type:'line',
               stack: '总量',
               itemStyle: {
@@ -806,7 +806,7 @@ function graph_area_three_default(title, campoa, campob, titlepral, subtitulopra
         ],
         series : [
           {
-              name:'邮件营销',
+              name:'Cantidad',
               type:'line',
               stack: '总量',
               itemStyle: {
