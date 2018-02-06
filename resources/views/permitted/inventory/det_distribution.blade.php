@@ -48,6 +48,34 @@
               </div>
             </div>
 
+            <div id="captura_pdf_general" class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="hojitha" style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
+                  <div class="row pad-top-botm ">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="clearfix">
+                          <div id="main_country" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div  class="row pad-top-botm client-info">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="clearfix">
+                        <div id="main_pais_vertical" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="clearfix">
+                        <div id="main_distribution" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+              </div>
+            </div>
+
         </div>
     </div>
     @else
@@ -57,6 +85,7 @@
 
 @push('scripts')
   @if( auth()->user()->can('View distribucion') )
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD07V9hwyUjrRCXiJHo9YdftE0VJIbRP8"></script>
     <script src="{{ asset('js/admin/inventory/distribucion.js')}}"></script>

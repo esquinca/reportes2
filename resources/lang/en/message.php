@@ -113,4 +113,49 @@ return [
 
     'subtitle_assign_report' => 'Asignación',
     'breadcrumb_assign_report' => 'Asignación de reportes',
+
+    'required_view' => 'Requerimientos',
+    'direccionip' => 'Dirección IP',
+    'puerto' => 'Puerto',
+    'comprobar' => 'Comprobar',
+
+    'cancelar' => 'Cancelar',
+
+    'title_capture_indiv' => 'Captura',
+    'subtitle_capture_indiv' => 'Individual',
+    'breadcrumb_capture_indiv' => 'Captura Individual',
+
+    'clienttype' => 'Tipo de dispositivo del cliente',
+    'contentimgband' => 'Apartado subir imagen de ancho de banda (Mensual)',
+    'contentgbtrans' => 'Número de Gigabytes transmitidos en 24hrs',
+    'contentnumberdevice' => 'Número de dispositivos cliente autorizados',
+    'contentapstop' => 'Top 5 de Ap‘s mas usadas',
+    'contentwlantop' => 'Top 5 de wlan‘s mas usadas',
+
+
+    'ingnombw' => 'Ingresar nombre de WLAN',
+    'ingnumcw' => 'Ingresar num. de clientes',
+
+    'ingmac' => 'MAC',
+    'ingmod' => 'Modelo',
+    'ingclient' => 'Num. Clientes',
+    'capturar' => 'Capturar',
+    'meansrequired' => 'Significa requerido',
+    'meansnotrequired' => 'Significa no requerido',
+    'maxcarveint' => 'Maximo 20 caracteres',
+    'maxcardiez' => 'Maximo 10 caracteres',
+    'importarimg'=>'Cargar imagen',
+    'zonedirect' => 'ZD',
+
+    'title_edit_capture_indiv' => 'Editar',
+    'subtitle_edit_capture_indiv' => 'Registro Individual',
+    'breadcrumb_edit_capture_indiv' => 'Editar Registro Individual',
+
+    'title_concierge_approval' => 'Aprobación',
+    'subtitle_concierge_approval' => 'Concierge',
+    'breadcrumb_concierge_approval' => 'Aprobación Concierge',
+
+    'title_admin_approval' => 'Aprobación',
+    'subtitle_admin_approval' => 'Admin',
+    'breadcrumb_admin_approval' => 'Aprobación Admin',
 ];

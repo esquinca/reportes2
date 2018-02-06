@@ -833,6 +833,109 @@ function graph_area_three_default(title, campoa, campob, titlepral, subtitulopra
   });
 }
 
+function graph_area_four_default(title, campoa, campob, titlepral, subtitulopral, alignlabel, rotatelabel, marginlabel, colorlinea, colorarea){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitulopral,
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'left',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+          trigger: 'axis',
+          axisPointer: {
+              type: 'cross',
+              label: {
+                  backgroundColor: '#6a7985'
+              }
+          }
+        },
+        legend: {
+            data: campoa
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data: campoa,
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLabel : {
+                   align: alignlabel,
+                   show:true,
+                   interval: 'auto',    // {number}
+                   rotate: rotatelabel,
+                   margin: marginlabel,
+                   formatter: '{value}',
+                   textStyle: {
+                      //  color: 'blue',
+                       fontFamily: 'sans-serif',
+                       fontSize: 8,
+                       fontStyle: 'italic',
+                       fontWeight: 'bold'
+                   }
+                }
+
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+          {
+              name:'Cantidad',
+              type:'line',
+              stack: '总量',
+              itemStyle: {
+                  normal: {
+                      color: colorlinea
+                  }
+              },
+              areaStyle: {
+                normal: {
+                    color: colorarea
+                }
+
+                },
+              data:campob,
+          }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+
 function graph_nested_pies(title, campoa, campob){
   var myChart = echarts.init(document.getElementById(title));
   var option = {
@@ -1953,3 +2056,325 @@ var Configuration_table_responsive_two= {
     }
   }
 };
+
+var Configuration_table_responsive_simple={
+      "order": [[ 0, "desc" ]],
+      paging: false,
+      //"pagingType": "simple",
+      Filter: false,
+      searching: false,
+      //"aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+      //ordering: false,
+      //"pageLength": 5,
+      bInfo: false,
+      language:{
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+      }
+}
+function function_tree(title, titlepral, subtitlepral, data1) {
+  var myChart = echarts.init(document.getElementById(title));
+  myChart.showLoading();
+  var option= {
+    title: {
+       text: titlepral,
+       subtext: subtitlepral,
+       textStyle: {
+        color: '#449D44',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif',
+        fontSize: 18,
+        align: 'left',
+        verticalAlign: 'top',
+        width: '100%',
+        textBorderColor: 'transparent',
+        textBorderWidth: 0,
+        textShadowColor: 'transparent',
+        textShadowBlur: 0,
+        textShadowOffsetX: 0,
+        textShadowOffsetY: 0,
+      },
+   },
+    tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove'
+    },
+    legend: {
+        show : false,
+        top: '2%',
+        left: '3%',
+        orient: 'vertical',
+        data: [{
+            name: 'tree1',
+            icon: 'rectangle'
+        }],
+        borderColor: '#c23531'
+    },
+    series:[
+        {
+            type: 'tree',
+            name: 'tree1',
+            data: [data1],
+            top: '5%',
+            left: '7%',
+            bottom: '%',
+            right: '20%',
+            symbolSize: 10,
+
+            label: {
+                normal: {
+                    show: true,
+                    position: 'right',
+                    fontSize: 8,
+                    padding:1,
+                    shadowOffsetY: 170,
+                    rotate: 0,
+                    fontStyle: 'bold',
+                    fontFamily: 'sans-serif',
+
+                }
+            },
+
+            leaves: {
+                label: {
+                    margin: 8,
+                    normal: {
+                      show: true,
+                      position: 'right',
+                      fontSize: 8,
+                      padding:1,
+                      shadowOffsetY: 170,
+                      rotate: 0,
+                      fontStyle: 'bold',
+                      fontFamily: 'sans-serif',
+                    }
+                }
+            },
+
+            expandAndCollapse: false,
+            animationDuration: 550,
+            animationDurationUpdate: 750
+
+        }
+    ]
+  };
+
+  myChart.hideLoading();
+
+  myChart.setOption(option);
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_douhnut_default(title, titlepral, subtitlepral, campoa, campob){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitlepral,
+            x:'center',
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'center',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            // type: 'scroll',
+            orient: 'horizontal',
+            // right: 10,
+            // top: 10,
+            bottom: 10,
+            data: campoa
+        },
+        series : [
+            {
+                name: 'Información',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                data:campob,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_douhnut_two_default(title, titlepral, subtitlepral, positiontitle, campoa, campob){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitlepral,
+            x: positiontitle,
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'center',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            // type: 'scroll',
+            orient: 'horizontal',
+            // right: 10,
+            // top: 10,
+            bottom: 10,
+            data: campoa
+        },
+        series : [
+            {
+                name: 'Información',
+                type: 'pie',
+                radius: ['25%', '50%'],
+                avoidLabelOverlap: false,
+                data:campob,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_pie_default_four(title, campoa, campob, titlepral, subtitulopral, positiontitle){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitulopral,
+            x:positiontitle,
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'center',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            // type: 'scroll',
+            orient: 'horizontal',
+            // right: 10,
+            // top: 10,
+            bottom: 10,
+            data: campoa
+        },
+        series : [
+            {
+                name: 'Información',
+                type: 'pie',
+                radius : '50%',
+                center: ['50%', '50%'],
+                data:campob,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}

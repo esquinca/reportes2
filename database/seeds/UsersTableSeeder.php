@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
         $vieweditreport= Permission::create(['name' => 'Edit assign report']);
         $viewdeletereport= Permission::create(['name' => 'Delete assign report']);
 
-        $viewgeneralreport= Permission::create(['name' => 'View general report']);
+        // $viewgeneralreport= Permission::create(['name' => 'View general report']);
         $viewcreatgeneralreport= Permission::create(['name' => 'Create general report']);
 
         $viewindividualreport= Permission::create(['name' => 'View individual capture']);
@@ -167,7 +167,7 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('Create assign report');
             $super_admin_a0->givePermissionTo('Edit assign report');
             $super_admin_a0->givePermissionTo('Delete assign report');
-            $super_admin_a0->givePermissionTo('View general report');
+            // $super_admin_a0->givePermissionTo('View general report');
             $super_admin_a0->givePermissionTo('Create general report');
             $super_admin_a0->givePermissionTo('View individual capture');
             $super_admin_a0->givePermissionTo('Create individual capture');
@@ -240,7 +240,7 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('Create assign report');
             $super_admin_a->givePermissionTo('Edit assign report');
             $super_admin_a->givePermissionTo('Delete assign report');
-            $super_admin_a->givePermissionTo('View general report');
+            // $super_admin_a->givePermissionTo('View general report');
             $super_admin_a->givePermissionTo('Create general report');
             $super_admin_a->givePermissionTo('View individual capture');
             $super_admin_a->givePermissionTo('Create individual capture');
@@ -316,7 +316,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_b->givePermissionTo('Create assign report');
           $super_admin_b->givePermissionTo('Edit assign report');
           $super_admin_b->givePermissionTo('Delete assign report');
-          $super_admin_b->givePermissionTo('View general report');
+          // $super_admin_b->givePermissionTo('View general report');
           $super_admin_b->givePermissionTo('Create general report');
           $super_admin_b->givePermissionTo('View individual capture');
           $super_admin_b->givePermissionTo('Create individual capture');
@@ -388,7 +388,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_c->givePermissionTo('Create assign report');
           $super_admin_c->givePermissionTo('Edit assign report');
           $super_admin_c->givePermissionTo('Delete assign report');
-          $super_admin_c->givePermissionTo('View general report');
+          // $super_admin_c->givePermissionTo('View general report');
           $super_admin_c->givePermissionTo('Create general report');
           $super_admin_c->givePermissionTo('View individual capture');
           $super_admin_c->givePermissionTo('Create individual capture');
@@ -641,23 +641,23 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_two_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC0->id]);
         $assigned_menu_two_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC0->id]);
 
-        $menuAdminC1 = new Menu;
-        $menuAdminC1->name='generate';
-        $menuAdminC1->display_name='Generar Reporte';
-        $menuAdminC1->description='Permite capturar de manera generar el reporte diario del hotel asignado.';
-        $menuAdminC1->url='generate';
-        $menuAdminC1->section_id=$seccion_admin_b->id;
-        $menuAdminC1->icons='fa fa-square-o';
-        $menuAdminC1->save();
-
-        $assigned_menu_two_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC1->id]);
-        $assigned_menu_two_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC1->id]);
-        $assigned_menu_two_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC1->id]);
-        $assigned_menu_two_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC1->id]);
+        // $menuAdminC1 = new Menu;
+        // $menuAdminC1->name='generate';
+        // $menuAdminC1->display_name='Generar Reporte';
+        // $menuAdminC1->description='Permite capturar de manera generar el reporte diario del hotel asignado.';
+        // $menuAdminC1->url='generate';
+        // $menuAdminC1->section_id=$seccion_admin_b->id;
+        // $menuAdminC1->icons='fa fa-square-o';
+        // $menuAdminC1->save();
+        //
+        // $assigned_menu_two_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC1->id]);
+        // $assigned_menu_two_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC1->id]);
+        // $assigned_menu_two_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC1->id]);
+        // $assigned_menu_two_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC1->id]);
 
         $menuAdminC2 = new Menu;
         $menuAdminC2->name='individual';
-        $menuAdminC2->display_name='Captura Individual';
+        $menuAdminC2->display_name='Captura reporte';
         $menuAdminC2->description='Permite realizar la captura individual de cada hotel asignado.';
         $menuAdminC2->url='individual';
         $menuAdminC2->section_id=$seccion_admin_b->id;

@@ -80,5 +80,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
     Route::get('/acm1pt', 'HotelDController@hotel_cadena');
+  //- individual
+    Route::get('/individual', 'IndividualController@index');
+    Route::post('/upload_client', 'IndividualController@upload_client');
+    Route::post('/upload_banda', 'IndividualController@upload_banda');
+  //- Editar individual
+    Route::get('/edit_report', 'EditReportController@index');
+  //- Aproval concierge
+    Route::get('/approval', 'ApprovalConciergeController@index');
+  //- Aproval admin
+    Route::get('/approvals', 'ApprovalAdminController@index');
 
 });

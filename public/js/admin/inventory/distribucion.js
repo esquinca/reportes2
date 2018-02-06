@@ -6,6 +6,9 @@ var markerCluster;
 
 $(function() {
   init();
+  graph_tree_one();
+  graph_tree_two();
+  graph_resumen();
 });
 
 function init() {
@@ -53,4 +56,109 @@ function addLocation(){
       console.log('Error:', data);
     }
   });
+}
+
+function graph_tree_one() {
+  var _token = $('input[name="_token"]').val();
+  var data1 = {
+      "name": "SITWIFI",
+      "children": [
+          {
+              "name": "Republica dominicana",
+              "children": [
+                  {"name": "Punta Cana: 1483", "value": 1483}
+              ]
+          },
+          {
+              "name": "Jamaica",
+              "children": [
+                  {"name": "Ocho rios: 298", "value": 298},
+                  {"name": "Negril: 149", "value": 149}
+              ]
+          },
+          {
+              "name": "Mexico",
+              "children": [
+                  {"name": "Nayarit:267", "value": 267},
+                  {"name": "Chiapas: 117", "value": 117},
+                  {"name": "Queretaro: 50", "value": 50},
+                  {"name": "San luis potosi: 121", "value": 121},
+                  {"name": "Puebla: 22", "value": 22},
+                  {"name": "Sonora:56", "value": 56},
+                  {"name": "Sinaloa: 19", "value": 19},
+                  {"name": "Nuevo leon: 60", "value": 60},
+                  {"name": "Morelos: 38", "value": 38},
+                  {"name": "Guerrero:177", "value": 117},
+                  {"name": "Los cabos: 174", "value": 174},
+
+                  {"name": "Tabasco:104", "value": 174},
+                  {"name": "Monterrey: 45", "value": 174},
+                  {"name": "Guadalajara: 32", "value": 174},
+                  {"name": "Chihuahua: 26", "value": 174},
+                  {"name": "Guanajuato: 8", "value": 174},
+                  {"name": "Zacatecas: 11", "value": 174},
+                  {"name": "Tamaulipas:80", "value": 174},
+                  {"name": "Campeche:29", "value": 174},
+                  {"name": "Baja california:345", "value": 174},
+                  {"name": "Veracruz: 94", "value": 174},
+                  {"name": "Yucatan: 60", "value": 174},
+                  {"name": "Tijuana: 30", "value": 174},
+                  {"name": "Quintana roo: 11961", "value": 174},
+                  {"name": "Toluca: 43", "value": 174},
+                  {"name": "Morelia: 1", "value": 174},
+                  {"name": "Aguascalientes: 115", "value": 174},
+                  {"name": "Toluca: 43", "value": 174},
+                  {"name": "Colima: 5", "value": 174},
+                  {"name": "Coahuila: 102", "value": 174},
+                  {"name": "Jalisco: 128", "value": 174},
+                  {"name": "Ciudad de mexico: 1326", "value": 174}
+             ]
+          }
+      ]
+  };
+  function_tree('main_country', 'Distribución de antenas', 'País & Estado', data1);
+}
+
+function graph_tree_two() {
+  var _token = $('input[name="_token"]').val();
+  var data1 = {
+      "name": "SITWIFI",
+      "children": [
+          {
+              "name": "Republica dominicana",
+              "children": [
+                  {"name": "Hospitalidad: 492", "value": 492}
+              ]
+          },
+          {
+              "name": "Jamaica",
+              "children": [
+                  {"name": "Hospitalidad: 1483", "value": 1483}
+              ]
+          },
+          {
+              "name": "Mexico",
+              "children": [
+                  {"name": "Aeropuertos:239", "value": 239},
+                  {"name": "Educación: 2275", "value": 2275},
+                  {"name": "Eventos: 7", "value": 7},
+                  {"name": "Hospitalidad: 13556", "value": 13556},
+                  {"name": "Oficinas: 152", "value": 152},
+                  {"name": "Parques:73", "value": 73},
+                  {"name": "Plaza: 165", "value": 165},
+                  {"name": "Restaurantes: 11", "value": 11},
+                  {"name": "Retail: 6", "value": 6},
+                  {"name": "Transporte: 134", "value": 134},
+                  {"name": "Sitwifi:958", "value": 958}
+             ]
+          }
+      ]
+  };
+  function_tree('main_pais_vertical', 'Distribución de antenas', 'País & Vertical', data1);
+}
+function graph_resumen() {
+  var _token = $('input[name="_token"]').val();
+  var data_count = [{value:15646, name:'Mexico = 15646'},{value:447, name:'Jamaica = 447'},{value:1483, name:'Republica dominicana = 1483'}];
+  var data_name = ["Mexico = 15646","Jamaica = 447","Republica dominicana = 1483"];
+  graph_douhnut_default('main_distribution', 'Distribución de antenas', 'País', data_name, data_count);
 }

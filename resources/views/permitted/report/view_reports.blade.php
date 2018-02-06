@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
-                            <button type="button" class="btn btn-success btngeneral"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }}</button>
+                            <button type="button" class="btn btn-success btn-export hidden-xs"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }}</button>
                         </div>
                     </div>
                    </div>
@@ -71,29 +71,217 @@
               </div>
 
 
-              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <div class="box box-solid">
-                  <div class="box-body">
-                    <div class="media">
-                      <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                          Generado el día @php
-                            $mytime = Carbon\Carbon::now();
-                            echo $mytime->toDateTimeString();
-                          @endphp
-                      </h4>
-                      <div class="media">
-                          <div class="media-body">
-                              <div class="clearfix">
-                                  <div style="margin-top: 0">
-                                    <div id="main_nationality" style="width: 100%; min-height: 250px; border:1px solid #ccc;padding:10px;"></div>                                    
-                                  </div>
-                              </div>
+              <div id="captura_pdf_general" class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="hojitha"   style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
+                    <div class="row pad-top-botm ">
+                        <div class="col-lg-3 col-md-3 col-sm-3 ">
+                           <img class="logo-sit" src="{{ asset('/images/users/logo.svg') }}" style="padding-bottom:20px;" />
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                          <h2><strong> Reporte de uso y estadísticas</strong></h2>
+                          <strong style="font-style: italic;">Red wifi huéspedes / colaboradores</strong>
+                          <br />
+                          <p>Hard Rock Punta Cana</p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 ">
+                           <img class="logo-sit" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
+                        </div>
+                    </div>
+
+                    <div class="row text-center contact-info">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <hr />
+                            <span>
+                                <strong>Email : </strong>  info@sitwifi.com
+                            </span>
+                            <span>
+                                <strong>Telf : </strong>  8-84-46-30
+                            </span>
+                             <span>
+                                <strong>Expedición: </strong>  @php
+                                  $mytime = Carbon\Carbon::now();
+                                  echo $mytime->toDateTimeString();
+                                @endphp
+                            </span>
+                            <hr />
+                        </div>
+                    </div>
+
+                    <div  class="row pad-top-botm client-info">
+                      <div class="col-lg-3 col-md-3 col-sm-3">
+                        <p class="text-center" style="border: 1px solid #FF851B" >Gigabyte</p>
+                        <strong><i class="fa fa-rss"></i> Maximo: </strong> <p class="sameline">102,795 GB</p>
+                        <br />
+                        <strong><i class="fa fa-upload"></i> Minino:</strong> <p class="sameline">64,611 GB</p>
+                        <br />
+                        <strong><i class="fa fa-database"></i> Promedio:</strong> <p class="sameline">3,006 GB</p>
+                      </div>
+
+
+                      <div class="col-lg-3 col-md-3 col-sm-3">
+                        <p class="text-center" style="border: 1px solid #007bff" >Usuarios</p>
+                        <strong><i class="fa fa fa-level-up"></i><i class="fa fa fa fa-user"></i>  Maximo por mes: </strong> <p class="sameline"> 5739</p>
+                        <br />
+                        <strong><i class="fa fa-users"></i> Promedio:</strong> <p class="sameline">3629</p>
+                        <br />
+                        <strong><i class="fa fa-database"></i>No. Usuarios mensuales:</strong> <p class="sameline"> 105228</p>
+                      </div>
+
+                      <div class="col-lg-3 col-md-3 col-sm-3">
+                        <p class="text-center" style="border: 1px solid #3D9970" >Información Adicional</p>
+                        <strong><i class="fa fa fa-hdd-o"></i> No. Antenas: </strong> <p class="sameline"> 754</p>
+                        <br />
+                        <strong><i class="fa fa-tablet"></i> Rogue devices:</strong> <p class="sameline"> - </p>
+                        <br />
+                      </div>
+
+                      <div class="col-lg-3 col-md-3 col-sm-3">
+                        <p class="text-center" style="border: 1px solid #D53A35" >Dispositivos</p>
+                        <strong><i class="fa fa-desktop"></i> Diversos dispositivos por mes: </strong> <p class="sameline"> 21521.25</p>
+                        <br />
+                        <strong><i class="fa fa-building-o"></i> Promedio dispositivos por habitación diarios:</strong> <p class="sameline"> 4 </p>
+                        <br />
+                      </div>
+                    </div>
+
+                    <div  class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <hr />
+                          <span>
+                              <strong>Clientes</strong>
+                          </span>
+                        <hr />
+                      </div>
+                    </div>
+
+                    <div class="row pad-top-botm client-info">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_client_wlan" style="width: 100%; min-height: 300px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_top_ssid" style="width: 100%; min-height: 300px; border:1px solid #ccc;padding:10px;"></div>
                           </div>
                       </div>
                     </div>
-                   </div>
+
+                    <div  class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <hr />
+                          <span>
+                              <strong>Consumos</strong>
+                          </span>
+                        <hr />
+                      </div>
+                    </div>
+
+                    <div class="row pad-top-botm client-info">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_client_day" style="width: 100%; min-height: 300px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_gigabyte_day" style="width: 100%; min-height: 300px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div  class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <hr />
+                          <span>
+                              <strong>APS</strong>
+                          </span>
+                        <hr />
+                      </div>
+                    </div>
+
+                    <div class="row pad-top-botm client-info">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_top_aps" style="width: 100%; min-height: 280px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="table-responsive">
+                          <table id="table_top_aps" class="table table-striped table-bordered table-hover">
+                            <thead>
+                              <tr>
+                                <th>Descripción</th>
+                                <th>MAC</th>
+                                <th>No. Clientes.</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <hr />
+                          <span>
+                              <strong>Tabla comparativa</strong>
+                          </span>
+                        <hr />
+                      </div>
+                    </div>
+                    <div class="row pad-top-botm client-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                          <table id="table_comparative" class="table table-striped table-bordered table-hover">
+                            <thead>
+                              <tr>
+                                <th>Concepto</th>
+                                <th>Mes 1</th>
+                                <th>Mes 2</th>
+                                <th>Identificador</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div  class="row text-center contact-info">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <hr />
+                          <span>
+                              <strong>Adicional</strong>
+                          </span>
+                        <hr />
+                      </div>
+                    </div>
+                    <div class="row pad-top-botm client-info">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="clearfix">
+                            <div id="main_modelos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;">tabla</div>
+                          </div>
+                      </div>
+                    </div>
+
+
+
+
                 </div>
               </div>
+
 
           </div>
       </div>
@@ -104,6 +292,9 @@
 
 @push('scripts')
   @if( auth()->user()->can('View report') )
+    <script src="{{ asset('bower_components/jsPDF/dist/jspdf.min.js')}}"></script>
+    <script src="{{ asset('bower_components/html2canvas/html2canvas.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
     <script src="{{ asset('js/admin/report/view_reports.js')}}"></script>
   @else
     <!--NO VER-->

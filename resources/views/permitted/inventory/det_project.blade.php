@@ -59,8 +59,9 @@
                       <div class="col-lg-3 col-md-3 col-sm-3 ">
                          <img class="logo-sit" src="{{ asset('/images/users/logo.svg') }}" style="padding-bottom:20px;" />
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-6 ">
-                        <strong>Cliente: </strong><p id="clientpral" style="display: inline;"> Hard Rock</p>
+                      <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <h2> <small>Reporte por proyecto</small></h2>
+                        <strong id="name_htl">Hard Rock</strong>
                         <br />
                       </div>
                       <div class="col-lg-3 col-md-3 col-sm-3 ">

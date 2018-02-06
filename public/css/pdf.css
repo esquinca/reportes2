@@ -32,3 +32,7 @@ margin-bottom: 0px;
     text-align:right;
     padding-right:50px;
 }
+
+.sameline {
+  display: inline-block;
+}
