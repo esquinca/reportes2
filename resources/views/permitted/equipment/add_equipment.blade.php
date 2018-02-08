@@ -26,7 +26,7 @@
 
 @section('content')
     @if( auth()->user()->can('View add equipment') )
-      Añadir equipos
+
     @else
       @include('default.denied')
     @endif

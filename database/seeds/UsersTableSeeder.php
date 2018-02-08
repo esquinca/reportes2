@@ -100,6 +100,11 @@ class UsersTableSeeder extends Seeder
 
         $viewreport = Permission::create(['name' => 'View report']);
 
+        $viewprovider = Permission::create(['name' => 'View provider']);
+        $viewcreatprovider= Permission::create(['name' => 'Create provider']);
+        $viewcreatprovider= Permission::create(['name' => 'Edit provider']);
+        $viewdeletprovider= Permission::create(['name' => 'Delete provider']);
+
         //Calificaciones
         $viewaddsurvey = Permission::create(['name' => 'View create survey']);
         $viewgeneratesurvey = Permission::create(['name' => 'Generate survey']);
@@ -162,6 +167,10 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('View equipment group');
             $super_admin_a0->givePermissionTo('Add equipment group');
             $super_admin_a0->givePermissionTo('Removed equipment group');
+            $super_admin_a0->givePermissionTo('View provider');
+            $super_admin_a0->givePermissionTo('Create provider');
+            $super_admin_a0->givePermissionTo('Edit provider');
+            $super_admin_a0->givePermissionTo('Delete provider');
           //- Reportes
             $super_admin_a0->givePermissionTo('View assign report');
             $super_admin_a0->givePermissionTo('Create assign report');
@@ -235,6 +244,10 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('View equipment group');
             $super_admin_a->givePermissionTo('Add equipment group');
             $super_admin_a->givePermissionTo('Removed equipment group');
+            $super_admin_a->givePermissionTo('View provider');
+            $super_admin_a->givePermissionTo('Create provider');
+            $super_admin_a->givePermissionTo('Edit provider');
+            $super_admin_a->givePermissionTo('Delete provider');
           //- Reportes
             $super_admin_a->givePermissionTo('View assign report');
             $super_admin_a->givePermissionTo('Create assign report');
@@ -624,6 +637,19 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_one_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB4->id]);
         $assigned_menu_one_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB4->id]);
         $assigned_menu_one_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB4->id]);
+
+        $menuAdminB5 = new Menu;
+        $menuAdminB5->name='provider';
+        $menuAdminB5->display_name='Proveedor';
+        $menuAdminB5->description='Permite agregar los proveedores';
+        $menuAdminB5->url='provider';
+        $menuAdminB5->section_id=$seccion_admin_d->id;
+        $menuAdminB5->icons='fa fa-handshake-o';
+        $menuAdminB5->save();
+        $assigned_menu_one_f0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB5->id]);
+        $assigned_menu_one_f1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB5->id]);
+        $assigned_menu_one_f2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB5->id]);
+        $assigned_menu_one_f3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB5->id]);
 
 
       //Menu Reportes

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Editar',
     'dashboard' => 'Dashboard',
     'bienvenido' => 'Bienvenido',
     'principal' => 'Principal',
@@ -107,6 +108,13 @@ return [
     'generate' => 'Generar',
     'export' => 'Exportar',
     'cadena' => 'Cadena',
+    'estatus' => 'Estatus',
+    'year' => 'Año',
+    'aprobado' => 'Aprobado',
+    'pendiente' => 'Pendiente',
+    'approvalpend' => 'Aprobar pendientes',
+    'approvalfilt' => 'Aplicar Filtro',
+    'addapprovalfilt' => 'Añadir Filtro',
 
     'subtitle_view_report' => 'Administración',
     'breadcrumb_view_report' => 'Administración de reportes',
@@ -158,4 +166,8 @@ return [
     'title_admin_approval' => 'Aprobación',
     'subtitle_admin_approval' => 'Admin',
     'breadcrumb_admin_approval' => 'Aprobación Admin',
+
+    'title_provider' => 'Proveedor',
+    'subtitle_search_provider' => '',
+    'breadcrumb_search_provider' => 'Administración de proveedores',
 ];

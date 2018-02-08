@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/detailed_search', 'SearchEquipmentController@index');
     Route::get('/move_equipment', 'MoveEquipmentController@index');
     Route::get('/group_equipment', 'GroupEquipmentController@index');
+    Route::get('/provider', 'ProviderController@index');
   //- Reportes
     Route::get('/type_report' , 'AssignTypeController@index');
     Route::post('/data_type_report' , 'AssignTypeController@show');
@@ -90,5 +91,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/approval', 'ApprovalConciergeController@index');
   //- Aproval admin
     Route::get('/approvals', 'ApprovalAdminController@index');
-
 });

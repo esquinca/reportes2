@@ -39,7 +39,7 @@
                   <div class="row">
                   @if( auth()->user()->can('Create concierge approval') )
                     <div class="col-xs-12">
-                      <form id="creatapprovalconcierge" name="creatapprovalconcierge" action="">
+                      <form id="creatapprovalconcierge" name="creatapprovalconcierge"  class="form-horizontal" action="">
                         {{ csrf_field() }}
                         <div class="form-group">
                           <label for="select_one_hotel" class="col-md-2 control-label">{{ trans('message.hotel') }}</label>
