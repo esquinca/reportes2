@@ -20,31 +20,45 @@ class CreateHotelsTable extends Migration
             $table->string('Telefono');
             $table->string('Pais');
             $table->string('Estado');
-            //Primera llave foranea
-            $table->integer('cadena_id')->unsigned();
-            $table->foreign('cadena_id')->references('id')->on('cadenas');
-            //Segunda llave foranea
-            $table->integer('vertical_id')->unsigned();
-            $table->foreign('vertical_id')->references('id')->on('verticals');
-            //---------------------
+            //Checar con gabo
+            $table->text('Vertical')->nullable();
             $table->text('dirlogo1')->nullable();
-            //Tercera llave foranea
-            $table->integer('operaciones_id')->unsigned();
-            $table->foreign('operaciones_id')->references('id')->on('operaciones');
-            //---------------------
-            $table->binary('temp')->nullable();
             $table->text('Fecha_inicioP')->nullable();
             $table->text('Fecha_terminoP')->nullable();
-            // $table->text('Responsable')->nullable();
-            // $table->text('AreaTraSistemas')->nullable();
-            // $table->text('TelefonoSistemas')->nullable();
-            // $table->text('CorreoSistemas')->nullable();
-            // $table->('itconcierges_id');
             $table->text('Latitude')->nullable();
             $table->text('Longitude')->nullable();
             $table->integer('RM')->nullable();
             $table->integer('ActivarCalificacion')->nullable();
             $table->integer('ActivarReportes')->nullable();
+            $table->integer('ActivarDashboard')->nullable();
+
+            //Primera llave foranea
+            $table->integer('operaciones_id')->unsigned();
+            $table->foreign('operaciones_id')->references('id')->on('operaciones');
+            //Segunda llave foranea
+            $table->integer('vertical_id')->unsigned();
+            $table->foreign('vertical_id')->references('id')->on('verticals');
+            //Tercera llave foranea
+            $table->integer('cadena_id')->unsigned();
+            $table->foreign('cadena_id')->references('id')->on('cadenas');
+            //Cuarta llave foranea
+            $table->integer('servicios_id')->unsigned();
+            $table->foreign('servicios_id')->references('id')->on('servicios');
+            //Quinta llave foranea
+            $table->integer('proyectos_id')->unsigned();
+            $table->foreign('proyectos_id')->references('id')->on('proyectos');
+            //Sexta llave foranea
+            $table->integer('sucursal_id')->unsigned();
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
+
+            //---------------------
+            //---------------------
+            // $table->binary('temp')->nullable();
+            // $table->text('Responsable')->nullable();
+            // $table->text('AreaTraSistemas')->nullable();
+            // $table->text('TelefonoSistemas')->nullable();
+            // $table->text('CorreoSistemas')->nullable();
+            // $table->('itconcierges_id');
             $table->timestamps();
         });
     }

@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+ Route::get('/{user}/{venium}/{survey}/{end}/{status}','SurveyController@index');
+
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
