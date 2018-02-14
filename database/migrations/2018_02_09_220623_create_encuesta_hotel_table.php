@@ -14,7 +14,7 @@ class CreateEncuestaHotelTable extends Migration
     public function up()
     {
         Schema::create('encuesta_hotel', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->increments('id');
             $table->integer('encuesta_id')->unsigned();
             $table->integer('hotel_id')->unsigned();
             $table->foreign('encuesta_id')->references('id')->on('encuestas');

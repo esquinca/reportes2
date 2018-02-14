@@ -14,7 +14,7 @@ class CreateEquipoProveedorTable extends Migration
     public function up()
     {
         Schema::create('equipo_proveedor', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->increments('id');
             $table->integer('proveedor_id')->unsigned();
             $table->bigInteger('equipo_id')->unsigned();
             $table->foreign('equipo_id')->references('id')->on('equipos');

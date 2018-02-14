@@ -14,7 +14,7 @@ class CreateJefedirectoUserTable extends Migration
     public function up()
     {
         Schema::create('jefedirecto_user', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->increments('id');
             $table->integer('jefedirecto_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('jefedirecto_id')->references('id')->on('jefedirectos');

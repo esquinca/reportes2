@@ -14,7 +14,7 @@ class CreateReferenceHotelTable extends Migration
     public function up()
     {
         Schema::create('reference_hotel', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->increments('id');
             $table->integer('hotel_id')->unsigned();
             $table->integer('reference_id')->unsigned();
             $table->foreign('hotel_id')->references('id')->on('hotels');

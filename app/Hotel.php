@@ -4,6 +4,7 @@ namespace App;
 use App\Reference;
 use App\Typereport;
 use App\Cadena;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
@@ -20,6 +21,10 @@ class Hotel extends Model
     public function hotelCadena()
     {
     	return $this->belongsToMany(Cadena::class);
+    }
+    public function usuarios()
+    {
+      return $this->belongsToMany(User::class);
     }
 
 }

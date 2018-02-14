@@ -14,7 +14,7 @@ class CreateHotelUserTable extends Migration
     public function up()
     {
         Schema::create('hotel_user', function (Blueprint $table) {
-            // $table->increments('id');
+            $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('hotel_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

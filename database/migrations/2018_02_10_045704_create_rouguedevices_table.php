@@ -22,9 +22,9 @@ class CreateRouguedevicesTable extends Migration
             $table->string('Mes');
             $table->integer('hotels_id')->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');
-            $table->string('Aux');
+            // $table->string('Aux');
             $table->integer('valor');
-            $table->date('fecha');            
+            $table->date('fecha');
             $table->timestamps();
         });
     }

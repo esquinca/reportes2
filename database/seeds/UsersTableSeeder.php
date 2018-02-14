@@ -2295,6 +2295,8 @@ class UsersTableSeeder extends Seeder
 
       //Relacionaremos el hotel con su usuario
         $assigned_hotel_user_1 = DB::table('hotel_user')->insert(['user_id' => $user_26->id ,'hotel_id' => $hotel_1->id]);
+        $assigned_hotel_user_121 = DB::table('hotel_user')->insert(['user_id' => $user_28->id ,'hotel_id' => $hotel_1->id]);
+
         $assigned_hotel_user_2 = DB::table('hotel_user')->insert(['user_id' => $user_28->id ,'hotel_id' => $hotel_2->id]);
         $assigned_hotel_user_3 = DB::table('hotel_user')->insert(['user_id' => $user_2->id ,'hotel_id' => $hotel_3->id]);
         $assigned_hotel_user_4 = DB::table('hotel_user')->insert(['user_id' => $user_2->id ,'hotel_id' => $hotel_4->id]);
