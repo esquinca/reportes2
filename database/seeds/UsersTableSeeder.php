@@ -14,7 +14,8 @@ use App\Zonedirect_ip;
 
 use App\Sucursal;
 use App\Servicio;
-use App\Proyecto;
+use App\Grupo;
+// use App\Proyecto;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -46,7 +47,7 @@ class UsersTableSeeder extends Seeder
 
       Sucursal::truncate();
       Servicio::truncate();
-      Proyecto::truncate();
+      // Proyecto::truncate();
 
 
       //Creamos los roles predeterminados
@@ -1729,18 +1730,19 @@ class UsersTableSeeder extends Seeder
         $servicio_05 = new Servicio;
         $servicio_05->Nombre_servicio='Prestamo';
         $servicio_05->save();
-        //Creamos la Proyecto
-        $proyecto_01 = new Proyecto;
-        $proyecto_01->Nombre_proyecto='Aldea Thai Resorts';
-        $proyecto_01->Fecha_inicio='Sin informacion';
-        $proyecto_01->Fecha_termino='Sin informacion';
-        $proyecto_01->save();
 
-        $proyecto_02 = new Proyecto;
-        $proyecto_02->Nombre_proyecto='Aluxes';
-        $proyecto_02->Fecha_inicio='Sin informacion';
-        $proyecto_02->Fecha_termino='Sin informacion';
-        $proyecto_02->save();
+        //Creamos la Proyecto
+        // $proyecto_01 = new Proyecto;
+        // $proyecto_01->Nombre_proyecto='Aldea Thai Resorts';
+        // $proyecto_01->Fecha_inicio='Sin informacion';
+        // $proyecto_01->Fecha_termino='Sin informacion';
+        // $proyecto_01->save();
+        //
+        // $proyecto_02 = new Proyecto;
+        // $proyecto_02->Nombre_proyecto='Aluxes';
+        // $proyecto_02->Fecha_inicio='Sin informacion';
+        // $proyecto_02->Fecha_termino='Sin informacion';
+        // $proyecto_02->save();
 
       //Creamos los hoteles
       $hotel_1 = new Hotel;
@@ -1761,7 +1763,7 @@ class UsersTableSeeder extends Seeder
       $hotel_1->ActivarCalificacion='1';
       $hotel_1->ActivarReportes='1';
       $hotel_1->servicios_id =$servicio_01->id;
-      $hotel_1->proyectos_id =$proyecto_01->id;
+      // $hotel_1->proyectos_id =$proyecto_01->id;
       $hotel_1->sucursal_id =$sucursal_01->id;
       $hotel_1->save();
 
@@ -1783,7 +1785,7 @@ class UsersTableSeeder extends Seeder
       $hotel_2->ActivarCalificacion='1';
       $hotel_2->ActivarReportes='1';
       $hotel_2->servicios_id =$servicio_02->id;
-      $hotel_2->proyectos_id =$proyecto_01->id;
+      // $hotel_2->proyectos_id =$proyecto_01->id;
       $hotel_2->sucursal_id =$sucursal_01->id;
       $hotel_2->save();
 
@@ -1805,7 +1807,7 @@ class UsersTableSeeder extends Seeder
       $hotel_3->ActivarCalificacion='1';
       $hotel_3->ActivarReportes='1';
       $hotel_3->servicios_id =$servicio_02->id;
-      $hotel_3->proyectos_id =$proyecto_01->id;
+      // $hotel_3->proyectos_id =$proyecto_01->id;
       $hotel_3->sucursal_id =$sucursal_01->id;
       $hotel_3->save();
 
@@ -1827,7 +1829,7 @@ class UsersTableSeeder extends Seeder
       $hotel_4->ActivarCalificacion='1';
       $hotel_4->ActivarReportes='1';
       $hotel_4->servicios_id =$servicio_02->id;
-      $hotel_4->proyectos_id =$proyecto_01->id;
+      // $hotel_4->proyectos_id =$proyecto_01->id;
       $hotel_4->sucursal_id =$sucursal_01->id;
       $hotel_4->save();
 
@@ -1849,7 +1851,7 @@ class UsersTableSeeder extends Seeder
       $hotel_5->ActivarCalificacion='1';
       $hotel_5->ActivarReportes='1';
       $hotel_5->servicios_id =$servicio_02->id;
-      $hotel_5->proyectos_id =$proyecto_01->id;
+      // $hotel_5->proyectos_id =$proyecto_01->id;
       $hotel_5->sucursal_id =$sucursal_01->id;
       $hotel_5->save();
 
@@ -1871,7 +1873,7 @@ class UsersTableSeeder extends Seeder
       $hotel_6->ActivarCalificacion='1';
       $hotel_6->ActivarReportes='1';
       $hotel_6->servicios_id =$servicio_02->id;
-      $hotel_6->proyectos_id =$proyecto_01->id;
+      // $hotel_6->proyectos_id =$proyecto_01->id;
       $hotel_6->sucursal_id =$sucursal_01->id;
       $hotel_6->save();
 
@@ -1893,7 +1895,7 @@ class UsersTableSeeder extends Seeder
       $hotel_7->ActivarCalificacion='1';
       $hotel_7->ActivarReportes='1';
       $hotel_7->servicios_id =$servicio_02->id;
-      $hotel_7->proyectos_id =$proyecto_01->id;
+      // $hotel_7->proyectos_id =$proyecto_01->id;
       $hotel_7->sucursal_id =$sucursal_01->id;
       $hotel_7->save();
 
@@ -1915,7 +1917,7 @@ class UsersTableSeeder extends Seeder
       $hotel_8->ActivarCalificacion='1';
       $hotel_8->ActivarReportes='1';
       $hotel_8->servicios_id =$servicio_02->id;
-      $hotel_8->proyectos_id =$proyecto_01->id;
+      // $hotel_8->proyectos_id =$proyecto_01->id;
       $hotel_8->sucursal_id =$sucursal_01->id;
       $hotel_8->save();
 
@@ -1937,7 +1939,7 @@ class UsersTableSeeder extends Seeder
       $hotel_9->ActivarCalificacion='1';
       $hotel_9->ActivarReportes='1';
       $hotel_9->servicios_id =$servicio_02->id;
-      $hotel_9->proyectos_id =$proyecto_01->id;
+      // $hotel_9->proyectos_id =$proyecto_01->id;
       $hotel_9->sucursal_id =$sucursal_01->id;
       $hotel_9->save();
 
@@ -1959,7 +1961,7 @@ class UsersTableSeeder extends Seeder
       $hotel_10->ActivarCalificacion='1';
       $hotel_10->ActivarReportes='1';
       $hotel_10->servicios_id =$servicio_02->id;
-      $hotel_10->proyectos_id =$proyecto_01->id;
+      // $hotel_10->proyectos_id =$proyecto_01->id;
       $hotel_10->sucursal_id =$sucursal_01->id;
       $hotel_10->save();
 
@@ -1981,7 +1983,7 @@ class UsersTableSeeder extends Seeder
       $hotel_11->ActivarCalificacion='1';
       $hotel_11->ActivarReportes='1';
       $hotel_11->servicios_id =$servicio_02->id;
-      $hotel_11->proyectos_id =$proyecto_01->id;
+      // $hotel_11->proyectos_id =$proyecto_01->id;
       $hotel_11->sucursal_id =$sucursal_01->id;
       $hotel_11->save();
 
@@ -2003,7 +2005,7 @@ class UsersTableSeeder extends Seeder
       $hotel_12->ActivarCalificacion='1';
       $hotel_12->ActivarReportes='1';
       $hotel_12->servicios_id =$servicio_02->id;
-      $hotel_12->proyectos_id =$proyecto_01->id;
+      // $hotel_12->proyectos_id =$proyecto_01->id;
       $hotel_12->sucursal_id =$sucursal_01->id;
       $hotel_12->save();
 
@@ -2025,7 +2027,7 @@ class UsersTableSeeder extends Seeder
       $hotel_13->ActivarCalificacion='1';
       $hotel_13->ActivarReportes='1';
       $hotel_13->servicios_id =$servicio_02->id;
-      $hotel_13->proyectos_id =$proyecto_01->id;
+      // $hotel_13->proyectos_id =$proyecto_01->id;
       $hotel_13->sucursal_id =$sucursal_01->id;
       $hotel_13->save();
 
@@ -2047,7 +2049,7 @@ class UsersTableSeeder extends Seeder
       $hotel_14->ActivarCalificacion='1';
       $hotel_14->ActivarReportes='1';
       $hotel_14->servicios_id =$servicio_02->id;
-      $hotel_14->proyectos_id =$proyecto_01->id;
+      // $hotel_14->proyectos_id =$proyecto_01->id;
       $hotel_14->sucursal_id =$sucursal_01->id;
       $hotel_14->save();
 
@@ -2069,7 +2071,7 @@ class UsersTableSeeder extends Seeder
       $hotel_15->ActivarCalificacion='1';
       $hotel_15->ActivarReportes='1';
       $hotel_15->servicios_id =$servicio_02->id;
-      $hotel_15->proyectos_id =$proyecto_01->id;
+      // $hotel_15->proyectos_id =$proyecto_01->id;
       $hotel_15->sucursal_id =$sucursal_01->id;
       $hotel_15->save();
 
@@ -2091,7 +2093,7 @@ class UsersTableSeeder extends Seeder
       $hotel_16->ActivarCalificacion='1';
       $hotel_16->ActivarReportes='1';
       $hotel_16->servicios_id =$servicio_02->id;
-      $hotel_16->proyectos_id =$proyecto_01->id;
+      // $hotel_16->proyectos_id =$proyecto_01->id;
       $hotel_16->sucursal_id =$sucursal_01->id;
       $hotel_16->save();
 
@@ -2113,7 +2115,7 @@ class UsersTableSeeder extends Seeder
       $hotel_17->ActivarCalificacion='1';
       $hotel_17->ActivarReportes='1';
       $hotel_17->servicios_id =$servicio_02->id;
-      $hotel_17->proyectos_id =$proyecto_01->id;
+      // $hotel_17->proyectos_id =$proyecto_01->id;
       $hotel_17->sucursal_id =$sucursal_01->id;
       $hotel_17->save();
 
@@ -2135,7 +2137,7 @@ class UsersTableSeeder extends Seeder
       $hotel_18->ActivarCalificacion='1';
       $hotel_18->ActivarReportes='1';
       $hotel_18->servicios_id =$servicio_02->id;
-      $hotel_18->proyectos_id =$proyecto_01->id;
+      // $hotel_18->proyectos_id =$proyecto_01->id;
       $hotel_18->sucursal_id =$sucursal_01->id;
       $hotel_18->save();
 
@@ -2157,7 +2159,7 @@ class UsersTableSeeder extends Seeder
       $hotel_19->ActivarCalificacion='1';
       $hotel_19->ActivarReportes='1';
       $hotel_19->servicios_id =$servicio_02->id;
-      $hotel_19->proyectos_id =$proyecto_01->id;
+      // $hotel_19->proyectos_id =$proyecto_01->id;
       $hotel_19->sucursal_id =$sucursal_01->id;
       $hotel_19->save();
 
@@ -2179,7 +2181,7 @@ class UsersTableSeeder extends Seeder
       $hotel_20->ActivarCalificacion='1';
       $hotel_20->ActivarReportes='1';
       $hotel_20->servicios_id =$servicio_02->id;
-      $hotel_20->proyectos_id =$proyecto_01->id;
+      // $hotel_20->proyectos_id =$proyecto_01->id;
       $hotel_20->sucursal_id =$sucursal_01->id;
       $hotel_20->save();
 
@@ -2201,7 +2203,7 @@ class UsersTableSeeder extends Seeder
       $hotel_21->ActivarCalificacion='1';
       $hotel_21->ActivarReportes='1';
       $hotel_21->servicios_id =$servicio_02->id;
-      $hotel_21->proyectos_id =$proyecto_01->id;
+      // $hotel_21->proyectos_id =$proyecto_01->id;
       $hotel_21->sucursal_id =$sucursal_01->id;
       $hotel_21->save();
 
@@ -2223,7 +2225,7 @@ class UsersTableSeeder extends Seeder
       $hotel_22->ActivarCalificacion='1';
       $hotel_22->ActivarReportes='1';
       $hotel_22->servicios_id =$servicio_02->id;
-      $hotel_22->proyectos_id =$proyecto_01->id;
+      // $hotel_22->proyectos_id =$proyecto_01->id;
       $hotel_22->sucursal_id =$sucursal_01->id;
       $hotel_22->save();
 
@@ -2245,7 +2247,7 @@ class UsersTableSeeder extends Seeder
       $hotel_23->ActivarCalificacion='1';
       $hotel_23->ActivarReportes='1';
       $hotel_23->servicios_id =$servicio_02->id;
-      $hotel_23->proyectos_id =$proyecto_01->id;
+      // $hotel_23->proyectos_id =$proyecto_01->id;
       $hotel_23->sucursal_id =$sucursal_01->id;
       $hotel_23->save();
 
@@ -2267,7 +2269,7 @@ class UsersTableSeeder extends Seeder
       $hotel_24->ActivarCalificacion='1';
       $hotel_24->ActivarReportes='1';
       $hotel_24->servicios_id =$servicio_02->id;
-      $hotel_24->proyectos_id =$proyecto_01->id;
+      // $hotel_24->proyectos_id =$proyecto_01->id;
       $hotel_24->sucursal_id =$sucursal_01->id;
       $hotel_24->save();
 
@@ -2289,7 +2291,7 @@ class UsersTableSeeder extends Seeder
       $hotel_25->ActivarCalificacion='1';
       $hotel_25->ActivarReportes='1';
       $hotel_25->servicios_id =$servicio_02->id;
-      $hotel_25->proyectos_id =$proyecto_01->id;
+      // $hotel_25->proyectos_id =$proyecto_01->id;
       $hotel_25->sucursal_id =$sucursal_01->id;
       $hotel_25->save();
 

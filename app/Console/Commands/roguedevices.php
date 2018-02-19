@@ -3,7 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
+use DB;
+use SNMP;
+use Mail;
+use App\User; //Importar el modelo eloquent
+use App\Hotel; //Importar el modelo eloquent
+use App\Zonedirect_ip; //Importar el modelo eloquent
+use App\Rouguedevice; //Importar el modelo eloquent
+use App\Mail\CmdAlerts;
+use Jenssegers\Date\Date;
 class roguedevices extends Command
 {
     /**
@@ -29,6 +37,23 @@ class roguedevices extends Command
     {
         parent::__construct();
     }
+    public function trySNMP_oid($ip, $oid)
+    {
+      $res = array();
+      $boolean = 0;
+      $session = new SNMP(SNMP::VERSION_2C, $ip, "public");
+      try {
+        $res = $session->walk($oid);
+      } catch (\Exception $e) {
+        if ( $session->getErrno() == SNMP::ERRNO_TIMEOUT ) {
+          $res = array();
+        }
+        return $res;
+      }
+      $session->close();
+      return $res;
+    }
+
 
     /**
      * Execute the console command.
@@ -41,11 +66,15 @@ class roguedevices extends Command
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
       $boolean = 0;
       $var_sum_reg=1;
+      Rouguedevice::truncate();
       Date::setLocale('en');
       for ($i=0; $i < $contar_ip; $i++) {
         $host=$zoneDirect_sql[$i]->ip;
         $hotel=$zoneDirect_sql[$i]->hotel_id;
-
+        /*Contar los usuarios*/
+        $email_user = Hotel::find($hotel);
+        $total_user_x_hotel =  count($email_user->usuarios);
+        /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
 
         if ($boolean === 0){
@@ -76,25 +105,66 @@ class roguedevices extends Command
               ${"snmp_ac".$i}= explode(': ', ${"snmp_c".$i} [key(${"snmp_c".$i})]);
               next(${"snmp_c".$i}); //Este es para que avance la key en el array
 
-              //Para obtener el SSID
-              ${"snmp_ad".$i}= explode(': ', ${"snmp_d".$i} [key(${"snmp_d".$i})]);
-              next(${"snmp_d".$i}); //Este es para que avance la key en el array
+              //---------------------------------------
+              // var_dump(${"snmp_aa".$i}[1]);
+              // echo $parmt_a = '/-Mac: '.${"snmp_aa".$i}[1];
+              // echo $parmt_b = '-Radio:'.${"snmp_ab".$i}[1];
+              // echo $parmt_c = '-Type: '.${"snmp_ac".$i}[1];
+              // echo $parmt_d = '-SSID: '.${"snmp_d".$i} [key(${"snmp_d".$i})].'/';
+              // echo $Mesitho =Date::now()->format('F Y');
+              // echo '/';
+              // echo Date::now()->format('Y-m-d');
+              // echo '/';
+              // echo $hotel.'/';
+              //---------------------------------------
 
-              echo $parmt_a = '/-Mac: '.${"snmp_aa".$i}[1];
-              echo $parmt_b = '-Radio:'.${"snmp_ab".$i}[1];
-              echo $parmt_c = '-Type: '.${"snmp_ac".$i}[1];
-              echo $parmt_d = '-SSID: '.${"snmp_ad".$i}[1].'/';
-              echo $Mesitho =Date::now()->format('F Y');
-              echo '/';
-              echo Date::now()->format('Y-m-d');
-              echo '/';
-              echo $hotel.'/';                           
+              $eliminar_ultimocaracter = trim(${"snmp_aa".$i}[1], ' ');
+              $mac_with_point = str_replace(' ',':',$eliminar_ultimocaracter);
+
+              $elim_string = str_replace('STRING:','',${"snmp_d".$i} [key(${"snmp_d".$i})]);
+              $elim_comas = str_replace('"','',$elim_string);
+
+              if (strlen ($mac_with_point) == '17') {
+                ${"Rouguedevice".$i} = new Rouguedevice;
+                ${"Rouguedevice".$i}->MACRogue= $mac_with_point;
+                ${"Rouguedevice".$i}->ChannelRogue= ${"snmp_ab".$i}[1];
+                ${"Rouguedevice".$i}->TypeRogue= ${"snmp_ac".$i}[1];
+                if (!empty($elim_comas)) {
+                  $ssid_a= $elim_comas;
+                  ${"Rouguedevice".$i}->SSIDRogue= $ssid_a;
+                }
+                ${"Rouguedevice".$i}->Mes= Date::now()->format('F Y');
+                ${"Rouguedevice".$i}->hotels_id= $hotel;
+                ${"Rouguedevice".$i}->valor= $var_sum_reg;
+                ${"Rouguedevice".$i}->fecha = Date::now()->format('Y-m-d');
+                ${"Rouguedevice".$i}->save();
+              }
+
             }
           }
           DB::commit();
         }
         else {
-          //----------------
+           /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------
+           echo "Ping unsuccessful!";
+           if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
+             for ($j=0; $j <$total_user_x_hotel; $j++) {
+               $it_name = $email_user->usuarios[$j]->name;
+               $it_correo = $email_user->usuarios[$j]->email;
+               $it_correos= 'acauich@sitwifi.com';
+               $asunt = 'Rougue Devices';
+               $data = [
+                 'asunto' => $asunt,
+                 'ip' => $host,
+                 'hotel' => $email_user->Nombre_hotel,
+                 'nombre' => $it_name,
+                 'mensaje' => 'Favor de capturar los rougue devices en dado caso que existan en el sistema de reportes. Los datos a capturar son pertenecientes a la fecha del ',
+                 'fecha' => Date::now()->format('l j F Y H:i:s')
+               ];
+               Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+             }
+           }
+           -------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
         }
 
 

@@ -15,10 +15,10 @@ class CreateRouguedevicesTable extends Migration
     {
         Schema::create('rouguedevices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('MACRogue');
-            $table->string('ChannelRogue');
-            $table->string('TypeRogue');
-            $table->string('SSIDRogue');
+            $table->string('MACRogue')->nullable();
+            $table->string('ChannelRogue')->nullable();
+            $table->string('TypeRogue')->nullable();
+            $table->string('SSIDRogue')->nullable();
             $table->string('Mes');
             $table->integer('hotels_id')->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');

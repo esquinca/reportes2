@@ -21,8 +21,8 @@ class CreateGbxdiasTable extends Migration
             $table->string('Mes');
             $table->integer('hotels_id')->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');
-            $table->string('Aux');
-            $table->string('Aux2');
+            // $table->string('Aux')->nullable();
+            // $table->string('Aux2')->nullable();
             $table->tinyInteger('Captura');
             $table->integer('ZD')->unsigned();
             $table->foreign('ZD')->references('id')->on('zonedirect_ips');

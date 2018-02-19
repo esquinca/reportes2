@@ -15,16 +15,19 @@ class CreateEquiposTable extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('MAC', 45);
-            $table->string('Serie', 45);
+            $table->string('MAC', 45)->unique();
+            $table->string('Serie', 45)->unique();
             $table->date('Fecha_Registro');
-            $table->date('Fecha_Baja');
+            $table->date('Fecha_Baja')->nullable();
             // $table->timestamp('Fecha_Baja'); /NO SE DEJA
+            $table->date('Fecha_Venta')->nullable();
             $table->string('Descripcion');
-            $table->string('Nombre_Grupo');
-            $table->string('Nombre_GrupoRecepcion');
-            $table->string('FechaInicioC');
-            $table->string('FechaTerminoC');
+            // $table->string('Nombre_Grupo');
+            // $table->string('Nombre_GrupoRecepcion');
+
+            //
+            $table->integer('grupo_id')->unsigned();
+            $table->foreign('grupo_id')->references('id')->on('grupos');
             //Primera llave foranea
             $table->integer('modelos_id')->unsigned();
             $table->foreign('modelos_id')->references('id')->on('modelos');

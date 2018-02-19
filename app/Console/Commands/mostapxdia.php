@@ -148,7 +148,8 @@ class mostapxdia extends Command
                  'mensaje' => 'Favor de capturar el top 5 de ap&#8216;s de manera manual en el sistema de reportes. Los datos a capturar son pertenecientes a la fecha del ',
                  'fecha' => Date::now()->format('l j F Y H:i:s')
                ];
-               Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+               //Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+               Mail::to($it_correo)->send(new CmdAlerts($data));
              }
            }
            /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/

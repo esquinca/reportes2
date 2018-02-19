@@ -82,7 +82,8 @@ class estadoserver extends Command
                   'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
                   'fecha' => $date
                 ];
-                Mail::to($it_correo)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+                //Mail::to($it_correo)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+                Mail::to($it_correo)->send(new CmdAlerts($data));
               }
             }
 

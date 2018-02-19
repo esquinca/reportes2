@@ -21,7 +21,7 @@ class CreateHotelsTable extends Migration
             $table->string('Pais');
             $table->string('Estado');
             //Checar con gabo
-            $table->text('Vertical')->nullable();
+            // $table->text('Vertical')->nullable();
             $table->text('dirlogo1')->nullable();
             $table->text('Fecha_inicioP')->nullable();
             $table->text('Fecha_terminoP')->nullable();
@@ -45,8 +45,8 @@ class CreateHotelsTable extends Migration
             $table->integer('servicios_id')->unsigned();
             $table->foreign('servicios_id')->references('id')->on('servicios');
             //Quinta llave foranea
-            $table->integer('proyectos_id')->unsigned();
-            $table->foreign('proyectos_id')->references('id')->on('proyectos');
+            // $table->integer('proyectos_id')->unsigned();
+            // $table->foreign('proyectos_id')->references('id')->on('proyectos');
             //Sexta llave foranea
             $table->integer('sucursal_id')->unsigned();
             $table->foreign('sucursal_id')->references('id')->on('sucursals');
