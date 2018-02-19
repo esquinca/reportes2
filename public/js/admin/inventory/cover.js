@@ -4,6 +4,10 @@ $(function() {
   graph_modelos();
 });
 
+function fillHeaders() {
+  
+}
+
 function graph_equipment() {
   var date= $('#date_search_pral').val();
   var _token = $('input[name="_token"]').val();

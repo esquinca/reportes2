@@ -54,6 +54,20 @@ return [
             'engine' => null,
         ],
 
+        'testing' => [
+            'driver' => 'mysql',
+            'host' => '172.200.0.6',
+            'port' => '3306',
+            'database' => 'sitwifi_transfer',
+            'username' => 'inventario',
+            'password' => 'root',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'jamaicazq' => [
             'driver' => 'mysql',
             'host' => '209.236.43.3',

@@ -1760,7 +1760,7 @@ var Configuration_table_responsive= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
-        className: 'btn btn-info custombtntable',
+        className: 'btn bg-olive custombtntable',
       },
       {
         extend: 'csvHtml5',
@@ -1769,7 +1769,7 @@ var Configuration_table_responsive= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
-        className: 'btn btn-danger',
+        className: 'btn btn-info',
       }
   ],
   "processing": true,
@@ -1812,7 +1812,7 @@ var Configuration_table_responsive_with_pdf_two= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#clientpral').text();
         },
-        className: 'btn btn-info custombtntable',
+        className: 'btn bg-olive custombtntable',
       },
       {
         extend: 'csvHtml5',
@@ -1821,7 +1821,7 @@ var Configuration_table_responsive_with_pdf_two= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#clientpral').text();
         },
-        className: 'btn btn-danger',
+        className: 'btn btn-info',
       },
       {
         extend: 'pdf',
@@ -1868,7 +1868,7 @@ var Configuration_table_responsive_with_pdf_two= {
                 page: 'current'
             }
         },
-        className: 'btn bg-olive',
+        className: 'btn btn-danger',
       }
   ],
   "processing": true,
@@ -1912,7 +1912,7 @@ var Configuration_table_responsive_with_pdf= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
-        className: 'btn btn-info custombtntable',
+        className: 'btn bg-olive custombtntable',
       },
       {
         extend: 'csvHtml5',
@@ -1921,7 +1921,7 @@ var Configuration_table_responsive_with_pdf= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
-        className: 'btn btn-danger',
+        className: 'btn btn-info',
       },
       {
         extend: 'pdf',
@@ -1968,7 +1968,7 @@ var Configuration_table_responsive_with_pdf= {
                 page: 'current'
             }
         },
-        className: 'btn bg-olive',
+        className: 'btn btn-danger',
       }
   ],
   "processing": true,
@@ -2020,14 +2020,14 @@ var Configuration_table_responsive_two= {
         title: 'Export of user data',
         text: '<i class="fa fa-file-excel-o margin-r5"></i> Extraer a Excel',
         titleAttr: 'Excel',
-        className: 'btn btn-info custombtntable',
+        className: 'btn bg-olive custombtntable',
       },
       {
         extend: 'csvHtml5',
         title: 'Export of user data',
         text: '<i class="fa fa-file-text-o margin-r5"></i> Extraer a CSV',
         titleAttr: 'CSV',
-        className: 'btn btn-danger',
+        className: 'btn btn-info',
       }
   ],
   "processing": true,

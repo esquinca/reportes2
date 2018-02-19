@@ -31,9 +31,31 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('500', ['as' => '500', 'uses' => 'ErrorController@fatal']);
   //Inventario
     Route::get('/detailed_hotel', 'HotelDController@index');
+    //posts detailed_hotel
+    Route::post('/detailed_hotel_head','HotelDController@getHeaders');
+    Route::post('/detailed_hotel_sum','HotelDController@getSummary');
+    Route::post('/detailed_hotel_sw','HotelDController@getSwitch');
+    Route::post('/detailed_hotel_zd','HotelDController@getZone');
+    Route::post('/detailed_hotel_pie','HotelDController@getSummaryPie');
+    Route::post('/detailed_hotel_disqn','HotelDController@getDristributionQuantitys');
+    Route::post('/detailed_hotel_models','HotelDController@getEquipmentModels');
+    Route::post('/detailed_hotel_table','HotelDController@getDetailedEquipment');
+    //**********//
     Route::get('/detailed_hotels', 'HotelCController@index');
     Route::get('/detailed_proyect', 'HotelPController@index');
+    //posts detailed_proyect
+    Route::post('detailed_pro_head', 'HotelPController@getHeaderProject');
+    Route::post('detailed_pro_stat', 'HotelPController@getStatusProject');
+    Route::post('detailed_pro_ap', 'HotelPController@getGraphAPS');
+    Route::post('detailed_pro_sw', 'HotelPController@getGraphSWS');
+    Route::post('detailed_pro_dispro', 'HotelPController@getDispProject');
+    Route::post('detailed_pro_modpro', 'HotelPController@getModelProject');
+    Route::post('detailed_pro_tab', 'HotelPController@getProjectTable');
+    //**********//
+
     Route::get('/detailed_cover', 'CoverController@index');
+    //posts detailed_proyect
+    
     Route::post('/hotel_cadena', 'HotelDController@hotel_cadena');
     /*Distribution*/
     Route::get('/detailed_distribution', 'DistributionController@index');
@@ -87,7 +109,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
-    Route::get('/acm1pt', 'HotelDController@hotel_cadena');
+    Route::get('/acm1pt', 'CoverController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/upload_client', 'IndividualController@upload_client');

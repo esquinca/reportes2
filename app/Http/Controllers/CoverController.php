@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cadena;
 use App\Hotel;
 use App\Reference;
+use DB;
 class CoverController extends Controller
 {
   /**
@@ -24,4 +25,15 @@ class CoverController extends Controller
       return view('permitted.inventory.det_cover',compact('hotels'));
     }
   }
+
+  public function test()
+  {
+    $result1 = DB::select('CALL delivery_letter_venue_header (?)', array(9));
+    $result2 = DB::select('CALL delivery_letter_venue_disp (?)', array(9));
+    $result3 = DB::select('CALL delivery_letter_venue_models (?)', array(9));
+
+
+    dd($result1);
+  }
+
 }

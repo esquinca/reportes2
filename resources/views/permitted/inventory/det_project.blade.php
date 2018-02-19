@@ -45,7 +45,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                        <button type="button" id="btn_generar" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
                         <button type="button" class="btn btn-success btn-export hidden-xs"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }} Portada</button>
                       </div>
                   </div>
@@ -65,7 +65,7 @@
                         <br />
                       </div>
                       <div class="col-lg-3 col-md-3 col-sm-3 ">
-                         <img class="logo-sit" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
+                         <img class="logo-sit" id="img_htl" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
                       </div>
                   </div>
 
@@ -73,10 +73,10 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                           <hr />
                           <span>
-                              <strong>Email : </strong>  info@sitwifi.com
+                              <strong>Email : </strong><small id="email">info@sitwifi.com</small>
                           </span>
                           <span>
-                              <strong>Telf : </strong>  8-84-46-30
+                              <strong>Tel : </strong> <small id="tel">8-84-46-30</small>
                           </span>
                            <span>
                               <strong>Expedición: </strong>  @php
@@ -124,6 +124,18 @@
                     </div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6"></div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <label for="select_two" class="control-label">Estatus: </label>
+                      <select id="select_two" name="select_two"  class="form-control select2" required>
+                        <option value="" selected> Elija </option>
+                      </select>
+                    </div>
+                    <hr />
+                  </div>
+
+
                   <div class="row pad-top-botm client-info">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <table id="table_resume" class="table table-striped table-bordered table-hover">
@@ -131,11 +143,13 @@
                             <tr>
                               <th>Hotel.</th>
                               <th>No. APS</th>
-                              <th>No. SW.</th>
-                              <th>No. ZD</th>
+                              <th>No. ZD.</th>
+                              <th>No. SMZ</th>
+                              <th>No. SW</th>
                               <th>No. Sonda</th>
-                              <th>No. Sonicwall</th>
                               <th>No. ZQ</th>
+                              <th>No. Sonicwall</th>
+                              <th>No. Icomera</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -145,7 +159,7 @@
                     </div>
                   </div>
 
-                  <div  class="row text-center contact-info">
+                  <!-- <div  class="row text-center contact-info">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <hr />
                         <span>
@@ -196,7 +210,7 @@
                           <tbody>
                           </tbody>
                         </table>
-                    </div>
+                    </div> -->
 
                   </div>
 
