@@ -2,17 +2,104 @@ $(function() {
   $(".select2").select2();
   graph_equipment();
   graph_modelos();
+
+
 });
 
-function fillHeaders() {
+$('#btn_generar').on('click', function(e){
+  var cadena= $('#select_one').val();
+  if (cadena == "") {
+    
+  }else{
+    //document.getElementById("").style.display="block";
+
+  fillHeaders();
+
+  }
+});
+
+function headersEmpty() {
+  $("#name_htl").empty();
+  //$("#email").empty();
+  //$("#tel").empty();
+
+  // URL de imagen
+  //$("#img_htl").attr("src","../images/hotel/Sin_imagen.png");
   
+  //$("#client").text();
+}
+
+function fillHeaders() {
+  var cadena= $('#select_one').val();
+  var _token = $('input[name="_token"]').val();
+
+  $.ajax({
+    type: "POST",
+    url: "/cover_header",
+    data: { data_one : cadena,  _token : _token },
+    success: function (data){
+      datax = JSON.parse(data);
+      //console.log(data);
+      $("#name_htl").text(datax[0].Nombre_hotel);
+      // URL de imagen
+      $("#client_img").attr("src","../images/hotel/"+datax[0].logo);
+
+      $("#email").text(datax[0].sucuralcorreo);
+      $("#tel").text(datax[0].sucursalphone);
+      $("#empresa").text(datax[0].empresa_name);
+      $("#responsable").text(datax[0].empresa_responsable);
+      $("#area").text(datax[0].empresa_area);
+      $("#dir").text(datax[0].empresa_addr);
+      $("#tel_empresa").text(datax[0].empresa_phone);
+      $("#correo_empresa").text(datax[0].empresa_email);
+
+      $("#cliente_nombre").text(datax[0].Nombre_hotel);
+      $("#cliente_responsable").text(datax[0].cliente_nombre);
+      $("#cliente_ubi").text(datax[0].ubicacion);
+      $("#cliente_dir").text(datax[0].cliente_direccion);
+      $("#cliente_tel").text(datax[0].cliente_tele);
+      $("#cliente_email").text(datax[0].cliente_email);
+      
+      
+      $("#fecha_ini").text(datax[0].fecha_inicio);
+      $("#fecha_fin").text(datax[0].fecha_fin);
+      
+
+
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
 }
 
 function graph_equipment() {
-  var date= $('#date_search_pral').val();
+  var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
   var data_count = [{value:335, name:'Antenas = 335'},{value:310, name:'Smart Zone = 310'},{value:234, name:'Sonda = 234'},{value:135, name:'SW = 135'},{value:1315, name:'Zequenze = 1315'},{value:1548, name:'Zone Director = 1548'}];
   var data_name = ["Antenas = 335","Smart Zone = 310","Sonda = 234","SW = 135","Zequenze = 1315","Zone Director = 1548"];
+  
+  // $.ajax({
+  //     type: "POST",
+  //     url: "/detailed_pro_ap",
+  //     data: { data_one : cadena,  _token : _token },
+  //     success: function (data){
+  //       //console.log(data);
+  //       $.each(JSON.parse(data),function(index, objdata){
+  //         data_name.push(objdata.concepto + ' = ' + objdata.count);
+  //         data_count.push({ value: objdata.count, name: objdata.concepto + ' = ' + objdata.count},);
+  //       });
+  //       graph_pie_default_three('main_aps', data_name, data_count, 'APS', 'Concepto & Unidad');
+  //       //console.log(data_count);
+        
+  //     },
+  //     error: function (data) {
+  //       console.log('Error:', data);
+  //       //alert('3');
+  //     }
+  // });
+
+
   graph_barras_two('main_equipos', data_name, data_count);
 }
 

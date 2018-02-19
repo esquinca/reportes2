@@ -36,4 +36,13 @@ class CoverController extends Controller
     dd($result1);
   }
 
+  public function getHeader(Request $request) 
+  { 
+    $hotel = $request->data_one; 
+ 
+    $result1 = DB::select('CALL delivery_letter_venue_header (?)', array($hotel)); 
+     
+    return json_encode($result1); 
+  } 
+
 }
