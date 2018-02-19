@@ -56,6 +56,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/detailed_cover', 'CoverController@index');
     //posts detailed_proyect
     Route::post('/cover_header', 'CoverController@getHeader');
+    Route::post('/cover_dist_equipos', 'CoverController@getCoverDistEquipos');
+    Route::post('/cover_dist_modelos', 'CoverController@getCoverDistModelos');
     
     Route::post('/hotel_cadena', 'HotelDController@hotel_cadena');
     /*Distribution*/

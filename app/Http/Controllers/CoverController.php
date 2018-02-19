@@ -33,7 +33,7 @@ class CoverController extends Controller
     $result3 = DB::select('CALL delivery_letter_venue_models (?)', array(9));
 
 
-    dd($result1);
+    dd($result3);
   }
 
   public function getHeader(Request $request) 
@@ -43,6 +43,24 @@ class CoverController extends Controller
     $result1 = DB::select('CALL delivery_letter_venue_header (?)', array($hotel)); 
      
     return json_encode($result1); 
-  } 
+  }
+
+  public function getCoverDistEquipos(Request $request)
+  {
+    $hotel = $request->data_one; 
+ 
+    $result1 = DB::select('CALL delivery_letter_venue_disp (?)', array($hotel)); 
+     
+    return json_encode($result1); 
+  }
+
+  public function getCoverDistModelos(Request $request)
+  {
+    $hotel = $request->data_one; 
+ 
+    $result1 = DB::select('CALL delivery_letter_venue_models (?)', array($hotel)); 
+     
+    return json_encode($result1); 
+  }
 
 }
