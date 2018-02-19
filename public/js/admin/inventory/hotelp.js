@@ -89,7 +89,7 @@ $('#select_two').on('change', function(e){
 $('#btn_generar').on('click', function(e){
   var cadena= $('#select_one').val();
   if (cadena == "") {
-    
+
   }else{
     document.getElementById("captura_pdf_general").style.display="block";
 
@@ -121,7 +121,7 @@ function headersEmpty() {
 
   // URL de imagen
   $("#img_htl").attr("src","../images/hotel/Sin_imagen.png");
-  
+
   //$("#client").text();
 }
 
@@ -154,7 +154,7 @@ function fillHeaders() {
 function graph_aps() {
   var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
-  
+
   // var data_count = [{value:335, name:'Ap Stock = 335'},{value:310, name:'Ap Renta = 310'},{value:234, name:'Ap Prestamo = 234'},{value:135, name:'Ap Venta = 135'},{value:1315, name:'Ap Demo = 1315'}];
   // var data_name = ["Ap Stock = 335","Ap Renta = 310","Ap Prestamo = 234","Ap Venta = 135","Ap Demo = 1315"];
   var data_name = [];
@@ -172,7 +172,7 @@ function graph_aps() {
         });
         graph_pie_default_three('main_aps', data_name, data_count, 'APS', 'Concepto & Unidad');
         //console.log(data_count);
-        
+
       },
       error: function (data) {
         console.log('Error:', data);
@@ -202,7 +202,7 @@ function graph_swith() {
         });
         graph_pie_default_three('main_switch', data_name, data_count, 'Switch', 'Concepto & Unidad');
         //console.log(data_count);
-        
+
       },
       error: function (data) {
         console.log('Error:', data);
@@ -234,7 +234,7 @@ function graph_resumen() {
         graph_barras_three('main_equipos', data_name, data_count, 'Distribución', 'Equipos & Cantidades');
         //graph_pie_default_three('main_switch', data_name, data_count, 'Switch', 'Concepto & Unidad');
         //console.log(data_count); G08550488
-        
+
       },
       error: function (data) {
         console.log('Error:', data);
@@ -251,7 +251,7 @@ function graph_modelos() {
   var _token = $('input[name="_token"]').val();
   // var data_count = [120, 132, 101, 134, 90, 230, 210];
   // var data_name = ["WS-C2960S-24PS-L","Smart Zone","FW7541D-NG1","GB-BACE-3150","GS2210-24HP","Zone Director"];
-  
+
   var data_name = [];
   var data_count = [];
 
@@ -267,7 +267,7 @@ function graph_modelos() {
         });
         graph_area_three_default('main_modelos', data_name, data_count, 'Equipamiento', 'Modelos & Unidades','right', 90, 8);
         //console.log(data_count); G08550488
-        
+
       },
       error: function (data) {
         console.log('Error:', data);
@@ -400,7 +400,7 @@ $('.btn-export').on('click', function(){
     $("#captura_table_general").hide();
 
     $(".hojitha").css("border", "");
-    html2canvas(document.getElementById("captura_pdf_general")).then(function(canvas) {
+    html2canvas(document.getElementById("hojitha_cont")).then(function(canvas) {
       var ctx = canvas.getContext('2d');
       ctx.rect(0, 0, canvas.width, canvas.height);
           var imgData = canvas.toDataURL("image/jpeg", 1.0);

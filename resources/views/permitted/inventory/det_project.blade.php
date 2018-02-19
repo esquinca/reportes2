@@ -54,7 +54,7 @@
             </div>
 
             <div id="captura_pdf_general" class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-              <div class="hojitha"   style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
+              <div id="hojitha_cont" class="hojitha"   style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
                   <div class="row pad-top-botm ">
                       <div class="col-lg-3 col-md-3 col-sm-3 ">
                          <img class="logo-sit" src="{{ asset('/images/users/logo.svg') }}" style="padding-bottom:20px;" />
@@ -79,10 +79,10 @@
                               <strong>Tel : </strong> <small id="tel">8-84-46-30</small>
                           </span>
                            <span>
-                              <strong>Expedición: </strong>  @php
+                              <strong>Expedición: </strong>  <small id="date"> @php
                                 $mytime = Carbon\Carbon::now();
                                 echo $mytime->toDateTimeString();
-                              @endphp
+                              @endphp</small>
                           </span>
                           <hr />
                       </div>
@@ -113,6 +113,8 @@
                           </div>
                     </div>
                   </div>
+              </div>
+              <div class="captura_table_general"   style="background-color: #fff; border:1px solid #ccc; border-top-style:hidden; padding:10px; width: 100%">
 
                   <div  class="row text-center contact-info">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -212,10 +214,11 @@
                         </table>
                     </div> -->
 
-                  </div>
-
               </div>
+
             </div>
+
+
 
 
 

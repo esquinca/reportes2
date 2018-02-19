@@ -1810,7 +1810,7 @@ var Configuration_table_responsive_with_pdf_two= {
         text: '<i class="fa fa-file-excel-o"></i> Excel',
         titleAttr: 'Excel',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#clientpral').text();
+          return 'Equipamiento de '+ $('#name_htl').text();
         },
         className: 'btn bg-olive custombtntable',
       },
@@ -1819,7 +1819,7 @@ var Configuration_table_responsive_with_pdf_two= {
         text: '<i class="fa fa-file-text-o"></i> CSV',
         titleAttr: 'CSV',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#clientpral').text();
+          return 'Equipamiento de '+ $('#name_htl').text();
         },
         className: 'btn btn-info',
       },
@@ -1827,7 +1827,7 @@ var Configuration_table_responsive_with_pdf_two= {
         extend: 'pdf',
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#clientpral').text();
+          return 'Equipamiento de '+ $('#name_htl').text();
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -1841,20 +1841,17 @@ var Configuration_table_responsive_with_pdf_two= {
               },
               {
                 text: [
-                  { text: '\n\nCliente: ', fontSize: 10, bold: true },
-                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+                  { text: '\n\Proyecto: ', fontSize: 10, bold: true },
+                  { text: $('#name_htl').text()+'\n', fontSize: 10, italics: true },
 
-                  { text: 'Dirección: ', fontSize: 10, bold: true },
-                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+                  { text: 'Email: ', fontSize: 10, bold: true },
+                  { text: $('#email').text()+'\n', fontSize: 10, italics: true },
 
-                  { text: 'País: ', fontSize: 10, bold: true },
-                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+                  { text: 'Teléfono: ', fontSize: 10, bold: true },
+                  { text: $('#tel').text()+'\n', fontSize: 10, italics: true },
 
-                  { text: 'Estado: ', fontSize: 10, bold: true },
-                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
-
-                  { text: 'Servicio: ', fontSize: 10, bold: true},
-                  { text: $('#clientpral').text()+'\n', fontSize: 10, italics: true },
+                  { text: 'Fecha de expedición: ', fontSize: 10, bold: true },
+                  { text: $('#date').text()+'\n', fontSize: 10, italics: true },
                 ]
               },
               {
@@ -1910,7 +1907,7 @@ var Configuration_table_responsive_with_pdf= {
         text: '<i class="fa fa-file-excel-o"></i> Excel',
         titleAttr: 'Excel',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#select_two :selected').text();
+          return 'Equipamiento de '+ $('#client').text();
         },
         className: 'btn bg-olive custombtntable',
       },
@@ -1919,7 +1916,7 @@ var Configuration_table_responsive_with_pdf= {
         text: '<i class="fa fa-file-text-o"></i> CSV',
         titleAttr: 'CSV',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#select_two :selected').text();
+          return 'Equipamiento de '+ $('#client').text();
         },
         className: 'btn btn-info',
       },
@@ -1927,7 +1924,7 @@ var Configuration_table_responsive_with_pdf= {
         extend: 'pdf',
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
-          return 'Equipamiento de  '+ $('#select_two :selected').text();
+          return 'Equipamiento de '+ $('#client').text();
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -1942,19 +1939,19 @@ var Configuration_table_responsive_with_pdf= {
               {
                 text: [
                   { text: '\n\nCliente: ', fontSize: 10, bold: true },
-                  { text: $('#select_two :selected').text()+'\n', fontSize: 10, italics: true },
+                  { text: $('#client').text()+'\n', fontSize: 10, italics: true },
 
                   { text: 'Dirección: ', fontSize: 10, bold: true },
-                  { text: $('#select_two :selected').text()+'\n', fontSize: 10, italics: true },
+                  { text: $('#direccion').text()+'\n', fontSize: 10, italics: true },
 
                   { text: 'País: ', fontSize: 10, bold: true },
-                  { text: $('#select_two :selected').text()+'\n', fontSize: 10, italics: true },
+                  { text: $('#pais').text()+'\n', fontSize: 10, italics: true },
 
                   { text: 'Estado: ', fontSize: 10, bold: true },
-                  { text: $('#select_two :selected').text()+'\n', fontSize: 10, italics: true },
+                  { text: $('#estado').text()+'\n', fontSize: 10, italics: true },
 
                   { text: 'Servicio: ', fontSize: 10, bold: true},
-                  { text: $('#select_two :selected').text()+'\n', fontSize: 10, italics: true },
+                  { text: $('#servicio').text()+'\n', fontSize: 10, italics: true },
                 ]
               },
               {
