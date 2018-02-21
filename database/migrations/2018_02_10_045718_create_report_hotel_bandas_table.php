@@ -19,6 +19,7 @@ class CreateReportHotelBandasTable extends Migration
             $table->foreign('hotels_id')->references('id')->on('hotels');
             $table->date('Fecha');
             $table->string('img');
+            $table->integer('type')->nullable();
             $table->timestamps();
         });
     }

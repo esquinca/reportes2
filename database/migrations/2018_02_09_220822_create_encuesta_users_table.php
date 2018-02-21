@@ -20,8 +20,8 @@ class CreateEncuestaUsersTable extends Migration
             // $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->text('hotel_id');
             //Segunda llave foranea
-            $table->integer('cadena_id')->unsigned();
-            $table->foreign('cadena_id')->references('id')->on('cadenas');
+            // $table->integer('cadena_id')->unsigned();
+            // $table->foreign('cadena_id')->references('id')->on('cadenas');
             //Tercera llave foranea
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
