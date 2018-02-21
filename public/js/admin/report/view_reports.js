@@ -144,9 +144,7 @@ function fill_header() {
 
 function graph_client_wlan() {
   var cadena= $('#select_one').val();
-  console.log(cadena);
   var date = $('#calendar_fecha').val();
-  console.log(date);
   var _token = $('input[name="_token"]').val();
 
   var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
@@ -162,8 +160,8 @@ function graph_client_wlan() {
       success: function (data){
         console.log(data);
         $.each(JSON.parse(data),function(index, objdata){
-          data_name.push(objdata.Equipo + ' = ' + objdata.count);
-          data_count.push({ value: objdata.count, name: objdata.Equipo + ' = ' + objdata.count},);
+          data_name.push(objdata.WLAN + ' = ' + objdata.Clientes);
+          data_count.push({ value: objdata.Clientes, name: objdata.WLAN + ' = ' + objdata.Clientes},);
         });
         graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
         //console.log(data_count);
@@ -174,15 +172,40 @@ function graph_client_wlan() {
       }
   });
 
-  graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
+  //graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
 }
 
 function graph_top_ssid() {
-  var date= $('#date_search_pral').val();
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
+
   var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
   var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
-  graph_barras_three('main_top_ssid', data_name, data_count, 'Top 5', 'Equipos & Cantidades');
+  
+  var data_count = [];
+  var data_name = [];
+
+  // $.ajax({
+  //     type: "POST",
+  //     url: "/",
+  //     data: { data_one : cadena , data_two : date , _token : _token },
+  //     success: function (data){
+  //       console.log(data);
+  //       $.each(JSON.parse(data),function(index, objdata){
+  //         data_name.push(objdata.WLAN + ' = ' + objdata.Clientes);
+  //         data_count.push({ value: objdata.Clientes, name: objdata.WLAN + ' = ' + objdata.Clientes},);
+  //       });
+  //       graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
+  //       //console.log(data_count);
+  //     },
+  //     error: function (data) {
+  //       console.log('Error:', data);
+  //       //alert('3');
+  //     }
+  // });
+
+  //graph_barras_three('main_top_ssid', data_name, data_count, 'Top 5', 'Equipos & Cantidades');
 }
 
 function graph_client_day() {

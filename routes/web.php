@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/typereport','ViewReportsController@typerep');
     Route::post('/view_reports_header', 'ViewReportsController@report_header');
     Route::post('/get_client_wlan', 'ViewReportsController@graph_client_wlan');
+    
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
