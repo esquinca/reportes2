@@ -62,7 +62,7 @@
                           <input type="text" class="form-control datepickermonth" id="calendar_fecha" placeholder="Example: 2017-12">
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                            <button type="button" id="btn_generar" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
                             <button type="button" class="btn btn-success btn-export hidden-xs"><i class="fa fa-file-pdf-o  margin-r5"></i> {{ trans('message.export') }}</button>
                         </div>
                     </div>
@@ -81,10 +81,10 @@
                           <h2><strong> Reporte de uso y estadísticas</strong></h2>
                           <strong style="font-style: italic;">Red wifi huéspedes / colaboradores</strong>
                           <br />
-                          <p>Hard Rock Punta Cana</p>
+                          <p id="client_name">Hard Rock Punta Cana</p>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 ">
-                           <img class="logo-sit" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
+                           <img class="logo-sit" id="client_img" src="{{ asset('images/hotel/Hard_Rock_Punta_Cana.svg') }}" style="padding-bottom:20px;" />
                         </div>
                     </div>
 
@@ -92,10 +92,10 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <hr />
                             <span>
-                                <strong>Email : </strong>  info@sitwifi.com
+                                <strong>Email : </strong><small id="email"></small>
                             </span>
                             <span>
-                                <strong>Telf : </strong>  8-84-46-30
+                                <strong>Telf : </strong><small id="tel"></small>
                             </span>
                              <span>
                                 <strong>Expedición: </strong>  @php
@@ -110,36 +110,36 @@
                     <div  class="row pad-top-botm client-info">
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #FF851B" >Gigabyte</p>
-                        <strong><i class="fa fa-rss"></i> Maximo: </strong> <p class="sameline">102,795 GB</p>
+                        <strong><i class="fa fa-rss"></i> Maximo: </strong> <p id="gigamax" class="sameline">102,795 GB</p>
                         <br />
-                        <strong><i class="fa fa-upload"></i> Minino:</strong> <p class="sameline">64,611 GB</p>
+                        <strong><i class="fa fa-upload"></i> Minino:</strong> <p id="gigamin" class="sameline">64,611 GB</p>
                         <br />
-                        <strong><i class="fa fa-database"></i> Promedio:</strong> <p class="sameline">3,006 GB</p>
+                        <strong><i class="fa fa-database"></i> Promedio:</strong> <p id="gigaprom" class="sameline">3,006 GB</p>
                       </div>
 
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #007bff" >Usuarios</p>
-                        <strong><i class="fa fa fa-level-up"></i><i class="fa fa fa fa-user"></i>  Maximo por mes: </strong> <p class="sameline"> 5739</p>
+                        <strong><i class="fa fa fa-level-up"></i><i class="fa fa fa fa-user"></i>  Maximo por mes: </strong> <p id="usermax" class="sameline"> 5739</p>
                         <br />
-                        <strong><i class="fa fa-users"></i> Promedio:</strong> <p class="sameline">3629</p>
+                        <strong><i class="fa fa-users"></i> Promedio:</strong> <p id="userprom" class="sameline">3629</p>
                         <br />
-                        <strong><i class="fa fa-database"></i>No. Usuarios mensuales:</strong> <p class="sameline"> 105228</p>
+                        <strong><i class="fa fa-database"></i>No. Usuarios mensuales:</strong> <p id="usermonth" class="sameline"> 105228</p>
                       </div>
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #3D9970" >Información Adicional</p>
-                        <strong><i class="fa fa fa-hdd-o"></i> No. Antenas: </strong> <p class="sameline"> 754</p>
+                        <strong><i class="fa fa fa-hdd-o"></i> No. Antenas: </strong> <p id="noant" class="sameline"> 754</p>
                         <br />
-                        <strong><i class="fa fa-tablet"></i> Rogue devices:</strong> <p class="sameline"> - </p>
+                        <strong><i class="fa fa-tablet"></i> Rogue devices:</strong> <p id="rogue" class="sameline"> - </p>
                         <br />
                       </div>
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #D53A35" >Dispositivos</p>
-                        <strong><i class="fa fa-desktop"></i> Diversos dispositivos por mes: </strong> <p class="sameline"> 21521.25</p>
+                        <strong><i class="fa fa-desktop"></i> Diversos dispositivos por mes: </strong> <p id="device" class="sameline"> 21521.25</p>
                         <br />
-                        <strong><i class="fa fa-building-o"></i> Promedio dispositivos por habitación diarios:</strong> <p class="sameline"> 4 </p>
+                        <strong><i class="fa fa-building-o"></i> Promedio dispositivos por habitación diarios:</strong> <p id="promdevice" class="sameline"> 4 </p>
                         <br />
                       </div>
                     </div>

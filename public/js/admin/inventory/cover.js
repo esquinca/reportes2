@@ -1,7 +1,8 @@
 $(function() {
   $(".select2").select2();
-  graph_equipment();
-  graph_modelos();
+  document.getElementById("captura_pdf_general").style.display="none";
+  //graph_equipment();
+  //graph_modelos();
 
 
 });
@@ -11,28 +12,45 @@ $('#btn_generar').on('click', function(e){
   if (cadena == "") {
     
   }else{
-    //document.getElementById("").style.display="block";
+    document.getElementById("captura_pdf_general").style.display="block";
 
-  fillHeaders();
-
+    fillHeaders();
+    graph_equipment();
+    graph_modelos();
   }
 });
 
 function headersEmpty() {
   $("#name_htl").empty();
-  //$("#email").empty();
-  //$("#tel").empty();
-
   // URL de imagen
-  //$("#img_htl").attr("src","../images/hotel/Sin_imagen.png");
+  $("#client_img").attr("src","../images/hotel/Sin_imagen.png");
+
+  $("#email").empty();
+  $("#tel").empty();
+  $("#empresa").empty();
+  $("#responsable").empty();
+  $("#area").empty();
+  $("#dir").empty();
+  $("#tel_empresa").empty();
+  $("#correo_empresa").empty();
+
+  $("#cliente_nombre").empty();
+  $("#cliente_responsable").empty();
+  $("#cliente_ubi").empty();
+  $("#cliente_dir").empty();
+  $("#cliente_tel").empty();
+  $("#cliente_email").empty();
   
-  //$("#client").text();
+  
+  $("#fecha_ini").empty();
+  $("#fecha_fin").empty();
 }
 
 function fillHeaders() {
+  headersEmpty();
   var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
-
+  var datax;
   $.ajax({
     type: "POST",
     url: "/cover_header",
@@ -60,12 +78,8 @@ function fillHeaders() {
       $("#cliente_tel").text(datax[0].cliente_tele);
       $("#cliente_email").text(datax[0].cliente_email);
       
-      
       $("#fecha_ini").text(datax[0].fecha_inicio);
       $("#fecha_fin").text(datax[0].fecha_fin);
-      
-
-
     },
     error: function (data) {
       console.log('Error:', data);
@@ -76,39 +90,60 @@ function fillHeaders() {
 function graph_equipment() {
   var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
-  var data_count = [{value:335, name:'Antenas = 335'},{value:310, name:'Smart Zone = 310'},{value:234, name:'Sonda = 234'},{value:135, name:'SW = 135'},{value:1315, name:'Zequenze = 1315'},{value:1548, name:'Zone Director = 1548'}];
-  var data_name = ["Antenas = 335","Smart Zone = 310","Sonda = 234","SW = 135","Zequenze = 1315","Zone Director = 1548"];
-  
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/detailed_pro_ap",
-  //     data: { data_one : cadena,  _token : _token },
-  //     success: function (data){
-  //       //console.log(data);
-  //       $.each(JSON.parse(data),function(index, objdata){
-  //         data_name.push(objdata.concepto + ' = ' + objdata.count);
-  //         data_count.push({ value: objdata.count, name: objdata.concepto + ' = ' + objdata.count},);
-  //       });
-  //       graph_pie_default_three('main_aps', data_name, data_count, 'APS', 'Concepto & Unidad');
-  //       //console.log(data_count);
-        
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //       //alert('3');
-  //     }
-  // });
+  // var data_count2 = [{value:335, name:'Antenas = 335'},{value:310, name:'Smart Zone = 310'},{value:234, name:'Sonda = 234'},{value:135, name:'SW = 135'},{value:1315, name:'Zequenze = 1315'},{value:1548, name:'Zone Director = 1548'}];
+  // var data_name2 = ["Antenas = 335","Smart Zone = 310","Sonda = 234","SW = 135","Zequenze = 1315","Zone Director = 1548"];
+  var data_count = [];
+  var data_name = [];
 
-
-  graph_barras_two('main_equipos', data_name, data_count);
+  $.ajax({
+      type: "POST",
+      url: "/cover_dist_equipos",
+      data: { data_one : cadena,  _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.Equipo + ' = ' + objdata.count);
+          data_count.push({ value: objdata.count, name: objdata.Equipo + ' = ' + objdata.count},);
+        });
+        graph_barras_two('main_equipos', data_name, data_count);
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+  //graph_barras_two('main_equipos', data_name2, data_count2);
 }
 
 function graph_modelos() {
-  var date= $('#date_search_pral').val();
+  var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
-  var data_count = [120, 132, 101, 134, 90, 230, 210];
-  var data_name = ["WS-C2960S-24PS-L","Smart Zone","FW7541D-NG1","GB-BACE-3150","GS2210-24HP","Zone Director"];
-  graph_area_three_default('main_modelos', data_name, data_count, 'Equipamiento', 'Modelos & Unidades','right', 90, 8);
+  var data_count2 = [120, 132, 101, 134, 90, 230, 210];
+  var data_name2 = ["WS-C2960S-24PS-L","Smart Zone","FW7541D-NG1","GB-BACE-3150","GS2210-24HP","Zone Director"];
+  var data_count = [];
+  var data_name = [];
+
+  $.ajax({
+      type: "POST",
+      url: "/cover_dist_modelos",
+      data: { data_one : cadena,  _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.ModeloNombre + ' = ' + objdata.count);
+          data_count.push({ value: objdata.count, name: objdata.ModeloNombre + ' = ' + objdata.count},);
+        });
+        graph_area_three_default('main_modelos', data_name, data_count, 'Equipamiento', 'Modelos & Unidades','right', 90, 8);
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+
+  //graph_area_three_default('main_modelos', data_name, data_count, 'Equipamiento', 'Modelos & Unidades','right', 90, 8);
 }
 
 $('.btn-export').on('click', function(){
