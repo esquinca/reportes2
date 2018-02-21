@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/viewreports' , 'ViewReportsController@index');
     Route::post('/typereport','ViewReportsController@typerep');
+    Route::post('/view_reports_header', 'ViewReportsController@report_header');
+    Route::post('/get_client_wlan', 'ViewReportsController@graph_client_wlan');
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
@@ -112,7 +114,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
-    Route::get('/acm1pt', 'CoverController@test');
+    Route::get('/acm1pt', 'ViewReportsController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/upload_client', 'IndividualController@upload_client');

@@ -1,8 +1,16 @@
 $(function() {
   $(".select2").select2();
-  $('.datepickermonth').datepicker({ language: 'es', format: "yyyy-mm", viewMode: "months", minViewMode: "months", autoclose: true, clearBtn: true });
+  $('.datepickermonth').datepicker({
+    language: 'es',
+    format: "yyyy-mm",
+    viewMode: "months",
+    minViewMode: "months",
+    endDate: '1m',
+    autoclose: true,
+    clearBtn: true
+  });
   $('.datepickermonth').val('').datepicker('update');
-  graph_client_wlan();
+  //graph_client_wlan();
   graph_top_ssid();
   graph_client_day();
   graph_gigabyte_day();
@@ -52,11 +60,120 @@ $('#select_one').on('change', function(e){
   }
 });
 
+$('#btn_generar').on('click', function(e){
+  var cadena= $('#select_one').val();
+  if (cadena == "") {
+    
+  }else{
+    //document.getElementById("captura_pdf_general").style.display="block";
+    empty_header();
+    fill_header();
+
+    graph_client_wlan();
+
+  }
+
+
+});
+
+function empty_header() {
+  $("#client_name").empty();
+  // URL de imagen
+  $("#client_img").attr("src","../images/hotel/Sin_imagen.png");
+
+  $("#email").empty();
+  $("#tel").empty();
+
+  $("#gigamax").empty();
+  $("#gigamin").empty();
+  $("#gigaprom").empty();
+
+  $("#usermax").empty();
+  $("#userprom").empty();
+  $("#usermonth").empty();
+
+  $("#usermax").empty();
+  $("#userprom").empty();
+  $("#usermonth").empty();
+
+  $("#noant").empty();
+  $("#rogue").empty();
+
+  $("#device").empty();
+  $("#promdevice").empty();
+}
+
+function fill_header() {
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
+  //console.log(date);
+  var _token = $('input[name="_token"]').val();
+  var datax;
+  $.ajax({
+    type: "POST",
+    url: "/view_reports_header",
+    data: { data_one : cadena , data_two : date , _token : _token },
+    success: function (data){
+      datax = JSON.parse(data);
+      //console.log(datax);
+      $("#client_name").text(datax[11].Cantidad);
+      $("#client_img").attr("src","../images/hotel/"+datax[13].Cantidad);
+      $("#email").text(datax[12].Cantidad);
+      $("#tel").text(datax[14].Cantidad);
+
+
+      $("#gigamax").text(datax[0].Cantidad);
+      $("#gigamin").text(datax[2].Cantidad);
+      $("#gigaprom").text(datax[1].Cantidad);
+
+      $("#usermax").text(datax[3].Cantidad);
+      $("#userprom").text(datax[4].Cantidad);
+      $("#usermonth").text(datax[6].Cantidad);
+
+      $("#noant").text(datax[7].Cantidad);
+      $("#rogue").text(datax[10].Cantidad);
+
+      $("#device").text(datax[8].Cantidad);
+      $("#promdevice").text(datax[9].Cantidad);
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}
+
 function graph_client_wlan() {
   var cadena= $('#select_one').val();
-  //  var _token = $('input[name="_token"]').val();
+  console.log(cadena);
+  var date = $('#calendar_fecha').val();
+  console.log(date);
+  var _token = $('input[name="_token"]').val();
+
   var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
   var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
+  
+  var data_count = [];
+  var data_name = [];
+
+  $.ajax({
+      type: "POST",
+      url: "/get_client_wlan",
+      data: { data_one : cadena , data_two : date , _token : _token },
+      success: function (data){
+        console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.Equipo + ' = ' + objdata.count);
+          data_count.push({ value: objdata.count, name: objdata.Equipo + ' = ' + objdata.count},);
+        });
+        graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+
   graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
 }
 

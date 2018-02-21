@@ -47,9 +47,10 @@ function headersEmpty() {
 }
 
 function fillHeaders() {
+  headersEmpty();
   var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
-
+  var datax;
   $.ajax({
     type: "POST",
     url: "/cover_header",
@@ -76,7 +77,6 @@ function fillHeaders() {
       $("#cliente_dir").text(datax[0].cliente_direccion);
       $("#cliente_tel").text(datax[0].cliente_tele);
       $("#cliente_email").text(datax[0].cliente_email);
-      
       
       $("#fecha_ini").text(datax[0].fecha_inicio);
       $("#fecha_fin").text(datax[0].fecha_fin);
