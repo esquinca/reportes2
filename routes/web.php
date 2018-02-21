@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
  Route::get('/{user}/{venium}/{survey}/{end}/{status}','SurveyController@index');
+ Route::post('/create_record','SurveyController@create');
 
 
 Auth::routes();
@@ -58,7 +59,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/cover_header', 'CoverController@getHeader');
     Route::post('/cover_dist_equipos', 'CoverController@getCoverDistEquipos');
     Route::post('/cover_dist_modelos', 'CoverController@getCoverDistModelos');
-    
+
     Route::post('/hotel_cadena', 'HotelDController@hotel_cadena');
     /*Distribution*/
     Route::get('/detailed_distribution', 'DistributionController@index');
@@ -80,7 +81,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/typereport','ViewReportsController@typerep');
     Route::post('/view_reports_header', 'ViewReportsController@report_header');
     Route::post('/get_client_wlan', 'ViewReportsController@graph_client_wlan');
-    
+
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
