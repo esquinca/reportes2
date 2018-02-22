@@ -42,7 +42,7 @@ class ViewReportsController extends Controller
     $result6 = DB::select('CALL Get_MostAP_top5 (?, ?, ?)', array(7, 2018, 2));
     $result7 = DB::select('CALL Comparative (?, ?)', array(7, '2018-2-01'));
 
-    dd($result3);
+    dd($result7);
   }
 
   public function report_header(Request $request)

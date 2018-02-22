@@ -81,7 +81,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/typereport','ViewReportsController@typerep');
     Route::post('/view_reports_header', 'ViewReportsController@report_header');
     Route::post('/get_client_wlan', 'ViewReportsController@graph_client_wlan');
-
+    Route::post('/get_client_wlan_top', 'ViewReportsController@client_wlan_top');
+    Route::post('/get_user_month', 'ViewReportsController@user_month');
+    Route::post('/get_gb_month', 'ViewReportsController@gb_month');
+    Route::post('/get_mostAP_top5', 'ViewReportsController@mostAP_top5');
+    Route::post('/get_comparative', 'ViewReportsController@tab_comparativa');
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');

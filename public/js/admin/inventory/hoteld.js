@@ -31,7 +31,7 @@ $('#select_one').on('change', function(e){
             $('#select_two').append('<option value="" selected>Elije</option>');
 
             for (var i = 0; i < countH; i++) {
-              //console.log(data[i].id);
+              // console.log(data[i].id);
               // console.log(data[i].Nombre_hotel);
               $("#select_two option").prop("selected", false);
               $('#select_two').append('<option value="'+data[i].id+'" selected>'+ data[i].Nombre_hotel +'</option>');

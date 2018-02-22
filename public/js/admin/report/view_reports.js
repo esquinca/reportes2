@@ -11,12 +11,11 @@ $(function() {
   });
   $('.datepickermonth').val('').datepicker('update');
   //graph_client_wlan();
-  graph_top_ssid();
-  graph_client_day();
-  graph_gigabyte_day();
-  graph_top_aps();
-  general_table_top_aps();
-  general_table_comparative();
+  //graph_top_ssid();
+  //graph_client_day();
+  //graph_gigabyte_day();
+  //graph_top_aps_table();
+  //general_table_comparative();
 });
 
 $('#select_one').on('change', function(e){
@@ -70,7 +69,13 @@ $('#btn_generar').on('click', function(e){
     fill_header();
 
     graph_client_wlan();
+    graph_top_ssid();
 
+    graph_client_day();
+    graph_gigabyte_day();
+
+    graph_top_aps_table();
+    general_table_comparative();
   }
 
 
@@ -147,8 +152,8 @@ function graph_client_wlan() {
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
 
-  var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
-  var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
+  var data_count1 = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
+  var data_name1 = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
   
   var data_count = [];
   var data_name = [];
@@ -158,7 +163,7 @@ function graph_client_wlan() {
       url: "/get_client_wlan",
       data: { data_one : cadena , data_two : date , _token : _token },
       success: function (data){
-        console.log(data);
+        //console.log(data);
         $.each(JSON.parse(data),function(index, objdata){
           data_name.push(objdata.WLAN + ' = ' + objdata.Clientes);
           data_count.push({ value: objdata.Clientes, name: objdata.WLAN + ' = ' + objdata.Clientes},);
@@ -180,78 +185,139 @@ function graph_top_ssid() {
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
 
-  var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
-  var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
+  // var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
+  // var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
   
   var data_count = [];
   var data_name = [];
 
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/",
-  //     data: { data_one : cadena , data_two : date , _token : _token },
-  //     success: function (data){
-  //       console.log(data);
-  //       $.each(JSON.parse(data),function(index, objdata){
-  //         data_name.push(objdata.WLAN + ' = ' + objdata.Clientes);
-  //         data_count.push({ value: objdata.Clientes, name: objdata.WLAN + ' = ' + objdata.Clientes},);
-  //       });
-  //       graph_pie_default_four('main_client_wlan', data_name, data_count, 'Distribución de clientes', 'Wlan & Unidad', 'left');
-  //       //console.log(data_count);
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //       //alert('3');
-  //     }
-  // });
+  $.ajax({
+      type: "POST",
+      url: "/get_client_wlan_top",
+      data: { data_one : cadena , data_two : date , _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.WLAN + ' = ' + objdata.Clientes);
+          data_count.push({ value: objdata.Clientes, name: objdata.WLAN + ' = ' + objdata.Clientes},);
+        });
+          graph_barras_three('main_top_ssid', data_name, data_count, 'Top 5', 'Equipos & Cantidades');
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
 
   //graph_barras_three('main_top_ssid', data_name, data_count, 'Top 5', 'Equipos & Cantidades');
 }
 
 function graph_client_day() {
-  var date= $('#date_search_pral').val();
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  var data_count = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
-  var data_name = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-  graph_area_four_default('main_client_day', data_name, data_count, 'Clientes', 'Consumo diario','right', 90, 8, 'rgba(255, 126, 80, 1)', 'rgba(255, 126, 80, 0.5)');
+
+  
+  // var data_count1 = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
+  // var data_name1 = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+  
+  var data_count = [];
+  var data_name = [];
+
+  $.ajax({
+      type: "POST",
+      url: "/get_user_month",
+      data: { data_one : cadena , data_two : date , _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.Dia);
+          data_count.push(objdata.NumClientes);
+        });
+          graph_area_four_default('main_client_day', data_name, data_count, 'Clientes', 'Consumo diario','right', 90, 8, 'rgba(255, 126, 80, 1)', 'rgba(255, 126, 80, 0.5)');
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+
+
+  //graph_area_four_default('main_client_day', data_name1, data_count1, 'Clientes', 'Consumo diario','right', 90, 8, 'rgba(255, 126, 80, 1)', 'rgba(255, 126, 80, 0.5)');
 }
 
 function graph_gigabyte_day() {
-  var date= $('#date_search_pral').val();
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  var data_count = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
-  var data_name = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-  graph_area_four_default('main_gigabyte_day', data_name, data_count, 'Gigabyte', 'Consumo diario','right', 90, 8, 'rgba(35, 160, 164, 1)', 'rgba(35, 160, 164, 0.5)');
+  
+  // var data_count1 = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
+  // var data_name1 = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+  
+  var data_count = [];
+  var data_name = [];
+
+  $.ajax({
+      type: "POST",
+      url: "/get_gb_month",
+      data: { data_one : cadena , data_two : date , _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.Dia);
+          data_count.push(objdata.GB);
+        });
+          graph_area_four_default('main_gigabyte_day', data_name, data_count, 'Gigabyte', 'Consumo diario','right', 90, 8, 'rgba(35, 160, 164, 1)', 'rgba(35, 160, 164, 0.5)');
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+
+
+  //graph_area_four_default('main_gigabyte_day', data_name1, data_count1, 'Gigabyte', 'Consumo diario','right', 90, 8, 'rgba(35, 160, 164, 1)', 'rgba(35, 160, 164, 0.5)');
 }
 
-function graph_top_aps() {
+function graph_top_aps_table() {
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  var data_count = [{value:15646, name:'Mexico = 15646'},{value:447, name:'Jamaica = 447'},{value:1483, name:'Republica dominicana = 1483'}];
-  var data_name = ["Mexico = 15646","Jamaica = 447","Republica dominicana = 1483"];
-  graph_douhnut_two_default('main_top_aps', 'Top 5', 'Aps & Unidades', 'left', data_name, data_count);
+  
+  // var data_count1 = [{value:15646, name:'Mexico = 15646'},{value:447, name:'Jamaica = 447'},{value:1483, name:'Republica dominicana = 1483'}];
+  // var data_name1 = ["Mexico = 15646","Jamaica = 447","Republica dominicana = 1483"];
+  
+  var data_count = [];
+  var data_name = [];
+  var data_data = [];
+
+  $.ajax({
+      type: "POST",
+      url: "/get_mostAP_top5",
+      data: { data_one : cadena , data_two : date , _token : _token },
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_name.push(objdata.Descripcion + ' = ' + objdata.count);
+          data_count.push({ value: objdata.count, name: objdata.Descripcion + ' = ' + objdata.count},);
+          data_data.push({"descripcion": objdata.Descripcion,"mac": objdata.MAC,"nclient": objdata.count});
+        });
+        graph_douhnut_two_default('main_top_aps', 'Top 5', 'Aps & Unidades', 'left', data_name, data_count);
+        table_aps_top(data_data, $("#table_top_aps"));
+        //console.log(data_count);
+      },
+      error: function (data) {
+        console.log('Error:', data);
+        //alert('3');
+      }
+  });
+
+  //graph_douhnut_two_default('main_top_aps', 'Top 5', 'Aps & Unidades', 'left', data_name1, data_count1);
 }
 
-function general_table_top_aps() {
-  var _token = $('input[name="_token"]').val();
-  var data =[
-    {"descripcion":"Rest_SeaFood Cabanas","mac":"E0:10:7F:2F:AD:E0","nclient":"894"},
-    {"descripcion":"Rest_Oriental_Tepanyaki","mac":"F0:B0:52:29:B4:E0","nclient":"837"},
-    {"descripcion":"Motor_Lobby","mac":"F0:B0:52:09:08:80","nclient":"1010"},
-    {"descripcion":"Azotea Rest_Italiano_Playa","mac":"E0:10:7F:2F:B2:70","nclient":"806"},
-    {"descripcion":"Azotea Cabanas Presidenciales","mac":"E0:10:7F:2F:B9:D0","nclient":"1895"}
-  ];
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/",
-  //     data: {_token : _token },
-  //     success: function (data){
-        table_aps_top(data, $("#table_top_aps"));
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //     }
-  // });
-}
 function table_aps_top(datajson, table){
   table.DataTable().destroy();
   var vartable = table.dataTable(Configuration_table_responsive_simple);
@@ -268,26 +334,35 @@ function table_aps_top(datajson, table){
 
 
 function general_table_comparative() {
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  var data =[
-    {"concepto":"Pico Consumo","mes1":"7,910 GB", "mes2":"11,910 GB","identificador":"->"},
-    {"concepto":"Pico Clientes","mes1":"1587","mes2":"1910","identificador":"->"},
-    {"concepto":"Min Consumo","mes1":"1,953 GB","mes2":"2,910 GB","identificador":"->"},
-    {"concepto":"Min Clientes","mes1":"527","mes2":"910 GB","identificador":"->"},
-    {"concepto":"Avg Consumo","mes1":"4,718 GB","mes2":"5,410 GB","identificador":"->"},
-    {"concepto":"Avg Clientes","mes1":"887","mes2":"1110 GB","identificador":"->"}
-  ];
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/",
-  //     data: {_token : _token },
-  //     success: function (data){
-        table_comparative(data, $("#table_comparative"));
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //     }
-  // });
+  var data_data = [];
+  let comp = 0, ind1 = 0;
+  $.ajax({
+      type: "POST",
+      url: "/get_comparative",
+      data: {data_one : cadena , data_two : date , _token : _token},
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          comp = parseInt(objdata.Indicador);
+          if (comp === 1) {
+            ind1 = '<i class="fa fa-arrow-down"></i>'; 
+          }else if (comp === 2) {
+            ind1 = '<i class="fa fa-arrow-up"></i>';
+          }else{
+            ind1 = '<i class="fa fa-arrow-right"></i>';
+          }
+          data_data.push({"concepto": objdata.Concepto,"mes1": objdata.Anterior,"mes2": objdata.Actual, "identificador": ind1});
+        });
+        
+        table_comparative(data_data, $("#table_comparative"));
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+  });
 }
 function table_comparative(datajson, table){
   table.DataTable().destroy();
