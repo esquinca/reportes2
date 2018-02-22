@@ -33,6 +33,7 @@ class CreateEncuestaUsersTable extends Migration
             $table->foreign('estatus_id')->references('id')->on('estatus');
 
             $table->date('fecha_inicial');
+            $table->date('fecha_corresponde');
             $table->date('fecha_fin');
 
             $table->text('shell_hotel_id');
@@ -40,6 +41,7 @@ class CreateEncuestaUsersTable extends Migration
             $table->text('shell_encuesta_id');
             $table->text('shell_estatus_id');
             $table->text('shell_fecha_fin');
+            $table->text('shell_fecha_corresponde');
 
             $table->timestamps();
         });

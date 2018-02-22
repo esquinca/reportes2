@@ -62,29 +62,29 @@
 
 
           <form method="post" action="{{url('create_record')}}">
+            {{ csrf_field() }}
             <div class="section-title text-center">
               <p class="mb-0 mt-10 text-left">
                 Apreciado cliente.<br>
                 Queremos saber su nivel de satisfacción respecto a nuestros servicios.<br>
                 Dediquenos un minuto de su valioso tiempo.
               </p>
-              <!-- <h2>Encuesta de servicio</h2> -->
-              <!-- <p class="mb-0 mt-0">Apreciado cliente.</p> -->
+              <input type="text" id="token_form" name="token_form" value="{{$encrypted_form}}">
               @foreach ($sacar_preg as $preguntithas)
                 <h5 class="mb-0 mt-10 text-left">-.{{ $preguntithas->name }}<h5>
 
                 <label class="custom-control custom-radio">
-                  <input id="radio1" name="radio" type="radio" value="10" required class="custom-control-input">
+                  <input name="radio{{ $loop->iteration }}" type="radio" value="10" required class="custom-control-input">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description"><i class="fa fa-smile-o text-success emotion"></i><br> <small>Si</small> </span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input id="radio2" name="radio" type="radio" value="7" class="custom-control-input">
+                  <input name="radio{{ $loop->iteration }}" type="radio" value="7" class="custom-control-input">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description"><i class="fa fa-meh-o text-warning emotion"></i><br> <small>Tal vez</small> </span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input id="radio3" name="radio" type="radio" value="5" class="custom-control-input">
+                  <input name="radio{{ $loop->iteration }}" type="radio" value="5" class="custom-control-input">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description"><i class="fa fa-frown-o text-danger emotion"></i><br> <small>No</small> </span>
                 </label>
@@ -141,15 +141,5 @@
       </div>
     </footer>
   </div>
-<!--
-
-  <h3>TITLE <small> {{ $encrypted2 }}  </small></h3>
-  <h4>Fecha de finalización: <small> {{ $encrypted4 }} </small></h4>
-  {{ $encrypted3 }}
-
-
-  @foreach ($sacar_preg as $preguntithas)
-  {{ $preguntithas->name }}
-  @endforeach -->
 </body>
 </html>

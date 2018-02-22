@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
- Route::get('/{user}/{venium}/{survey}/{end}/{status}','SurveyController@index');
+ Route::get('/{user}/{venium}/{survey}/{month}/{end}/{status}','SurveyController@index');
  Route::post('/create_record','SurveyController@create');
 
 
