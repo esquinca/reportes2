@@ -41,14 +41,6 @@ class SurveyController extends Controller
     $encriptado_end = $end;
     $encriptado_status = $status;
 
-    $encrypted1 = Crypt::decryptString($encriptado_user);
-    $encrypted2 = Crypt::decryptString($encriptado_venium);
-    $encrypted3 = Crypt::decryptString($encriptado_survey);
-    $encrypted4 = Crypt::decryptString($encriptado_end);
-    $encrypted6 = Crypt::decryptString($encriptado_month);
-
-    $ident_preg = '';
-
     $enc_verificar = Encuesta_user::where('shell_hotel_id', '=', $encriptado_venium)
     ->where('shell_user_id', '=', $encriptado_user)
     ->where('shell_encuesta_id', '=', $encriptado_survey)
@@ -56,14 +48,22 @@ class SurveyController extends Controller
     ->where('shell_fecha_fin', '=', $encriptado_end)
     ->where('estatus_id', '=', 1)
     ->count();
-
-    $sacar_preg = Encuesta::find($encrypted3)->preguntas()->where('encuesta_id', $encrypted3)->get();
-    $count_preg = $sacar_preg->count();
-
-    //ID DE preguntas
-    for ($k=0; $k <$count_preg; $k++) { $ident_preg = $ident_preg.$sacar_preg[$k]->id.'&'; }
-    // dd($sacar_preg);
+    $ident_preg = '';
+    
     if ($enc_verificar == '1') {
+
+      $encrypted1 = Crypt::decryptString($encriptado_user);
+      $encrypted2 = Crypt::decryptString($encriptado_venium);
+      $encrypted3 = Crypt::decryptString($encriptado_survey);
+      $encrypted4 = Crypt::decryptString($encriptado_end);
+      $encrypted6 = Crypt::decryptString($encriptado_month);
+
+      $sacar_preg = Encuesta::find($encrypted3)->preguntas()->where('encuesta_id', $encrypted3)->get();
+      $count_preg = $sacar_preg->count();
+      //ID DE preguntas
+      for ($k=0; $k <$count_preg; $k++) { $ident_preg = $ident_preg.$sacar_preg[$k]->id.'&'; }
+      // dd($sacar_preg);
+
       $enc_data_s = Encuesta_user::select('id')->where('shell_hotel_id', '=', $encriptado_venium)
       ->where('shell_user_id', '=', $encriptado_user)
       ->where('shell_encuesta_id', '=', $encriptado_survey)
