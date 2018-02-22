@@ -22,9 +22,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- Favicon -->
   <link rel="shortcut icon" href="{{ asset('/images/users/favicon.ico') }}" type='image/x-icon'/>
-  <script type="text/javascript">
-    
-  </script>
+
+  <script src="{{ asset('js/admin/qualification/clientsurvey.js')}}"></script>
 </head>
 
 <body>
@@ -48,7 +47,10 @@
 
             <div class="section-title text-center">
               <p class="mb-0 mt-10 text-left">
-                {{ $message }}.<br>
+                {{ $message }}.
+                <br><br><br>
+                Tiempo de espera: <span style="font-family: Courier;" id="segundos"></span>
+                <br><br>
               </p>
             </div>
           </div>
