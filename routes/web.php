@@ -86,6 +86,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_gb_month', 'ViewReportsController@gb_month');
     Route::post('/get_mostAP_top5', 'ViewReportsController@mostAP_top5');
     Route::post('/get_comparative', 'ViewReportsController@tab_comparativa');
+  //Reporte concatenado
+    Route::get('/viewreportscont', 'ViewReportContController@index');
+    Route::post('/get_user_cont', 'ViewReportContController@table_gb');
+    Route::post('/get_gb_cont', 'ViewReportContController@table_user');
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');

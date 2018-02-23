@@ -24,7 +24,7 @@ class ViewReportsController extends Controller
       //$hotel = Hotel::select(['Nombre_hotel'])->find($value);
       $hotel = Hotel::find($value);
       $hotel->typereports->toJson();
-  
+
       return $hotel;
       //$selectnivel= DB::table('NivelesReportes')->select('ReporteID','Nivel')->where('HotelID', '=', $value)->get();
       //$selectnivel= DB::table('tipos_reporte_new')->select('fk_tiporeportenew','Nombre')->where('fk_hotel', '=', $value)->get();
@@ -68,7 +68,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
-    
+
     $result1 = DB::select('CALL GetWLAN (?, ?, ?)', array($hotel, $dateyear, $datemonth));
 
     return json_encode($result1);
@@ -82,7 +82,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
-    
+
     $result1 = DB::select('CALL GetWLAN_top5 (?, ?, ?)', array($hotel, $dateyear, $datemonth));
 
     return json_encode($result1);
@@ -96,7 +96,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
-    
+
     $result1 = DB::select('CALL Get_User (?, ?, ?)', array($dateyear, $datemonth, $hotel));
 
     return json_encode($result1);
@@ -110,7 +110,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
-    
+
     $result1 = DB::select('CALL Get_GB (?, ?, ?)', array($dateyear, $datemonth, $hotel));
 
     return json_encode($result1);
@@ -124,7 +124,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
-    
+
     $result1 = DB::select('CALL Get_MostAP_top5 (?, ?, ?)', array($hotel, $dateyear, $datemonth));
 
     return json_encode($result1);
@@ -139,7 +139,7 @@ class ViewReportsController extends Controller
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
     $datefull = $dateyear . '-' . $datemonth . '-01';
-    
+
     $result1 = DB::select('CALL Comparative (?, ?)', array($hotel, $datefull));
 
     return json_encode($result1);

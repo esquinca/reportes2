@@ -15,7 +15,7 @@ class CreateQualificationResultsTable extends Migration
     {
         Schema::create('qualification_results', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('mes');
+            $table->date('fecha');
             $table->integer('respuesta');
             //Primera llave foranea
             $table->integer('preguntas_id')->unsigned();

@@ -49,7 +49,7 @@ class SurveyController extends Controller
     ->where('estatus_id', '=', 1)
     ->count();
     $ident_preg = '';
-    
+
     if ($enc_verificar == '1') {
 
       $encrypted1 = Crypt::decryptString($encriptado_user);
@@ -136,7 +136,7 @@ class SurveyController extends Controller
             echo $input.'<br>';
 
             $new_qualification = new Qualification_result;
-            $new_qualification->mes=$mes_enc;
+            $new_qualification->fecha=$mes_enc;
             $new_qualification->respuesta=$input;
             $new_qualification->preguntas_id=$pregunta;
             $new_qualification->hotels_id=$hotel;

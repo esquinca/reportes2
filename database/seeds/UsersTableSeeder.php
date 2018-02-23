@@ -109,6 +109,7 @@ class UsersTableSeeder extends Seeder
         $viewnotificationadminapproval = Permission::create(['name' => 'Notification admin approval']);
 
         $viewreport = Permission::create(['name' => 'View report']);
+        $viewreport2 = Permission::create(['name' => 'View report concat']);
 
         $viewprovider = Permission::create(['name' => 'View provider']);
         $viewcreatprovider= Permission::create(['name' => 'Create provider']);
@@ -199,6 +200,8 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('Option admin approval');
             $super_admin_a0->givePermissionTo('Notification admin approval');
             $super_admin_a0->givePermissionTo('View report');
+            $super_admin_a0->givePermissionTo('View report concat');
+
           //Calificaciones
             $super_admin_a0->givePermissionTo('View create survey');
             $super_admin_a0->givePermissionTo('Generate survey');
@@ -276,6 +279,7 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('Option admin approval');
             $super_admin_a->givePermissionTo('Notification admin approval');
             $super_admin_a->givePermissionTo('View report');
+            $super_admin_a->givePermissionTo('View report concat');
           //Calificaciones
             $super_admin_a->givePermissionTo('View create survey');
             $super_admin_a->givePermissionTo('Generate survey');
@@ -352,6 +356,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_b->givePermissionTo('Option admin approval');
           $super_admin_b->givePermissionTo('Notification admin approval');
           $super_admin_b->givePermissionTo('View report');
+          $super_admin_b->givePermissionTo('View report concat');
           //Calificaciones
           $super_admin_b->givePermissionTo('View create survey');
           $super_admin_b->givePermissionTo('Generate survey');
@@ -424,6 +429,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_c->givePermissionTo('Option admin approval');
           $super_admin_c->givePermissionTo('Notification admin approval');
           $super_admin_c->givePermissionTo('View report');
+          $super_admin_c->givePermissionTo('View report concat');
           //Calificaciones
           $super_admin_c->givePermissionTo('View create survey');
           $super_admin_c->givePermissionTo('Generate survey');
@@ -761,6 +767,21 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_two_g1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC6->id]);
         $assigned_menu_two_g2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC6->id]);
         $assigned_menu_two_g3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC6->id]);
+
+        $menuAdminC7 = new Menu;
+        $menuAdminC7->name='viewreportscont';
+        $menuAdminC7->display_name='Ver Reportes Cont';
+        $menuAdminC7->description='Permite visualizar el reporte concatenado de cada cadena.';
+        $menuAdminC7->url='viewreportscont';
+        $menuAdminC7->section_id=$seccion_admin_b->id;
+        $menuAdminC7->icons='fa fa-square-o';
+        $menuAdminC7->save();
+
+        $assigned_menu_two_g0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC7->id]);
+        $assigned_menu_two_g1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC7->id]);
+        $assigned_menu_two_g2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC7->id]);
+        $assigned_menu_two_g3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC7->id]);
+
 
       //Menu Calificaciones
         $menuAdminD0 = new Menu;
