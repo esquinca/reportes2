@@ -110,26 +110,26 @@
                     <div  class="row pad-top-botm client-info">
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #FF851B" >Gigabyte</p>
-                        <strong><i class="fa fa-rss"></i> Maximo: </strong> <p id="gigamax" class="sameline">102,795 GB</p>
+                        <strong><i class="fa fa-rss"></i> Maximo: </strong> <p id="gigamax" class="sameline"></p>
                         <br />
-                        <strong><i class="fa fa-upload"></i> Minino:</strong> <p id="gigamin" class="sameline">64,611 GB</p>
+                        <strong><i class="fa fa-upload"></i> Minino:</strong> <p id="gigamin" class="sameline"></p>
                         <br />
-                        <strong><i class="fa fa-database"></i> Promedio:</strong> <p id="gigaprom" class="sameline">3,006 GB</p>
+                        <strong><i class="fa fa-database"></i> Promedio:</strong> <p id="gigaprom" class="sameline"></p>
                       </div>
 
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #007bff" >Usuarios</p>
-                        <strong><i class="fa fa fa-level-up"></i><i class="fa fa fa fa-user"></i>  Maximo por mes: </strong> <p id="usermax" class="sameline"> 5739</p>
+                        <strong><i class="fa fa fa-level-up"></i><i class="fa fa fa fa-user"></i>  Maximo por mes: </strong> <p id="usermax" class="sameline"></p>
                         <br />
-                        <strong><i class="fa fa-users"></i> Promedio:</strong> <p id="userprom" class="sameline">3629</p>
+                        <strong><i class="fa fa-users"></i> Promedio:</strong> <p id="userprom" class="sameline"></p>
                         <br />
-                        <strong><i class="fa fa-database"></i>No. Usuarios mensuales:</strong> <p id="usermonth" class="sameline"> 105228</p>
+                        <strong><i class="fa fa-database"></i>No. Usuarios mensuales:</strong> <p id="usermonth" class="sameline"> </p>
                       </div>
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #3D9970" >Información Adicional</p>
-                        <strong><i class="fa fa fa-hdd-o"></i> No. Antenas: </strong> <p id="noant" class="sameline"> 754</p>
+                        <strong><i class="fa fa fa-hdd-o"></i> No. Antenas: </strong> <p id="noant" class="sameline"> </p>
                         <br />
                         <strong><i class="fa fa-tablet"></i> Rogue devices:</strong> <p id="rogue" class="sameline"> - </p>
                         <br />
@@ -137,9 +137,9 @@
 
                       <div class="col-lg-3 col-md-3 col-sm-3">
                         <p class="text-center" style="border: 1px solid #D53A35" >Dispositivos</p>
-                        <strong><i class="fa fa-desktop"></i> Diversos dispositivos por mes: </strong> <p id="device" class="sameline"> 21521.25</p>
+                        <strong><i class="fa fa-desktop"></i> Diversos dispositivos por mes: </strong> <p id="device" class="sameline"> </p>
                         <br />
-                        <strong><i class="fa fa-building-o"></i> Promedio dispositivos por habitación diarios:</strong> <p id="promdevice" class="sameline"> 4 </p>
+                        <strong><i class="fa fa-building-o"></i> Promedio dispositivos por habitación diarios:</strong> <p id="promdevice" class="sameline"> </p>
                         <br />
                       </div>
                     </div>
