@@ -16,8 +16,8 @@ class CreateJefedirectosTable extends Migration
         Schema::create('jefedirectos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Nombre');
-            $table->string('AreaTrabajo');
-            $table->string('Telefono');
+            $table->string('AreaTrabajo')->nullable();
+            $table->string('Telefono')->nullable();
             $table->string('email');
             $table->timestamps();
         });

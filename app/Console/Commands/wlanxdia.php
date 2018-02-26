@@ -64,7 +64,7 @@ class wlanxdia extends Command
       $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
       $boolean = 0;
-      Wlan::truncate();
+      //Wlan::truncate();
       Date::setLocale('en');
       //Creo un ciclo for para recorrer las posiciones del array
       for ($i=0; $i < $contar_ip; $i++) {

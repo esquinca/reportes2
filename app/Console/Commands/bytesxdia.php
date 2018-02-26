@@ -272,7 +272,7 @@ class bytesxdia extends Command
      */
     public function handle()
     {
-      $zoneDirect_sql = Zonedirect_ip::select('id','ip','hotel_id', 'oid_id')->where('hotel_id', '18')->get();
+      $zoneDirect_sql = Zonedirect_ip::select('id','ip','hotel_id', 'oid_id')->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
       $boolean = 0;
       //Gbxdia::truncate();
