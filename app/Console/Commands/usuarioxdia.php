@@ -64,7 +64,7 @@ class usuarioxdia extends Command
       $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
       $boolean = 0;
-      Usuariosxdia::truncate();
+      //Usuariosxdia::truncate();
       Date::setLocale('en');
       for ($i=0; $i < $contar_ip; $i++) {
         $host=$zoneDirect_sql[$i]->ip;

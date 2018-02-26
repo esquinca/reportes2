@@ -23,6 +23,14 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Crypt;
 
+use App\Estatu;
+use App\Encuesta;
+use App\Pregunta;
+use App\Jefedirecto;
+
+use App\Marca;
+use App\Modelo;
+use App\Estado;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -47,6 +55,14 @@ class UsersTableSeeder extends Seeder
 
       Sucursal::truncate();
       Servicio::truncate();
+      Estatu::truncate();
+      Encuesta::truncate();
+      Pregunta::truncate();
+      Jefedirecto::truncate();
+
+      Marca::truncate();
+      Modelo::truncate();
+      Estado::truncate();
       // Proyecto::truncate();
 
 
@@ -2594,6 +2610,624 @@ class UsersTableSeeder extends Seeder
         $hotel_typereport_20 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_23->id , 'typereport_id' => $typereport_1->id]);
         $hotel_typereport_21 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_24->id , 'typereport_id' => $typereport_1->id]);
         $hotel_typereport_22 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_25->id , 'typereport_id' => $typereport_1->id]);
+
+        //encuesta
+        $estatus_1 = new Estatu;
+        $estatus_1->name='Activo';
+        $estatus_1->save();
+
+        $estatus_2 = new Estatu;
+        $estatus_2->name='Inactivo';
+        $estatus_2->save();
+
+        //name encuesta
+        $encuesta_1 = new Encuesta;
+        $encuesta_1->name='NPS';
+        $encuesta_1->save();
+
+        //name encuesta
+        $pregunta_1 = new Pregunta;
+        $pregunta_1->name='¿Recomendaría el producto o servicio a un familiar o amigo?';
+        $pregunta_1->save();
+
+        $encuesta_pregunt= DB::table('encuesta_pregunta')->insert(['encuesta_id' => $encuesta_1->id ,'pregunta_id' => $pregunta_1->id]);
+
+        //Jefe Directo
+        $jefedirecto_1 = new Jefedirecto;
+        $jefedirecto_1->Nombre='Alejandro Espejo';
+        $jefedirecto_1->AreaTrabajo='Director General';
+        $jefedirecto_1->email='aespejob@sitwifi.com';
+        $jefedirecto_1->save();
+
+        $jefedirecto_2 = new Jefedirecto;
+        $jefedirecto_2->Nombre='John Walker';
+        $jefedirecto_2->AreaTrabajo='Director Comercial';
+        $jefedirecto_2->email='jwalker@sitwifi.com';
+        $jefedirecto_2->save();
+
+        $jefedirecto_3 = new Jefedirecto;
+        $jefedirecto_3->Nombre='René González';
+        $jefedirecto_3->AreaTrabajo='Director Operativo';
+        $jefedirecto_3->email='rgonzalez@sitwifi.com';
+        $jefedirecto_3->save();
+
+        $jefedirecto_4 = new Jefedirecto;
+        $jefedirecto_4->Nombre='Ricardo Delgado';
+        $jefedirecto_4->AreaTrabajo='Gerente Soporte Tecnico';
+        $jefedirecto_4->email='rdelgado@sitwifi.com';
+        $jefedirecto_4->save();
+
+        $jefedirecto_5 = new Jefedirecto;
+        $jefedirecto_5->Nombre='Mariana Presuel ';
+        $jefedirecto_5->AreaTrabajo='Gerente Recursos Humanos';
+        $jefedirecto_5->email='mariana@sitwifi.com';
+        $jefedirecto_5->save();
+
+        $jefedirecto_6 = new Jefedirecto;
+        $jefedirecto_6->Nombre='Aaron Arciga';
+        $jefedirecto_6->AreaTrabajo='Gerente Proyectos e Instalaciones';
+        $jefedirecto_6->email='aarciga@sitwifi.com';
+        $jefedirecto_6->save();
+
+        //MARCAS Equipos
+        $marcas_1 = new Marca;
+        $marcas_1->Nombre_marca='ZYXEL';
+        $marcas_1->Distribuidor='ZyXEL Communications Corp';
+        $marcas_1->save();
+
+        $marcas_2 = new Marca;
+        $marcas_2->Nombre_marca='CISCO';
+        $marcas_2->Distribuidor='Cisco Systems';
+        $marcas_2->save();
+
+        $marcas_3 = new Marca;
+        $marcas_3->Nombre_marca='RUCKUS';
+        $marcas_3->Distribuidor='Ruckus Wireless';
+        $marcas_3->save();
+
+        $marcas_4 = new Marca;
+        $marcas_4->Nombre_marca='SonicWall';
+        $marcas_4->Distribuidor='DELL';
+        $marcas_4->save();
+
+        $marcas_5 = new Marca;
+        $marcas_5->Nombre_marca='BitRail';
+        $marcas_5->Distribuidor='BITRAIL';
+        $marcas_5->save();
+
+        $marcas_6 = new Marca;
+        $marcas_6->Nombre_marca='ZEQUENZE';
+        $marcas_6->Distribuidor='ZEQUENZE';
+        $marcas_6->save();
+
+        $marcas_7 = new Marca;
+        $marcas_7->Nombre_marca='RUCKUS Zone Director';
+        $marcas_7->Distribuidor='Ruckus Wireless';
+        $marcas_7->save();
+
+        $marcas_8 = new Marca;
+        $marcas_8->Nombre_marca='Gigabyte';
+        $marcas_8->Distribuidor='Gigabyte';
+        $marcas_8->save();
+
+        $marcas_9 = new Marca;
+        $marcas_9->Nombre_marca='Xi3 Corporation';
+        $marcas_9->Distribuidor='Xi3 Corporation';
+        $marcas_9->save();
+
+        $marcas_10 = new Marca;
+        $marcas_10->Nombre_marca='DELL';
+        $marcas_10->Distribuidor='Inc. NASDAQ';
+        $marcas_10->save();
+
+        $marcas_11 = new Marca;
+        $marcas_11->Nombre_marca='Lenovo';
+        $marcas_11->Distribuidor='Lenovo';
+        $marcas_11->save();
+
+        $marcas_12 = new Marca;
+        $marcas_12->Nombre_marca='Toshiba';
+        $marcas_12->Distribuidor='Toshiba';
+        $marcas_12->save();
+
+        $marcas_13 = new Marca;
+        $marcas_13->Nombre_marca='APC';
+        $marcas_13->Distribuidor='American Power Conversion';
+        $marcas_13->save();
+
+        $marcas_14 = new Marca;
+        $marcas_14->Nombre_marca='MAC';
+        $marcas_14->Distribuidor='Apple';
+        $marcas_14->save();
+
+        $marcas_15 = new Marca;
+        $marcas_15->Nombre_marca='HP';
+        $marcas_15->Distribuidor='Hewlett-Packard';
+        $marcas_15->save();
+
+        $marcas_16 = new Marca;
+        $marcas_16->Nombre_marca='Meraki Cisco';
+        $marcas_16->Distribuidor='Cisco Systems';
+        $marcas_16->save();
+
+        $marcas_17 = new Marca;
+        $marcas_17->Nombre_marca='Icomera';
+        $marcas_17->Distribuidor='Icomera AB';
+        $marcas_17->save();
+
+        $marcas_18 = new Marca;
+        $marcas_18->Nombre_marca='ASUS';
+        $marcas_18->Distribuidor='ASUS';
+        $marcas_18->save();
+
+        $marcas_19 = new Marca;
+        $marcas_19->Nombre_marca='Ruckus Smart Zone';
+        $marcas_19->Distribuidor='Ruckus Wireless';
+        $marcas_19->save();
+
+        $marcas_20 = new Marca;
+        $marcas_20->Nombre_marca='3COM';
+        $marcas_20->Distribuidor='3COM';
+        $marcas_20->save();
+
+        $marcas_21 = new Marca;
+        $marcas_21->Nombre_marca='Cyber Energy';
+        $marcas_21->Distribuidor='Cyber Energy';
+        $marcas_21->save();
+
+        //Modelos equipos
+        $modelo_1 = new Modelo;
+        $modelo_1->ModeloNombre = 'BR700G';
+        $modelo_1->Costo= '365';
+        $modelo_1->save();
+
+        $modelo_2 = new Modelo;
+        $modelo_2->ModeloNombre = 'Dell Inspiron 5447';
+        $modelo_2->Costo= '365';
+        $modelo_2->save();
+
+        $modelo_3 = new Modelo;
+        $modelo_3->ModeloNombre = 'Dell Inspiron 5458';
+        $modelo_3->Costo= '365';
+        $modelo_3->save();
+
+        $modelo_4 = new Modelo;
+        $modelo_4->ModeloNombre = 'Dell Inspiton 3442';
+        $modelo_4->Costo= '365';
+        $modelo_4->save();
+
+        $modelo_5 = new Modelo;
+        $modelo_5->ModeloNombre = 'FW7541D-NG1';
+        $modelo_5->Costo= '365';
+        $modelo_5->save();
+
+        $modelo_6 = new Modelo;
+        $modelo_6->ModeloNombre = 'GIGABYTE';
+        $modelo_6->Costo= '365';
+        $modelo_6->save();
+
+        $modelo_7 = new Modelo;
+        $modelo_7->ModeloNombre = 'GS1910-48HP';
+        $modelo_7->Costo= '365';
+        $modelo_7->save();
+
+        $modelo_8 = new Modelo;
+        $modelo_8->ModeloNombre = 'GS1910-8HP';
+        $modelo_8->Costo= '365';
+        $modelo_8->save();
+
+        $modelo_9 = new Modelo;
+        $modelo_9->ModeloNombre = 'GS2200-8HP';
+        $modelo_9->Costo= '365';
+        $modelo_9->save();
+
+        $modelo_10 = new Modelo;
+        $modelo_10->ModeloNombre =  'GS2210-24HP';
+        $modelo_10->Costo= '365';
+        $modelo_10->save();
+
+        $modelo_11 = new Modelo;
+        $modelo_11->ModeloNombre =  'GS2210-48HP';
+        $modelo_11->Costo= '365';
+        $modelo_11->save();
+
+        $modelo_12 = new Modelo;
+        $modelo_12->ModeloNombre =  'GS2210-8';
+        $modelo_12->Costo= '365';
+        $modelo_12->save();
+
+        $modelo_13 = new Modelo;
+        $modelo_13->ModeloNombre =  'GS2210-8HP';
+        $modelo_13->Costo= '365';
+        $modelo_13->save();
+
+        $modelo_14 = new Modelo;
+        $modelo_14->ModeloNombre =  'h500';
+        $modelo_14->Costo= '365';
+        $modelo_14->save();
+
+        $modelo_15 = new Modelo;
+        $modelo_15->ModeloNombre =  'Macbook Pro';
+        $modelo_15->Costo= '365';
+        $modelo_15->save();
+
+        $modelo_16 = new Modelo;
+        $modelo_16->ModeloNombre = 'NSA 250 M';
+        $modelo_16->Costo= '365';
+        $modelo_16->save();
+
+        $modelo_17 = new Modelo;
+        $modelo_17->ModeloNombre = 'NSA 2600';
+        $modelo_17->Costo= '365';
+        $modelo_17->save();
+
+        $modelo_18 = new Modelo;
+        $modelo_18->ModeloNombre = 'NSA 3600';
+        $modelo_18->Costo= '365';
+        $modelo_18->save();
+
+        $modelo_19 = new Modelo;
+        $modelo_19->ModeloNombre = 'p300';
+        $modelo_19->Costo= '365';
+        $modelo_19->save();
+
+        $modelo_20 = new Modelo;
+        $modelo_20->ModeloNombre = 'PRO700';
+        $modelo_20->Costo= '365';
+        $modelo_20->save();
+
+        $modelo_21 = new Modelo;
+        $modelo_21->ModeloNombre = 'r300';
+        $modelo_21->Costo= '365';
+        $modelo_21->save();
+
+        $modelo_22 = new Modelo;
+        $modelo_22->ModeloNombre = 'r600';
+        $modelo_22->Costo= '365';
+        $modelo_22->save();
+
+        $modelo_23 = new Modelo;
+        $modelo_23->ModeloNombre = 'r710';
+        $modelo_23->Costo= '365';
+        $modelo_23->save();
+
+        $modelo_24 = new Modelo;
+        $modelo_24->ModeloNombre = 'Satellite P855-S5312';
+        $modelo_24->Costo= '365';
+        $modelo_24->save();
+
+        $modelo_25 = new Modelo;
+        $modelo_25->ModeloNombre = 'SF200-24P';
+        $modelo_25->Costo= '365';
+        $modelo_25->save();
+
+        $modelo_26 = new Modelo;
+        $modelo_26->ModeloNombre = 'SF300-08';
+        $modelo_26->Costo= '365';
+        $modelo_26->save();
+
+        $modelo_27 = new Modelo;
+        $modelo_27->ModeloNombre = 'SF300-10P';
+        $modelo_27->Costo= '365';
+        $modelo_27->save();
+
+        $modelo_28 = new Modelo;
+        $modelo_28->ModeloNombre = 'SF300-24MP';
+        $modelo_28->Costo= '365';
+        $modelo_28->save();
+
+        $modelo_29 = new Modelo;
+        $modelo_29->ModeloNombre = 'SF300-24P';
+        $modelo_29->Costo= '365';
+        $modelo_29->save();
+
+        $modelo_30 = new Modelo;
+        $modelo_30->ModeloNombre = 'SF300-24PP';
+        $modelo_30->Costo= '365';
+        $modelo_30->save();
+
+        $modelo_31 = new Modelo;
+        $modelo_31->ModeloNombre = 'SF300-48P';
+        $modelo_31->Costo= '365';
+        $modelo_31->save();
+
+        $modelo_32 = new Modelo;
+        $modelo_32->ModeloNombre = 'SF300-8P';
+        $modelo_32->Costo= '365';
+        $modelo_32->save();
+
+        $modelo_33 = new Modelo;
+        $modelo_33->ModeloNombre = 'SF302-08';
+        $modelo_33->Costo= '365';
+        $modelo_33->save();
+
+        $modelo_34 = new Modelo;
+        $modelo_34->ModeloNombre = 'SF302-08M';
+        $modelo_34->Costo= '365';
+        $modelo_34->save();
+
+        $modelo_35 = new Modelo;
+        $modelo_35->ModeloNombre = 'SF302-08MP';
+        $modelo_35->Costo= '365';
+        $modelo_35->save();
+
+        $modelo_36 = new Modelo;
+        $modelo_36->ModeloNombre = 'SF302-08P';
+        $modelo_36->Costo= '365';
+        $modelo_36->save();
+
+        $modelo_37 = new Modelo;
+        $modelo_37->ModeloNombre = 'SG200-26P';
+        $modelo_37->Costo= '365';
+        $modelo_37->save();
+
+        $modelo_38 = new Modelo;
+        $modelo_38->ModeloNombre = 'SG300-10';
+        $modelo_38->Costo= '365';
+        $modelo_38->save();
+
+        $modelo_39 = new Modelo;
+        $modelo_39->ModeloNombre = 'SG300-10MP';
+        $modelo_39->Costo= '365';
+        $modelo_39->save();
+
+        $modelo_40 = new Modelo;
+        $modelo_40->ModeloNombre = 'SG300-10P';
+        $modelo_40->Costo= '365';
+        $modelo_40->save();
+
+        $modelo_41 = new Modelo;
+        $modelo_41->ModeloNombre = 'SG300-24MP';
+        $modelo_41->Costo= '365';
+        $modelo_41->save();
+
+        $modelo_42 = new Modelo;
+        $modelo_42->ModeloNombre = 'SG300-28MP';
+        $modelo_42->Costo= '365';
+        $modelo_42->save();
+
+        $modelo_43 = new Modelo;
+        $modelo_43->ModeloNombre = 'SG300-28P';
+        $modelo_43->Costo= '365';
+        $modelo_43->save();
+
+        $modelo_44 = new Modelo;
+        $modelo_44->ModeloNombre = 'SG300-28PP';
+        $modelo_44->Costo= '365';
+        $modelo_44->save();
+
+        $modelo_45 = new Modelo;
+        $modelo_45->ModeloNombre = 'SG300-52MP';
+        $modelo_45->Costo= '365';
+        $modelo_45->save();
+
+        $modelo_46 = new Modelo;
+        $modelo_46->ModeloNombre = 'SG500-28';
+        $modelo_46->Costo= '365';
+        $modelo_46->save();
+
+        $modelo_47 = new Modelo;
+        $modelo_47->ModeloNombre = 'SG500-28P';
+        $modelo_47->Costo= '365';
+        $modelo_47->save();
+
+        $modelo_48 = new Modelo;
+        $modelo_48->ModeloNombre = 'SG500-52MP';
+        $modelo_48->Costo= '365';
+        $modelo_48->save();
+
+        $modelo_49 = new Modelo;
+        $modelo_49->ModeloNombre = 'SG500X-24';
+        $modelo_49->Costo= '365';
+        $modelo_49->save();
+
+        $modelo_50 = new Modelo;
+        $modelo_50->ModeloNombre = 't300';
+        $modelo_50->Costo= '1295';
+        $modelo_50->save();
+
+        $modelo_51 = new Modelo;
+        $modelo_51->ModeloNombre = 'WS-C2960S-24PS-L';
+        $modelo_51->Costo= '365';
+        $modelo_51->save();
+
+
+        $modelo_52 = new Modelo;
+        $modelo_52->ModeloNombre = 'Xi3 Corporation';
+        $modelo_52->Costo= '365';
+        $modelo_52->save();
+
+        $modelo_53 = new Modelo;
+        $modelo_53->ModeloNombre = 'z40-70';
+        $modelo_53->Costo= '365';
+        $modelo_53->save();
+
+        $modelo_54 = new Modelo;
+        $modelo_54->ModeloNombre = 'ZD1050';
+        $modelo_54->Costo= '365';
+        $modelo_54->save();
+
+        $modelo_55 = new Modelo;
+        $modelo_55->ModeloNombre = 'ZD1106';
+        $modelo_55->Costo= '1200';
+        $modelo_55->save();
+
+        $modelo_56 = new Modelo;
+        $modelo_56->ModeloNombre = 'ZD1112';
+        $modelo_56->Costo= '2000';
+        $modelo_56->save();
+
+        $modelo_57 = new Modelo;
+        $modelo_57->ModeloNombre = 'ZD1150';
+        $modelo_57->Costo= '7000';
+        $modelo_57->save();
+
+        $modelo_58 = new Modelo;
+        $modelo_58->ModeloNombre = 'ZD1200';
+        $modelo_58->Costo= '365';
+        $modelo_58->save();
+
+        $modelo_59 = new Modelo;
+        $modelo_59->ModeloNombre = 'ZD3025';
+        $modelo_59->Costo= '6000';
+        $modelo_59->save();
+
+        $modelo_60 = new Modelo;
+        $modelo_60->ModeloNombre = 'ZD3050';
+        $modelo_60->Costo= '9000';
+        $modelo_60->save();
+
+        $modelo_61 = new Modelo;
+        $modelo_61->ModeloNombre = 'zf2741';
+        $modelo_61->Costo= '1095';
+        $modelo_61->save();
+
+        $modelo_62 = new Modelo;
+        $modelo_62->ModeloNombre = 'zf2942';
+        $modelo_62->Costo= '365';
+        $modelo_62->save();
+
+        $modelo_63 = new Modelo;
+        $modelo_63->ModeloNombre = 'zf7025';
+        $modelo_63->Costo= '249';
+        $modelo_63->save();
+
+        $modelo_64 = new Modelo;
+        $modelo_64->ModeloNombre = 'zf7055';
+        $modelo_64->Costo= '379';
+        $modelo_64->save();
+
+        $modelo_65 = new Modelo;
+        $modelo_65->ModeloNombre = 'zf7321';
+        $modelo_65->Costo= '349';
+        $modelo_65->save();
+
+        $modelo_66 = new Modelo;
+        $modelo_66->ModeloNombre = 'zf7341';
+        $modelo_66->Costo= '399';
+        $modelo_66->save();
+
+        $modelo_67 = new Modelo;
+        $modelo_67->ModeloNombre = 'zf7352';
+        $modelo_67->Costo= '449';
+        $modelo_67->save();
+
+        $modelo_68 = new Modelo;
+        $modelo_68->ModeloNombre = 'zf7363';
+        $modelo_68->Costo= '599';
+        $modelo_68->save();
+
+        $modelo_69 = new Modelo;
+        $modelo_69->ModeloNombre = 'zf7372';
+        $modelo_69->Costo= '649';
+        $modelo_69->save();
+
+        $modelo_70 = new Modelo;
+        $modelo_70->ModeloNombre = 'zf7731';
+        $modelo_70->Costo= '365';
+        $modelo_70->save();
+
+        $modelo_71 = new Modelo;
+        $modelo_71->ModeloNombre = 'zf7762';
+        $modelo_71->Costo= '1999';
+        $modelo_71->save();
+
+        $modelo_72 = new Modelo;
+        $modelo_72->ModeloNombre = 'zf7782';
+        $modelo_72->Costo= '2999';
+        $modelo_72->save();
+
+        $modelo_73 = new Modelo;
+        $modelo_73->ModeloNombre = 'zf7942';
+        $modelo_73->Costo= '365';
+        $modelo_73->save();
+
+        $modelo_74 = new Modelo;
+        $modelo_74->ModeloNombre = 'zf7962';
+        $modelo_74->Costo= '365';
+        $modelo_74->save();
+
+        $modelo_75 = new Modelo;
+        $modelo_75->ModeloNombre = 'zf7982';
+        $modelo_75->Costo= '995';
+        $modelo_75->save();
+
+        //Estado
+        $estado_1 = new Estado;
+        $estado_1->Nombre_estado = 'Activo';
+        $estado_1->Descripcion_estado ='EQUIPO EN PRODUCCION';
+        $estado_1->save();
+
+        $estado_2 = new Estado;
+        $estado_2->Nombre_estado = 'Baja';
+        $estado_2->Descripcion_estado = 'EQUIPO NO FUNCIONAL';
+        $estado_2->save();
+
+        $estado_3 = new Estado;
+        $estado_3->Nombre_estado = 'Bodega';
+        $estado_3->Descripcion_estado = 'EQUIPO NO FUNCIONAL';
+        $estado_3->save();
+
+        $estado_4 = new Estado;
+        $estado_4->Nombre_estado = 'Stock';
+        $estado_4->Descripcion_estado = 'EQUIPO DISPONIBLE';
+        $estado_4->save();
+
+        $estado_5 = new Estado;
+        $estado_5->Nombre_estado = 'Prestamo';
+        $estado_5->Descripcion_estado = 'EQUIPO EN CALIDAD DE PRESTAMO';
+        $estado_5->save();
+
+        $estado_6 = new Estado;
+        $estado_6->Nombre_estado = 'Verificar';
+        $estado_6->Descripcion_estado = 'EQUIPO NO IDENTIFICADO O LOCALIZADO';
+        $estado_6->save();
+
+        $estado_7 = new Estado;
+        $estado_7->Nombre_estado = 'Desconectado';
+        $estado_7->Descripcion_estado = 'NO ACTIVO';
+        $estado_7->save();
+
+        $estado_8 = new Estado;
+        $estado_8->Nombre_estado = 'Stock en sitio';
+        $estado_8->Descripcion_estado = 'EQUIPO EN SITIO NO ACTIVO';
+        $estado_8->save();
+
+        $estado_9 = new Estado;
+        $estado_9->Nombre_estado = 'Cambio';
+        $estado_9->Descripcion_estado = 'Equipo cambiado';
+        $estado_9->save();
+
+        $estado_10 = new Estado;
+        $estado_10->Nombre_estado = 'Venta';
+        $estado_10->Descripcion_estado ='Equipo vendido';
+        $estado_10->save();
+
+        $estado_11 = new Estado;
+        $estado_11->Nombre_estado = 'Garantia';
+        $estado_11->Descripcion_estado = 'Equipo en garantía';
+        $estado_11->save();
+
+        $estado_12 = new Estado;
+        $estado_12->Nombre_estado = 'Missing Inventory';
+        $estado_12->Descripcion_estado = 'Equipo extraviado';
+        $estado_12->save();
+
+        $estado_13 = new Estado;
+        $estado_13->Nombre_estado = 'Propiedad del hotel';
+        $estado_13->save();
+
+        $estado_14 = new Estado;
+        $estado_14->Nombre_estado = 'Demo';
+        $estado_14->save();
+
+        $estado_15 = new Estado;
+        $estado_15->Nombre_estado = 'Envio';
+        $estado_15->save();
+
+
+
+
 
     }
 }

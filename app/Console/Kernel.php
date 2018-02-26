@@ -13,7 +13,12 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+      Commands\estadoserver::class,
+      Commands\bytesxdia::class,
+      Commands\usuarioxdia::class,
+      Commands\mostapxdia::class,
+      Commands\roguedevices::class,
+      Commands\wlanxdia::class,
     ];
 
     /**
@@ -24,8 +29,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+      $schedule->command('estado:server')->daily();
+      $schedule->command('usuario:dia')->daily();
+      $schedule->command('bytes:dia')->daily();
+      $schedule->command('ap:dia')->daily();
+      $schedule->command('wlan:dia')->daily();
+      $schedule->command('rougue:mes')->monthly();
+
     }
 
     /**
