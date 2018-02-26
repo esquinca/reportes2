@@ -7,6 +7,7 @@ use App\Cadena;
 use App\Hotel;
 use App\Reference;
 use DB;
+
 class ViewReportContController extends Controller
 {
   public function index()
@@ -27,10 +28,45 @@ class ViewReportContController extends Controller
         return view('permitted.report.view_reports_cont',compact('cadena'));
       }
   }
-  public function table_gb() {
-    # code...
+
+  public function test()
+  {
+    $result1 = DB::select('CALL  summary_chain_gb (?, ?)', array('2018-02-01',44));
+    $result2 = DB::select('CALL summary_chain_user (?, ?)', array('2018-02-01',44));
+    // $result3 = DB::select('CALL GetWLAN_top5 (?, ?, ?)', array(7, 2018, 2));
+    // $result4 = DB::select('CALL Get_User (?, ?, ?)', array(2018, 2, 7));
+
+    dd($result2);
   }
-  public function table_user() {
-    # code...
+
+  public function table_gb(Request $request) 
+  {
+    $hotel = $request->data_one;
+    $date = $request->data_two;
+
+    $datemonthyear =  explode('-', $date);
+    $dateyear= (int)$datemonthyear[0];
+    $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
+    
+    $result1 = DB::select('CALL  summary_chain_gb (?, ?)', array($datefull,$hotel));
+
+    return json_encode($result1);
   }
+
+  public function table_user(Request $request) 
+  {
+    $hotel = $request->data_one;
+    $date = $request->data_two;
+
+    $datemonthyear =  explode('-', $date);
+    $dateyear= (int)$datemonthyear[0];
+    $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
+
+    $result1 = DB::select('CALL summary_chain_user (?, ?)', array($datefull,$hotel));
+
+    return json_encode($result1);
+  }
+
 }

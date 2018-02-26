@@ -88,8 +88,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_comparative', 'ViewReportsController@tab_comparativa');
   //Reporte concatenado
     Route::get('/viewreportscont', 'ViewReportContController@index');
-    Route::post('/get_user_cont', 'ViewReportContController@table_gb');
-    Route::post('/get_gb_cont', 'ViewReportContController@table_user');
+    Route::post('/get_user_cont', 'ViewReportContController@table_user');
+    Route::post('/get_gb_cont', 'ViewReportContController@table_gb');
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
@@ -124,7 +124,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
-    Route::get('/acm1pt', 'ViewReportsController@test');
+    Route::get('/acm1pt', 'ViewReportContController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/upload_client', 'IndividualController@upload_client');

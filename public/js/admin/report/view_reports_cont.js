@@ -14,11 +14,13 @@ $(function() {
 
 $('#btn_generar').on('click', function(e){
   var cadena= $('#select_one').val();
+  //console.log(cadena);
   if (cadena == "") {
 
   }else{
     //document.getElementById("captura_pdf_general").style.display="block";
     empty_header();
+    fillHeaders();
     table_gigabyte_cont();
     table_user_cont();
   }
@@ -31,28 +33,62 @@ function empty_header() {
   $("#email").empty();
   $("#tel").empty();
 }
+
+function fillHeaders() {
+  var cadena= $('#select_one').val();
+  var _token = $('input[name="_token"]').val();
+  var datax;
+  $.ajax({
+    type: "POST",
+    url: "/detailed_pro_head",
+    data: { data_one : cadena,  _token : _token },
+    success: function (data){
+      datax = JSON.parse(data);
+      //console.log(data);
+
+      $("#client_name").text(datax[0].name);
+      $("#email").text(datax[0].correo);
+      $("#tel").text(datax[0].phone);
+
+      //URL de imagen
+      $("#client_img").attr("src","../images/hotel/"+datax[0].dirlogo1);
+
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}
+
+
 function table_gigabyte_cont() {
   var cadena= $('#select_one').val();
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/get_gb_cont",
-  //     data: {data_one : cadena , data_two : date , _token : _token},
-  //     success: function (data){
-  //       $.each(JSON.parse(data),function(index, objdata){
-  //
-  //       });
-        var data = JSON.stringify([{id:'1', Nombre_hotel:'Beach Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
-          {id:'2', Nombre_hotel:'Cozumel Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
-          {id:'3', Nombre_hotel:'Isla Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'}
-        ]);
-        table_conc_one(data, $("#table_cont_user"));
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //     }
-  // });
+
+  var data = JSON.stringify([{id:'1', Nombre_hotel:'Beach Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
+    {id:'2', Nombre_hotel:'Cozumel Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
+    {id:'3', Nombre_hotel:'Isla Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'}
+  ]);
+  var data_data = [];
+  //data_data.push({"concepto": objdata.Concepto,"mes1": objdata.Anterior,"mes2": objdata.Actual, "identificador": ind1});
+
+  $.ajax({
+      type: "POST",
+      url: "/get_gb_cont",
+      data: {data_one : cadena , data_two : date , _token : _token},
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_data.push({"Nombre_hotel": objdata.Nombre_hotel, "a12": objdata.a12, "a11": objdata.a11, "a10": objdata.a10, "a9": objdata.a9, "a8": objdata.a8, "a7": objdata.a7, "a6": objdata.a6, "a5": objdata.a5, "a4": objdata.a4, "a3": objdata.a3, "a2": objdata.a2, "a1": objdata.a1});
+        });
+        table_conc_one(data_data, $("#table_cont_gb"));
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+  });
+  
 }
 
 
@@ -60,35 +96,33 @@ function table_user_cont() {
   var cadena= $('#select_one').val();
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  // $.ajax({
-  //     type: "POST",
-  //     url: "/get_user_cont",
-  //     data: {data_one : cadena , data_two : date , _token : _token},
-  //     success: function (data){
-  //       $.each(JSON.parse(data),function(index, objdata){
-  //
-  //       });
-        var data = JSON.stringify([{id:'1', Nombre_hotel:'Beach Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
-          {id:'2', Nombre_hotel:'Cozumel Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
-          {id:'3', Nombre_hotel:'Isla Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'}
-        ]);
-        table_conc_two(data, $("#table_cont_gb"));
-  //     },
-  //     error: function (data) {
-  //       console.log('Error:', data);
-  //     }
-  // });
+  var data = JSON.stringify([{id:'1', Nombre_hotel:'Beach Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
+    {id:'2', Nombre_hotel:'Cozumel Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'},
+    {id:'3', Nombre_hotel:'Isla Palace', a12:'0', a11:'0',a10:'0',a9:'0',a8:'0',a7:'0',a6:'0',a5:'0',a4:'0',a3:'0',a2:'0',a1:'0'}
+  ]);
+  var data_data = [];
+  $.ajax({
+      type: "POST",
+      url: "/get_user_cont",
+      data: {data_one : cadena , data_two : date , _token : _token},
+      success: function (data){
+        //console.log(data);
+        $.each(JSON.parse(data),function(index, objdata){
+          data_data.push({"Nombre_hotel": objdata.Nombre_hotel, "a12": objdata.a12, "a11": objdata.a11, "a10": objdata.a10, "a9": objdata.a9, "a8": objdata.a8, "a7": objdata.a7, "a6": objdata.a6, "a5": objdata.a5, "a4": objdata.a4, "a3": objdata.a3, "a2": objdata.a2, "a1": objdata.a1});
+        });
+        table_conc_two(data_data, $("#table_cont_user"));
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+  });
 }
-
-
-
-
 
 function table_conc_one(datajson, table){
   table.DataTable().destroy();
   var vartable = table.dataTable(Configuration_table_responsive_with_cont_one_pdf);
   vartable.fnClearTable();
-  $.each(JSON.parse(datajson), function(index, status){ //Este es el bueno
+  $.each(datajson, function(index, status){ //Este es el bueno
     vartable.fnAddData([
       status.Nombre_hotel,
       status.a12,
@@ -111,7 +145,7 @@ function table_conc_two(datajson, table){
   table.DataTable().destroy();
   var vartable = table.dataTable(Configuration_table_responsive_with_cont_two_pdf);
   vartable.fnClearTable();
-  $.each(JSON.parse(datajson), function(index, status){ //Este es el bueno
+  $.each(datajson, function(index, status){ //Este es el bueno
     vartable.fnAddData([
       status.Nombre_hotel,
       status.a12,
