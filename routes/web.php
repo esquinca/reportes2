@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_gb_cont', 'ViewReportContController@table_gb');
   //Calificaciones
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
+    Route::post('create_survey_record', 'CreateSurveyController@create'); //Record survey
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
     Route::get('/edit_survey_admin' , 'EditSurveyController@index');
     Route::get('/survey_results' , 'ResultsSurveyController@index');

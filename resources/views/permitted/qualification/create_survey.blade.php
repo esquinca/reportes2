@@ -42,13 +42,14 @@
                           <!-- <li role="tab">
                               <h4><span><i class="fa fa-save"></i></span>Password</h4> </li> -->
                       </ul>
-                      <form id="validation" class="form-horizontal">
+                      <form id="validation" name="validation" class="form-horizontal" action="{{ url('create_survey_record') }}" method="POST" >
+                        {{ csrf_field() }}
                           <div class="wizard-content">
                               <div class="wizard-pane active" role="tabpanel">
                                   <div class="form-group">
                                       <label class="col-xs-3 control-label">Titulo</label>
                                       <div class="col-xs-5">
-                                          <input type="text" class="form-control" name="username" /> </div>
+                                          <input type="text" class="form-control" name="title" /> </div>
                                   </div>
                               </div>
                               <div class="wizard-pane" role="tabpanel">
@@ -215,7 +216,6 @@
                   //  alert('d');
                    $('#validation').formValidation('addField', $option);
                })
-
                // Remove button click handler
                .on('click', '.removeButton', function() {
                    var $row    = $(this).parents('.form-group'),
@@ -263,7 +263,7 @@
                 return true;
             },
             onFinish: function() {
-                $('#validation').submit();
+                document.getElementById("validation").submit();
                 $('#validation')[0].reset();
                 $('#exampleValidator').wizard('first');
                 $('#exampleValidator').wizard('reset');
@@ -276,7 +276,6 @@
             },
             onSuccess: function(e) {
               // $(".wizard-steps>li.done").removeClass( "done" );
-
             }
         })
 
