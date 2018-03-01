@@ -33,6 +33,11 @@
               <div style="background-color: #fff; border:1px solid #ccc; border-bottom-style:hidden; padding:10px; width: 100%">
                   <h3 class="box-title m-b-0">Generador</h3>
                   <p class="text-muted m-b-30 font-13"> Este apartado nos permite crear, paso por paso una encuesta.</p>
+                  @if (session('status'))
+                  <div class="alert alert-success">
+                    {{ session('status') }}
+                  </div>
+                  @endif
                   <div id="exampleValidator" class="wizard">
                       <ul class="wizard-steps" role="tablist">
                           <li class="active" role="tab">
@@ -81,6 +86,7 @@
                           </div>
                       </form>
                   </div>
+
               </div>
           </div>
       </div>
@@ -152,7 +158,7 @@
                 $('#validation').formValidation({
                     framework: 'bootstrap',
                     fields: {
-                        username: {
+                        title: {
                             validators: {
                                 notEmpty: {
                                     message: 'The title is required'
@@ -163,7 +169,7 @@
                                     message: 'The title must be more than 6 and less than 30 characters long'
                                 },
                                 regexp: {
-                                    regexp: /^[ña-zA-Z0-9_\.]+$/,
+                                    regexp: /^[ña-zÑA-Z0-9_\.]+$/,
                                     message: 'The title can only consist of alphabetical, number, dot and underscore'
                                 }
                             }
@@ -267,14 +273,17 @@
                 $('#validation')[0].reset();
                 $('#exampleValidator').wizard('first');
                 $('#exampleValidator').wizard('reset');
+                // menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
                 $('#validation').data('formValidation').resetForm('true');
 
                 $('#exampleValidator').find('li.done').removeClass( "done" );
+
 
                 //alert('Finalizado');
                 //swal("Message Finish!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
             },
             onSuccess: function(e) {
+              // menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
               // $(".wizard-steps>li.done").removeClass( "done" );
             }
         })

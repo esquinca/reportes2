@@ -170,4 +170,12 @@ return [
     'title_provider' => 'Proveedor',
     'subtitle_search_provider' => '',
     'breadcrumb_search_provider' => 'Administración de proveedores',
+
+    'datestart' => 'Fecha de inicio',
+    'dateend' => 'Fecha de fin',
+    'period' => 'Perido',
+    'periodactive' => 'Perido de activación',
+    'monthtoevaluate' => 'Mes a evaluar',
+    'encuestado' => 'Encuestado',
+
 ];

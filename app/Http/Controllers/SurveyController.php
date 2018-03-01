@@ -147,7 +147,7 @@ class SurveyController extends Controller
         if (!empty($data_comment)) {
           echo $data_comment.'<br>';
           $new_comment = new Comment;
-          $new_comment->mes=$mes_enc;
+          $new_comment->fecha=$mes_enc;
           $new_comment->respuesta=$data_comment;
           $new_comment->hotels_id=$hotel;
           $new_comment->users_id=$send_user;
