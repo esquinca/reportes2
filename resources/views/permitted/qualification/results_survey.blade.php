@@ -32,6 +32,7 @@
         <div class="col-md-12">
           <small>Se necesita aplicar un filtro para visualizar datos</small>
           <form id="filasasw" action="{{ url('result_filter') }}" method="post">
+            {{ csrf_field() }}
             <div id="filtration_container" name="filtration_container">
               <div id="filter_year" name="filter_year" class="row row-separation control-filter">
                 <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
@@ -120,7 +121,7 @@
           <div class="table-responsive">
             <table id="table_qualification" class="table table-striped table-bordered table-hover">
               <thead>
-                <tr>
+                <tr class="bg-primary" style="background: #00A5BA;">
                   <th> <small>Vertical</small> </th>
                   <th> <small>Sitio</small> </th>
                   <th> <small id="mes01" name="mes01"></small> </th>

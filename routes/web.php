@@ -96,6 +96,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/fill_survey_admin' , 'CaptureSurveyController@index');
     Route::get('/edit_survey_admin' , 'EditSurveyController@index');
     Route::get('/survey_results' , 'ResultsSurveyController@index');
+  //Post Survey_results.
+    Route::post('/survey_viewresults' , 'ResultsSurveyController@result_survey');
+
     Route::get('/configure_survey_admin' , 'ConfigurationSurveyController@index');
 
     Route::post('/assign_survey' , 'ConfigurationSurveyController@create');
@@ -127,7 +130,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
-    Route::get('/acm1pt', 'ViewReportContController@test');
+    Route::get('/acm1pt', 'ResultsSurveyController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/upload_client', 'IndividualController@upload_client');

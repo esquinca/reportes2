@@ -108,18 +108,19 @@
                           <thead>
                             <tr>
                               <th>Hotel</th>
-                              <th> <small id="mes01" name="mes01">Diciembre</small> </th>
-                              <th> <small id="mes02" name="mes02">Diciembre</small> </th>
-                              <th> <small id="mes03" name="mes03">Diciembre</small> </th>
-                              <th> <small id="mes04" name="mes04">Diciembre</small> </th>
-                              <th> <small id="mes05" name="mes05">Diciembre</small> </th>
-                              <th> <small id="mes06" name="mes06">Diciembre</small> </th>
-                              <th> <small id="mes07" name="mes07">Diciembre</small> </th>
-                              <th> <small id="mes08" name="mes08">Diciembre</small> </th>
-                              <th> <small id="mes09" name="mes09">Diciembre</small> </th>
-                              <th> <small id="mes10" name="mes10">Diciembre</small> </th>
-                              <th> <small id="mes11" name="mes11">Diciembre</small> </th>
-                              <th> <small id="mes12" name="mes12">Diciembre</small> </th>
+                              <th> <small id="mes01" name="mes01">mes01</small> </th>
+                              <th> <small id="mes02" name="mes02">mes02</small> </th>
+                              <th> <small id="mes03" name="mes03">mes03</small> </th>
+                              <th> <small id="mes04" name="mes04">mes04</small> </th>
+                              <th> <small id="mes05" name="mes05">mes05</small> </th>
+                              <th> <small id="mes06" name="mes06">mes06</small> </th>
+                              <th> <small id="mes07" name="mes07">mes07</small> </th>
+                              <th> <small id="mes08" name="mes08">mes08</small> </th>
+                              <th> <small id="mes09" name="mes09">mes09</small> </th>
+                              <th> <small id="mes10" name="mes10">mes10</small> </th>
+                              <th> <small id="mes11" name="mes11">mes11</small> </th>
+                              <th> <small id="mes12" name="mes12">mes12</small> </th>
+                              <!-- <th> <small id="mes13" name="mes13">Promedio</small> </th> -->
                             </tr>
                           </thead>
                           <tbody>
@@ -130,7 +131,7 @@
                     </div>
                   </div>
 
-                  <div  class="row pad-top-botm text-center contact-info">
+                  <div class="row pad-top-botm text-center contact-info">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <hr />
                         <span>
@@ -146,18 +147,19 @@
                           <thead>
                             <tr>
                               <th>Hotel</th>
-                              <th> <small id="mes01" name="mes01">Diciembre</small> </th>
-                              <th> <small id="mes02" name="mes02">Diciembre</small> </th>
-                              <th> <small id="mes03" name="mes03">Diciembre</small> </th>
-                              <th> <small id="mes04" name="mes04">Diciembre</small> </th>
-                              <th> <small id="mes05" name="mes05">Diciembre</small> </th>
-                              <th> <small id="mes06" name="mes06">Diciembre</small> </th>
-                              <th> <small id="mes07" name="mes07">Diciembre</small> </th>
-                              <th> <small id="mes08" name="mes08">Diciembre</small> </th>
-                              <th> <small id="mes09" name="mes09">Diciembre</small> </th>
-                              <th> <small id="mes10" name="mes10">Diciembre</small> </th>
-                              <th> <small id="mes11" name="mes11">Diciembre</small> </th>
-                              <th> <small id="mes12" name="mes12">Diciembre</small> </th>
+                              <th> <small id="mes01b" name="mes01">Diciembre</small> </th>
+                              <th> <small id="mes02b" name="mes02">Diciembre</small> </th>
+                              <th> <small id="mes03b" name="mes03">Diciembre</small> </th>
+                              <th> <small id="mes04b" name="mes04">Diciembre</small> </th>
+                              <th> <small id="mes05b" name="mes05">Diciembre</small> </th>
+                              <th> <small id="mes06b" name="mes06">Diciembre</small> </th>
+                              <th> <small id="mes07b" name="mes07">Diciembre</small> </th>
+                              <th> <small id="mes08b" name="mes08">Diciembre</small> </th>
+                              <th> <small id="mes09b" name="mes09">Diciembre</small> </th>
+                              <th> <small id="mes10b" name="mes10">Diciembre</small> </th>
+                              <th> <small id="mes11b" name="mes11">Diciembre</small> </th>
+                              <th> <small id="mes12b" name="mes12">Diciembre</small> </th>
+                              <th> <small id="prom" name="prom">Promedio</small> </th>
                             </tr>
                           </thead>
                           <tbody>
@@ -185,6 +187,7 @@
     <script src="{{ asset('bower_components/jsPDF/dist/jspdf.min.js')}}"></script>
     <script src="{{ asset('bower_components/html2canvas/html2canvas.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
+    <script src="/plugins/momentupdate/moment-with-locales.js"></script>
     <script src="{{ asset('js/admin/report/view_reports_cont.js')}}"></script>
   @else
     <!--NO VER-->
