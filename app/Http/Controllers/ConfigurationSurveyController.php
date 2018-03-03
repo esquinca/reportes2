@@ -50,7 +50,7 @@ class ConfigurationSurveyController extends Controller
     $new_survey_reg->encuesta_id=$input_survey;
     $new_survey_reg->estatus_id='1';
     $new_survey_reg->fecha_inicial=$input_date_i;
-    $new_survey_reg->fecha_corresponde=$pregunta;
+    $new_survey_reg->fecha_corresponde=$input_date_ev.'-01';
     $new_survey_reg->fecha_fin=$input_date_f;
 
     $new_survey_reg->shell_hotel_id =Crypt::encryptString($input_hotel);
@@ -62,6 +62,6 @@ class ConfigurationSurveyController extends Controller
     $new_survey_reg->save();
 
 
-    return $request;
+    return $new_survey_reg;
   }
 }

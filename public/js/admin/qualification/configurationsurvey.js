@@ -10,8 +10,15 @@ $(document).ready(function() {
       autoclose: true
   });
   table_config();
+  $('#select_two').multiselect({
+    buttonWidth: '100%',
+      nonSelectedText: 'Elija uno o más',
+      enableClickableOptGroups: true,
+      enableCollapsibleOptGroups: true,
+      // enableFiltering: false,
+      // includeSelectAllOption: true,
+   });
 });
-
 
 function table_config() {
   // var _token = $('input[name="_token"]').val();

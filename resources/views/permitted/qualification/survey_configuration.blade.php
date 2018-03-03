@@ -58,12 +58,22 @@
                                 <div class="form-group">
                                   <label for="select_two" class="col-md-2 control-label">{{ trans('message.encuestado') }}</label>
                                   <div class="col-md-10 selectContainer">
-                                    <select id="select_two" name="select_two" class="form-control select2">
-                                      <option value="" selected> Elija </option>
-                                      @forelse ($users as $data_users)
-                                        <option value="{{ $data_users->id }}"> {{ $data_users->name }} </option>
-                                      @empty
-                                      @endforelse
+                                    <select id="select_two" name="select_two" class="form-control" multiple="multiple" >
+                                      <!-- <option value="" selected> Elija </option> -->
+
+
+
+                                      @foreach (  App\Vertical::select('id', 'name')->get(); as $verticals)
+                                      <optgroup label="{{ $verticals->name }}">
+                                        @foreach (  App\User_vertical::where('verticals_id', 1 )->get() as $opciones)
+                                          <option value="{{ $opciones->verticals_id }}"> {{ $opciones->verticals_id }} </option>
+                                        @endforeach
+                                      </optgroup>
+                                      @endforeach
+
+
+
+
                                     </select>
                                   </div>
                                 </div>
@@ -162,6 +172,10 @@
 @push('scripts')
   @if( auth()->user()->can('View survey configuration') )
     <script src="{{ asset('js/admin/qualification/configurationsurvey.js')}}"></script>
+
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-multiselect-master/css/bootstrap-multiselect.css') }}" type="text/css" />
+    <script src="{{ asset('../bower_components/bootstrap-multiselect-master/js/bootstrap-multiselect.js') }}"></script>
+
   @else
     <!--NO VER-->
   @endif
