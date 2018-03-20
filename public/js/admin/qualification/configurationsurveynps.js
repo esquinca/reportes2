@@ -145,7 +145,7 @@ function table_surveyed(){
 
 function table_equipment(datajson, table){
   table.DataTable().destroy();
-  var vartable = table.dataTable(Configuration_table_responsive_with_pdf);
+  var vartable = table.dataTable(Configuration_table_responsive_with_pdf_client_hotel);
   vartable.fnClearTable();
   $.each(JSON.parse(datajson), function(index, status){
     vartable.fnAddData([
