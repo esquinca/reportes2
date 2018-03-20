@@ -173,13 +173,13 @@
                     <div class="row">
                       @if( auth()->user()->can('View assign delete client') )
                       <div class="col-xs-12">
-                        <form id="delete_all_client" name="delete_all_client" class="form-horizontal" method="POST">
+                        <form id="delete_all_client" name="delete_all_client" class="form-horizontal" method="POST" action="{{ url('data_delete_client_config') }}">
                           <b class="text-center" style="text-decoration: underline;"><i class="fa fa-user-times"></i> Eliminar cliente:</b>
                           {{ csrf_field() }}
                           <div class="form-group">
                             <label for="delete_clients" class="col-md-2 control-label">{{ trans('message.client') }}</label>
                             <div class="col-md-10 selectContainer">
-                              <select id="delete_clients" name="delete_clients"class="form-control">
+                              <select id="delete_clients" name="delete_clients"class="form-control" required>
                                 <option value="" selected> Elija </option>
                                 @forelse ($users as $data_users)
                                   <option value="{{ $data_users->id }}"> {{ $data_users->name }} </option>
@@ -191,7 +191,7 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
-                                <a id="capture_dc" class="btn bg-navy create_user_data"><i class="fa fa-user-times"></i> {{ trans('message.eliminar')}}</a>
+                                <button id="capture_dc" type="submit" class="btn bg-navy" ><i class="fa fa-user-times"></i> {{ trans('message.eliminar')}}</button>
                                 <a id="cancela_dc" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>

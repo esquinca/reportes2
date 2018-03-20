@@ -147,7 +147,6 @@ class ConfigurationSurveyController extends Controller
       // return back()->with('sta0tus', 'Operation complete!');
     }
   }
-
   public function creat_assign_client_ht(Request $request)
   {
     # code...
@@ -172,5 +171,27 @@ class ConfigurationSurveyController extends Controller
       return Redirect::back();
     }
   }
-
+  public function delete_client_nps(Request $request)
+  {
+    // if (auth()->user()->can('Delete user cliente')) {
+      if (auth()->user()->id == $request->delete_clients) {
+        // return 'abort';
+        notificationMsg('danger', 'Operation Abort!');
+        return Redirect::back();
+      }
+      else{
+        $id_user = $request->delete_clients;
+        $user = User::find($id_user);
+        $delete_clients = DB::table('hotel_user')->where('user_id', '=', $id_user)->delete();
+        $user->menus()->detach(); //Method of eloquent remove all
+        $user->delete(); //Method of eloquent remove user
+        // return 'true';
+        notificationMsg('success', 'Operation complete!');
+        return Redirect::back();
+      }
+    // }
+    // else {
+    //   return 'false';
+    // }
+  }
 }
