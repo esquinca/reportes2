@@ -10,6 +10,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+      @include('layouts.partials.alert')
       @include('layouts.partials.admin_contentheader')
 
       <section class="content container-fluid">

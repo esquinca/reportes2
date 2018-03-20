@@ -177,5 +177,6 @@ return [
     'periodactive' => 'Perido de activación',
     'monthtoevaluate' => 'Mes a evaluar',
     'encuestado' => 'Encuestado',
-
+    'vertical' => 'Vertical',
+    'client'=>'Cliente',
 ];

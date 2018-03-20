@@ -10,14 +10,33 @@ $(document).ready(function() {
       autoclose: true
   });
   table_config();
-  $('#select_two').multiselect({
-    buttonWidth: '100%',
+  $('#select_one').multiselect({
+      buttonWidth: '100%',
       nonSelectedText: 'Elija uno o más',
-      enableClickableOptGroups: true,
-      enableCollapsibleOptGroups: true,
+      maxHeight: 150,
+      // enableClickableOptGroups: true,
+      // enableCollapsibleOptGroups: true,
+      // maxHeight: 300,
+      // dropUp: true,
+      // flowUp:true,
       // enableFiltering: false,
-      // includeSelectAllOption: true,
    });
+
+   $('#select_two').multiselect({
+      buttonWidth: '100%',
+      nonSelectedText: 'Elija uno o más',
+
+      enableClickableOptGroups: true,
+
+      enableCollapsibleOptGroups: true,
+      collapseOptGroupsByDefault: true,
+
+
+      includeSelectAllOption: false,
+      maxHeight: 150,
+
+
+    });
 });
 
 function table_config() {
@@ -67,14 +86,14 @@ $(".capture").on("click", function () {
        data: objData,
        success: function (data) {
           console.log(data);
-          // if (data == 'true') {
+          if (data == 'true') {
           //   graph_config_user();
           //   $('#modal-CreatUser').modal('toggle');
-          //   menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
-          // }
-          // if (data == 'false') {
-          //    menssage_toast('Mensaje', '2', 'You do not have permission to access this module, please refer to your system administrator!' , '3000');
-          // }
+            menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
+          }
+          if (data == 'false') {
+             menssage_toast('Mensaje', '2', 'You do not have permission to access this module, please refer to your system administrator!' , '3000');
+          }
        },
        error: function (data) {
          menssage_toast('Mensaje', '2', 'Operation Abort' , '3000');

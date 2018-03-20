@@ -98,10 +98,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/survey_results' , 'ResultsSurveyController@index');
   //Post Survey_results.
     Route::post('/survey_viewresults' , 'ResultsSurveyController@result_survey');
-
     Route::get('/configure_survey_admin' , 'ConfigurationSurveyController@index');
-
     Route::post('/assign_survey' , 'ConfigurationSurveyController@create');
+  //Configuracion nps
+    Route::get('/configure_survey_admin_nps' , 'ConfigurationSurveyController@index_nps');
+    Route::post('/user_vertical' , 'ConfigurationSurveyController@show_nps');
+    Route::post('/user_client' , 'ConfigurationSurveyController@show_client');
+    Route::post('/data_create_client_config', 'ConfigurationSurveyController@create_client_nps');
+    Route::post('/show_assign_surveyed', 'ConfigurationSurveyController@show_assign_client_nps');
+    Route::post('/creat_assign_surveyed', 'ConfigurationSurveyController@creat_assign_client_ht');
+
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');

@@ -32,6 +32,8 @@ class CreateEncuestaUsersTable extends Migration
             $table->integer('estatus_id')->unsigned();
             $table->foreign('estatus_id')->references('id')->on('estatus');
 
+            $table->boolean('estatus_res');
+
             $table->date('fecha_inicial');
             $table->date('fecha_corresponde');
             $table->date('fecha_fin');

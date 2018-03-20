@@ -45,8 +45,8 @@
                                 <div class="form-group">
                                   <label for="select_one" class="col-md-2 control-label">{{ trans('message.hotel') }}</label>
                                   <div class="col-md-10 selectContainer">
-                                    <select id="select_one" name="select_one" class="form-control select2">
-                                      <option value="" selected> Elija </option>
+                                    <select id="select_one" name="select_one[]" multiple="multiple" class="form-control">
+                                      <!-- <option value="" selected> Elija </option> -->
                                       @forelse ($hotels as $data_hotel)
                                         <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
                                       @empty
@@ -58,22 +58,72 @@
                                 <div class="form-group">
                                   <label for="select_two" class="col-md-2 control-label">{{ trans('message.encuestado') }}</label>
                                   <div class="col-md-10 selectContainer">
-                                    <select id="select_two" name="select_two" class="form-control" multiple="multiple" >
-                                      <!-- <option value="" selected> Elija </option> -->
+                                    <!-- <select id="example-collapseOptGroupsByDefault" multiple="multiple">
+                                        <optgroup label="Group 1">
+                                            <option value="1-1" disabled>Option 1.1</option>
+                                            <option value="1-2" selected="selected">Option 1.2</option>
+                                            <option value="1-3" selected="selected">Option 1.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 2">
+                                            <option value="2-1">Option 2.1</option>
+                                            <option value="2-2">Option 2.2</option>
+                                            <option value="2-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 3">
+                                            <option value="3-1">Option 2.1</option>
+                                            <option value="3-2">Option 2.2</option>
+                                            <option value="3-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 4">
+                                            <option value="4-1">Option 2.1</option>
+                                            <option value="4-2">Option 2.2</option>
+                                            <option value="4-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 5">
+                                            <option value="5-1">Option 2.1</option>
+                                            <option value="5-2">Option 2.2</option>
+                                            <option value="5-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 6">
+                                            <option value="6-1">Option 2.1</option>
+                                            <option value="6-2">Option 2.2</option>
+                                            <option value="6-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 7">
+                                            <option value="7-1">Option 2.1</option>
+                                            <option value="7-2">Option 2.2</option>
+                                            <option value="7-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 8">
+                                            <option value="8-1">Option 2.1</option>
+                                            <option value="8-2">Option 2.2</option>
+                                            <option value="8-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 9">
+                                            <option value="9-1">Option 2.1</option>
+                                            <option value="9-2">Option 2.2</option>
+                                            <option value="9-3">Option 2.3</option>
+                                        </optgroup>
+                                        <optgroup label="Group 10">
+                                            <option value="10-1">Option 2.1</option>
+                                            <option value="10-2">Option 2.2</option>
+                                            <option value="10-3">Option 2.3</option>
+                                        </optgroup>
+                                    </select> -->
 
-
-
+                                    <select id="select_two" name="select_two[]" multiple="multiple" class="form-control">
                                       @foreach (  App\Vertical::select('id', 'name')->get(); as $verticals)
-                                      <optgroup label="{{ $verticals->name }}">
-                                        @foreach (  App\User_vertical::where('verticals_id', 1 )->get() as $opciones)
-                                          <option value="{{ $opciones->verticals_id }}"> {{ $opciones->verticals_id }} </option>
-                                        @endforeach
-                                      </optgroup>
+                                        @php
+                                          $d= $verticals->id;
+                                        @endphp
+                                        @if (count( App\User_vertical::where('verticals_id', $d )->get() ) > 0)
+                                          <optgroup label="{{ $verticals->name }}">
+                                            @foreach (  App\User_vertical::where('verticals_id', $d )->get() as $opciones)
+                                            <option value="{{ $opciones->users_id }}"> {{ App\User::find($opciones->users_id)->name}} </option>
+                                            @endforeach
+                                          </optgroup>
+                                        @endif
                                       @endforeach
-
-
-
-
                                     </select>
                                   </div>
                                 </div>
@@ -173,8 +223,8 @@
   @if( auth()->user()->can('View survey configuration') )
     <script src="{{ asset('js/admin/qualification/configurationsurvey.js')}}"></script>
 
-    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-multiselect-master/css/bootstrap-multiselect.css') }}" type="text/css" />
-    <script src="{{ asset('../bower_components/bootstrap-multiselect-master/js/bootstrap-multiselect.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-multiselect-master/dist/css/bootstrap-multiselect.css') }}" type="text/css" />
+    <script src="{{ asset('../bower_components/bootstrap-multiselect-master/dist/js/bootstrap-multiselect.js') }}"></script>
 
   @else
     <!--NO VER-->

@@ -152,6 +152,20 @@ class UsersTableSeeder extends Seeder
         $viewconfigsendkeysurvey = Permission::create(['name' => 'Send email user survey']);
         $viewconfigviewkeysurvey = Permission::create(['name' => 'View key user survey']);
 
+        $viewconfigsurveynps = Permission::create(['name' => 'View survey nps configuration']);
+
+        //Asignacion
+        $viewcaptureassignuser = Permission::create(['name' => 'View assign hotel user']);
+        $viewcreatsassignuser= Permission::create(['name' => 'Create assign hotel user']);
+        $viewdeletesassignuser= Permission::create(['name' => 'Delete assign hotel user']);
+        $viewcaptureassignlistuser = Permission::create(['name' => 'View list assign hotel user']);
+        $viewdeletassignuser = Permission::create(['name' => 'View assign delete client']);
+
+        $viewnpsconfigautomatic = Permission::create(['name' => 'View config nps automatic']);
+        $createnpsconfigautomatic = Permission::create(['name' => 'Create config nps automatic']);
+        $viewnpsconfigindividual = Permission::create(['name' => 'View config nps individual']);
+        $createnpsconfigindividual = Permission::create(['name' => 'Create config nps individual']);
+
         //- Herramientas
         $toolsviewdiagnostic1= Permission::create(['name' => 'View guest review']);
         $toolsviewdiagnostic2= Permission::create(['name' => 'View server review']);
@@ -232,6 +246,18 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('Generate key user survey');
             $super_admin_a0->givePermissionTo('Send email user survey');
             $super_admin_a0->givePermissionTo('View key user survey');
+            $super_admin_a0->givePermissionTo('View survey nps configuration');
+          //NPS
+            $super_admin_a0->givePermissionTo('View assign hotel user');
+            $super_admin_a0->givePermissionTo('Create assign hotel user');
+            $super_admin_a0->givePermissionTo('Delete assign hotel user');
+            $super_admin_a0->givePermissionTo('View list assign hotel user');
+            $super_admin_a0->givePermissionTo('View assign delete client');
+            $super_admin_a0->givePermissionTo('View config nps automatic');
+            $super_admin_a0->givePermissionTo('Create config nps automatic');
+            $super_admin_a0->givePermissionTo('View config nps individual');
+            $super_admin_a0->givePermissionTo('Create config nps individual');
+
           //- Herramientas
             $super_admin_a0->givePermissionTo('View guest review');
             $super_admin_a0->givePermissionTo('View server review');
@@ -310,6 +336,17 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('Generate key user survey');
             $super_admin_a->givePermissionTo('Send email user survey');
             $super_admin_a->givePermissionTo('View key user survey');
+            $super_admin_a->givePermissionTo('View survey nps configuration');
+          //NPS
+            $super_admin_a->givePermissionTo('View assign hotel user');
+            $super_admin_a->givePermissionTo('Create assign hotel user');
+            $super_admin_a->givePermissionTo('Delete assign hotel user');
+            $super_admin_a->givePermissionTo('View list assign hotel user');
+            $super_admin_a->givePermissionTo('View assign delete client');
+            $super_admin_a->givePermissionTo('View config nps automatic');
+            $super_admin_a->givePermissionTo('Create config nps automatic');
+            $super_admin_a->givePermissionTo('View config nps individual');
+            $super_admin_a->givePermissionTo('Create config nps individual');
           //- Herramientas
             $super_admin_a->givePermissionTo('View guest review');
             $super_admin_a->givePermissionTo('View server review');
@@ -387,6 +424,17 @@ class UsersTableSeeder extends Seeder
           $super_admin_b->givePermissionTo('Generate key user survey');
           $super_admin_b->givePermissionTo('Send email user survey');
           $super_admin_b->givePermissionTo('View key user survey');
+          $super_admin_b->givePermissionTo('View survey nps configuration');
+          //NPS
+          $super_admin_b->givePermissionTo('View assign hotel user');
+          $super_admin_b->givePermissionTo('Create assign hotel user');
+          $super_admin_b->givePermissionTo('Delete assign hotel user');
+          $super_admin_b->givePermissionTo('View list assign hotel user');
+          $super_admin_b->givePermissionTo('View assign delete client');
+          $super_admin_b->givePermissionTo('View config nps automatic');
+          $super_admin_b->givePermissionTo('Create config nps automatic');
+          $super_admin_b->givePermissionTo('View config nps individual');
+          $super_admin_b->givePermissionTo('Create config nps individual');
           //- Herramientas
           $super_admin_b->givePermissionTo('View guest review');
           $super_admin_b->givePermissionTo('View server review');
@@ -460,6 +508,17 @@ class UsersTableSeeder extends Seeder
           $super_admin_c->givePermissionTo('Generate key user survey');
           $super_admin_c->givePermissionTo('Send email user survey');
           $super_admin_c->givePermissionTo('View key user survey');
+          $super_admin_c->givePermissionTo('View survey nps configuration');
+          //NPS
+          $super_admin_c->givePermissionTo('View assign hotel user');
+          $super_admin_c->givePermissionTo('Create assign hotel user');
+          $super_admin_c->givePermissionTo('Delete assign hotel user');
+          $super_admin_c->givePermissionTo('View list assign hotel user');
+          $super_admin_c->givePermissionTo('View assign delete client');
+          $super_admin_c->givePermissionTo('View config nps automatic');
+          $super_admin_c->givePermissionTo('Create config nps automatic');
+          $super_admin_c->givePermissionTo('View config nps individual');
+          $super_admin_c->givePermissionTo('Create config nps individual');
           //- Herramientas
           $super_admin_c->givePermissionTo('View guest review');
           $super_admin_c->givePermissionTo('View server review');
@@ -854,7 +913,7 @@ class UsersTableSeeder extends Seeder
 
         $menuAdminD4 = new Menu;
         $menuAdminD4->name='configure_survey_admin';
-        $menuAdminD4->display_name='Configuración encuesta';
+        $menuAdminD4->display_name='Configuración encuesta gral.';
         $menuAdminD4->description='Permite configurar las encuestas de cada sitio.';
         $menuAdminD4->url='configure_survey_admin';
         $menuAdminD4->section_id=$seccion_admin_c->id;
@@ -864,6 +923,19 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_three_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD4->id]);
         $assigned_menu_three_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD4->id]);
         $assigned_menu_three_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD4->id]);
+
+        $menuAdminD5 = new Menu;
+        $menuAdminD5->name='configure_survey_admin_nps';
+        $menuAdminD5->display_name='Configuración encuesta NPS.';
+        $menuAdminD5->description='Permite configurar las encuestas NPS para los clientes.';
+        $menuAdminD5->url='configure_survey_admin_nps';
+        $menuAdminD5->section_id=$seccion_admin_c->id;
+        $menuAdminD5->icons='fa fa-cog';
+        $menuAdminD5->save();
+        $assigned_menu_four_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD5->id]);
+        $assigned_menu_four_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD5->id]);
+        $assigned_menu_four_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD5->id]);
+        $assigned_menu_four_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD5->id]);
 
       //Menu Herramientas
         $menuAdminE0 = new Menu;

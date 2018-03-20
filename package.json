@@ -11,10 +11,13 @@
   },
   "devDependencies": {
     "axios": "^0.17",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.0.1",
     "cross-env": "^5.1",
     "laravel-mix": "^1.0",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "vue": "^2.5.7"
   }
 }
