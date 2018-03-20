@@ -151,7 +151,27 @@ function table_equipment(datajson, table){
     vartable.fnAddData([
       status.nombre,
       status.Venue,
-      status.hotel_user_id
+      '<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
     ]);
+  });
+}
+
+function enviart(e) {
+  var valor= e.getAttribute('value');
+  var _token = $('input[name="_token"]').val();
+  $.ajax({
+    type: "POST",
+    url: "./delete_assign_surveyed",
+    data: {  uh : valor , _token : _token },
+    success: function (data){
+        // table_surveyed();
+        if (data == '1') {
+          menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
+          table_surveyed();
+        }
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
   });
 }

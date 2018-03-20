@@ -185,7 +185,7 @@ class ConfigurationSurveyController extends Controller
         $delete_clients = DB::table('hotel_user')->where('user_id', '=', $id_user)->delete();
         $user->menus()->detach(); //Method of eloquent remove all
         $user->delete(); //Method of eloquent remove user
-        // return 'true';
+
         notificationMsg('success', 'Operation complete!');
         return Redirect::back();
       }
@@ -193,5 +193,10 @@ class ConfigurationSurveyController extends Controller
     // else {
     //   return 'false';
     // }
+  }
+  public function delete_assign_client_nps(Request $request){
+    $hu= $request->uh;
+    DB::table('hotel_user')->where('id', '=', $hu)->delete();
+    return '1';
   }
 }
