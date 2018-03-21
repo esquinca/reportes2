@@ -109,7 +109,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/creat_assign_surveyed', 'ConfigurationSurveyController@creat_assign_client_ht');
     Route::post('/data_delete_client_config', 'ConfigurationSurveyController@delete_client_nps');
     Route::post('/delete_assign_surveyed', 'ConfigurationSurveyController@delete_assign_client_nps');
-
+    Route::post('/create_data_client', 'ConfigurationSurveyController@capture_individual');
+    Route::post('/create_data_auto_client', 'ConfigurationSurveyController@capture_auto');
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');

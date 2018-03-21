@@ -225,12 +225,12 @@
                     <div class="row">
                       <div class="col-xs-12">
 
-                        <form id="form_reg_survey" name="form_reg_survey" class="form-horizontal" method="POST">
+                        <form id="form_reg_survey" name="form_reg_survey" class="form-horizontal" method="POST" action="{{ url('create_data_client') }}">
                           {{ csrf_field() }}
                           <div class="form-group">
-                            <label for="select_one" class="col-md-2 control-label">{{ trans('message.vertical') }}</label>
+                            <label for="select_ind_one" class="col-md-2 control-label">{{ trans('message.vertical') }}</label>
                             <div class="col-md-10 selectContainer">
-                              <select id="select_one" name="select_one"class="form-control">
+                              <select id="select_ind_one" name="select_ind_one"class="form-control">
                                 <option value="" selected> Elija </option>
                                 @forelse (  App\Vertical::select('id', 'name')->get(); as $verticals)
                                   <option value="{{ $verticals->id }}"> {{ $verticals->name }} </option>
@@ -241,22 +241,40 @@
                           </div>
 
                           <div class="form-group">
-                            <label for="select_two" class="col-md-2 control-label">{{ trans('message.user') }}</label>
+                            <label for="select_ind_two" class="col-md-2 control-label">{{ trans('message.user') }}</label>
                             <div class="col-md-10 selectContainer">
-                              <select id="select_two" name="select_two[]" multiple="multiple" class="form-control">
+                              <select id="select_ind_two" name="select_ind_two[]" multiple="multiple" class="form-control">
                               </select>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="col-md-2 control-label" for="month_upload_band">{{ trans('message.periodactive')}} </label>
+                            <div class="col-md-10">
+                              <div class="input-group input-daterange">
+                                  <input name="date_start"  type="text" class="form-control" value="">
+                                  <div class="input-group-addon">to</div>
+                                  <input name="date_end"  type="text" class="form-control" value="">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-2 control-label" for="month_evaluate">{{ trans('message.monthtoevaluate')}} </label>
+                            <div class="col-md-10">
+                              <input id="month_evaluate" name="month_evaluate"  type="text"  maxlength="10" placeholder="" class="form-control input-md">
                             </div>
                           </div>
 
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
-                                <a id="capture" class="btn btn-success capture" type="submit"><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</a>
+                                <button id="capture" type="submit" class="btn btn-success" ><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</button>
                                 <a id="clear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>
                           </div>
-
 
                         </form>
 
@@ -267,41 +285,39 @@
                   <div class="tab-pane" id="tabs_two">
                     <div class="row">
                       <div class="col-xs-12">
-                        <form id="multiselectForm" method="post" class="form-horizontal">
+                        <form id="form_auto_survey" name="form_auto_survey" class="form-horizontal" method="POST" action="{{ url('create_data_auto_client') }}">
+                          {{ csrf_field() }}
                           <div class="form-group">
-                              <label class="col-xs-3 control-label">Language</label>
-                              <div class="col-xs-5 selectContainer">
-                                  <select name="language" class="form-control select2">
-                                      <option value=""></option>
-                                      <option value="arabic">Arabic</option>
-                                      <option value="english">English</option>
-                                      <option value="french">French</option>
-                                      <option value="german">German</option>
-                                      <option value="other">Other</option>
-                                  </select>
-                              </div>
+                            <label for="select_one_v" class="col-md-2 control-label">{{ trans('message.vertical') }}</label>
+                            <div class="col-md-10 selectContainer">
+                              <select id="select_one_v" name="select_one_v"class="form-control">
+                                <option value="" selected> Elija </option>
+                                @forelse (  App\Vertical::select('id', 'name')->get(); as $verticals)
+                                  <option value="{{ $verticals->id }}"> {{ $verticals->name }} </option>
+                                @empty
+                                @endforelse
+                              </select>
+                            </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-xs-3 control-label">Browser</label>
-                              <div class="col-xs-5">
-                                  <select class="form-control" name="browsers" multiple>
-                                      <option value="chrome">Google Chrome</option>
-                                      <option value="firefox">Firefox</option>
-                                      <option value="ie">IE</option>
-                                      <option value="safari">Safari</option>
-                                      <option value="opera">Opera</option>
-                                      <option value="other">Other</option>
-                                  </select>
-                              </div>
+                            <label for="select_clients_auto" class="col-md-2 control-label">{{ trans('message.user') }}</label>
+                            <div class="col-md-10 selectContainer">
+                              <select id="select_clients_auto" name="select_clients_auto[]" multiple="multiple" class="form-control">
+                              </select>
+                            </div>
                           </div>
 
                           <div class="form-group">
-                              <div class="col-xs-5 col-xs-offset-3">
-                                  <button type="submit" class="btn btn-default">Validate</button>
+                            <div class="row">
+                              <div class="col-sm-12 text-center">
+                                <a id="capture" class="btn btn-success" type="submit"><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</a>
+                                <a id="clear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
+                            </div>
                           </div>
-                      </form>
+                        </form>
+
                       </div>
                     </div>
                   </div>
@@ -395,7 +411,7 @@
     </script>
     <script type="text/javascript">
       $(document).ready(function() {
-      $('#assign_hotel_client')
+        $('#assign_hotel_client')
           .formValidation({
               framework: 'bootstrap',
               excluded: ':disabled',
@@ -430,7 +446,6 @@
           .find('[name="select_clients"]')
               .select2({
                 placeholder: "Elije",
-
                   // dropdownAutoWidth : true,
                   // width: 'auto'
               })
@@ -447,7 +462,6 @@
                   // Re-validate the multiselect field when it is changed
                   onChange: function(element, checked) {
                       $('#assign_hotel_client').formValidation('revalidateField', 'select_hotels[]');
-
                       adjustByScrollHeight();
                   },
                   onDropdownShown: function(e) {
@@ -458,92 +472,6 @@
                   }
               })
               .end();
-
-      // You don't need to care about these methods
-      function adjustByHeight() {
-          var $body   = $('body'),
-              $iframe = $body.data('iframe.fv');
-          if ($iframe) {
-              // Adjust the height of iframe when hiding the picker
-              $iframe.height($body.height());
-          }
-      }
-
-      function adjustByScrollHeight() {
-          var $body   = $('body'),
-              $iframe = $body.data('iframe.fv');
-          if ($iframe) {
-              // Adjust the height of iframe when showing the picker
-              $iframe.height($body.get(0).scrollHeight);
-          }
-      }
-      });
-    </script>
-    <script>
-      $(document).ready(function() {
-          // You don't need to care about onDropdownShow, onDropdownHide options
-          // and adjustByScrollHeight(), adjustByHeight() methods
-          // They are for this specific demo
-          $('#multiselectForm')
-              .formValidation({
-                  framework: 'bootstrap',
-                  // Exclude only disabled fields
-                  // The invisible fields set by Bootstrap Multiselect must be validated
-                  excluded: ':disabled',
-                  icon: {
-                      valid: 'glyphicon glyphicon-ok',
-                      invalid: 'glyphicon glyphicon-remove',
-                      validating: 'glyphicon glyphicon-refresh'
-                  },
-                  fields: {
-                      browsers: {
-                          validators: {
-                              callback: {
-                                  message: 'Please choose 2-3 browsers you use for developing',
-                                  callback: function(value, validator, $field) {
-                                      // Get the selected options
-                                      var options = validator.getFieldElements('browsers').val();
-                                      return (options != null
-                                              && options.length >= 2 && options.length <= 3);
-                                  }
-                              }
-                          }
-                      },
-                      language: {
-                          validators: {
-                              notEmpty: {
-                                  message: 'Please select your native language.'
-                              }
-                          }
-                      }
-                  }
-              })
-              .find('[name="language"]')
-                  .select2()
-                  .change(function(e) {
-                      /* Revalidate the language when it is changed */
-                      $('#multiselectForm').formValidation('revalidateField', 'language');
-                  })
-                  .end()
-              .find('[name="browsers"]')
-                  .multiselect({
-                      enableFiltering: true,
-                      includeSelectAllOption: true,
-                      // Re-validate the multiselect field when it is changed
-                      onChange: function(element, checked) {
-                          $('#multiselectForm').formValidation('revalidateField', 'browsers');
-
-                          adjustByScrollHeight();
-                      },
-                      onDropdownShown: function(e) {
-                          adjustByScrollHeight();
-                      },
-                      onDropdownHidden: function(e) {
-                          adjustByHeight();
-                      }
-                  })
-                  .end();
-
           // You don't need to care about these methods
           function adjustByHeight() {
               var $body   = $('body'),
@@ -553,7 +481,6 @@
                   $iframe.height($body.height());
               }
           }
-
           function adjustByScrollHeight() {
               var $body   = $('body'),
                   $iframe = $body.data('iframe.fv');
@@ -563,7 +490,201 @@
               }
           }
       });
-      </script>
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#form_reg_survey')
+          .formValidation({
+              framework: 'bootstrap',
+              excluded: ':disabled',
+              icon: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                  'select_ind_two[]': {
+                      validators: {
+                          callback: {
+                              message: 'Please choose 1 to 12 hotels that you can assign',
+                              callback: function(value, validator, $field) {
+                                  // Get the selected options
+                                  var options = validator.getFieldElements('select_ind_two[]').val();
+                                  return (options != null
+                                          && options.length >= 1 && options.length <= 12);
+                              }
+                          }
+                      }
+                  },
+                  select_ind_one: {
+                      validators: {
+                          notEmpty: {
+                              message: 'Please select a client.'
+                          }
+                      }
+                  },
+                  month_evaluate: {
+                      validators: {
+                          notEmpty: {
+                              message: 'The date is required'
+                          },
+                          date: {
+                            format: "YYYY-MM",
+                            separator: '-',
+                            message: 'The date is not a valid'
+                          }
+                      }
+                  }
+              }
+          })
+          .find('[name="month_evaluate"]')
+              .datepicker({
+                  language: 'es',
+                  defaultDate: '',
+                  format: 'YYYY-MM',
+                  viewMode: "months",
+                  minViewMode: "months",
+                  endDate: '-1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
+                  autoclose: true
+              })
+              .change(function(e) {
+                  /* Revalidate the language when it is changed */
+                  $('#form_reg_survey').formValidation('revalidateField', 'month_evaluate');
+              })
+              .end()
+
+          .find('[name="select_ind_one"]')
+              .select2({
+                placeholder: "Elije",
+                  // dropdownAutoWidth : true,
+                  // width: 'auto'
+              })
+              .change(function(e) {
+                  /* Revalidate the language when it is changed */
+                  $('#form_reg_survey').formValidation('revalidateField', 'select_ind_one');
+              })
+              .end()
+          .find('[name="select_ind_two[]"]')
+              .multiselect({
+                  buttonWidth: '100%',
+                  nonSelectedText: 'Elija uno o más',
+                  maxHeight: 100,
+                  // Re-validate the multiselect field when it is changed
+                  onChange: function(element, checked) {
+                      $('#form_reg_survey').formValidation('revalidateField', 'select_ind_two[]');
+                      adjustByScrollHeight();
+                  },
+                  onDropdownShown: function(e) {
+                      adjustByScrollHeight();
+                  },
+                  onDropdownHidden: function(e) {
+                      adjustByHeight();
+                  }
+              })
+              .end();
+          // You don't need to care about these methods
+          function adjustByHeight() {
+              var $body   = $('body'),
+                  $iframe = $body.data('iframe.fv');
+              if ($iframe) {
+                  // Adjust the height of iframe when hiding the picker
+                  $iframe.height($body.height());
+              }
+          }
+          function adjustByScrollHeight() {
+              var $body   = $('body'),
+                  $iframe = $body.data('iframe.fv');
+              if ($iframe) {
+                  // Adjust the height of iframe when showing the picker
+                  $iframe.height($body.get(0).scrollHeight);
+              }
+          }
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#form_auto_survey')
+          .formValidation({
+              framework: 'bootstrap',
+              excluded: ':disabled',
+              icon: {
+                  valid: 'glyphicon glyphicon-ok',
+                  invalid: 'glyphicon glyphicon-remove',
+                  validating: 'glyphicon glyphicon-refresh'
+              },
+              fields: {
+                  'select_clients_auto[]': {
+                      validators: {
+                          callback: {
+                              message: 'Please choose 1 to 12 hotels that you can assign',
+                              callback: function(value, validator, $field) {
+                                  // Get the selected options
+                                  var options = validator.getFieldElements('select_clients_auto[]').val();
+                                  return (options != null
+                                          && options.length >= 1 && options.length <= 12);
+                              }
+                          }
+                      }
+                  },
+                  select_one_v: {
+                      validators: {
+                          notEmpty: {
+                              message: 'Please select a client.'
+                          }
+                      }
+                  }
+              }
+          })
+          .find('[name="select_one_v"]')
+              .select2({
+                placeholder: "Elije",
+                  // dropdownAutoWidth : true,
+                  // width: 'auto'
+              })
+              .change(function(e) {
+                  /* Revalidate the language when it is changed */
+                  $('#form_auto_survey').formValidation('revalidateField', 'select_one_v');
+              })
+              .end()
+          .find('[name="select_clients_auto[]"]')
+              .multiselect({
+                  buttonWidth: '100%',
+                  nonSelectedText: 'Elija uno o más',
+                  maxHeight: 100,
+                  // Re-validate the multiselect field when it is changed
+                  onChange: function(element, checked) {
+                      $('#form_auto_survey').formValidation('revalidateField', 'select_clients_auto[]');
+                      adjustByScrollHeight();
+                  },
+                  onDropdownShown: function(e) {
+                      adjustByScrollHeight();
+                  },
+                  onDropdownHidden: function(e) {
+                      adjustByHeight();
+                  }
+              })
+              .end();
+          // You don't need to care about these methods
+          function adjustByHeight() {
+              var $body   = $('body'),
+                  $iframe = $body.data('iframe.fv');
+              if ($iframe) {
+                  // Adjust the height of iframe when hiding the picker
+                  $iframe.height($body.height());
+              }
+          }
+          function adjustByScrollHeight() {
+              var $body   = $('body'),
+                  $iframe = $body.data('iframe.fv');
+              if ($iframe) {
+                  // Adjust the height of iframe when showing the picker
+                  $iframe.height($body.get(0).scrollHeight);
+              }
+          }
+      });
+    </script>
+
+
 
 
 

@@ -1,11 +1,12 @@
 $(document).ready(function() {
-  clearmultiselect('select_two');
+  clearmultiselect('select_ind_two');
   // clearmultiselect('select_hotels');
   table_surveyed();
+  $('.input-daterange').datepicker({language: 'es', format: "yyyy-mm-dd",});
 });
 
 
-$('#select_one').on('change', function(e){
+$('#select_ind_one').on('change', function(e){
   var id= $(this).val();
   var _token = $('input[name="_token"]').val();
   if (id != ''){
@@ -17,18 +18,18 @@ $('#select_one').on('change', function(e){
       success: function (data){
         countH = data.length;
         if (countH === 0) {
-          $('#select_two').empty();
+          $('#select_ind_two').empty();
           // $('#select_two').append('<option value="" selected>Elije</option>');
-          $("#select_two").multiselect('destroy');
+          $("#select_ind_two").multiselect('destroy');
         }
         else{
-          $("#select_two").multiselect('destroy');
-          $('#select_two').empty();
+          $("#select_ind_two").multiselect('destroy');
+          $('#select_ind_two').empty();
           // $('#select_two').append('<option value="" selected>Elije</option>');
           $.each(JSON.parse(data),function(index, objdata){
-            $('#select_two').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
+            $('#select_ind_two').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
           });
-          $('#select_two').multiselect({
+          $('#select_ind_two').multiselect({
             buttonWidth: '100%',
             nonSelectedText: 'Elija uno o más',
             maxHeight: 100,
@@ -41,8 +42,8 @@ $('#select_one').on('change', function(e){
     });
   }
   else{
-    $("#select_two").multiselect('fresh');
-    $('#select_two').empty();
+    $("#select_ind_two").multiselect('fresh');
+    $('#select_ind_two').empty();
   }
 });
 

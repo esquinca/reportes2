@@ -35,8 +35,6 @@ class ConfigurationSurveyController extends Controller
       $hotels = Hotel::select('id', 'Nombre_hotel')->get();
       $surveys = Encuesta::select('id', 'name')->get();
       $users = User::role('Surveyed')->get();
-
-
       return view('permitted.qualification.survey_configuration',compact('hotels', 'surveys', 'users'));
   }
   public function create(Request $request){
@@ -52,10 +50,7 @@ class ConfigurationSurveyController extends Controller
     $date_eva=$input_date_ev.'-01';
     $var_ac='false';
 
-
     for ($i=0; $i <= count($input_user)-1; $i++) {
-
-
 
       $new_survey_reg = new Encuesta_user;
       $new_survey_reg->hotel_id=$var_input_hotel;
@@ -88,7 +83,6 @@ class ConfigurationSurveyController extends Controller
       $users = User::role('Surveyed')->get();
       $count_users = User::role('Surveyed')->count();
       $surveyed = DB::table('venue_user_surveyed')->orderBy('nombre', 'asc')->get();
-
 
       for ($i=0; $i < $count_users; $i++) {
         $count_hotel_of_user = DB::table('hotel_user')->where('user_id', $users[$i])->count();
@@ -199,4 +193,43 @@ class ConfigurationSurveyController extends Controller
     DB::table('hotel_user')->where('id', '=', $hu)->delete();
     return '1';
   }
+
+  public function capture_individual(Request $request)
+  {
+    $vertical= $request->select_one;
+    $clientes= $request->select_two;
+  }
+  public function capture_auto(Request $request)
+  {
+    $vertical= $request->select_one_v;
+    $clientes= $request->select_clients_auto;
+
+    $fecha_ini = new DateTime();
+    $fecha_ini->modify('first day of this month');
+    $fecha_ini->format('d/m/Y');
+
+    $fecha_fin = new DateTime();
+    $fecha_fin->modify('last day of this month');
+    $fecha_fin->format('d/m/Y');
+
+    $fecha_cur = date('Y-m-j');
+    $mesanterior = strtotime ( '-1 month' , strtotime ( $fecha_cur ) ) ;
+    $mesanterior = date ( 'Y-m-j' , $mesanterior );
+
+    for ($i=0; $i < count($clientes); $i++) {
+      $count_hotel_of_user = DB::table('encuesta_users')
+                            ->where('user_id', $clientes[$i])
+                            ->where('encuesta_id', '1')
+                            ->where('fecha_inicial', $fecha_ini)
+                            ->where('fecha_corresponde', $mesanterior)
+                            ->where('fecha_fin', $fecha_fin)
+                            ->count();
+      if ($count_hotel_of_user != 0) {
+        
+      }
+
+    }
+
+  }
+
 }
