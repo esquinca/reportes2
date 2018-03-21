@@ -3,8 +3,58 @@ $(document).ready(function() {
   // clearmultiselect('select_hotels');
   table_surveyed();
   $('.input-daterange').datepicker({language: 'es', format: "yyyy-mm-dd",});
+  $('#month_evaluate').datepicker({
+      language: 'es',
+      defaultDate: '',
+      format: "yyyy-mm",
+      viewMode: "months",
+      minViewMode: "months",
+      endDate: '-1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
+      autoclose: true
+  });
 });
 
+
+$('#select_one_v').on('change', function(e){
+  var id= $(this).val();
+  var _token = $('input[name="_token"]').val();
+  if (id != ''){
+    let countC = 0;
+    $.ajax({
+      type: "POST",
+      url: "./user_vertical",
+      data: { iv : id , _token : _token },
+      success: function (data){
+        countH = data.length;
+        if (countH === 0) {
+          $('#select_clients_auto').empty();
+          // $('#select_two').append('<option value="" selected>Elije</option>');
+          $("#select_clients_auto").multiselect('destroy');
+        }
+        else{
+          $("#select_clients_auto").multiselect('destroy');
+          $('#select_clients_auto').empty();
+          // $('#select_two').append('<option value="" selected>Elije</option>');
+          $.each(JSON.parse(data),function(index, objdata){
+            $('#select_clients_auto').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
+          });
+          $('#select_clients_auto').multiselect({
+            buttonWidth: '100%',
+            nonSelectedText: 'Elija uno o más',
+            maxHeight: 100,
+           });
+        }
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+    });
+  }
+  else{
+    $("#select_clients_auto").multiselect('fresh');
+    $('#select_clients_auto').empty();
+  }
+});
 
 $('#select_ind_one').on('change', function(e){
   var id= $(this).val();
