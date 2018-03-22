@@ -128,7 +128,7 @@
       <div class="container">
         <div class="footer-content d-flex flex-column align-items-center">
           <div class="copy-right-text">
-            Fecha de expiración: {{ $encrypted4 }} <br>
+            Fecha de expiración: {{ $fecha_fin }} <br>
             Copyright Sitwifi &copy; All rights reserved. <br><br>
           </div>
           <!-- <div class="footer-social">

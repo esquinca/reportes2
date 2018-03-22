@@ -196,8 +196,47 @@ class ConfigurationSurveyController extends Controller
 
   public function capture_individual(Request $request)
   {
-    $vertical= $request->select_one;
-    $clientes= $request->select_two;
+    $vertical= $request->select_ind_one;
+    $clientes= $request->select_ind_two;
+    $date_i= $request->date_start;
+    $date_e= $request->date_end;
+    $date_m= $request->month_evaluate;
+
+    $operacion='0';
+
+    for ($i=0; $i < count($clientes); $i++) {
+      // $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $clientes[$i])->pluck('hotel_id');
+      // $result = $sql_hotel->toArray();
+      // $cadena_hotel = implode("&", $result);
+      $month=$date_m.'-01';
+
+      $nuevolink = $clientes[$i].'/'.'1'.'/'.$month.'/'.$date_e;
+
+      $encriptodata= Crypt::encryptString($nuevolink);
+      $encriptostatus= Crypt::encryptString('1');
+
+      $new_survey_individual = new Encuesta_user;
+      $new_survey_individual->user_id=$clientes[$i];
+      $new_survey_individual->encuesta_id='1';
+      $new_survey_individual->estatus_id='1';
+      $new_survey_individual->estatus_res='0';
+      $new_survey_individual->fecha_inicial=$date_i;
+      $new_survey_individual->fecha_corresponde=$month;
+      $new_survey_individual->fecha_fin=$date_e;
+      $new_survey_individual->shell_data=$encriptodata;
+      $new_survey_individual->shell_status=$encriptostatus;
+      $new_survey_individual->save();
+
+      $operacion='1';
+    }
+    if ($operacion == '1') {
+      notificationMsg('success', 'Operation complete!');
+      return Redirect::back();
+    }
+    if ($operacion == '0') {
+      notificationMsg('danger', 'Operation Abort!');
+      return Redirect::back();
+    }
   }
   public function capture_auto(Request $request)
   {
@@ -225,7 +264,7 @@ class ConfigurationSurveyController extends Controller
                             ->where('fecha_fin', $fecha_fin)
                             ->count();
       if ($count_hotel_of_user != 0) {
-        
+
       }
 
     }

@@ -18,7 +18,7 @@ class CreateEncuestaUsersTable extends Migration
             //Primera llave foranea
             // $table->integer('hotel_id')->unsigned();
             // $table->foreign('hotel_id')->references('id')->on('hotels');
-            $table->text('hotel_id');
+            // $table->text('hotel_id');
             //Segunda llave foranea
             // $table->integer('cadena_id')->unsigned();
             // $table->foreign('cadena_id')->references('id')->on('cadenas');
@@ -38,12 +38,13 @@ class CreateEncuestaUsersTable extends Migration
             $table->date('fecha_corresponde');
             $table->date('fecha_fin');
 
-            $table->text('shell_hotel_id');
-            $table->text('shell_user_id');
-            $table->text('shell_encuesta_id');
-            $table->text('shell_estatus_id');
-            $table->text('shell_fecha_fin');
-            $table->text('shell_fecha_corresponde');
+            $table->text('shell_data');
+            $table->text('shell_status');
+            // $table->text('shell_user_id');
+            // $table->text('shell_encuesta_id');
+            // $table->text('shell_estatus_id');
+            // $table->text('shell_fecha_fin');
+            // $table->text('shell_fecha_corresponde');
 
             $table->timestamps();
         });

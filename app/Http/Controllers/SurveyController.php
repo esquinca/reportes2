@@ -32,77 +32,99 @@ class SurveyController extends Controller
     $encrypted1 = Crypt::encryptString('2018-01-01');
     return $encrypted1;
   }
-  public function index($user, $venium, $survey, $month, $end, $status)
+  public function index($data, $status)
   {
-    $encriptado_user = $user;
-    $encriptado_venium = $venium;
-    $encriptado_survey = $survey;
-    $encriptado_month = $month;
-    $encriptado_end = $end;
+    $encriptado_data = $data;
     $encriptado_status = $status;
-
-    $enc_verificar = Encuesta_user::where('shell_hotel_id', '=', $encriptado_venium)
-    ->where('shell_user_id', '=', $encriptado_user)
-    ->where('shell_encuesta_id', '=', $encriptado_survey)
-    ->where('shell_estatus_id', '=', $encriptado_status)
-    ->where('shell_fecha_fin', '=', $encriptado_end)
+    $enc_verificar = Encuesta_user::where('shell_data', '=', $encriptado_data)
+    ->where('shell_status', '=', $encriptado_status)
     ->where('estatus_id', '=', 1)
+    ->where('estatus_res', '=', 0)
     ->count();
-    $ident_preg = '';
-
     if ($enc_verificar == '1') {
+      $encrypted1 = Crypt::decryptString($encriptado_data); // user, id_encuesta, mes a evaluar, fecha_fin
+      $encrypted2 = Crypt::decryptString($encriptado_status);//estatus id
+      $array_hotel = explode("/", $encrypted1);
 
-      $encrypted1 = Crypt::decryptString($encriptado_user);
-      $encrypted2 = Crypt::decryptString($encriptado_venium);
-      $encrypted3 = Crypt::decryptString($encriptado_survey);
-      $encrypted4 = Crypt::decryptString($encriptado_end);
-      $encrypted6 = Crypt::decryptString($encriptado_month);
+      //dd($array_hotel);
+      $id_user = $array_hotel[0];
+      $id_survey = $array_hotel[1];
+      $fecha_evaluar = $array_hotel[2];
+      $fecha_fin = $array_hotel[3];
 
-      $sacar_preg = Encuesta::find($encrypted3)->preguntas()->where('encuesta_id', $encrypted3)->get();
+      $sacar_preg = Encuesta::find($id_survey)->preguntas()->where('encuesta_id', $id_survey)->get();
       $count_preg = $sacar_preg->count();
-      //ID DE preguntas
-      for ($k=0; $k <$count_preg; $k++) { $ident_preg = $ident_preg.$sacar_preg[$k]->id.'&'; }
-      // dd($sacar_preg);
+      $ident_preg = '';
 
-      $enc_data_s = Encuesta_user::select('id')->where('shell_hotel_id', '=', $encriptado_venium)
-      ->where('shell_user_id', '=', $encriptado_user)
-      ->where('shell_encuesta_id', '=', $encriptado_survey)
-      ->where('shell_estatus_id', '=', $encriptado_status)
-      ->where('shell_fecha_fin', '=', $encriptado_end)
+      //ID DE Preguntas
+      for ($k=0; $k <$count_preg; $k++) { $ident_preg = $ident_preg.$sacar_preg[$k]->id.'&'; }
+
+      //ID De Registro de Encuesta
+      $enc_data_s = Encuesta_user::select('id')->where('shell_data', '=', $encriptado_data)
+      ->where('shell_status', '=', $encriptado_status)
       ->where('estatus_id', '=', 1)
+      ->where('estatus_res', '=', 0)
       ->value('id');
 
-      //Concatenamos variables a enviar
-      // var_dump($enc_data_s);
-      // dd($enc_data_s);
-      $ix= $enc_data_s;
+      $id_reg_encuesta= $enc_data_s;
       $id_preguntas = trim($ident_preg, '&');
-      $unir_form= $encrypted1.'/'.$ix.'/'.$count_preg.'/'.$id_preguntas.'/'.$encrypted6.'/'.$encrypted2;
+      $unir_form= $id_user.'/'.$id_reg_encuesta.'/'.$count_preg.'/'.$id_preguntas.'/'.$fecha_evaluar.'/'.$fecha_fin;
       $encrypted_form = Crypt::encryptString($unir_form);
 
-      $pos = strpos($encrypted2, '&');
-      if ($pos === false) {
-        $array_hotel = array();
-        array_push($array_hotel, $encrypted2);
-        echo 'Es hotel unico';
-        // dd($array_hotel);
-      }
-      else {
-        $array_hotel = explode("&", $encrypted2);
-        // dd($array_hotel);
-       return view('permitted.qualification.view_survey',compact('encrypted4', 'encrypted_form','unir_form', 'sacar_preg'));
-      }
-      //return view('permitted.qualification.view_survey');
+      return view('permitted.qualification.view_survey',compact('fecha_fin', 'encrypted_form', 'sacar_preg'));
     }
     else {
       $message = 'La URL es incorrecta o la encuesta que buscas a sido completada exito.!! Nota: Se redireccionara a la pagina principal';
       return view('permitted.qualification.view_survey_rest', compact('message'));
-
-      //return 'Encuesta completada con exito. El periodo de activacion de esta encuesta es hasta el dia '.$encrypted4;
     }
-
   }
   public function create(Request $request){
+    $data_cifrada = $request->token_form;
+    $data_comment= $request->message;
+
+    $encrypted3 = Crypt::decryptString($data_cifrada);
+    $array_data = explode("/", $encrypted3);
+    echo $encrypted3.'<br>';
+
+              $id_usuario = $array_data[0];
+    $id_registro_encuesta = $array_data[1];
+      $cantidad_preguntas = $array_data[2];
+            $id_preguntas = $array_data[3]; //Ejemplo : 1&2 separadas &
+           $fecha_evaluar = $array_data[4];
+               $fecha_fin = $array_data[5];
+              // $id_hoteles = $array_data[6]; //Ejemplo : 1&2&3 separadas &
+
+        $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $id_usuario)->pluck('hotel_id');
+        $result_hotel = $sql_hotel->toArray();
+
+        for ($i=0; $i < count($result_hotel); $i++) {
+          echo $result_hotel[$i].'<br>';
+        }
+
+        dd($array_data);
+
+        dd($result_hotel);
+        // array:3 [▼
+        //   0 => 3
+        //   1 => 4
+        //   2 => 16
+        // ]
+        // $cadena_hotel = implode("&", $result_hotel);
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+  public function create2(Request $request){
     $data_cifrada = $request->token_form;
     $data_comment= $request->message;
 
