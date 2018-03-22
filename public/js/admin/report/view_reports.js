@@ -39,7 +39,7 @@ $('#select_one').on('change', function(e){
             $('#select_two').append('<option value="" selected>Elije</option>');
 
             for (var i = 0; i < countTR; i++) {
-              console.log(data.typereports[i].name);
+              //console.log(id);
               $("#select_two option").prop("selected", false);
               $('#select_two').append('<option value="'+data.typereports[i].name+'" selected>'+ data.typereports[i].name +'</option>');
               $('#select_two').val(data.typereports[i].name).trigger('change');

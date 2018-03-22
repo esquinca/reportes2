@@ -34,15 +34,15 @@ class ViewReportsController extends Controller
 
   public function test()
   {
-    $result1 = DB::select('CALL report_venue_header (?, ?, ?)', array(9, 2, 2018));
-    $result2 = DB::select('CALL GetWLAN (?, ?, ?)', array(7, 2018, 02));
-    $result3 = DB::select('CALL GetWLAN_top5 (?, ?, ?)', array(7, 2018, 2));
-    $result4 = DB::select('CALL Get_User (?, ?, ?)', array(2018, 2, 7));
-    $result5 = DB::select('CALL Get_GB (?, ?, ?)', array(2018, 2, 7));
-    $result6 = DB::select('CALL Get_MostAP_top5 (?, ?, ?)', array(7, 2018, 2));
-    $result7 = DB::select('CALL Comparative (?, ?)', array(7, '2018-2-01'));
+    $result1 = DB::select('CALL report_venue_header (?, ?)', array(6, '2018-02-01'));
+    // $result2 = DB::select('CALL GetWLAN (?, ?)', array(6, '2018-02-01'));
+    // $result3 = DB::select('CALL GetWLAN_top5 (?, ?)', array(6, '2018-02-01'));
+    $result4 = DB::select('CALL Get_User (?, ?)', array('2018-02-01', 6));
+    $result5 = DB::select('CALL Get_GB (?, ?)', array('2018-02-01', 6));
+    // $result6 = DB::select('CALL Get_MostAP_top5 (?, ?, ?)', array(7, 2018, 2));
+    // $result7 = DB::select('CALL Comparative (?, ?)', array(7, '2018-2-01'));
 
-    dd($result7);
+    dd($result5);
   }
 
   public function report_header(Request $request)
@@ -53,9 +53,10 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
 
-    $result1 = DB::select('CALL report_venue_header (?, ?, ?)', array($hotel, $datemonth, $dateyear));
+    $result1 = DB::select('CALL report_venue_header (?, ?)', array($hotel, $datefull));
 
     return json_encode($result1);
   }
@@ -68,8 +69,9 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
-    $result1 = DB::select('CALL GetWLAN (?, ?, ?)', array($hotel, $dateyear, $datemonth));
+    $result1 = DB::select('CALL GetWLAN (?, ?)', array($hotel, $datefull));
 
     return json_encode($result1);
   }
@@ -82,6 +84,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
     $result1 = DB::select('CALL GetWLAN_top5 (?, ?, ?)', array($hotel, $dateyear, $datemonth));
 
@@ -96,8 +99,9 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
-    $result1 = DB::select('CALL Get_User (?, ?, ?)', array($dateyear, $datemonth, $hotel));
+    $result1 = DB::select('CALL Get_User (?, ?)', array($datefull, $hotel));
 
     return json_encode($result1);
   }
@@ -110,8 +114,9 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
-    $result1 = DB::select('CALL Get_GB (?, ?, ?)', array($dateyear, $datemonth, $hotel));
+    $result1 = DB::select('CALL Get_GB (?, ?)', array($datefull, $hotel));
 
     return json_encode($result1);
   }
@@ -124,6 +129,7 @@ class ViewReportsController extends Controller
     $datemonthyear =  explode('-', $date);
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
 
     $result1 = DB::select('CALL Get_MostAP_top5 (?, ?, ?)', array($hotel, $dateyear, $datemonth));
 

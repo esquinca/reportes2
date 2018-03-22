@@ -311,7 +311,7 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
-                                <a id="capture" class="btn btn-success" type="submit"><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</a>
+                                <button id="capture_auto" type="submit" class="btn btn-success" ><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</button>
                                 <a id="clear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>
