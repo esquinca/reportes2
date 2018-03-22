@@ -23,6 +23,8 @@ class CreateQualificationResultsTable extends Migration
             //Segunda llave foranea
             $table->integer('hotels_id')->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');
+            //Tercera
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

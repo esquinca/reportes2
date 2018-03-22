@@ -84,7 +84,7 @@ class SurveyController extends Controller
 
     $encrypted3 = Crypt::decryptString($data_cifrada);
     $array_data = explode("/", $encrypted3);
-    echo $encrypted3.'<br>';
+    //echo $encrypted3.'<br>';
 
               $id_usuario = $array_data[0];
     $id_registro_encuesta = $array_data[1];
@@ -97,21 +97,43 @@ class SurveyController extends Controller
         $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $id_usuario)->pluck('hotel_id');
         $result_hotel = $sql_hotel->toArray();
 
+        $separar_ids = strpos($id_preguntas, '&');
+        $array_id_preguntas = array();
+
+        if ($separar_ids === false) { array_push($array_id_preguntas, $id_preguntas); }
+        else { $array_id_preguntas= explode("&", $id_preguntas); }
+
         for ($i=0; $i < count($result_hotel); $i++) {
-          echo $result_hotel[$i].'<br>';
+         echo 'Hotel='.$result_hotel[$i].'<br>';
+          for ($j=0; $j < $cantidad_preguntas; $j++) {
+              echo 'pregunta='.$array_id_preguntas[$j].'<br>';
+              $input= $request->get('radio'.($j+1));
+              echo 'respuesta='.$input.'<br>';
+
+              $new_qualification = new Qualification_result;
+              $new_qualification->fecha=$fecha_evaluar;
+              $new_qualification->respuesta=$input;
+              $new_qualification->preguntas_id=$array_id_preguntas[$j];
+              $new_qualification->hotels_id=$result_hotel[$i];
+              $new_qualification->user_id=$id_usuario;
+              $new_qualification->save();
+          }
+          if (!empty($data_comment)) {
+            $new_comment = new Comment;
+            $new_comment->fecha=$fecha_evaluar;
+            $new_comment->respuesta=$data_comment;
+            $new_comment->hotels_id=$result_hotel[$i];
+            $new_comment->users_id=$id_usuario;
+            $new_comment->save();
+          }
         }
-
-        dd($array_data);
-
-        dd($result_hotel);
-        // array:3 [▼
-        //   0 => 3
-        //   1 => 4
-        //   2 => 16
-        // ]
-        // $cadena_hotel = implode("&", $result_hotel);
-
-
+        //ACTUALIZAMOS ESTATUS
+        $update_status = Encuesta_user::find($id_registro_encuesta);
+        $update_status->estatus_id = '2';
+        $update_status->estatus_res = '1';
+        $update_status->shell_status = Crypt::encryptString('2');;
+        $update_status->save();
+        return back();
   }
 
 
