@@ -133,6 +133,7 @@ class UsersTableSeeder extends Seeder
         $viewdeletprovider= Permission::create(['name' => 'Delete provider']);
 
         //Calificaciones
+        $viewdashboardsurveynps = Permission::create(['name' => 'View dashboard survey nps']);
         $viewaddsurvey = Permission::create(['name' => 'View create survey']);
         $viewgeneratesurvey = Permission::create(['name' => 'Generate survey']);
 
@@ -233,6 +234,7 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('View report concat');
 
           //Calificaciones
+            $super_admin_a0->givePermissionTo('View dashboard survey nps');
             $super_admin_a0->givePermissionTo('View create survey');
             $super_admin_a0->givePermissionTo('Generate survey');
             $super_admin_a0->givePermissionTo('View capture survey');
@@ -323,6 +325,7 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('View report');
             $super_admin_a->givePermissionTo('View report concat');
           //Calificaciones
+            $super_admin_a->givePermissionTo('View dashboard survey nps');
             $super_admin_a->givePermissionTo('View create survey');
             $super_admin_a->givePermissionTo('Generate survey');
             $super_admin_a->givePermissionTo('View capture survey');
@@ -411,6 +414,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_b->givePermissionTo('View report');
           $super_admin_b->givePermissionTo('View report concat');
           //Calificaciones
+          $super_admin_b->givePermissionTo('View dashboard survey nps');
           $super_admin_b->givePermissionTo('View create survey');
           $super_admin_b->givePermissionTo('Generate survey');
           $super_admin_b->givePermissionTo('View capture survey');
@@ -495,6 +499,7 @@ class UsersTableSeeder extends Seeder
           $super_admin_c->givePermissionTo('View report');
           $super_admin_c->givePermissionTo('View report concat');
           //Calificaciones
+          $super_admin_c->givePermissionTo('View dashboard survey nps');
           $super_admin_c->givePermissionTo('View create survey');
           $super_admin_c->givePermissionTo('Generate survey');
           $super_admin_c->givePermissionTo('View capture survey');
@@ -859,6 +864,19 @@ class UsersTableSeeder extends Seeder
 
 
       //Menu Calificaciones
+        $menuAdminD01 = new Menu;
+        $menuAdminD01->name='view_dashboard_survey_nps';
+        $menuAdminD01->display_name='Dashboard encuesta NPS';
+        $menuAdminD01->description='Permite visualizar los resultados de la encuesta NPS.';
+        $menuAdminD01->url='view_dashboard_survey_nps';
+        $menuAdminD01->section_id=$seccion_admin_c->id;
+        $menuAdminD01->icons='fa fa-tachometer';
+        $menuAdminD01->save();
+        $assigned_menu_three_a0A = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD01->id]);
+        $assigned_menu_three_a1A = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD01->id]);
+        $assigned_menu_three_a2A = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD01->id]);
+        $assigned_menu_three_a3A = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD01->id]);
+
         $menuAdminD0 = new Menu;
         $menuAdminD0->name='create_survey_admin';
         $menuAdminD0->display_name='Crear encuesta';
@@ -900,7 +918,7 @@ class UsersTableSeeder extends Seeder
 
         $menuAdminD3 = new Menu;
         $menuAdminD3->name='survey_results';
-        $menuAdminD3->display_name='Resultados encuesta';
+        $menuAdminD3->display_name='Resultados encuesta NPS';
         $menuAdminD3->description='Permite visualizar las calificaciones de cada sitio.';
         $menuAdminD3->url='survey_results';
         $menuAdminD3->section_id=$seccion_admin_c->id;
