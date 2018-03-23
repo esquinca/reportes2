@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 use DateTime;
+use Carbon\Carbon;
 
 use DB;
 
@@ -74,8 +75,40 @@ class SurveyController extends Controller
       return view('permitted.qualification.view_survey',compact('fecha_fin', 'encrypted_form', 'sacar_preg'));
     }
     else {
-      $message = 'La URL es incorrecta o la encuesta que buscas a sido completada exito.!! Nota: Se redireccionara a la pagina principal';
-      return view('permitted.qualification.view_survey_rest', compact('message'));
+
+      $enc_reevaluar = Encuesta_user::where('shell_data', '=', $encriptado_data)
+      ->where('shell_status', '!=', $encriptado_status)
+      ->where('estatus_id', '=', 2)
+      ->where('estatus_res', '=', 1)
+      ->count();
+
+      if ($enc_reevaluar == '1') {
+        $enc_data_s = Encuesta_user::select('fecha_fin')->where('shell_data', '=', $encriptado_data)
+        ->where('shell_status', '!=', $encriptado_status)
+        ->where('estatus_id', '=', 2)
+        ->where('estatus_res', '=', 1)
+        ->value('fecha_fin');
+
+        $fecha_cancun = Carbon::now('America/Cancun')->format('Y-m-d');
+
+        $date_register = strtotime($enc_data_s);
+        $date_current = strtotime($fecha_cancun);
+        if ($date_current >= $date_register) {
+          $title = 'Error encontrado';
+          $message = 'La URL es incorrecta o finalizo el tiempo de valides de su enlace.! Nota: Se redireccionara a la pagina principal';
+          return view('permitted.qualification.view_survey_rest', compact('title','message'));
+        }
+        else {
+          $title = 'Registro completado';
+          $message = 'Le encuesta se completo con exito. El enlace estara valido hasta '.$enc_data_s.'.! Nota: Se redireccionara a la pagina principal';
+          return view('permitted.qualification.view_survey_rest', compact('title','message'));
+        }
+      }
+      else {
+        $title = 'Error encontrado';
+        $message = 'La URL es incorrecta.!! Nota: Se redireccionara a la pagina principal';
+        return view('permitted.qualification.view_survey_rest', compact('title','message'));
+      }
     }
   }
   public function create(Request $request){

@@ -40,7 +40,7 @@
                 <hr>
               </div>
               <div class="desc">
-                <h2 class="text-left pt-15">Error encontrado</h2>
+                <h2 class="text-left pt-15">{{ $title }}.</h2>
               </div>
             </div>
 
