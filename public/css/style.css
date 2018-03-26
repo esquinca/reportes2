@@ -2163,7 +2163,7 @@ a:focus {
 .progress-description,
 .info-box-text {
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -6110,7 +6110,7 @@ fieldset[disabled] .btn-yahoo.focus {
   margin: 0;
   padding: 0;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 26px;
 }
 .description-block > .description-text {
   text-transform: uppercase;

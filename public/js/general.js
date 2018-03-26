@@ -2682,3 +2682,446 @@ function graph_pie_default_four(title, campoa, campob, titlepral, subtitulopral,
       }
   });
 }
+function graph_gauge(title, grapname, valuemin, valuemax, valor) {
+//function graph_gauge(title, campoa, campob) {
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    grid: {
+        show : true,
+        containLabel: false,
+        backgroundColor: 'transparent',
+        borderColor: '#ccc',
+        borderWidth: 0,
+        top: -10,
+        x: 5,
+        y: 0,
+        x2: 5,
+        y2: 0,
+    },
+    toolbox: {
+        feature: {
+          restore : {show: false, title : 'Recargar'},
+          saveAsImage : {show: false , title : 'Guardar'}
+        }
+    },
+    series: [
+        {
+            name: grapname,
+            type: 'gauge',
+            min: -valuemin,
+            max: valuemax,
+            detail: {formatter:'{value}%'},
+            data: [{value: valor, name: grapname}]
+        }
+    ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function graph_pie_default_four_with_porcent(title, campoa, campob, titlepral, subtitulopral, positiontitle){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+        title : {
+            show: true,
+            text: titlepral,
+            subtext: subtitulopral,
+            x:positiontitle,
+            textStyle: {
+             color: '#449D44',
+             fontStyle: 'normal',
+             fontWeight: 'normal',
+             fontFamily: 'sans-serif',
+             fontSize: 18,
+             align: 'center',
+             verticalAlign: 'top',
+             width: '100%',
+             textBorderColor: 'transparent',
+             textBorderWidth: 0,
+             textShadowColor: 'transparent',
+             textShadowBlur: 0,
+             textShadowOffsetX: 0,
+             textShadowOffsetY: 0,
+           },
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            // type: 'scroll',
+            orient: 'horizontal',
+            // right: 10,
+            // top: 10,
+            bottom: 10,
+            data: campoa
+        },
+        grid: {
+          show: false,
+          backgroundColor: '#fff'
+        },
+        series : [
+            {
+                name: 'Información',
+                type: 'pie',
+                radius : '50%',
+                center: ['50%', '50%'],
+                data:campob,
+                itemStyle : {
+                    normal : {
+                        label : {
+                            position : 'inner',
+                            formatter : function (params) {
+                              return (params.percent - 0).toFixed(2) + '%'
+                            }
+                        },
+                        labelLine : {
+                            show : false
+                        }
+                    },
+                    emphasis : {
+                        label : {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)',
+                            show : true,
+                            formatter : "{b}\n{d}%"
+                        }
+                    }
+
+                }
+            }
+        ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+
+function graph_bar_with_three_val_insideRight(title, data_name, campom, campoa, campob, campoc){
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: data_name
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        data: campom,
+        axisLabel : {
+           show:true,
+           interval: 'auto',    // {number}
+           rotate: 60,
+           margin: 6,
+           formatter: '{value}',
+           textStyle: {
+              //  color: 'blue',
+               fontFamily: 'sans-serif',
+               fontSize: 8,
+               fontStyle: 'italic',
+               fontWeight: 'bold'
+           }
+        }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: data_name[0],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: campoa,
+            itemStyle: {
+              normal: {
+                  color: '#00A65A'
+                }
+            }
+        },
+        {
+            name: data_name[1],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: campob,
+            itemStyle: {
+              normal: {
+                  color: '#FCCE10',
+                }
+            }
+        },
+        {
+            name: data_name[2],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: campoc,
+            itemStyle: {
+              normal: {
+                  color: '#C1232B',
+                }
+            }
+        }
+    ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function grap_user_vs_request(title, data_name, campom, campoa, campob){
+  var myChart = echarts.init(document.getElementById(title));
+  var colors = ['#5793f3', '#d14a61', '#675bba'];
+  var option = {
+    color: colors,
+    tooltip: {
+        trigger: 'none',
+        axisPointer: {
+            type: 'cross'
+        }
+    },
+    legend: {
+        data: data_name
+    },
+    grid: {
+        top: 70,
+        bottom: 50
+    },
+    xAxis: [
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[0]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return 'Valor  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: campom
+        },
+        {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+                onZero: false,
+                lineStyle: {
+                    color: colors[1]
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        return 'Valor  ' + params.value
+                            + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                    }
+                }
+            },
+            data: campom
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
+    series: [
+        {
+            name: data_name[0],
+            type:'line',
+
+            smooth: true,
+            data: campoa
+        },
+        {
+            name: data_name[1],
+            type:'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: campob
+        }
+    ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}
+
+function main_gra_grade_avg_per_month(title, campoa, campob, titlepral, subtitulopral) {
+  var myChart = echarts.init(document.getElementById(title));
+  var option = {
+    title: {
+       text: titlepral,
+       subtext: subtitulopral,
+       textStyle: {
+        color: '#449D44',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontFamily: 'sans-serif',
+        fontSize: 18,
+        align: 'left',
+        verticalAlign: 'top',
+        width: '100%',
+        textBorderColor: 'transparent',
+        textBorderWidth: 0,
+        textShadowColor: 'transparent',
+        textShadowBlur: 0,
+        textShadowOffsetX: 0,
+        textShadowOffsetY: 0,
+      },
+   },
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    toolbox: {
+        show : false,
+        feature : {
+            dataView : {show: false, readOnly: false, title : 'Datos', lang: ['Vista de datos', 'Cerrar', 'Actualizar']},
+            magicType : {
+              show: false,
+              type: ['line', 'bar'],
+              title : {
+                line : 'Gráfico de líneas',
+                bar : 'Gráfico de barras',
+                stack : 'Acumular',
+                tiled : 'Tiled',
+                force: 'Cambio de diseño orientado a la fuerza',
+                chord: 'Interruptor del diagrama de acordes',
+                pie: 'Gráfico circular',
+                funnel: 'Gráfico de embudo'
+              },
+            },
+            restore : {show: false, title : 'Recargar'},
+            saveAsImage : {show: true , title : 'Guardar'}
+        }
+    },
+    calculable : true,
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : campoa,
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLabel : {
+               show:true,
+               interval: 'auto',    // {number}
+               rotate: 20,
+               margin: 10,
+               formatter: '{value}',
+               textStyle: {
+                  //  color: 'blue',
+                   fontFamily: 'sans-serif',
+                   fontSize: 8,
+                   fontStyle: 'italic',
+                   fontWeight: 'bold'
+               }
+            }
+            //
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'Cantidad',
+            type:'bar',
+            barWidth: '60%',
+            data:campob,
+            itemStyle: {
+              normal: {
+                  color: function(params) {
+                      // build a color map as your need.
+                      var colorList = [
+                        '#DD4B39','#00C0EF', '#605CA8', '#FF851B','#00A65A',
+                        '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+                          '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+                          '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+                      ];
+                      return colorList[params.dataIndex]
+                  }
+              }
+            }
+        }
+    ]
+  };
+  myChart.setOption(option);
+
+  $(window).on('resize', function(){
+      if(myChart != null && myChart != undefined){
+          myChart.resize();
+      }
+  });
+}

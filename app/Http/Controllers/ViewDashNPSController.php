@@ -8,6 +8,6 @@ class ViewDashNPSController extends Controller
 {
   public function index()
   {
-    
+    return view('permitted.qualification.dashboard_nps');
   }
 }

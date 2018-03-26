@@ -179,4 +179,6 @@ return [
     'encuestado' => 'Encuestado',
     'vertical' => 'Vertical',
     'client'=>'Cliente',
+    'breadcrumb_survey_nps' => 'Dashboard NPS',
+    'subtitle_survey_nps' => 'NPS',
 ];
