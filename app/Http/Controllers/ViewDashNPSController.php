@@ -10,4 +10,8 @@ class ViewDashNPSController extends Controller
   {
     return view('permitted.qualification.dashboard_nps');
   }
+  public function show(Request $request)
+  {
+    # code...
+  }
 }

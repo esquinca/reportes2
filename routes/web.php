@@ -113,6 +113,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/delete_assign_surveyed', 'ConfigurationSurveyController@delete_assign_client_nps');
     Route::post('/create_data_client', 'ConfigurationSurveyController@capture_individual');
     Route::post('/create_data_auto_client', 'ConfigurationSurveyController@capture_auto');
+
+  //Dashboard nps
+    Route::post('/summary_info_nps' , 'ViewDashNPSController@show');
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');
@@ -152,4 +155,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/approval', 'ApprovalConciergeController@index');
   //- Aproval admin
     Route::get('/approvals', 'ApprovalAdminController@index');
+
 });

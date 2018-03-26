@@ -62,7 +62,7 @@ $('#select_one').on('change', function(e){
 $('#btn_generar').on('click', function(e){
   var cadena= $('#select_one').val();
   if (cadena == "") {
-    
+
   }else{
     //document.getElementById("captura_pdf_general").style.display="block";
     empty_header();
@@ -154,7 +154,7 @@ function graph_client_wlan() {
 
   var data_count1 = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
   var data_name1 = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
-  
+
   var data_count = [];
   var data_name = [];
 
@@ -187,7 +187,7 @@ function graph_top_ssid() {
 
   // var data_count = [{value:27284, name:'MoonPalace_JG = 27284'},{value:5326, name:'Palacetvnet = 5326'},{value:2415, name:'MoonPalaceJG = 24152415'},{value:647, name:'PalaceJG = 647'},{value:11, name:'Comandaspr = 11'}];
   // var data_name = ["MoonPalace_JG = 27284","Palacetvnet = 5326","MoonPalaceJG = 2415","PalaceJG = 647","Comandaspr = 11"];
-  
+
   var data_count = [];
   var data_name = [];
 
@@ -218,10 +218,10 @@ function graph_client_day() {
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
 
-  
+
   // var data_count1 = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
   // var data_name1 = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-  
+
   var data_count = [];
   var data_name = [];
 
@@ -252,10 +252,10 @@ function graph_gigabyte_day() {
   var cadena= $('#select_one').val();
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  
+
   // var data_count1 = [120, 132, 101, 134, 90, 230, 210,267,117,50, 121,22, 182, 191, 234, 290, 330, 310, 123, 442,321, 90, 149, 210, 122, 133, 334,121,22,56,19];
   // var data_name1 = ['1','2','3','4','5','6','7','8','9','10', '11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-  
+
   var data_count = [];
   var data_name = [];
 
@@ -286,10 +286,10 @@ function graph_top_aps_table() {
   var cadena= $('#select_one').val();
   var date = $('#calendar_fecha').val();
   var _token = $('input[name="_token"]').val();
-  
+
   // var data_count1 = [{value:15646, name:'Mexico = 15646'},{value:447, name:'Jamaica = 447'},{value:1483, name:'Republica dominicana = 1483'}];
   // var data_name1 = ["Mexico = 15646","Jamaica = 447","Republica dominicana = 1483"];
-  
+
   var data_count = [];
   var data_name = [];
   var data_data = [];
@@ -348,7 +348,7 @@ function general_table_comparative() {
         $.each(JSON.parse(data),function(index, objdata){
           comp = parseInt(objdata.Indicador);
           if (comp === 1) {
-            ind1 = '<i class="fa fa-arrow-down"></i>'; 
+            ind1 = '<i class="fa fa-arrow-down"></i>';
           }else if (comp === 2) {
             ind1 = '<i class="fa fa-arrow-up"></i>';
           }else{
@@ -356,7 +356,7 @@ function general_table_comparative() {
           }
           data_data.push({"concepto": objdata.Concepto,"mes1": objdata.Anterior,"mes2": objdata.Actual, "identificador": ind1});
         });
-        
+
         table_comparative(data_data, $("#table_comparative"));
       },
       error: function (data) {

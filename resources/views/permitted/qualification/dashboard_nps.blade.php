@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="row">
-              <form class="form-inline" method="post">
+              <form name="search_info" class="form-inline" method="post">
                 {{ csrf_field() }}
                 <div class="col-sm-2">
                   <div class="input-group">
@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 <div class="col-sm-10">
-                  <button id="boton-aplica-filtro" type="button" class="btn btn-info">
+                  <button id="boton-aplica-filtro" type="button" class="btn btn-info filtrarDashboard">
                     <i class="glyphicon glyphicon-filter" aria-hidden="true"></i>  Filtrar
                   </button>
                 </div>
@@ -359,6 +359,35 @@
         graph_nps_per_month();
         main_grap_user_vs_request();
         main_grap_avg_per_month();
+
+        $('#date_to_search').datepicker({
+          language: 'es',
+          format: "yyyy-mm",
+          viewMode: "months",
+          minViewMode: "months",
+          endDate: '1m',
+          autoclose: true,
+          clearBtn: true
+        });
+        $('#date_to_search').val('').datepicker('update');
+
+      });
+
+      $('.filtrarDashboard').on('click', function(){
+          var objData = $('form [name="search_info"]').find("select,textarea, input").serialize();
+          $.ajax({
+               type: "POST",
+               url: '/summary_info_nps',
+               data: objData,
+               success: function (data) {
+                  console.log(data);
+                  // if (data == 'true') {  menssage_toast('Mensaje', '4', 'Operation complete!' , '3000'); }
+                  // if (data == 'false') { menssage_toast('Mensaje', '2', 'You do not have permission to access this module, please refer to your system administrator!' , '3000'); }
+               },
+               error: function (data) {
+                 menssage_toast('Mensaje', '2', 'Operation Abort' , '3000');
+               }
+           })
       });
 
       function data_nps(){
