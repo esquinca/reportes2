@@ -180,5 +180,8 @@ return [
     'vertical' => 'Vertical',
     'client'=>'Cliente',
     'breadcrumb_survey_nps' => 'Dashboard NPS',
+    'breadcrumb_survey_sit' => 'Dashboard Encuesta Sitwifi',
+    'subtitle_survey_sitwifi' => 'Encuesta Sitwifi',
     'subtitle_survey_nps' => 'NPS',
+    'domain' => 'Dominios',
 ];
