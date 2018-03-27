@@ -2687,7 +2687,7 @@ function graph_gauge(title, grapname, valuemin, valuemax, valor) {
   var myChart = echarts.init(document.getElementById(title));
   var option = {
     tooltip : {
-        formatter: "{a} <br/>{b} : {c}%"
+        formatter: "{a} <br/>{b} : {c}"
     },
     grid: {
         show : true,
@@ -2713,7 +2713,7 @@ function graph_gauge(title, grapname, valuemin, valuemax, valor) {
             type: 'gauge',
             min: -valuemin,
             max: valuemax,
-            detail: {formatter:'{value}%'},
+            detail: {formatter:'{value}'},
             data: [{value: valor, name: grapname}]
         }
     ]
@@ -2778,13 +2778,13 @@ function graph_pie_default_four_with_porcent(title, campoa, campob, titlepral, s
                 itemStyle : {
                     normal : {
                         label : {
-                            position : 'inner',
+                            position : 'outside',
                             formatter : function (params) {
                               return (params.percent - 0).toFixed(2) + '%'
                             }
                         },
                         labelLine : {
-                            show : false
+                            show : true
                         }
                     },
                     emphasis : {
@@ -2864,7 +2864,20 @@ function graph_bar_with_three_val_insideRight(title, data_name, campom, campoa, 
             data: campoa,
             itemStyle: {
               normal: {
-                  color: '#00A65A'
+                  color: '#00A65A',
+                  label : {
+                      position : 'outside',
+                      formatter : function (params) {
+                        if (params.value > 0) {
+                          return params.value
+                        }
+                        else {
+                            return ''
+                        }
+
+                      }
+                  },
+
                 }
             }
         },
@@ -2882,6 +2895,19 @@ function graph_bar_with_three_val_insideRight(title, data_name, campom, campoa, 
             itemStyle: {
               normal: {
                   color: '#FCCE10',
+                  label : {
+                      position : 'outside',
+                      formatter : function (params) {
+                        if (params.value > 0) {
+                          return params.value
+                        }
+                        else {
+                            return ''
+                        }
+
+                      }
+                  },
+
                 }
             }
         },
@@ -2899,6 +2925,18 @@ function graph_bar_with_three_val_insideRight(title, data_name, campom, campoa, 
             itemStyle: {
               normal: {
                   color: '#C1232B',
+                  label : {
+                      position : 'outside',
+                      formatter : function (params) {
+                        if (params.value > 0) {
+                          return params.value
+                        }
+                        else {
+                            return ''
+                        }
+
+                      }
+                  },
                 }
             }
         }

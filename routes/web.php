@@ -115,7 +115,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/create_data_auto_client', 'ConfigurationSurveyController@capture_auto');
 
   //Dashboard nps
-    Route::post('/summary_info_nps' , 'ViewDashNPSController@show');
+    Route::post('/summary_info_nps' , 'ViewDashNPSController@show_summary_info_nps');
+    Route::post('/show_comparative_year' , 'ViewDashNPSController@compare_year');
+    Route::post('/get_graph_nps' , 'ViewDashNPSController@percent_graph_nps');
+    Route::post('/get_graph_ppd' , 'ViewDashNPSController@cant_graph_ppd');
+    Route::post('/get_graph_uvsr' , 'ViewDashNPSController@graph_uvsr');
+
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');

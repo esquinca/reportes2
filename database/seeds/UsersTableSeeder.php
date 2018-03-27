@@ -179,6 +179,11 @@ class UsersTableSeeder extends Seeder
         $viewconfiguration = Permission::create(['name' => 'View Configuration']);
         $vieweditconfiguration = Permission::create(['name' => 'Edit Configuration']);
 
+        //Encuesta sitwifi
+        $encuestasitwifidashboard= Permission::create(['name' => 'View dashboard sitwifi']);
+        $encuestasitwifivconfig= Permission::create(['name' => 'View config sitwifi']);
+        $encuestasitwifidconfig= Permission::create(['name' => 'Delete config sitwifi']);
+        $encuestasitwifisend= Permission::create(['name' => 'Send mail sitwifi']);
 
       //Creamos los usuarios super admin
         $super_admin_a0 = new User;
@@ -259,6 +264,11 @@ class UsersTableSeeder extends Seeder
             $super_admin_a0->givePermissionTo('Create config nps automatic');
             $super_admin_a0->givePermissionTo('View config nps individual');
             $super_admin_a0->givePermissionTo('Create config nps individual');
+          //-Encuesta Sitwifi
+            $super_admin_a0->givePermissionTo('View dashboard sitwifi');
+            $super_admin_a0->givePermissionTo('View config sitwifi');
+            $super_admin_a0->givePermissionTo('Delete config sitwifi');
+            $super_admin_a0->givePermissionTo('Send mail sitwifi');
 
           //- Herramientas
             $super_admin_a0->givePermissionTo('View guest review');
@@ -350,6 +360,11 @@ class UsersTableSeeder extends Seeder
             $super_admin_a->givePermissionTo('Create config nps automatic');
             $super_admin_a->givePermissionTo('View config nps individual');
             $super_admin_a->givePermissionTo('Create config nps individual');
+          //-Encuesta Sitwifi
+            $super_admin_a->givePermissionTo('View dashboard sitwifi');
+            $super_admin_a->givePermissionTo('View config sitwifi');
+            $super_admin_a->givePermissionTo('Delete config sitwifi');
+            $super_admin_a->givePermissionTo('Send mail sitwifi');
           //- Herramientas
             $super_admin_a->givePermissionTo('View guest review');
             $super_admin_a->givePermissionTo('View server review');
@@ -439,6 +454,11 @@ class UsersTableSeeder extends Seeder
           $super_admin_b->givePermissionTo('Create config nps automatic');
           $super_admin_b->givePermissionTo('View config nps individual');
           $super_admin_b->givePermissionTo('Create config nps individual');
+        //-Encuesta Sitwifi
+          $super_admin_b->givePermissionTo('View dashboard sitwifi');
+          $super_admin_b->givePermissionTo('View config sitwifi');
+          $super_admin_b->givePermissionTo('Delete config sitwifi');
+          $super_admin_b->givePermissionTo('Send mail sitwifi');
           //- Herramientas
           $super_admin_b->givePermissionTo('View guest review');
           $super_admin_b->givePermissionTo('View server review');
@@ -524,6 +544,11 @@ class UsersTableSeeder extends Seeder
           $super_admin_c->givePermissionTo('Create config nps automatic');
           $super_admin_c->givePermissionTo('View config nps individual');
           $super_admin_c->givePermissionTo('Create config nps individual');
+        //-Encuesta Sitwifi
+          $super_admin_c->givePermissionTo('View dashboard sitwifi');
+          $super_admin_c->givePermissionTo('View config sitwifi');
+          $super_admin_c->givePermissionTo('Delete config sitwifi');
+          $super_admin_c->givePermissionTo('Send mail sitwifi');
           //- Herramientas
           $super_admin_c->givePermissionTo('View guest review');
           $super_admin_c->givePermissionTo('View server review');
@@ -877,6 +902,19 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_three_a2A = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD01->id]);
         $assigned_menu_three_a3A = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD01->id]);
 
+        $menuAdminD02 = new Menu;
+        $menuAdminD02->name='view_dashboard_survey_sit';
+        $menuAdminD02->display_name='Dashboard encuesta sitwifi';
+        $menuAdminD02->description='Permite visualizar los resultados de la encuesta Sitwfi.';
+        $menuAdminD02->url='view_dashboard_survey_sit';
+        $menuAdminD02->section_id=$seccion_admin_c->id;
+        $menuAdminD02->icons='fa fa-tachometer';
+        $menuAdminD02->save();
+        $assigned_menu_three_a0B = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD02->id]);
+        $assigned_menu_three_a1B = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD02->id]);
+        $assigned_menu_three_a2B = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD02->id]);
+        $assigned_menu_three_a3B = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD02->id]);
+
         $menuAdminD0 = new Menu;
         $menuAdminD0->name='create_survey_admin';
         $menuAdminD0->display_name='Crear encuesta';
@@ -955,6 +993,18 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_four_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD5->id]);
         $assigned_menu_four_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD5->id]);
 
+        $menuAdminD6 = new Menu;
+        $menuAdminD6->name='configure_survey_admin_sit';
+        $menuAdminD6->display_name='Configuración encuesta sitwifi.';
+        $menuAdminD6->description='Permite configurar las encuestas sitwifi para el personal.';
+        $menuAdminD6->url='configure_survey_admin_sit';
+        $menuAdminD6->section_id=$seccion_admin_c->id;
+        $menuAdminD6->icons='fa fa-cog';
+        $menuAdminD6->save();
+        $assigned_menu_five_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD6->id]);
+        $assigned_menu_five_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD6->id]);
+        $assigned_menu_five_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD6->id]);
+        $assigned_menu_five_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD6->id]);
       //Menu Herramientas
         $menuAdminE0 = new Menu;
         $menuAdminE0->name='detailed_guest_review';

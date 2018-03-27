@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="row">
-              <form name="search_info" class="form-inline" method="post">
+              <form id="search_info" name="search_info" class="form-inline" method="post">
                 {{ csrf_field() }}
                 <div class="col-sm-2">
                   <div class="input-group">
@@ -97,7 +97,7 @@
                           <span class="info-box-icon bg-green"><i class="fa fa-smile-o"></i></span>
                           <div class="info-box-content">
                             <span class="info-box-text pt-10">Promotores</span>
-                            <span class="info-box-number">410</span>
+                            <span class="info-box-number" id="total_promotores">0</span>
 
                           </div>
                         </div>
@@ -108,7 +108,7 @@
                           <span class="info-box-icon bg-yellow"><i class="fa fa-meh-o"></i></span>
                           <div class="info-box-content">
                             <span class="info-box-text pt-10">Pasivos</span>
-                            <span class="info-box-number">13,648</span>
+                            <span class="info-box-number" id="total_pasivos">0</span>
                           </div>
                         </div>
                       </div>
@@ -117,8 +117,8 @@
                         <div class="info-box">
                           <span class="info-box-icon bg-red"><i class="fa fa-frown-o"></i></span>
                           <div class="info-box-content">
-                            <span class="info-box-text pt-10">Defractores</span>
-                            <span class="info-box-number">93,139</span>
+                            <span class="info-box-text pt-10">Detractores</span>
+                            <span class="info-box-number" id="total_detractores">0</span>
                           </div>
                         </div>
                       </div>
@@ -134,21 +134,15 @@
                               Comparación Anual
                           </h4>
                           <div class="description-block box-body">
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="tabla_comparativa" name='tabla_comparativa'>
+                              <thead>
+                                  <tr>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">NPS</th>
+                                  </tr>
+                              </thead>
                               <tbody>
-                                <tr>
-                                  <th class="text-center">Año</th>
-                                  <th class="text-center">NPS</th>
-                                </tr>
-                                <tr>
-                                  <td>2016</td>
-                                  <td>65</td>
-                                </tr>
-                                <tr>
-                                  <td>2017</td>
-                                  <td>64</td>
-                                </tr>
-                            </tbody>
+                              </tbody>
                           </table>
 
 
@@ -347,6 +341,9 @@
 
 @push('scripts')
   @if( auth()->user()->can('View capture survey') )
+
+  <script src="{{ asset('plugins/momentupdate/moment.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('plugins/momentupdate/moment-with-locales.js') }}" type="text/javascript"></script>
     <style media="screen">
       .pt-10 {
         padding-top: 10px;
@@ -354,7 +351,9 @@
     </style>
     <script type="text/javascript">
       $(function() {
+        moment.locale('es');
         data_nps();
+        data_compare_nps();
         graph_nps();
         graph_nps_per_month();
         main_grap_user_vs_request();
@@ -365,7 +364,7 @@
           format: "yyyy-mm",
           viewMode: "months",
           minViewMode: "months",
-          endDate: '1m',
+          endDate: '-1m',
           autoclose: true,
           clearBtn: true
         });
@@ -374,53 +373,202 @@
       });
 
       $('.filtrarDashboard').on('click', function(){
-          var objData = $('form [name="search_info"]').find("select,textarea, input").serialize();
-          $.ajax({
-               type: "POST",
-               url: '/summary_info_nps',
-               data: objData,
-               success: function (data) {
-                  console.log(data);
-                  // if (data == 'true') {  menssage_toast('Mensaje', '4', 'Operation complete!' , '3000'); }
-                  // if (data == 'false') { menssage_toast('Mensaje', '2', 'You do not have permission to access this module, please refer to your system administrator!' , '3000'); }
-               },
-               error: function (data) {
-                 menssage_toast('Mensaje', '2', 'Operation Abort' , '3000');
-               }
-           })
+        // data_nps();
+        // data_compare_nps();
+        // graph_nps();
+        // graph_nps_per_month();
+        modTableCali();
       });
+
 
       function data_nps(){
         var _token = $('input[name="_token"]').val();
-        $('#total_survey').text(200);
-        $('#answered').text(181);
-        $('#unanswered').text(9);
-        graph_gauge('main_nps', 'NPS', '100', '100', '43');
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        $.ajax({
+             type: "POST",
+             url: '/summary_info_nps',
+             data: objData,
+             success: function (data) {
+                // console.log(data);
+                $.each(JSON.parse(data), function(index, status){
+                  if(status.Concepto == 'Promotores') {   $('#total_promotores').text(status.Count); }
+                  if(status.Concepto == 'Pasivos') {   $('#total_pasivos').text(status.Count); }
+                  if(status.Concepto == 'Detractores') {   $('#total_detractores').text(status.Count); }
+                  if(status.Concepto == 'NPS') {   graph_gauge('main_nps', 'NPS', '100', '100', status.Count); }
+                  if(status.Concepto == 'Abstenidos') {   $('#unanswered').text(status.Count); }
+                  if(status.Concepto == 'Respondieron') {   $('#answered').text(status.Count); }
+                  if(status.Concepto == 'Encuestas Enviadas') {   $('#total_survey').text(status.Count); }
+                });
+             },
+             error: function (data) {
+               menssage_toast('Mensaje', '2', 'Operation Abort' , '3000');
+             }
+         })
+      }
+      function data_compare_nps(){
+        var _token = $('input[name="_token"]').val();
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        // alert(objData);
+        $.ajax({
+             type: "POST",
+             url: '/show_comparative_year',
+             data: objData,
+             success: function (data) {
+              //  console.log(data);
+               table_comparative(data, $("#tabla_comparativa"));
+             },
+             error: function (data) {
+               menssage_toast('Mensaje', '2', 'Operation Abort' , '3000');
+             }
+         })
+      }
+      function table_comparative(datajson, table){
+        table.DataTable().destroy();
+        var vartable = table.dataTable(Configuration_table_responsive_simple);
+        vartable.fnClearTable();
+        $.each(JSON.parse(datajson), function(index, status){
+        vartable.fnAddData([
+            status.Periodo,
+            status.NPS
+          ]);
+        });
       }
       function graph_nps() {
-        var _token = $('input[name="_token"]').val();
-        var data_count1 = [{value:98, name:'Promotores = 98'},{value:62, name:'Pasivos = 62'},{value:21, name:'Detractores = 21'}];
-        var data_name1 = ["Promotores = 98","Pasivos = 62","Detractores = 21"];
-        graph_pie_default_four_with_porcent('main_grap_nps', data_name1, data_count1, 'Grafica', 'NPS', 'left');
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        var data_count1 = [];
+        var data_name1 = [];
+        // var data_count1 = [{value:98, name:'Promotores = 98'},{value:62, name:'Pasivos = 62'},{value:21, name:'Detractores = 21'}];
+        // var data_name1 = ["Promotores = 98","Pasivos = 62","Detractores = 21"];
+        $.ajax({
+            type: "POST",
+            url: "/get_graph_nps",
+            data: objData,
+            success: function (data){
+              $.each(JSON.parse(data),function(index, objdata){
+                data_name1.push(objdata.Concepto + ' = ' + objdata.Count);
+                data_count1.push({ value: objdata.Count, name: objdata.Concepto + ' = ' + objdata.Count},);
+              });
+              graph_pie_default_four_with_porcent('main_grap_nps', data_name1, data_count1, 'Grafica', 'NPS', 'left');
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
       }
       function graph_nps_per_month() {
-        var _token = $('input[name="_token"]').val();
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        var data_month = [];
+        var value_promotores = [];
+        var value_pasivos = [];
+        var value_detractores = [];
         var data_name = ["Promotores","Pasivos","Detractores"];
-        var data_month = ["September 2016","October 2016", "November 2016", "December 2016", "January 2017", "February 2017", "March 2017"];
-
-        var value_promotores = [320, 302, 301, 234, 390, 330, 800];
-        var value_pasivos = [132, 202, 101, 314, 90, 330, 600];
-        var value_detractores = [120, 402, 231, 134, 130, 430, 100];
-
-        graph_bar_with_three_val_insideRight('main_grap_nps_per_month',data_name, data_month, value_promotores, value_pasivos, value_detractores);
+        // var data_month = ["September 2016","October 2016", "November 2016", "December 2016", "January 2017", "February 2017", "March 2017"];
+        // var value_promotores = [320, 302, 301, 234, 390, 330, 800];
+        // var value_pasivos = [132, 202, 101, 314, 90, 330, 600];
+        // var value_detractores = [120, 402, 231, 134, 130, 430, 100];
+        $.ajax({
+            type: "POST",
+            url: "/get_graph_ppd",
+            data: objData,
+            success: function (data){
+              $.each(JSON.parse(data),function(index, objdata){
+                data_month.push(objdata.Fecha);
+                value_promotores.push(objdata.Promotores);
+                value_pasivos.push(objdata.Pasivos);
+                value_detractores.push(objdata.Detractores);
+              });
+              graph_bar_with_three_val_insideRight('main_grap_nps_per_month',data_name, data_month, value_promotores, value_pasivos, value_detractores);
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
       }
+
+      function modTableCali() {
+      	var datepicker3 = $('#date_to_search').val();
+
+        if (datepicker3 == ''){
+          var datepicker3 = moment().subtract(1, 'months').format('YYYY-MM');
+        }
+
+      	var datemod = datepicker3.split("-");
+      	var goodFormat = datemod[0] + "-" + datemod[1];
+
+        var cont = [];
+        var meses = [];
+
+        for (var i = 0; i <= 11; i++) {
+          meses.push(moment(goodFormat).subtract(i, 'months').format('YYYY MMMM'));
+        }
+        // console.log(meses);
+        return meses;
+      }
+
+
       function main_grap_user_vs_request() {
-        var _token = $('input[name="_token"]').val();
-        var data_name = ["NPS","Request"];
-        var data_month = ["April 2017", "May 2017", "June 2017", "July 2017", "August 2017", "September 2017", "October 2017", "November 2017", "December 2017", "January 2018", "February 2018", "March 2018"];
-        var value_nps = [48.3,69.2,231.6,46.6,55.4,230,600,10,55,89,147,75];
-        var value_requests = [320, 302, 301, 334, 390, 330, 800, 85, 76, 98, 120, 78];
-        grap_user_vs_request('main_grap_user_vs_request',data_name, data_month, value_nps, value_requests);
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        var data_name =[];
+        var data_month = [];
+        var value_nps = [];
+        var value_requests = [];
+
+        $.ajax({
+            type: "POST",
+            url: "/get_graph_uvsr",
+            data: objData,
+            success: function (data){
+              $.each(JSON.parse(data),function(index, objdata){
+                data_name.push(objdata.Concepto);
+                if (index == 0) {
+                  value_nps.push(objdata.a12);
+                  value_nps.push(objdata.a11);
+                  value_nps.push(objdata.a10);
+                  value_nps.push(objdata.a9);
+                  value_nps.push(objdata.a8);
+                  value_nps.push(objdata.a7);
+                  value_nps.push(objdata.a6);
+                  value_nps.push(objdata.a5);
+                  value_nps.push(objdata.a4);
+                  value_nps.push(objdata.a3);
+                  value_nps.push(objdata.a2);
+                  value_nps.push(objdata.a1);
+                }
+                else {
+                  value_requests.push(objdata.a12);
+                  value_requests.push(objdata.a11);
+                  value_requests.push(objdata.a10);
+                  value_requests.push(objdata.a9);
+                  value_requests.push(objdata.a8);
+                  value_requests.push(objdata.a7);
+                  value_requests.push(objdata.a6);
+                  value_requests.push(objdata.a5);
+                  value_requests.push(objdata.a4);
+                  value_requests.push(objdata.a3);
+                  value_requests.push(objdata.a2);
+                  value_requests.push(objdata.a1);
+                }
+              });
+              console.log(data);
+              console.log(data_name);
+              console.log(value_nps);
+              console.log(value_requests);
+              data_month = modTableCali();
+
+              console.log(data_month);
+              grap_user_vs_request('main_grap_user_vs_request',data_name, data_month.reverse(), value_nps, value_requests);
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
+
+
+        // var data_name = ["NPS","Request"];
+        // var data_month = ["April 2017", "May 2017", "June 2017", "July 2017", "August 2017", "September 2017", "October 2017", "November 2017", "December 2017", "January 2018", "February 2018", "March 2018"];
+        // var value_nps = [48.3,69.2,231.6,46.6,55.4,230,600,10,55,89,147,75];
+        // var value_requests = [320, 302, 301, 334, 390, 330, 800, 85, 76, 98, 120, 78];
+        // grap_user_vs_request('main_grap_user_vs_request',data_name, data_month, value_nps, value_requests);
       }
       function main_grap_avg_per_month() {
         var _token = $('input[name="_token"]').val();
