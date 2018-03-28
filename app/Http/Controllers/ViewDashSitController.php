@@ -13,6 +13,7 @@ use DateTime;
 use DB;
 use Auth;
 use Mail;
+use App\Mail\Sentsurveysitwifimail;
 use App\Hotel;
 use App\Encuesta;
 use App\Encuesta_user;
@@ -81,6 +82,15 @@ class ViewDashSitController extends Controller
       $new_survey_individual->shell_status=$encriptostatus;
       $new_survey_individual->save();
 
+      $sql = DB::table('users')->select('email', 'name')->where('id', $input_emails[$i])->get();
+      
+      $datos = [
+         'nombre' => $sql[0]->name,
+         'shell_data' => $encriptodata,
+         'shell_status' => $encriptostatus
+      ];
+      //$this->sentSurveyEmail($sql[0]->email, $datos);
+      //dd($sql[0]->name);
       $operacion='1';
     }
     if ($operacion == '1') {
@@ -93,4 +103,19 @@ class ViewDashSitController extends Controller
     }
 
   }
+
+    public function sentSurveyEmail($email, $data)
+    {
+
+        // $nombre = $data[$i]['name'];
+        // $correo = $data[$i]['email'];
+        // $shell1 = $data[$i]['shelldata'];
+        // $shell2= $data[$i]['shellstatus'];
+
+
+        Mail::to($email)->send(new Sentsurveysitwifimail($data));
+        //Mail::to($correo)->send(new Sentsurveynpsmail($datos));
+        
+    }
+
 }

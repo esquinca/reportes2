@@ -42,7 +42,7 @@
                                   line-height: 1.5em;
                                   text-align: left;
                                   font-size: 12px;
-                                  text-align: left;">Perteneciente al siguiente sitio: <strong> {{$data['shell_status']}}</strong></p>
+                                  text-align: left;">Perteneciente al siguiente sitio: <strong></strong></p>
 
                         <p style="margin-top: 0;
                                   color: #74787E;
