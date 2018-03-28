@@ -243,31 +243,62 @@ class ConfigurationSurveyController extends Controller
     $vertical= $request->select_one_v;
     $clientes= $request->select_clients_auto;
 
-    $fecha_ini = new DateTime();
-    $fecha_ini->modify('first day of this month');
-    $fecha_ini->format('d/m/Y');
+    $fecha_ini = date('Y-m-01');
+    $fecha_fin = date('Y-m-t');
+    $fecha_cur = date('Y-m');
 
-    $fecha_fin = new DateTime();
-    $fecha_fin->modify('last day of this month');
-    $fecha_fin->format('d/m/Y');
-
-    $fecha_cur = date('Y-m-j');
     $mesanterior = strtotime ( '-1 month' , strtotime ( $fecha_cur ) ) ;
-    $mesanterior = date ( 'Y-m-j' , $mesanterior );
+    $mesanterior = date ( 'Y-m' , $mesanterior );
+
+    $mesanteriorfull = $mesanterior . '-01';
+
+    $operacion='0';
 
     for ($i=0; $i < count($clientes); $i++) {
       $count_hotel_of_user = DB::table('encuesta_users')
                             ->where('user_id', $clientes[$i])
                             ->where('encuesta_id', '1')
                             ->where('fecha_inicial', $fecha_ini)
-                            ->where('fecha_corresponde', $mesanterior)
+                            ->where('fecha_corresponde', $mesanteriorfull)
                             ->where('fecha_fin', $fecha_fin)
                             ->count();
-      if ($count_hotel_of_user != 0) {
+        echo "count: " . $count_hotel_of_user . "<br>";
+      if ($count_hotel_of_user === 0) {
+        
+        $nuevolink = $clientes[$i].'/'.'1'.'/'.$mesanteriorfull.'/'.$fecha_fin;
+        $encriptodata= Crypt::encryptString($nuevolink);
+        $encriptostatus= Crypt::encryptString('1');
 
+        //echo $clientes[$i] . ": es 0 -- Link:  " . $nuevolink ."\n ". "<br>";
+        
+        $new_survey_individual = new Encuesta_user;
+        $new_survey_individual->user_id=$clientes[$i];
+        $new_survey_individual->encuesta_id='1';
+        $new_survey_individual->estatus_id='1';
+        $new_survey_individual->estatus_res='0';
+        $new_survey_individual->fecha_inicial=$fecha_ini;
+        $new_survey_individual->fecha_corresponde=$mesanteriorfull;
+        $new_survey_individual->fecha_fin=$fecha_fin;
+        $new_survey_individual->shell_data=$encriptodata;
+        $new_survey_individual->shell_status=$encriptostatus;
+        $new_survey_individual->save();
+
+        $operacion='1';
+      }else{
+        echo $clientes[$i] . ": es 1 " . "<br>";
       }
 
     }
+    if ($operacion == '1') {
+      notificationMsg('success', 'Operation complete!');
+      return Redirect::back();
+    }
+    if ($operacion == '0') {
+      notificationMsg('danger', 'No changes were applied!');
+      return Redirect::back();
+    }
+
+    //dd($count_sql);
 
   }
 
