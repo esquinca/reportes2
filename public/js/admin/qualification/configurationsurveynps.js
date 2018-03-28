@@ -39,6 +39,7 @@ $('#select_one_v').on('change', function(e){
             $('#select_clients_auto').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
           });
           $('#select_clients_auto').multiselect({
+            includeSelectAllOption: true,
             buttonWidth: '100%',
             nonSelectedText: 'Elija uno o más',
             maxHeight: 100,
@@ -69,8 +70,8 @@ $('#select_ind_one').on('change', function(e){
         countH = data.length;
         if (countH === 0) {
           $('#select_ind_two').empty();
-          // $('#select_two').append('<option value="" selected>Elije</option>');
           $("#select_ind_two").multiselect('destroy');
+          clearmultiselect('select_ind_two');
         }
         else{
           $("#select_ind_two").multiselect('destroy');
@@ -80,6 +81,7 @@ $('#select_ind_one').on('change', function(e){
             $('#select_ind_two').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
           });
           $('#select_ind_two').multiselect({
+            includeSelectAllOption: true,
             buttonWidth: '100%',
             nonSelectedText: 'Elija uno o más',
             maxHeight: 100,
@@ -92,8 +94,9 @@ $('#select_ind_one').on('change', function(e){
     });
   }
   else{
-    $("#select_ind_two").multiselect('fresh');
     $('#select_ind_two').empty();
+    $("#select_ind_two").multiselect('destroy');
+    clearmultiselect('select_ind_two');
   }
 });
 

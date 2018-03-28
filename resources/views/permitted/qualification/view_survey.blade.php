@@ -56,7 +56,7 @@
                 <hr>
               </div>
               <div class="desc">
-                <h2 class="text-left pt-15">Encuesta de servicio</h2>
+                <h2 class="text-left pt-15">Encuesta</h2>
               </div>
             </div>
 
@@ -65,11 +65,11 @@
             {{ csrf_field() }}
             <div class="section-title text-center">
               <p class="mb-0 mt-10 text-left">
-                Apreciado cliente.<br>
-                Queremos saber su nivel de satisfacción respecto a nuestros servicios.<br>
+                Apreciado usuario.<br>
+                Queremos saber su nivel de satisfacción.<br>
                 Dediquenos un minuto de su valioso tiempo.
               </p>
-              <input type="text" id="token_form" name="token_form" value="{{$encrypted_form}}">
+              <input type="hidden" id="token_form" name="token_form" value="{{$encrypted_form}}">
               @foreach ($sacar_preg as $preguntithas)
                 <h5 class="mb-0 mt-10 text-left">-.{{ $preguntithas->name }}<h5>
 

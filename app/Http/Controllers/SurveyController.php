@@ -69,7 +69,7 @@ class SurveyController extends Controller
 
       $id_reg_encuesta= $enc_data_s;
       $id_preguntas = trim($ident_preg, '&');
-      $unir_form= $id_user.'/'.$id_reg_encuesta.'/'.$count_preg.'/'.$id_preguntas.'/'.$fecha_evaluar.'/'.$fecha_fin;
+      $unir_form= $id_user.'/'.$id_reg_encuesta.'/'.$count_preg.'/'.$id_preguntas.'/'.$fecha_evaluar.'/'.$fecha_fin.'/'.$id_survey;
       $encrypted_form = Crypt::encryptString($unir_form);
 
       return view('permitted.qualification.view_survey',compact('fecha_fin', 'encrypted_form', 'sacar_preg'));
@@ -125,20 +125,22 @@ class SurveyController extends Controller
             $id_preguntas = $array_data[3]; //Ejemplo : 1&2 separadas &
            $fecha_evaluar = $array_data[4];
                $fecha_fin = $array_data[5];
-              // $id_hoteles = $array_data[6]; //Ejemplo : 1&2&3 separadas &
+               $id_survey = $array_data[6];
 
-        $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $id_usuario)->pluck('hotel_id');
-        $result_hotel = $sql_hotel->toArray();
+        if($id_survey == '1'){
+          //Encuesta NPS---------------------------------------------------------------------------------------------------------------------
+          $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $id_usuario)->pluck('hotel_id');
+          $result_hotel = $sql_hotel->toArray();
 
-        $separar_ids = strpos($id_preguntas, '&');
-        $array_id_preguntas = array();
+          $separar_ids = strpos($id_preguntas, '&');
+          $array_id_preguntas = array();
 
-        if ($separar_ids === false) { array_push($array_id_preguntas, $id_preguntas); }
-        else { $array_id_preguntas= explode("&", $id_preguntas); }
+          if ($separar_ids === false) { array_push($array_id_preguntas, $id_preguntas); }
+          else { $array_id_preguntas= explode("&", $id_preguntas); }
 
-        for ($i=0; $i < count($result_hotel); $i++) {
-         echo 'Hotel='.$result_hotel[$i].'<br>';
-          for ($j=0; $j < $cantidad_preguntas; $j++) {
+          for ($i=0; $i < count($result_hotel); $i++) {
+            echo 'Hotel='.$result_hotel[$i].'<br>';
+            for ($j=0; $j < $cantidad_preguntas; $j++) {
               echo 'pregunta='.$array_id_preguntas[$j].'<br>';
               $input= $request->get('radio'.($j+1));
               echo 'respuesta='.$input.'<br>';
@@ -150,23 +152,65 @@ class SurveyController extends Controller
               $new_qualification->hotels_id=$result_hotel[$i];
               $new_qualification->user_id=$id_usuario;
               $new_qualification->save();
+            }
+            if (!empty($data_comment)) {
+              $new_comment = new Comment;
+              $new_comment->fecha=$fecha_evaluar;
+              $new_comment->respuesta=$data_comment;
+              $new_comment->hotels_id=$result_hotel[$i];
+              $new_comment->users_id=$id_usuario;
+              $new_comment->save();
+            }
+          }
+          //ACTUALIZAMOS ESTATUS
+          $update_status = Encuesta_user::find($id_registro_encuesta);
+          $update_status->estatus_id = '2';
+          $update_status->estatus_res = '1';
+          $update_status->shell_status = Crypt::encryptString('2');;
+          $update_status->save();
+          return back();
+          //Encuesta NPS---------------------------------------------------------------------------------------------------------------------
+        }
+        else {
+          //Encuesta distinta---------------------------------------------------------------------------------------------------------------------
+          $separar_ids = strpos($id_preguntas, '&');
+          $array_id_preguntas = array();
+
+          if ($separar_ids === false) { array_push($array_id_preguntas, $id_preguntas); }
+          else { $array_id_preguntas= explode("&", $id_preguntas); }
+
+          for ($j=0; $j < $cantidad_preguntas; $j++) {
+            echo 'pregunta='.$array_id_preguntas[$j].'<br>';
+            $input= $request->get('radio'.($j+1));
+            echo 'respuesta='.$input.'<br>';
+
+            $new_qualification = new Qualification_result;
+            $new_qualification->fecha=$fecha_evaluar;
+            $new_qualification->respuesta=$input;
+            $new_qualification->preguntas_id=$array_id_preguntas[$j];
+            $new_qualification->user_id=$id_usuario;
+            $new_qualification->save();
           }
           if (!empty($data_comment)) {
             $new_comment = new Comment;
             $new_comment->fecha=$fecha_evaluar;
             $new_comment->respuesta=$data_comment;
-            $new_comment->hotels_id=$result_hotel[$i];
             $new_comment->users_id=$id_usuario;
             $new_comment->save();
           }
+          //ACTUALIZAMOS ESTATUS
+          $update_status = Encuesta_user::find($id_registro_encuesta);
+          $update_status->estatus_id = '2';
+          $update_status->estatus_res = '1';
+          $update_status->shell_status = Crypt::encryptString('2');;
+          $update_status->save();
+          return back();
+          //Encuesta distinta---------------------------------------------------------------------------------------------------------------------
+
+
         }
-        //ACTUALIZAMOS ESTATUS
-        $update_status = Encuesta_user::find($id_registro_encuesta);
-        $update_status->estatus_id = '2';
-        $update_status->estatus_res = '1';
-        $update_status->shell_status = Crypt::encryptString('2');;
-        $update_status->save();
-        return back();
+
+
   }
 
 

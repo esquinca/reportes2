@@ -125,7 +125,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/configure_survey_admin_sit' , 'ConfigurationSitController@index');
     Route::post('/get_data_survey_ys', 'ViewDashSitController@show_q');
     Route::post('/get_data_result_q', 'ViewDashSitController@show_result_q');
-
+    Route::post('/get_data_result_q', 'ViewDashSitController@show_result_q');
+    Route::post('/search_user_domain', 'ViewDashSitController@show_user');
+    Route::post('/create_manual_survey_record', 'ViewDashSitController@survey_record');
 
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');

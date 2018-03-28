@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->date('fecha');
             $table->text('respuesta');
 
-            $table->integer('hotels_id')->unsigned();
+            $table->integer('hotels_id')->nullable()->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');
 
             $table->integer('users_id')->unsigned();

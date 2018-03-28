@@ -40,7 +40,7 @@
                   <div class="row">
                     <div class="col-xs-12">
 
-                      <form id="form_reg_survey" name="form_reg_survey" class="form-horizontal" method="POST" action="{{ url('create_data_client') }}">
+                      <form id="form_survey_manualpl" name="form_survey_manualpl" class="form-horizontal" method="POST" action="{{ url('create_manual_survey_record') }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                           <label for="select_ind_one" class="col-md-2 control-label">{{ trans('message.domain') }}</label>
@@ -63,9 +63,22 @@
                           </div>
                         </div>
 
+                        <div class="form-group">
+                          <label for="select_idsurvey" class="col-md-2 control-label">{{ trans('message.survey') }}</label>
+                          <div class="col-md-10 selectContainer">
+                            <select id="select_idsurvey" name="select_idsurvey"class="form-control">
+                              <option value="" selected> Elija </option>
+                              @forelse ($encuestas as $data_survey)
+                              <option value="{{ $data_survey->id }}"> {{ $data_survey->name }} </option>
+                              @empty
+                              @endforelse
+                            </select>
+                          </div>
+                        </div>
+
 
                         <div class="form-group">
-                          <label class="col-md-2 control-label" for="month_upload_band">{{ trans('message.domic')}} </label>
+                          <label class="col-md-2 control-label" for="month_upload_band">{{ trans('message.period')}} </label>
                           <div class="col-md-10">
                             <div class="input-group input-daterange">
                               <input name="date_start"  type="text" class="form-control" value="">
@@ -112,11 +125,83 @@
 
 @push('scripts')
   @if( auth()->user()->can('View config sitwifi') )
+  <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-multiselect-master/dist/css/bootstrap-multiselect.css') }}" type="text/css" />
+  <script src="{{ asset('../bower_components/bootstrap-multiselect-master/dist/js/bootstrap-multiselect.js') }}"></script>
+  <style media="screen">
+  .multiselect-container {
+      width: 100% !important;
+      position: relative !important;
+  }
+  .select2-container {
+    width: 100% !important;
+  }
+  </style>
   <script type="text/javascript">
+    $(document).ready(function() {
+      clearmultiselect('select_ind_two');
+      $('.input-daterange').datepicker({language: 'es', format: "yyyy-mm-dd",});
+      $('#month_evaluate').datepicker({
+          language: 'es',
+          defaultDate: '',
+          format: "yyyy-mm",
+          viewMode: "months",
+          minViewMode: "months",
+          endDate: '1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
+          autoclose: true
+      });
+    });
+
     $('#select_ind_one').on('change', function(e){
-        var domain= $(this).val();
+        var id = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        if (id != ''){
+          let countC = 0;
+          $.ajax({
+            type: "POST",
+            url: "./search_user_domain",
+            data: { domain : id , _token : _token },
+            success: function (data){
+              countH = data.length;
+              if (countH === 0) {
+                $('#select_ind_two').empty();
+                $("#select_ind_two").multiselect('destroy');
+                clearmultiselect('select_ind_two');
+              }
+              else{
+                $("#select_ind_two").multiselect('destroy');
+                $('#select_ind_two').empty();
+                $.each(JSON.parse(data),function(index, objdata){
+                  $('#select_ind_two').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
+                });
+                $('#select_ind_two').multiselect({
+                  includeSelectAllOption: true,
+                  buttonWidth: '100%',
+                  nonSelectedText: 'Elija uno o más',
+                  maxHeight: 100,
+                 });
+              }
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+          });
+        }
+        else{
+          $('#select_ind_two').empty();
+          $("#select_ind_two").multiselect('destroy');
+          clearmultiselect('select_ind_two');
+        }
 
     });
+    function clearmultiselect(campo){
+          $('#'+campo).multiselect({
+            buttonWidth: '100%',
+            nonSelectedText: 'Elija uno o más',
+            maxHeight: 100,
+          });
+          $('#'+campo).multiselect('deselectAll', false);
+          $('#'+campo).multiselect('updateButtonText');
+      }
   </script>
   @else
     <!--NO VER-->

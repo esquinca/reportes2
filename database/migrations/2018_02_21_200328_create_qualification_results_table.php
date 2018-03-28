@@ -21,7 +21,7 @@ class CreateQualificationResultsTable extends Migration
             $table->integer('preguntas_id')->unsigned();
             $table->foreign('preguntas_id')->references('id')->on('preguntas');
             //Segunda llave foranea
-            $table->integer('hotels_id')->unsigned();
+            $table->integer('hotels_id')->nullable()->unsigned();
             $table->foreign('hotels_id')->references('id')->on('hotels');
             //Tercera
             $table->integer('user_id')->unsigned();
