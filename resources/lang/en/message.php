@@ -181,7 +181,9 @@ return [
     'client'=>'Cliente',
     'breadcrumb_survey_nps' => 'Dashboard NPS',
     'breadcrumb_survey_sit' => 'Dashboard Encuesta Sitwifi',
+    'breadcrumb_survey' => 'Dashboard Encuesta',
     'subtitle_survey_sitwifi' => 'Encuesta Sitwifi',
+    'subtitle_survey' => 'Encuesta',
     'subtitle_survey_nps' => 'NPS',
     'domain' => 'Dominios',
 ];

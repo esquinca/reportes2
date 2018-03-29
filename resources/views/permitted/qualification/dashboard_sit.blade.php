@@ -10,7 +10,7 @@
 
 @section('contentheader_description')
   @if( auth()->user()->can('View dashboard sitwifi') )
-    {{ trans('message.subtitle_survey_sitwifi') }}
+    {{ trans('message.subtitle_survey') }}
   @else
     {{ trans('message.denied') }}
   @endif
@@ -32,10 +32,10 @@
           <div class="row">
             <form id="search_info" name="search_info" class="form-inline" method="post">
               {{ csrf_field() }}
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <div class="form-group">
-                  <label for="select_surveys" class="col-md-5 control-label">{{ trans('message.survey') }}</label>
-                  <div class="col-md-7 selectContainer">
+                  <label for="select_surveys" class="col-md-4 control-label">{{ trans('message.survey') }}</label>
+                  <div class="col-md-8 selectContainer">
                     <select id="select_surveys" name="select_surveys"class="form-control select2">
                       <option value="" selected> Elija </option>
                       @forelse ($surveys as $data_survey)
@@ -53,7 +53,7 @@
                   <input id="date_to_search" type="text" class="form-control" name="date_to_search">
                 </div>
               </div>
-              <div class="col-sm-8">
+              <div class="col-sm-7">
                 <button id="boton-aplica-filtro" type="button" class="btn btn-info filtrarDashboard">
                   <i class="glyphicon glyphicon-filter" aria-hidden="true"></i>  Filtrar
                 </button>

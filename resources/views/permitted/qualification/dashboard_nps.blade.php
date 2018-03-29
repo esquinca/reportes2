@@ -188,55 +188,25 @@
               </div>
               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="table-responsive" style="background: #ffffff;">
-                  <table id="table_top_aps" class="table table-striped table-bordered table-hover">
+                  <table id="table_nps_vs_encuestados_mes" class="table table-striped table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Concepto</th>
-                        <th>April 2017</th>
-                        <th>May 2017</th>
-                        <th>June 2017</th>
-                        <th>July 2017</th>
-                        <th>August 2017</th>
-                        <th>September 2017</th>
-                        <th>October 2017</th>
-                        <th>November 2017</th>
-                        <th>December 2017</th>
-                        <th>January 2018</th>
-                        <th>February 2018</th>
-                        <th>March 2018</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>NPS</td>
-                        <td>48.3 </td>
-                        <td>69.2</td>
-                        <td>231.6</td>
-                        <td>46.6</td>
-                        <td>55.4</td>
-                        <td>230</td>
-                        <td>600</td>
-                        <td>10</td>
-                        <td>55</td>
-                        <td>89</td>
-                        <td>147</td>
-                        <td>75</td>
-                      </tr>
-                      <tr>
-                        <td>Usuarios encuestados</td>
-                        <td>320</td>
-                        <td>302</td>
-                        <td>301</td>
-                        <td>334</td>
-                        <td>390</td>
-                        <td>330</td>
-                        <td>800</td>
-                        <td>85</td>
-                        <td>76</td>
-                        <td>98</td>
-                        <td>120</td>
-                        <td>78</td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -254,61 +224,23 @@
                   </h4>
                   <div class="description-block box-body">
                     <div class="table-responsive" style="background: #ffffff;">
-                      <table id="table_top_aps" class="table table-striped table-bordered table-hover">
+                      <table id="table_vertical" class="table table-striped table-bordered table-hover">
                         <thead>
                           <tr>
                             <th>Vertical</th>
                             <th>Sitios</th>
-                            <th>April 2017</th>
-                            <th>May 2017</th>
-                            <th>June 2017</th>
-                            <th>July 2017</th>
-                            <th>August 2017</th>
-                            <th>September 2017</th>
-                            <th>October 2017</th>
-                            <th>November 2017</th>
-                            <th>December 2017</th>
-                            <th>January 2018</th>
-                            <th>February 2018</th>
-                            <th>March 2018</th>
-                            <th>Identificador</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>Indicador</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Hospitalidad</td>
-                            <td>63</td>
-                            <td>48.3 </td>
-                            <td>69.2</td>
-                            <td>231.6</td>
-                            <td>46.6</td>
-                            <td>55.4</td>
-                            <td>230</td>
-                            <td>600</td>
-                            <td>10</td>
-                            <td>55</td>
-                            <td>89</td>
-                            <td>147</td>
-                            <td>75</td>
-                            <td>SUBIO</td>
-                          </tr>
-                          <tr>
-                            <td>Educacion</td>
-                            <td>30</td>
-                            <td>320</td>
-                            <td>302</td>
-                            <td>301</td>
-                            <td>334</td>
-                            <td>390</td>
-                            <td>330</td>
-                            <td>800</td>
-                            <td>85</td>
-                            <td>76</td>
-                            <td>98</td>
-                            <td>120</td>
-                            <td>78</td>
-                            <td>BAJO</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -358,6 +290,8 @@
         graph_nps_per_month();
         main_grap_user_vs_request();
         main_grap_avg_per_month();
+        table_comparative_v1();
+        table_avg_vertical();
 
         $('#date_to_search').datepicker({
           language: 'es',
@@ -373,11 +307,14 @@
       });
 
       $('.filtrarDashboard').on('click', function(){
-        // data_nps();
-        // data_compare_nps();
-        // graph_nps();
-        // graph_nps_per_month();
-        modTableCali();
+        data_nps();
+        data_compare_nps();
+        graph_nps();
+        graph_nps_per_month();
+        main_grap_user_vs_request();
+        main_grap_avg_per_month();
+        table_comparative_v1();
+        table_avg_vertical();
       });
 
 
@@ -484,7 +421,6 @@
             }
         });
       }
-
       function modTableCali() {
       	var datepicker3 = $('#date_to_search').val();
 
@@ -504,8 +440,6 @@
         // console.log(meses);
         return meses;
       }
-
-
       function main_grap_user_vs_request() {
         var objData = $('#search_info').find("select,textarea, input").serialize();
         var data_name =[];
@@ -549,39 +483,144 @@
                   value_requests.push(objdata.a1);
                 }
               });
-              console.log(data);
-              console.log(data_name);
-              console.log(value_nps);
-              console.log(value_requests);
+              // console.log(data);
+              // console.log(data_name);
+              // console.log(value_nps);
+              // console.log(value_requests);
               data_month = modTableCali();
-
-              console.log(data_month);
+              // console.log(data_month);
               grap_user_vs_request('main_grap_user_vs_request',data_name, data_month.reverse(), value_nps, value_requests);
             },
             error: function (data) {
               console.log('Error:', data);
             }
         });
-
-
         // var data_name = ["NPS","Request"];
         // var data_month = ["April 2017", "May 2017", "June 2017", "July 2017", "August 2017", "September 2017", "October 2017", "November 2017", "December 2017", "January 2018", "February 2018", "March 2018"];
         // var value_nps = [48.3,69.2,231.6,46.6,55.4,230,600,10,55,89,147,75];
         // var value_requests = [320, 302, 301, 334, 390, 330, 800, 85, 76, 98, 120, 78];
         // grap_user_vs_request('main_grap_user_vs_request',data_name, data_month, value_nps, value_requests);
       }
-      function main_grap_avg_per_month() {
-        var _token = $('input[name="_token"]').val();
-        var data_count = [{value:75, name:'April 2017 = 75'},
-                          {value:2, name:'May 2017 = 2'},
-                          {value:1, name:'June 2017 = 1'},
-                          {value:46, name:'July 2017 = 46'},
-                          {value:1, name:'August 2017 = 1'},
-                          {value:3, name:'September 2017 = 3'}];
 
-        var data_name = ["April 2017 = 75","May 2017 = 2","June 2017 = 1","July 2017 = 46","August 2017 = 1","September 2017 = 3"];
-        main_gra_grade_avg_per_month('main_gra_grade_avg_per_month', data_name, data_count, 'Promedio de Calificaciones', 'Mensual');
+      function main_grap_avg_per_month() {
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        var data_count = [];
+        var data_name = [];
+        $.ajax({
+            type: "POST",
+            url: "/get_graph_avgcal",
+            data: objData,
+            success: function (data){
+              $.each(JSON.parse(data),function(index, objdata){
+                data_name.push(objdata.Referencia + ' = ' + objdata.Promedio);
+                data_count.push({ value: objdata.Promedio, name: objdata.Referencia + ' = ' + objdata.Promedio},);
+              });
+              main_gra_grade_avg_per_month('main_gra_grade_avg_per_month', data_name, data_count, 'Promedio de Calificaciones', 'Mensual');
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
+        // main_gra_grade_avg_per_month('main_gra_grade_avg_per_month', data_name, data_count, 'Promedio de Calificaciones', 'Mensual');
       }
+
+      function table_comparative_v1() {
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/get_graph_uvsr",
+            data: objData,
+            success: function (data){
+              remplazar_thead_th($("#table_nps_vs_encuestados_mes"), 1 ,12);
+              table_comparativa_nps_v_enc(data, $("#table_nps_vs_encuestados_mes"));
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
+      }
+      function table_comparativa_nps_v_enc(datajson, table){
+        table.DataTable().destroy();
+        var vartable = table.dataTable(Configuration_table_responsive_simple);
+        vartable.fnClearTable();
+        $.each(JSON.parse(datajson), function(index, status){
+        vartable.fnAddData([
+            status.Concepto,
+            status.a12,
+            status.a11,
+            status.a10,
+            status.a9,
+            status.a8,
+            status.a7,
+            status.a6,
+            status.a5,
+            status.a4,
+            status.a3,
+            status.a2,
+            status.a1
+          ]);
+        });
+      }
+
+      function table_avg_vertical() {
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/get_table_vert",
+            data: objData,
+            success: function (data){
+              remplazar_thead_th($("#table_vertical"), 2 ,9);
+              table_comparativa_mes_vertical(data, $("#table_vertical"));
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
+      }
+      function table_comparativa_mes_vertical(datajson, table){
+        table.DataTable().destroy();
+        var vartable = table.dataTable(Configuration_table_responsive_simple);
+        vartable.fnClearTable();
+        $.each(JSON.parse(datajson), function(index, status){
+          var span_identificador = '';
+          if (status.Indicador == '0') { span_identificador = '<span class="label label-warning">Mantuvo</span>';}
+          if (status.Indicador == '1') { span_identificador = '<span class="label label-danger">Bajo</span>';}
+          if (status.Indicador == '2') { span_identificador = '<span class="label label-success">Subio</span>';}
+          if (status.Indicador == '3') { span_identificador = '<span class="label label-default">Sin indicador</span>';}
+        vartable.fnAddData([
+            status.name,
+            status.sitios,
+            status.a8,
+            status.a7,
+            status.a6,
+            status.a5,
+            status.a4,
+            status.a3,
+            status.a2,
+            status.a1,
+            span_identificador,
+          ]);
+        });
+      }
+      //julio 2017 - febrero 2017
+
+      function remplazar_thead_th(table, posicionini, posicionfin) {
+      	var datepicker3 = $('#date_to_search').val();
+        if (datepicker3 == ''){
+          var datepicker3 = moment().subtract(1, 'months').format('YYYY-MM');
+        }
+      	var datemod = datepicker3.split("-");
+      	var goodFormat = datemod[0] + "-" + datemod[1];
+        var j= posicionfin-posicionini;
+
+        for (var i = posicionini; i <= posicionfin; i++) {
+          table.DataTable().columns(i).header().to$().text(
+            moment(goodFormat).subtract(j, 'months').format('YYYY MMMM')
+          );
+          j--;
+        }
+      }
+
 
     </script>
   @else

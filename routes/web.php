@@ -120,6 +120,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_graph_nps' , 'ViewDashNPSController@percent_graph_nps');
     Route::post('/get_graph_ppd' , 'ViewDashNPSController@cant_graph_ppd');
     Route::post('/get_graph_uvsr' , 'ViewDashNPSController@graph_uvsr');
+    Route::post('/get_graph_avgcal' , 'ViewDashNPSController@graph_avgcal');
+    Route::post('/get_table_vert' , 'ViewDashNPSController@table_vert');
+
+
   //Dashboard Sitwifi
     Route::get('/view_dashboard_survey_sit' , 'ViewDashSitController@index');
     Route::get('/configure_survey_admin_sit' , 'ConfigurationSitController@index');

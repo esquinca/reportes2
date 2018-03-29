@@ -47,8 +47,8 @@ class ViewDashSitController extends Controller
   public function show_user(Request $request)
   {
     $input_domain= $request->get('domain');
-    $result = User::select('id', 'name')->get();
-    // $result = DB::select('CALL Get_Cliente_Vertical (?)', array($input_domain));
+    // $result = User::select('id', 'name')->get();
+    $result = DB::select('CALL get_domain_user (?)', array($input_domain));
     return json_encode($result);
   }
   public function survey_record(Request $request)

@@ -2711,10 +2711,24 @@ function graph_gauge(title, grapname, valuemin, valuemax, valor) {
         {
             name: grapname,
             type: 'gauge',
+            splitNumber: 20,
             min: -valuemin,
             max: valuemax,
             detail: {formatter:'{value}'},
-            data: [{value: valor, name: grapname}]
+            data: [{value: valor, name: grapname}],
+            axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                    color: [[0.85, '#E73231'],[0.95, '#FFBF00'],[1, '#0B610B']],
+                    width: 30
+                }
+            },
+            axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    color: 'auto',
+                    fontSize: 10,
+
+                }
+            },
         }
     ]
   };

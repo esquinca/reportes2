@@ -93,6 +93,37 @@ class ViewDashNPSController extends Controller
     $result = DB::select('CALL NPS_VS_REQUEST (?)', array($date));
     return json_encode($result);
   }
+  public function graph_avgcal(Request $request)
+  {
+    $input_date_i= $request->get('date_to_search');
+    if ($input_date_i != '') {
+      $date = $input_date_i.'-01';
+    }
+    else {
+      $date_current = date('Y-m');
+      $sub_month = strtotime ( '-1 month' , strtotime ( $date_current ) ) ;
+      $sub_month = date ( 'Y-m' , $sub_month );
+      $date = $sub_month.'-01';
+    }
+    $result = DB::select('CALL AVG_YEAR_CALIFI_GRAPH (?)', array($date));
+    return json_encode($result);
+  }
+  public function table_vert(Request $request)
+  {
+    $input_date_i= $request->get('date_to_search');
+    if ($input_date_i != '') {
+      $date = $input_date_i.'-01';
+    }
+    else {
+      $date_current = date('Y-m');
+      $sub_month = strtotime ( '-1 month' , strtotime ( $date_current ) ) ;
+      $sub_month = date ( 'Y-m' , $sub_month );
+      $date = $sub_month.'-01';
+    }
+    $result = DB::select('CALL NPS_Vertical (?)', array($date));
+    return json_encode($result);
+  }
+
 
 
 }
