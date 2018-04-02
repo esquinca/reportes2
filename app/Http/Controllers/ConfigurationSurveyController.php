@@ -236,7 +236,7 @@ class ConfigurationSurveyController extends Controller
          'shell_status' => $encriptostatus
       ];
 
-      $this->sentSurveyEmail($sql[$0]->email, $datos);
+      $this->sentSurveyEmail($sql[0]->email, $datos);
 
       $operacion='1';
     }
