@@ -2396,6 +2396,81 @@ var Configuration_table_responsive_with_pdf_client_hotel= {
   }
 };
 
+var Configuration_table_responsive_with_pdf_survey_nps= {
+  dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    buttons: [
+      {
+        extend: 'excelHtml5',
+        text: '<i class="fa fa-file-excel-o"></i> Excel',
+        titleAttr: 'Excel',
+        title: function ( e, dt, node, config ) {
+          return 'Resultados - Encuesta';
+        },
+        exportOptions: {
+            columns: [  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+        },
+        className: 'btn bg-olive custombtntable',
+      },
+      {
+        extend: 'csvHtml5',
+        text: '<i class="fa fa-file-text-o"></i> CSV',
+        titleAttr: 'CSV',
+        title: function ( e, dt, node, config ) {
+          return 'Resultados - Encuesta';
+        },
+        exportOptions: {
+            columns: [  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+        },
+        className: 'btn btn-info',
+      },
+      {
+        extend: 'pdf',
+        orientation: 'landscape',
+        pageSize: 'LEGAL',
+        text: '<i class="fa fa-file-pdf-o"></i>  PDF',
+        title: function ( e, dt, node, config ) {
+          return 'Resultados - Encuesta';
+        },
+        exportOptions: {
+            columns: [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
+            modifier: {
+                page: 'current',
+            }
+        },
+        className: 'btn btn-danger',
+      }
+  ],
+  "processing": true,
+"aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+  language:{
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+  }
+};
+
+
 function function_tree(title, titlepral, subtitlepral, data1) {
   var myChart = echarts.init(document.getElementById(title));
   myChart.showLoading();
@@ -2718,7 +2793,7 @@ function graph_gauge(title, grapname, valuemin, valuemax, valor) {
             data: [{value: valor, name: grapname}],
             axisLine: {            // 坐标轴线
                 lineStyle: {       // 属性lineStyle控制线条样式
-                    color: [[0.85, '#E73231'],[0.95, '#FFBF00'],[1, '#0B610B']],
+                    color: [[0.85, '#E73231'],[0.90, '#FFBF00'],[1, '#0B610B']],
                     width: 30
                 }
             },

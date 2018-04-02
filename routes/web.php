@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/survey_results' , 'ResultsSurveyController@index');
   //Post Survey_results.
     Route::post('/survey_viewresults' , 'ResultsSurveyController@result_survey');
+    Route::post('/get_modal_comments' , 'ResultsSurveyController@comment_survey');
     Route::get('/configure_survey_admin' , 'ConfigurationSurveyController@index');
     Route::post('/assign_survey' , 'ConfigurationSurveyController@create');
   //Configuracion nps

@@ -26,121 +26,84 @@
 
 @section('content')
     @if( auth()->user()->can('View results survey') )
+    <div class="modal modal-default fade" id="modal-comments" data-backdrop="static">
+      <div class="modal-dialog" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-id-card-o" style="margin-right: 4px;"></i>Comentario</h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <div class="box-body">
+                <div class="row">
+
+                  <div class="col-xs-12">
+                    <div class="form-group">
+                      <label for="inputEditEmail" class="col-sm-12 control-label">Texto</label>
+                      <div class="col-sm-12">
+                        <textarea id="comment_a" name="comment_a"  class="form-control" style="min-width: 100%"readonly></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <small>Se necesita aplicar un filtro para visualizar datos</small>
-          <form id="filasasw" action="{{ url('result_filter') }}" method="post">
-            {{ csrf_field() }}
-            <div id="filtration_container" name="filtration_container">
-              <div id="filter_year" name="filter_year" class="row row-separation control-filter">
-                <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
-      						 <button id='' type="button" class="boton-mini btn btn-warning" ><i class="fa fa-minus-square" aria-hidden="true"></i></button> <strong>Año</strong>
-      					</div>
-                <div class="col-xs-8 col-sm-2 col-md-11 col-lg-1">
-                  <select id="searchyear" name="searchyear" class="form-control">
-                    <option value="" selected="selected">{{ trans('message.selectopt') }}</option>
-                  </select>
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row">
+            <form id="search_info" name="search_info" class="form-inline" method="post">
+              {{ csrf_field() }}
+              <div class="col-sm-2">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                  <input id="date_to_search" type="text" class="form-control" name="date_to_search">
                 </div>
               </div>
-              <div id="filter_month" name="filter_month" class="row row-separation control-filter">
-                <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
-      						 <button id='' type="button" class="boton-mini btn btn-warning" ><i class="fa fa-minus-square" aria-hidden="true"></i></button> <strong>Mes</strong>
-      					</div>
-                <div class="col-xs-8 col-sm-2 col-md-11 col-lg-1">
-                  <select id="searchmonth" name="searchmonth" class="form-control">
-                    <option value="" selected="selected">{{ trans('message.selectopt') }}</option>
-                    @for ($i = 1; $i <=12; $i++)
-                        <option value="{{ $i }}">
-                          <?php
-                          $mes = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-                          echo $mes = $mes[$i-1];
-                          ?>
-                        </option>
-                    @endfor
-                  </select>
-                </div>
+              <div class="col-sm-10">
+                <button id="boton-aplica-filtro" type="button" class="btn btn-info filtrarDashboard">
+                  <i class="glyphicon glyphicon-filter" aria-hidden="true"></i>  Filtrar
+                </button>
               </div>
-              <div id="filter_vertical" name="filter_vertical" class="row row-separation control-filter">
-                <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
-      						 <button id='' type="button" class="boton-mini btn btn-warning" ><i class="fa fa-minus-square" aria-hidden="true"></i></button> <strong>Vertical</strong>
-      					</div>
-                <div class="col-xs-8 col-sm-2 col-md-11 col-lg-1">
-                  <select id="searchvertical" name="searchvertical" class="form-control" style="width: 100%;">
-                    <option value="" selected="selected">{{ trans('message.selectopt') }}</option>
-
-                  </select>
-                </div>
-              </div>
-              <div id="filter_operation" name="filter_operation" class="row row-separation control-filter">
-                <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
-      						 <button id='' type="button" class="boton-mini btn btn-warning" ><i class="fa fa-minus-square" aria-hidden="true"></i></button> <strong>Operación</strong>
-      					</div>
-                <div class="col-xs-8 col-sm-2 col-md-11 col-lg-1">
-                  <select id="searchoperation" name="searchoperation" class="form-control" style="width: 100%;">
-                    <option value="" selected="selected">{{ trans('message.selectopt') }}</option>
-                    <option value="1">Wifi Admin</option>
-                    <option value="2">Wifimedia</option>
-                  </select>
-                </div>
-              </div>
-              <div id="filter_average" name="filter_average" class="row row-separation control-filter">
-                <div class="nowrap col-xs-4 col-sm-2 col-md-1 col-lg-1">
-      						 <button id='' type="button" class="boton-mini btn btn-warning" ><i class="fa fa-minus-square" aria-hidden="true"></i></button> <strong>Promedio</strong>
-      					</div>
-                <div class="col-xs-8 col-sm-2 col-md-11 col-lg-1">
-                  <select id="searchaverage" name="searchaverage" class="form-control" style="width: 100%;">
-                    <!-- <option value="" selected="selected">{{ trans('message.selectopt') }}</option> -->
-                    <option value="0">Sin promedio general</option>
-                    <option value="1">Con promedio general</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-inline row-separation">
-              <button id="boton-aplica-filtro-visitantes" type="button" class="btn btn-primary">
-                <i class="glyphicon glyphicon-filter" aria-hidden="true"></i> Aplicar Filtro
-              </button>
-              <button id='boton_muestra_selectfiltro' type="button" class="btn btn-success">
-                <i class="fa fa-plus-square" aria-hidden="true"></i> Añadir Filtro
-              </button>
-              <select id='selectfiltro'class ='selectFiltro' class="form-control">
-                <option value="" selected="selected">{{ trans('message.selectopt') }}</option>
-                <option value="filter_year">Año</option>
-                <option value="filter_month">Mes</option>
-                <option value="filter_vertical">Vertical</option>
-                <option value="filter_operation">Operación</option>
-                <option value="filter_average">Promedio General * Mes</option>
-              </select>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 pt-10">
           <div class="table-responsive">
             <table id="table_qualification" class="table table-striped table-bordered table-hover">
               <thead>
-                <tr class="bg-primary" style="background: #00A5BA;">
+                <tr class="bg-primary" style="background: #088A68;">
                   <th> <small>Vertical</small> </th>
                   <th> <small>Sitio</small> </th>
-                  <th> <small id="mes01" name="mes01"></small> </th>
-                  <th> <small id="mes02" name="mes02"></small> </th>
-                  <th> <small id="mes03" name="mes03"></small> </th>
-                  <th> <small id="mes04" name="mes04"></small> </th>
-                  <th> <small id="mes05" name="mes05"></small> </th>
-                  <th> <small id="mes06" name="mes06"></small> </th>
-                  <th> <small id="mes07" name="mes07"></small> </th>
-                  <th> <small id="mes08" name="mes08"></small> </th>
-                  <th> <small id="mes09" name="mes09"></small> </th>
-                  <th> <small id="mes10" name="mes10"></small> </th>
-                  <th> <small id="mes11" name="mes11"></small> </th>
-                  <th> <small id="mes12" name="mes12"></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
+                  <th> <small></small> </th>
                   <th> <small>Año.</small> </th>
-                  <th> <small>Prom.</small> </th>
+                  <th> <small>NPS.</small> </th>
                   <th> <small>Ind.</small> </th>
                   <th> <small>Ingeniero</small> </th>
-                  <th> <small >Comentario</small> </th>
+                  <th> <small>Comentario</small> </th>
                 </tr>
               </thead>
               <tbody>
@@ -183,8 +146,16 @@
 
 @push('scripts')
   @if( auth()->user()->can('View results survey') )
+    <script src="{{ asset('plugins/momentupdate/moment.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/momentupdate/moment-with-locales.js') }}" type="text/javascript"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/filter.css')}}" >
     <script src="{{ asset('js/admin/qualification/resultssurvey.js')}}"></script>
+    <style media="screen">
+      .pt-10 {
+        padding-top: 10px;
+      }
+    </style>
   @else
     <!--NO VER-->
   @endif
