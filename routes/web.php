@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/viewreportscont', 'ViewReportContController@index');
     Route::post('/get_user_cont', 'ViewReportContController@table_user');
     Route::post('/get_gb_cont', 'ViewReportContController@table_gb');
+    Route::post('/get_device_cont', 'ViewReportContController@table_device');
   //Calificaciones
     Route::get('/view_dashboard_survey_nps' , 'ViewDashNPSController@index');
     Route::get('/create_survey_admin' , 'CreateSurveyController@index');
