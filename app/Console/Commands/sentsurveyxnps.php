@@ -71,7 +71,11 @@ class sentsurveyxnps extends Command
             $encriptodata= Crypt::encryptString($nuevolink);
             $encriptostatus= Crypt::encryptString('1');
 
-            array_push($data_emails, ['name' => $sql[$i]->name, 'email' => $sql[$i]->email, 'shelldata' => $encriptodata, 'shellstatus' => $encriptostatus]);
+            $data_emails = [
+                'nombre' => $sql[$i]->name, 
+                'shell_data' => $encriptodata, 
+                'shell_status' => $encriptostatus
+            ];
             array_push($data_insert, [
                 'user_id' => $sql[$i]->id,
                 'encuesta_id' => 1,
@@ -83,6 +87,8 @@ class sentsurveyxnps extends Command
                 'shell_data' => $encriptodata,
                 'shell_status' => $encriptostatus
             ]);
+            //
+            $this->sentSurveyEmail($sql[$i]->email, $data_emails);
         }
 
         //$res = DB::table('encuesta_users')->insert($data_insert);
@@ -92,33 +98,33 @@ class sentsurveyxnps extends Command
         //     $this->error('no se insertaron datos.');
         // }
 
-        //$this->sentSurveyEmail($data_emails);
         
+        //dd($sql);
         $this->info('Command Completed.');
         //dd($sql2);
     }
 
-    public function sentSurveyEmail($data)
+    public function sentSurveyEmail($correo, $data)
     {
         //$this->line('Current Iteration: ' . $i);
         //dd($data[0]['email']);
 
-        $data_count = count($data);
-        for ($i=0; $i < $data_count; $i++) { 
-            $nombre = $data[$i]['name'];
-            $correo = $data[$i]['email'];
-            $shell1 = $data[$i]['shelldata'];
-            $shell2= $data[$i]['shellstatus'];
+        // $data_count = count($data);
+        // for ($i=0; $i < $data_count; $i++) { 
+        //     $nombre = $data[$i]['name'];
+        //     $correo = $data[$i]['email'];
+        //     $shell1 = $data[$i]['shelldata'];
+        //     $shell2= $data[$i]['shellstatus'];
 
-            $datos = [
-                'nombre' => $nombre,
-                'shell_data' => $shell1,
-                'shell_status' => $shell2,
-            ];
-            $this->line('Sending Email to: ' . $nombre . ', ' . $correo);
+        //     $datos = [
+        //         'nombre' => $nombre,
+        //         'shell_data' => $shell1,
+        //         'shell_status' => $shell2,
+        //     ];
+            $this->line('Sending Email to: ' . $data['nombre'] . ', ' . $correo);
             //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveynpsmail($datos));
-            //Mail::to($correo)->send(new Sentsurveynpsmail($datos));
-        }
+            //Mail::to($correo)->send(new Sentsurveynpsmail($data));
+        //}
     }
 
 }

@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use DB;
 
 use Mail;
-//use App\Mail\Sentsurveynpsmail;
+use App\Mail\Sentsurveynpsmail;
 use Illuminate\Support\Facades\Crypt;
 
 class terminationsurveyxnps extends Command
@@ -43,8 +43,9 @@ class terminationsurveyxnps extends Command
      */
     public function handle()
     {
-        $encuesta_ids = [];
-        $data_update = array();
+        //$encuesta_ids = [];
+        //$data_emails = [];
+        //$data_update = array();
 
         // $fechaini = "2018-04-01";
         // $fechafin = "2018-04-30";
@@ -73,24 +74,31 @@ class terminationsurveyxnps extends Command
             // $encriptodata= Crypt::encryptString($nuevolink);
             //$encriptostatustest= Crypt::encryptString('1');
             //$data_update = array_add(['estatus_id' => 2], 'shell_status', $encriptostatus);
-
             $encriptostatus = Crypt::encryptString('2');
-            array_push($encuesta_ids, $sql[$i]->id);
-            array_push($data_update, [
-                'estatus_id' => 2, 
-                'shell_status' => $encriptostatus
-            ]);
+            //$sql2 = DB::table('users')->select('email', 'name')->where('id', $sql[$i]->user_id)->get();
+            // array_push($data_emails, 
+            //     [
+            //         'name' => $sql2[$i]->name, 
+            //         'shellstatus' => $encriptostatus
+            //     ]);
+            //array_push($encuesta_ids, $sql[$i]->id);
+            // array_push($data_update, [
+            //     'estatus_id' => 2, 
+            //     'shell_status' => $encriptostatus
+            // ]);
 
             $res = DB::table('encuesta_users')->where('id', $id_encuestauser)->update(['estatus_id' => 2, 'shell_status' => $encriptostatus]);
+
         }
         DB::commit();
         //$res = DB::table('encuesta_users')->whereIn('id', $encuesta_ids)->update($data_update);
 
         //$this->line($sql);
+        //dd($sql);
         $this->info('Command Completed.');
     }
 
-    public function sentSurveyEmail($data)
+    public function sentSurveyEmail($email, $data)
     {
         //$this->line('Current Iteration: ' . $i);
         //dd($data[0]['email']);
@@ -109,7 +117,7 @@ class terminationsurveyxnps extends Command
             ];
             $this->line('Sending Email to: ' . $nombre . ', ' . $correo);
             //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveynpsmail($datos));
-            //Mail::to($correo)->send(new Sentsurveynpsmail($datos));
+            //Mail::to($email)->send(new Sentsurveynpsmail($data));
         }
     }
 

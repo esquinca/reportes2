@@ -14,6 +14,7 @@ use DateTime;
 use DB;
 use Auth;
 use Mail;
+use App\Mail\Sentsurveynpsmail;
 use App\Hotel;
 use App\Encuesta;
 use App\Encuesta_user;
@@ -227,6 +228,16 @@ class ConfigurationSurveyController extends Controller
       $new_survey_individual->shell_status=$encriptostatus;
       $new_survey_individual->save();
 
+      $sql = DB::table('users')->select('email', 'name')->where('id', $clientes[$i])->get();
+
+      $datos = [
+         'nombre' => $sql[0]->name,
+         'shell_data' => $encriptodata,
+         'shell_status' => $encriptostatus
+      ];
+
+      $this->sentSurveyEmail($sql[$0]->email, $datos);
+
       $operacion='1';
     }
     if ($operacion == '1') {
@@ -238,6 +249,7 @@ class ConfigurationSurveyController extends Controller
       return Redirect::back();
     }
   }
+
   public function capture_auto(Request $request)
   {
     $vertical= $request->select_one_v;
@@ -300,6 +312,18 @@ class ConfigurationSurveyController extends Controller
 
     //dd($count_sql);
 
+  }
+
+  public function sentSurveyEmail($email, $data)
+  {
+      // $datos = [
+      //    'nombre' => $sql[0]->name,
+      //    'shell_data' => $encriptodata,
+      //    'shell_status' => $encriptostatus
+      // ];
+
+      Mail::to($email)->send(new Sentsurveynpsmail($data));
+      
   }
 
 }

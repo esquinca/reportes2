@@ -114,7 +114,6 @@ class ViewDashSitController extends Controller
 
 
         Mail::to($email)->send(new Sentsurveysitwifimail($data));
-        //Mail::to($correo)->send(new Sentsurveynpsmail($datos));
         
     }
 
