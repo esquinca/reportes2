@@ -3352,7 +3352,8 @@ function grap_user_vs_request(title, data_name, campom, campoa, campob){
         }
     },
     legend: {
-        data: data_name
+        data: data_name,
+
     },
     grid: {
         top: 70,
@@ -3370,6 +3371,20 @@ function grap_user_vs_request(title, data_name, campom, campoa, campob){
                     color: colors[0]
                 }
             },
+            axisLabel : {
+               show:true,
+               interval: 'auto',    // {number}
+               rotate: 15,
+               margin: 10,
+               formatter: '{value}',
+               textStyle: {
+                  //  color: 'blue',
+                   fontFamily: 'sans-serif',
+                   fontSize: 8,
+                   fontStyle: 'italic',
+                   fontWeight: 'bold'
+               }
+            },
             axisPointer: {
                 label: {
                     formatter: function (params) {
@@ -3378,7 +3393,8 @@ function grap_user_vs_request(title, data_name, campom, campoa, campob){
                     }
                 }
             },
-            data: campom
+            data: campom,
+
         },
         {
             type: 'category',
@@ -3390,6 +3406,20 @@ function grap_user_vs_request(title, data_name, campom, campoa, campob){
                 lineStyle: {
                     color: colors[1]
                 }
+            },
+            axisLabel : {
+               show:true,
+               interval: 'auto',    // {number}
+               rotate: 15,
+               margin: 10,
+               formatter: '{value}',
+               textStyle: {
+                  //  color: 'blue',
+                   fontFamily: 'sans-serif',
+                   fontSize: 8,
+                   fontStyle: 'italic',
+                   fontWeight: 'bold'
+               }
             },
             axisPointer: {
                 label: {

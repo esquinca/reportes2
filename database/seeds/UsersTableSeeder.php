@@ -904,7 +904,7 @@ class UsersTableSeeder extends Seeder
 
         $menuAdminD02 = new Menu;
         $menuAdminD02->name='view_dashboard_survey_sit';
-        $menuAdminD02->display_name='Dashboard encuesta sitwifi';
+        $menuAdminD02->display_name='Dashboard encuesta gral';
         $menuAdminD02->description='Permite visualizar los resultados de la encuesta Sitwfi.';
         $menuAdminD02->url='view_dashboard_survey_sit';
         $menuAdminD02->section_id=$seccion_admin_c->id;
@@ -928,18 +928,18 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_three_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD0->id]);
         $assigned_menu_three_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD0->id]);
 
-        $menuAdminD1 = new Menu;
-        $menuAdminD1->name='fill_survey_admin';
-        $menuAdminD1->display_name='Llenar encuesta';
-        $menuAdminD1->description='Permite capturar la encuesta mensual de un hotel de manera manual.';
-        $menuAdminD1->url='fill_survey_admin';
-        $menuAdminD1->section_id=$seccion_admin_c->id;
-        $menuAdminD1->icons='fa fa-indent';
-        $menuAdminD1->save();
-        $assigned_menu_three_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD1->id]);
-        $assigned_menu_three_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD1->id]);
-        $assigned_menu_three_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD1->id]);
-        $assigned_menu_three_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD1->id]);
+        // $menuAdminD1 = new Menu;
+        // $menuAdminD1->name='fill_survey_admin';
+        // $menuAdminD1->display_name='Llenar encuesta';
+        // $menuAdminD1->description='Permite capturar la encuesta mensual de un hotel de manera manual.';
+        // $menuAdminD1->url='fill_survey_admin';
+        // $menuAdminD1->section_id=$seccion_admin_c->id;
+        // $menuAdminD1->icons='fa fa-indent';
+        // $menuAdminD1->save();
+        // $assigned_menu_three_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD1->id]);
+        // $assigned_menu_three_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD1->id]);
+        // $assigned_menu_three_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD1->id]);
+        // $assigned_menu_three_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD1->id]);
 
         $menuAdminD2 = new Menu;
         $menuAdminD2->name='edit_survey_admin';
@@ -967,18 +967,18 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_three_d2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD3->id]);
         $assigned_menu_three_d3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD3->id]);
 
-        $menuAdminD4 = new Menu;
-        $menuAdminD4->name='configure_survey_admin';
-        $menuAdminD4->display_name='Configuración encuesta gral.';
-        $menuAdminD4->description='Permite configurar las encuestas de cada sitio.';
-        $menuAdminD4->url='configure_survey_admin';
-        $menuAdminD4->section_id=$seccion_admin_c->id;
-        $menuAdminD4->icons='fa fa-cog';
-        $menuAdminD4->save();
-        $assigned_menu_three_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD4->id]);
-        $assigned_menu_three_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD4->id]);
-        $assigned_menu_three_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD4->id]);
-        $assigned_menu_three_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD4->id]);
+        // $menuAdminD4 = new Menu;
+        // $menuAdminD4->name='configure_survey_admin';
+        // $menuAdminD4->display_name='Configuración encuesta gral.';
+        // $menuAdminD4->description='Permite configurar las encuestas de cada sitio.';
+        // $menuAdminD4->url='configure_survey_admin';
+        // $menuAdminD4->section_id=$seccion_admin_c->id;
+        // $menuAdminD4->icons='fa fa-cog';
+        // $menuAdminD4->save();
+        // $assigned_menu_three_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD4->id]);
+        // $assigned_menu_three_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD4->id]);
+        // $assigned_menu_three_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD4->id]);
+        // $assigned_menu_three_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD4->id]);
 
         $menuAdminD5 = new Menu;
         $menuAdminD5->name='configure_survey_admin_nps';
@@ -995,7 +995,7 @@ class UsersTableSeeder extends Seeder
 
         $menuAdminD6 = new Menu;
         $menuAdminD6->name='configure_survey_admin_sit';
-        $menuAdminD6->display_name='Configuración encuesta sitwifi.';
+        $menuAdminD6->display_name='Configuración encuesta gral.';
         $menuAdminD6->description='Permite configurar las encuestas sitwifi para el personal.';
         $menuAdminD6->url='configure_survey_admin_sit';
         $menuAdminD6->section_id=$seccion_admin_c->id;
