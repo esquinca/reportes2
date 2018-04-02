@@ -39,7 +39,7 @@ class ViewReportContController extends Controller
     dd($result2);
   }
 
-  public function table_gb(Request $request) 
+  public function table_gb(Request $request)
   {
     $hotel = $request->data_one;
     $date = $request->data_two;
@@ -48,13 +48,13 @@ class ViewReportContController extends Controller
     $dateyear= (int)$datemonthyear[0];
     $datemonth= (int)$datemonthyear[1];
     $datefull = $dateyear . '-' . $datemonth . '-01';
-    
+
     $result1 = DB::select('CALL  summary_chain_gb (?, ?)', array($datefull,$hotel));
 
     return json_encode($result1);
   }
 
-  public function table_user(Request $request) 
+  public function table_user(Request $request)
   {
     $hotel = $request->data_one;
     $date = $request->data_two;
@@ -68,5 +68,20 @@ class ViewReportContController extends Controller
 
     return json_encode($result1);
   }
+  public function table_device(Request $request)
+  {
+    $hotel = $request->data_one;
+    $date = $request->data_two;
+
+    $datemonthyear =  explode('-', $date);
+    $dateyear= (int)$datemonthyear[0];
+    $datemonth= (int)$datemonthyear[1];
+    $datefull = $dateyear . '-' . $datemonth . '-01';
+
+    $result1 = DB::select('CALL summary_chain_devices (?, ?)', array($datefull,$hotel));
+
+    return json_encode($result1);
+  }
+
 
 }

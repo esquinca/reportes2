@@ -640,18 +640,18 @@ class UsersTableSeeder extends Seeder
         $assigned_menu_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA0->id]);
         $assigned_menu_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA0->id]);
 
-        $menuAdminA1 = new Menu;
-        $menuAdminA1->name='detailed_hotels';
-        $menuAdminA1->display_name='Detallado por Hotel con precios';
-        $menuAdminA1->description='Permite visualizar el inventario actual de los sitios con precios permitidos.';
-        $menuAdminA1->url='detailed_hotels';
-        $menuAdminA1->section_id=$seccion_admin_a->id;
-        $menuAdminA1->icons='fa fa-circle-o';
-        $menuAdminA1->save();
-        $assigned_menu_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA1->id]);
-        $assigned_menu_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA1->id]);
-        $assigned_menu_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA1->id]);
-        $assigned_menu_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA1->id]);
+        // $menuAdminA1 = new Menu;
+        // $menuAdminA1->name='detailed_hotels';
+        // $menuAdminA1->display_name='Detallado por Hotel con precios';
+        // $menuAdminA1->description='Permite visualizar el inventario actual de los sitios con precios permitidos.';
+        // $menuAdminA1->url='detailed_hotels';
+        // $menuAdminA1->section_id=$seccion_admin_a->id;
+        // $menuAdminA1->icons='fa fa-circle-o';
+        // $menuAdminA1->save();
+        // $assigned_menu_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA1->id]);
+        // $assigned_menu_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA1->id]);
+        // $assigned_menu_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA1->id]);
+        // $assigned_menu_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA1->id]);
 
         $menuAdminA2 = new Menu;
         $menuAdminA2->name='detailed_proyect';
