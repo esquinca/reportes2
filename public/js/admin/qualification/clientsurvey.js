@@ -7,7 +7,8 @@ function contador() {
           {
             document.getElementById('segundos').innerHTML = 0;
             setTimeout(function(){
-              window.location.href = "{{ url('/') }}";
+              // window.location.href = "{{ url('/') }}";
+              window.location.href = 'http://sitwifi.com/';
             }, 1000);
             console.log('detener');
           }
