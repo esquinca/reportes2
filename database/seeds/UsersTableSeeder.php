@@ -941,18 +941,18 @@ class UsersTableSeeder extends Seeder
         // $assigned_menu_three_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD1->id]);
         // $assigned_menu_three_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD1->id]);
 
-        $menuAdminD2 = new Menu;
-        $menuAdminD2->name='edit_survey_admin';
-        $menuAdminD2->display_name='Editar encuesta';
-        $menuAdminD2->description='Permite editar una encuesta mensual capturada por un miembro de un hotel.';
-        $menuAdminD2->url='edit_survey_admin';
-        $menuAdminD2->section_id=$seccion_admin_c->id;
-        $menuAdminD2->icons='fa fa-inbox';
-        $menuAdminD2->save();
-        $assigned_menu_three_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD2->id]);
-        $assigned_menu_three_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD2->id]);
-        $assigned_menu_three_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD2->id]);
-        $assigned_menu_three_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD2->id]);
+        // $menuAdminD2 = new Menu;
+        // $menuAdminD2->name='edit_survey_admin';
+        // $menuAdminD2->display_name='Editar encuesta';
+        // $menuAdminD2->description='Permite editar una encuesta mensual capturada por un miembro de un hotel.';
+        // $menuAdminD2->url='edit_survey_admin';
+        // $menuAdminD2->section_id=$seccion_admin_c->id;
+        // $menuAdminD2->icons='fa fa-inbox';
+        // $menuAdminD2->save();
+        // $assigned_menu_three_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD2->id]);
+        // $assigned_menu_three_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD2->id]);
+        // $assigned_menu_three_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD2->id]);
+        // $assigned_menu_three_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD2->id]);
 
         $menuAdminD3 = new Menu;
         $menuAdminD3->name='survey_results';
