@@ -21,35 +21,28 @@
                 <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px; margin: 0 auto; padding: 0; -premailer-width: 570px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; background-color: #FFFFFF;">
                   <tr>
                       <td style="padding: 35px;">
-                        <h1 style="margin-top: 0; color: #2F3133;  font-size: 19px;  font-weight: bold;  text-align: left;">Encuesta</h1>
+                        <h1 style="margin-top: 0; color: #2F3133;  font-size: 19px;  font-weight: bold;  text-align: left;">Encuesta Sitwifi.</h1>
 
                         <p style="margin-top: 0;
                                   color: #74787E;
                                   line-height: 1.5em;
                                   font-size: 12px;
-                                  text-align: left;">Estimado <strong>{{$data['nombre']}}</strong></p>
+                                  text-align: left;">Estimado <strong> Estimado {{$data['nombre']}}</strong></p>
 
 
                         <p style="margin-top: 0;
                                   color: #74787E;
                                   line-height: 1.5em;
                                   font-size: 12px;
-                                  text-align: left;">La siguiente IP: <strong>{{$data['shell_data']}}</strong></p>
+                                  text-align: left;">Favor de ingresar al siguiente <a href="{{'http://sitwifi.com:8006' . $data['shell_data'] . '/' . $data['shell_status']}}" target="_blank">enlace y completar la encuesta.</a></p>
 
-
-                        <p style="margin-top: 0;
-                                  color: #74787E;
-                                  line-height: 1.5em;
-                                  text-align: left;
-                                  font-size: 12px;
-                                  text-align: left;">Perteneciente al siguiente sitio: <strong></strong></p>
 
                         <p style="margin-top: 0;
                                   color: #74787E;
                                   line-height: 1.5em;
                                   text-align: left;
                                   font-size: 12px;
-                                  text-align: left;"><strong>Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes la fecha <?php echo date('l jS \de F Y h:i:s A'); ?></strong></p>
+                                  text-align: left;"><strong><?php echo date('l jS \de F Y h:i:s A'); ?></strong></p>
 
                       </td>
                   </tr>

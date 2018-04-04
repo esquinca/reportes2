@@ -346,6 +346,9 @@
                                             <th> <small>Hotel</small> </th>
                                             <th> <small>Email</small> </th>
                                             <th> <small>Estatus</small> </th>
+                                            <th> <small>Fecha corresponde</small> </th>
+                                            <th> <small>Fecha inicio</small> </th>
+                                            <th> <small>Fecha fin</small> </th>
                                             <th> <small>Operación A</small> </th>
                                             <th> <small>Operación B</small> </th>
                                         </tr>

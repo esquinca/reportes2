@@ -274,7 +274,7 @@ class ConfigurationSurveyController extends Controller
                             ->where('fecha_corresponde', $mesanteriorfull)
                             ->where('fecha_fin', $fecha_fin)
                             ->count();
-        echo "count: " . $count_hotel_of_user . "<br>";
+        //echo "count: " . $count_hotel_of_user . "<br>";
       if ($count_hotel_of_user === 0) {
         
         $nuevolink = $clientes[$i].'/'.'1'.'/'.$mesanteriorfull.'/'.$fecha_fin;
@@ -297,7 +297,7 @@ class ConfigurationSurveyController extends Controller
 
         $operacion='1';
       }else{
-        echo $clientes[$i] . ": es 1 " . "<br>";
+        //echo $clientes[$i] . ": es 1 " . "<br>";
       }
 
     }
