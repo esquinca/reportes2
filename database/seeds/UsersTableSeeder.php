@@ -1,5 +1,4 @@
 <?php
-
 use App\User;
 use App\Section;
 use App\Menu;
@@ -63,3311 +62,2933 @@ class UsersTableSeeder extends Seeder
       Marca::truncate();
       Modelo::truncate();
       Estado::truncate();
-      // Proyecto::truncate();
-
-
-      //Creamos los roles predeterminados
-      $superadminRole = Role::create(['name' => 'SuperAdmin']);
-           $adminRole = Role::create(['name' => 'Admin']);
-        $operatorRole = Role::create(['name' => 'Operator']);
-            $userRole = Role::create(['name' => 'UserRole']);
-         $monitorRole = Role::create(['name' => 'Monitor']);
-         $surveyedRole = Role::create(['name' => 'Surveyed']);
-         $conciergeRole = Role::create(['name' => 'Itconcierge']);
-
-      //Creamos los permisos predeterminados
-        //- Dashboard principal
-        $viewdashboardpral= Permission::create(['name' => 'View dashboard pral']);
-        //- Inventario
-        $inventoryviewdethotel= Permission::create(['name' => 'View detailed for hotel']);
-        $inventoryviewdethotel2= Permission::create(['name' => 'View detailed for hotel with cost']);
-        $inventoryviewdethotel3= Permission::create(['name' => 'View detailed for proyect']);
-        $inventoryviewdethotel4= Permission::create(['name' => 'View cover']);
-        $inventoryviewdethotel5= Permission::create(['name' => 'View distribucion']);
-
-        //- Equipos
-        $equipmentview= Permission::create(['name' => 'View add equipment']);
-        $equipmentviewadd= Permission::create(['name' => 'Create equipment']);
-
-        $equipmentviewremoved= Permission::create(['name' => 'View removed equipment']);
-        $equipmentremoved= Permission::create(['name' => 'Removed equipment']);
-
-        $equipmentviewsearch= Permission::create(['name' => 'View search equipment']);
-
-        $equipmentviewmove= Permission::create(['name' => 'View move equipment']);
-        $equipmentmove= Permission::create(['name' => 'Move equipment']);
-
-        $equipmentviewgroup= Permission::create(['name' => 'View equipment group']);
-        $equipmentviewgroupadd= Permission::create(['name' => 'Add equipment group']);
-        $equipmentviewgroupremoved= Permission::create(['name' => 'Removed equipment group']);
-
-        //- Reportes
-        $viewassignreport= Permission::create(['name' => 'View assign report']);
-        $viewcreatassignreport= Permission::create(['name' => 'Create assign report']);
-        $vieweditreport= Permission::create(['name' => 'Edit assign report']);
-        $viewdeletereport= Permission::create(['name' => 'Delete assign report']);
-
-        // $viewgeneralreport= Permission::create(['name' => 'View general report']);
-        $viewcreatgeneralreport= Permission::create(['name' => 'Create general report']);
-
-        $viewindividualreport= Permission::create(['name' => 'View individual capture']);
-        $viewcreatindividualreport= Permission::create(['name' => 'Create individual capture']);
-
-        $viewviewgeneratereport= Permission::create(['name' => 'View individual general report']);
-        $vieweditgeneratereport= Permission::create(['name' => 'Edit individual general report']);
-
-        $viewconciergeapproval= Permission::create(['name' => 'View concierge approval']);
-        $viewcreatconciergeapproval= Permission::create(['name' => 'Create concierge approval']);
-        $viewdeletconciergeapproval= Permission::create(['name' => 'Delete concierge approval']);
-
-        $viewadminapproval = Permission::create(['name' => 'View admin approval']);
-        $viewacceptadminapproval = Permission::create(['name' => 'Option admin approval']);
-        $viewnotificationadminapproval = Permission::create(['name' => 'Notification admin approval']);
-
-        $viewreport = Permission::create(['name' => 'View report']);
-        $viewreport2 = Permission::create(['name' => 'View report concat']);
-
-        $viewprovider = Permission::create(['name' => 'View provider']);
-        $viewcreatprovider= Permission::create(['name' => 'Create provider']);
-        $viewcreatprovider= Permission::create(['name' => 'Edit provider']);
-        $viewdeletprovider= Permission::create(['name' => 'Delete provider']);
-
-        //Calificaciones
-        $viewdashboardsurveynps = Permission::create(['name' => 'View dashboard survey nps']);
-        $viewaddsurvey = Permission::create(['name' => 'View create survey']);
-        $viewgeneratesurvey = Permission::create(['name' => 'Generate survey']);
-
-        $viewcapturesurvey = Permission::create(['name' => 'View capture survey']);
-        $viewcreatsurvey = Permission::create(['name' => 'Create survey']);
-
-        $vieweditsurvey = Permission::create(['name' => 'View edit survey']);
-        $vieweditsurvey = Permission::create(['name' => 'Edit survey']);
-
-        $viewresultsurvey = Permission::create(['name' => 'View results survey']);
-
-        $viewconfigsurvey = Permission::create(['name' => 'View survey configuration']);
-        $viewconfigaddsurvey = Permission::create(['name' => 'Assign user survey']);
-        $viewconfigremovedsurvey = Permission::create(['name' => 'Removed user survey']);
-
-        $viewconfiggeneratekeysurvey = Permission::create(['name' => 'Generate key user survey']);
-        $viewconfigsendkeysurvey = Permission::create(['name' => 'Send email user survey']);
-        $viewconfigviewkeysurvey = Permission::create(['name' => 'View key user survey']);
-
-        $viewconfigsurveynps = Permission::create(['name' => 'View survey nps configuration']);
-
-        //Asignacion
-        $viewcaptureassignuser = Permission::create(['name' => 'View assign hotel user']);
-        $viewcreatsassignuser= Permission::create(['name' => 'Create assign hotel user']);
-        $viewdeletesassignuser= Permission::create(['name' => 'Delete assign hotel user']);
-        $viewcaptureassignlistuser = Permission::create(['name' => 'View list assign hotel user']);
-        $viewdeletassignuser = Permission::create(['name' => 'View assign delete client']);
-
-        $viewnpsconfigautomatic = Permission::create(['name' => 'View config nps automatic']);
-        $createnpsconfigautomatic = Permission::create(['name' => 'Create config nps automatic']);
-        $viewnpsconfigindividual = Permission::create(['name' => 'View config nps individual']);
-        $createnpsconfigindividual = Permission::create(['name' => 'Create config nps individual']);
-
-        //- Herramientas
-        $toolsviewdiagnostic1= Permission::create(['name' => 'View guest review']);
-        $toolsviewdiagnostic2= Permission::create(['name' => 'View server review']);
-        $toolsviewtest = Permission::create(['name' => 'View test zd']);
-
-        //- Configuración
-        $viewcreatuserconfiguration = Permission::create(['name' => 'Create user']);
-        $viewedituserconfiguration = Permission::create(['name' => 'Edit user']);
-        $viewdeleteuserconfiguration = Permission::create(['name' => 'Delete user']);
-        $viewconfiguration = Permission::create(['name' => 'View Configuration']);
-        $vieweditconfiguration = Permission::create(['name' => 'Edit Configuration']);
-
-        //Encuesta sitwifi
-        $encuestasitwifidashboard= Permission::create(['name' => 'View dashboard sitwifi']);
-        $encuestasitwifivconfig= Permission::create(['name' => 'View config sitwifi']);
-        $encuestasitwifidconfig= Permission::create(['name' => 'Delete config sitwifi']);
-        $encuestasitwifisend= Permission::create(['name' => 'Send mail sitwifi']);
-
-      //Creamos los usuarios super admin
-        $super_admin_a0 = new User;
-        $super_admin_a0->name='SuperAdmin';
-        $super_admin_a0->email='desarrollo@sitwifi.com';
-        $super_admin_a0->city='Cancún, México';
-        $super_admin_a0->password= bcrypt('123456');
-        $super_admin_a0->avatar= 'dist/img/user.jpg';
-        $super_admin_a0->save();
-        $super_admin_a0->assignRole($superadminRole);
-        //Permisos para el super usuario
-          //- Dashboard
-            $super_admin_a0->givePermissionTo('View dashboard pral');
-          //- Inventario
-            $super_admin_a0->givePermissionTo('View detailed for hotel');
-            $super_admin_a0->givePermissionTo('View detailed for hotel with cost');
-            $super_admin_a0->givePermissionTo('View detailed for proyect');
-            $super_admin_a0->givePermissionTo('View cover');
-            $super_admin_a0->givePermissionTo('View distribucion');
-          //- Equipos
-            $super_admin_a0->givePermissionTo('View add equipment');
-            $super_admin_a0->givePermissionTo('Create equipment');
-            $super_admin_a0->givePermissionTo('View removed equipment');
-            $super_admin_a0->givePermissionTo('Removed equipment');
-            $super_admin_a0->givePermissionTo('View search equipment');
-            $super_admin_a0->givePermissionTo('View move equipment');
-            $super_admin_a0->givePermissionTo('Move equipment');
-            $super_admin_a0->givePermissionTo('View equipment group');
-            $super_admin_a0->givePermissionTo('Add equipment group');
-            $super_admin_a0->givePermissionTo('Removed equipment group');
-            $super_admin_a0->givePermissionTo('View provider');
-            $super_admin_a0->givePermissionTo('Create provider');
-            $super_admin_a0->givePermissionTo('Edit provider');
-            $super_admin_a0->givePermissionTo('Delete provider');
-          //- Reportes
-            $super_admin_a0->givePermissionTo('View assign report');
-            $super_admin_a0->givePermissionTo('Create assign report');
-            $super_admin_a0->givePermissionTo('Edit assign report');
-            $super_admin_a0->givePermissionTo('Delete assign report');
-            // $super_admin_a0->givePermissionTo('View general report');
-            $super_admin_a0->givePermissionTo('Create general report');
-            $super_admin_a0->givePermissionTo('View individual capture');
-            $super_admin_a0->givePermissionTo('Create individual capture');
-            $super_admin_a0->givePermissionTo('View individual general report');
-            $super_admin_a0->givePermissionTo('Edit individual general report');
-            $super_admin_a0->givePermissionTo('View concierge approval');
-            $super_admin_a0->givePermissionTo('Create concierge approval');
-            $super_admin_a0->givePermissionTo('Delete concierge approval');
-            $super_admin_a0->givePermissionTo('View admin approval');
-            $super_admin_a0->givePermissionTo('Option admin approval');
-            $super_admin_a0->givePermissionTo('Notification admin approval');
-            $super_admin_a0->givePermissionTo('View report');
-            $super_admin_a0->givePermissionTo('View report concat');
-
-          //Calificaciones
-            $super_admin_a0->givePermissionTo('View dashboard survey nps');
-            $super_admin_a0->givePermissionTo('View create survey');
-            $super_admin_a0->givePermissionTo('Generate survey');
-            $super_admin_a0->givePermissionTo('View capture survey');
-            $super_admin_a0->givePermissionTo('Create survey');
-            $super_admin_a0->givePermissionTo('View edit survey');
-            $super_admin_a0->givePermissionTo('Edit survey');
-            $super_admin_a0->givePermissionTo('View results survey');
-            $super_admin_a0->givePermissionTo('View survey configuration');
-            $super_admin_a0->givePermissionTo('Assign user survey');
-            $super_admin_a0->givePermissionTo('Removed user survey');
-            $super_admin_a0->givePermissionTo('Generate key user survey');
-            $super_admin_a0->givePermissionTo('Send email user survey');
-            $super_admin_a0->givePermissionTo('View key user survey');
-            $super_admin_a0->givePermissionTo('View survey nps configuration');
-          //NPS
-            $super_admin_a0->givePermissionTo('View assign hotel user');
-            $super_admin_a0->givePermissionTo('Create assign hotel user');
-            $super_admin_a0->givePermissionTo('Delete assign hotel user');
-            $super_admin_a0->givePermissionTo('View list assign hotel user');
-            $super_admin_a0->givePermissionTo('View assign delete client');
-            $super_admin_a0->givePermissionTo('View config nps automatic');
-            $super_admin_a0->givePermissionTo('Create config nps automatic');
-            $super_admin_a0->givePermissionTo('View config nps individual');
-            $super_admin_a0->givePermissionTo('Create config nps individual');
-          //-Encuesta Sitwifi
-            $super_admin_a0->givePermissionTo('View dashboard sitwifi');
-            $super_admin_a0->givePermissionTo('View config sitwifi');
-            $super_admin_a0->givePermissionTo('Delete config sitwifi');
-            $super_admin_a0->givePermissionTo('Send mail sitwifi');
-
-          //- Herramientas
-            $super_admin_a0->givePermissionTo('View guest review');
-            $super_admin_a0->givePermissionTo('View server review');
-            $super_admin_a0->givePermissionTo('View test zd');
-          //- Configuración
-            $super_admin_a0->givePermissionTo('Create user');
-            $super_admin_a0->givePermissionTo('Edit user');
-            $super_admin_a0->givePermissionTo('Delete user');
-            $super_admin_a0->givePermissionTo('View Configuration');
-            $super_admin_a0->givePermissionTo('Edit Configuration');
-
-
-      //Creamos usuario 1
-        $super_admin_a = new User;
-        $super_admin_a->name='Alonso de Jesus Cauich Viana';
-        $super_admin_a->email='acauich@sitwifi.com';
-        $super_admin_a->city='Cancún, México';
-        $super_admin_a->password= bcrypt('123456');
-        $super_admin_a->avatar= 'dist/img/user.jpg';
-        $super_admin_a->save();
-        $super_admin_a->assignRole($superadminRole);
-        //Permisos para el super usuario
-          //- Dashboard
-            $super_admin_a->givePermissionTo('View dashboard pral');
-          //- Inventario
-            $super_admin_a->givePermissionTo('View detailed for hotel');
-            $super_admin_a->givePermissionTo('View detailed for hotel with cost');
-            $super_admin_a->givePermissionTo('View detailed for proyect');
-            $super_admin_a->givePermissionTo('View cover');
-            $super_admin_a->givePermissionTo('View distribucion');
-          //- Equipos
-            $super_admin_a->givePermissionTo('View add equipment');
-            $super_admin_a->givePermissionTo('Create equipment');
-            $super_admin_a->givePermissionTo('View removed equipment');
-            $super_admin_a->givePermissionTo('Removed equipment');
-            $super_admin_a->givePermissionTo('View search equipment');
-            $super_admin_a->givePermissionTo('View move equipment');
-            $super_admin_a->givePermissionTo('Move equipment');
-            $super_admin_a->givePermissionTo('View equipment group');
-            $super_admin_a->givePermissionTo('Add equipment group');
-            $super_admin_a->givePermissionTo('Removed equipment group');
-            $super_admin_a->givePermissionTo('View provider');
-            $super_admin_a->givePermissionTo('Create provider');
-            $super_admin_a->givePermissionTo('Edit provider');
-            $super_admin_a->givePermissionTo('Delete provider');
-          //- Reportes
-            $super_admin_a->givePermissionTo('View assign report');
-            $super_admin_a->givePermissionTo('Create assign report');
-            $super_admin_a->givePermissionTo('Edit assign report');
-            $super_admin_a->givePermissionTo('Delete assign report');
-            // $super_admin_a->givePermissionTo('View general report');
-            $super_admin_a->givePermissionTo('Create general report');
-            $super_admin_a->givePermissionTo('View individual capture');
-            $super_admin_a->givePermissionTo('Create individual capture');
-            $super_admin_a->givePermissionTo('View individual general report');
-            $super_admin_a->givePermissionTo('Edit individual general report');
-            $super_admin_a->givePermissionTo('View concierge approval');
-            $super_admin_a->givePermissionTo('Create concierge approval');
-            $super_admin_a->givePermissionTo('Delete concierge approval');
-            $super_admin_a->givePermissionTo('View admin approval');
-            $super_admin_a->givePermissionTo('Option admin approval');
-            $super_admin_a->givePermissionTo('Notification admin approval');
-            $super_admin_a->givePermissionTo('View report');
-            $super_admin_a->givePermissionTo('View report concat');
-          //Calificaciones
-            $super_admin_a->givePermissionTo('View dashboard survey nps');
-            $super_admin_a->givePermissionTo('View create survey');
-            $super_admin_a->givePermissionTo('Generate survey');
-            $super_admin_a->givePermissionTo('View capture survey');
-            $super_admin_a->givePermissionTo('Create survey');
-            $super_admin_a->givePermissionTo('View edit survey');
-            $super_admin_a->givePermissionTo('Edit survey');
-            $super_admin_a->givePermissionTo('View results survey');
-            $super_admin_a->givePermissionTo('View survey configuration');
-            $super_admin_a->givePermissionTo('Assign user survey');
-            $super_admin_a->givePermissionTo('Removed user survey');
-            $super_admin_a->givePermissionTo('Generate key user survey');
-            $super_admin_a->givePermissionTo('Send email user survey');
-            $super_admin_a->givePermissionTo('View key user survey');
-            $super_admin_a->givePermissionTo('View survey nps configuration');
-          //NPS
-            $super_admin_a->givePermissionTo('View assign hotel user');
-            $super_admin_a->givePermissionTo('Create assign hotel user');
-            $super_admin_a->givePermissionTo('Delete assign hotel user');
-            $super_admin_a->givePermissionTo('View list assign hotel user');
-            $super_admin_a->givePermissionTo('View assign delete client');
-            $super_admin_a->givePermissionTo('View config nps automatic');
-            $super_admin_a->givePermissionTo('Create config nps automatic');
-            $super_admin_a->givePermissionTo('View config nps individual');
-            $super_admin_a->givePermissionTo('Create config nps individual');
-          //-Encuesta Sitwifi
-            $super_admin_a->givePermissionTo('View dashboard sitwifi');
-            $super_admin_a->givePermissionTo('View config sitwifi');
-            $super_admin_a->givePermissionTo('Delete config sitwifi');
-            $super_admin_a->givePermissionTo('Send mail sitwifi');
-          //- Herramientas
-            $super_admin_a->givePermissionTo('View guest review');
-            $super_admin_a->givePermissionTo('View server review');
-            $super_admin_a->givePermissionTo('View test zd');
-          //- Configuración
-            $super_admin_a->givePermissionTo('Create user');
-            $super_admin_a->givePermissionTo('Edit user');
-            $super_admin_a->givePermissionTo('Delete user');
-            $super_admin_a->givePermissionTo('View Configuration');
-            $super_admin_a->givePermissionTo('Edit Configuration');
-          //Actualizar la sell
-            // $user_shell=User::where('id', '=', $super_admin_a->id)->first();
-            // $user_shell->shell = Crypt::encrypt($super_admin_a->id);
-            // $user_shell->save();
-
-      //Creamos usuario 2
-        $super_admin_b = new User;
-        $super_admin_b->name='Jose Antonio Esquinca Bonilla';
-        $super_admin_b->email='jesquinca@sitwifi.com';
-        $super_admin_b->city='Cancún, México';
-        $super_admin_b->password= bcrypt('123456');
-        $super_admin_b->avatar= 'dist/img/user.jpg';
-        $super_admin_b->save();
-        $super_admin_b->assignRole($superadminRole);
-        //Permisos para el super usuario
-          //- Dashboard
-          $super_admin_b->givePermissionTo('View dashboard pral');
-          //- Inventario
-          $super_admin_b->givePermissionTo('View detailed for hotel');
-          $super_admin_b->givePermissionTo('View detailed for hotel with cost');
-          $super_admin_b->givePermissionTo('View detailed for proyect');
-          $super_admin_b->givePermissionTo('View cover');
-          $super_admin_b->givePermissionTo('View distribucion');
-          //- Equipos
-          $super_admin_b->givePermissionTo('View add equipment');
-          $super_admin_b->givePermissionTo('Create equipment');
-          $super_admin_b->givePermissionTo('View removed equipment');
-          $super_admin_b->givePermissionTo('Removed equipment');
-          $super_admin_b->givePermissionTo('View search equipment');
-          $super_admin_b->givePermissionTo('View move equipment');
-          $super_admin_b->givePermissionTo('Move equipment');
-          $super_admin_b->givePermissionTo('View equipment group');
-          $super_admin_b->givePermissionTo('Add equipment group');
-          $super_admin_b->givePermissionTo('Removed equipment group');
-          //- Reportes
-          $super_admin_b->givePermissionTo('View assign report');
-          $super_admin_b->givePermissionTo('Create assign report');
-          $super_admin_b->givePermissionTo('Edit assign report');
-          $super_admin_b->givePermissionTo('Delete assign report');
-          // $super_admin_b->givePermissionTo('View general report');
-          $super_admin_b->givePermissionTo('Create general report');
-          $super_admin_b->givePermissionTo('View individual capture');
-          $super_admin_b->givePermissionTo('Create individual capture');
-          $super_admin_b->givePermissionTo('View individual general report');
-          $super_admin_b->givePermissionTo('Edit individual general report');
-          $super_admin_b->givePermissionTo('View concierge approval');
-          $super_admin_b->givePermissionTo('Create concierge approval');
-          $super_admin_b->givePermissionTo('Delete concierge approval');
-          $super_admin_b->givePermissionTo('View admin approval');
-          $super_admin_b->givePermissionTo('Option admin approval');
-          $super_admin_b->givePermissionTo('Notification admin approval');
-          $super_admin_b->givePermissionTo('View report');
-          $super_admin_b->givePermissionTo('View report concat');
-          //Calificaciones
-          $super_admin_b->givePermissionTo('View dashboard survey nps');
-          $super_admin_b->givePermissionTo('View create survey');
-          $super_admin_b->givePermissionTo('Generate survey');
-          $super_admin_b->givePermissionTo('View capture survey');
-          $super_admin_b->givePermissionTo('Create survey');
-          $super_admin_b->givePermissionTo('View edit survey');
-          $super_admin_b->givePermissionTo('Edit survey');
-          $super_admin_b->givePermissionTo('View results survey');
-          $super_admin_b->givePermissionTo('View survey configuration');
-          $super_admin_b->givePermissionTo('Assign user survey');
-          $super_admin_b->givePermissionTo('Removed user survey');
-          $super_admin_b->givePermissionTo('Generate key user survey');
-          $super_admin_b->givePermissionTo('Send email user survey');
-          $super_admin_b->givePermissionTo('View key user survey');
-          $super_admin_b->givePermissionTo('View survey nps configuration');
-          //NPS
-          $super_admin_b->givePermissionTo('View assign hotel user');
-          $super_admin_b->givePermissionTo('Create assign hotel user');
-          $super_admin_b->givePermissionTo('Delete assign hotel user');
-          $super_admin_b->givePermissionTo('View list assign hotel user');
-          $super_admin_b->givePermissionTo('View assign delete client');
-          $super_admin_b->givePermissionTo('View config nps automatic');
-          $super_admin_b->givePermissionTo('Create config nps automatic');
-          $super_admin_b->givePermissionTo('View config nps individual');
-          $super_admin_b->givePermissionTo('Create config nps individual');
-        //-Encuesta Sitwifi
-          $super_admin_b->givePermissionTo('View dashboard sitwifi');
-          $super_admin_b->givePermissionTo('View config sitwifi');
-          $super_admin_b->givePermissionTo('Delete config sitwifi');
-          $super_admin_b->givePermissionTo('Send mail sitwifi');
-          //- Herramientas
-          $super_admin_b->givePermissionTo('View guest review');
-          $super_admin_b->givePermissionTo('View server review');
-          $super_admin_b->givePermissionTo('View test zd');
-          //- Configuración
-          $super_admin_b->givePermissionTo('Create user');
-          $super_admin_b->givePermissionTo('Edit user');
-          $super_admin_b->givePermissionTo('Delete user');
-          $super_admin_b->givePermissionTo('View Configuration');
-          $super_admin_b->givePermissionTo('Edit Configuration');
-
-      //Creamos usuario 3
-        $super_admin_c = new User;
-        $super_admin_c->name='Angel Gabriel Ramirez Ruiz';
-        $super_admin_c->email='gramirez@sitwifi.com';
-        $super_admin_c->city='Cancún, México';
-        $super_admin_c->password= bcrypt('123456');
-        $super_admin_c->avatar= 'dist/img/user.jpg';
-        $super_admin_c->save();
-        $super_admin_c->assignRole($superadminRole);
-        //Permisos para el super usuario
-          //- Dashboard
-          $super_admin_c->givePermissionTo('View dashboard pral');
-          //- Inventario
-          $super_admin_c->givePermissionTo('View detailed for hotel');
-          $super_admin_c->givePermissionTo('View detailed for hotel with cost');
-          $super_admin_c->givePermissionTo('View detailed for proyect');
-          $super_admin_c->givePermissionTo('View cover');
-          $super_admin_c->givePermissionTo('View distribucion');
-          //- Equipos
-          $super_admin_c->givePermissionTo('View add equipment');
-          $super_admin_c->givePermissionTo('Create equipment');
-          $super_admin_c->givePermissionTo('View removed equipment');
-          $super_admin_c->givePermissionTo('Removed equipment');
-          $super_admin_c->givePermissionTo('View search equipment');
-          $super_admin_c->givePermissionTo('View move equipment');
-          $super_admin_c->givePermissionTo('Move equipment');
-          $super_admin_c->givePermissionTo('View equipment group');
-          $super_admin_c->givePermissionTo('Add equipment group');
-          $super_admin_c->givePermissionTo('Removed equipment group');
-          //- Reportes
-          $super_admin_c->givePermissionTo('View assign report');
-          $super_admin_c->givePermissionTo('Create assign report');
-          $super_admin_c->givePermissionTo('Edit assign report');
-          $super_admin_c->givePermissionTo('Delete assign report');
-          // $super_admin_c->givePermissionTo('View general report');
-          $super_admin_c->givePermissionTo('Create general report');
-          $super_admin_c->givePermissionTo('View individual capture');
-          $super_admin_c->givePermissionTo('Create individual capture');
-          $super_admin_c->givePermissionTo('View individual general report');
-          $super_admin_c->givePermissionTo('Edit individual general report');
-          $super_admin_c->givePermissionTo('View concierge approval');
-          $super_admin_c->givePermissionTo('Create concierge approval');
-          $super_admin_c->givePermissionTo('Delete concierge approval');
-          $super_admin_c->givePermissionTo('View admin approval');
-          $super_admin_c->givePermissionTo('Option admin approval');
-          $super_admin_c->givePermissionTo('Notification admin approval');
-          $super_admin_c->givePermissionTo('View report');
-          $super_admin_c->givePermissionTo('View report concat');
-          //Calificaciones
-          $super_admin_c->givePermissionTo('View dashboard survey nps');
-          $super_admin_c->givePermissionTo('View create survey');
-          $super_admin_c->givePermissionTo('Generate survey');
-          $super_admin_c->givePermissionTo('View capture survey');
-          $super_admin_c->givePermissionTo('Create survey');
-          $super_admin_c->givePermissionTo('View edit survey');
-          $super_admin_c->givePermissionTo('Edit survey');
-          $super_admin_c->givePermissionTo('View results survey');
-          $super_admin_c->givePermissionTo('View survey configuration');
-          $super_admin_c->givePermissionTo('Assign user survey');
-          $super_admin_c->givePermissionTo('Removed user survey');
-          $super_admin_c->givePermissionTo('Generate key user survey');
-          $super_admin_c->givePermissionTo('Send email user survey');
-          $super_admin_c->givePermissionTo('View key user survey');
-          $super_admin_c->givePermissionTo('View survey nps configuration');
-          //NPS
-          $super_admin_c->givePermissionTo('View assign hotel user');
-          $super_admin_c->givePermissionTo('Create assign hotel user');
-          $super_admin_c->givePermissionTo('Delete assign hotel user');
-          $super_admin_c->givePermissionTo('View list assign hotel user');
-          $super_admin_c->givePermissionTo('View assign delete client');
-          $super_admin_c->givePermissionTo('View config nps automatic');
-          $super_admin_c->givePermissionTo('Create config nps automatic');
-          $super_admin_c->givePermissionTo('View config nps individual');
-          $super_admin_c->givePermissionTo('Create config nps individual');
-        //-Encuesta Sitwifi
-          $super_admin_c->givePermissionTo('View dashboard sitwifi');
-          $super_admin_c->givePermissionTo('View config sitwifi');
-          $super_admin_c->givePermissionTo('Delete config sitwifi');
-          $super_admin_c->givePermissionTo('Send mail sitwifi');
-          //- Herramientas
-          $super_admin_c->givePermissionTo('View guest review');
-          $super_admin_c->givePermissionTo('View server review');
-          $super_admin_c->givePermissionTo('View test zd');
-          //- Configuración
-          $super_admin_c->givePermissionTo('Create user');
-          $super_admin_c->givePermissionTo('Edit user');
-          $super_admin_c->givePermissionTo('Delete user');
-          $super_admin_c->givePermissionTo('View Configuration');
-          $super_admin_c->givePermissionTo('Edit Configuration');
-
-      //Creamos los usuarios por default
-        $user_default_a = new User;
-        $user_default_a->name='Default Admin User';
-        $user_default_a->email='admin@sitwifi.com';
-        $user_default_a->city='Cancún, México';
-        $user_default_a->password= bcrypt('123456');
-        $user_default_a->avatar= 'dist/img/user.jpg';
-        $user_default_a->save();
-        $user_default_a->assignRole($adminRole);
-        //
-        $user_default_b = new User;
-        $user_default_b->name='Default Operator User';
-        $user_default_b->email='operator@sitwifi.com';
-        $user_default_b->city='Cancún, México';
-        $user_default_b->password= bcrypt('123456');
-        $user_default_b->avatar= 'dist/img/user.jpg';
-        $user_default_b->save();
-        $user_default_b->assignRole($operatorRole);
-        //
-        $user_default_c = new User;
-        $user_default_c->name='Default User';
-        $user_default_c->email='user@sitwifi.com';
-        $user_default_c->city='Cancún, México';
-        $user_default_c->password= bcrypt('123456');
-        $user_default_c->avatar= 'dist/img/user.jpg';
-        $user_default_c->save();
-        $user_default_c->assignRole($userRole);
-        //
-        $user_default_d = new User;
-        $user_default_d->name='Default Monitor User';
-        $user_default_d->email='monitor@sitwifi.com';
-        $user_default_d->password= bcrypt('123456');
-        $user_default_d->save();
-        $user_default_d->assignRole($monitorRole);
-
-      //Creamos las categorias de los menus
-        $seccion_admin_a = new Section;
-        $seccion_admin_a->name='inventory';
-        $seccion_admin_a->display_name='Inventario';
-        $seccion_admin_a->icons='fa fa-archive';
-        $seccion_admin_a->save();
-
-        $seccion_admin_b = new Section;
-        $seccion_admin_b->name='report';
-        $seccion_admin_b->display_name='Reportes';
-        $seccion_admin_b->icons='fa fa-check-square-o';
-        $seccion_admin_b->save();
-
-        $seccion_admin_c = new Section;
-        $seccion_admin_c->name='qualification';
-        $seccion_admin_c->display_name='Calificación';
-        $seccion_admin_c->icons='fa fa-calendar-plus-o';
-        $seccion_admin_c->save();
-
-        $seccion_admin_d = new Section;
-        $seccion_admin_d->name='equipment';
-        $seccion_admin_d->display_name='Equipos';
-        $seccion_admin_d->icons='fa fa-briefcase';
-        $seccion_admin_d->save();
-
-        $seccion_admin_e = new Section;
-        $seccion_admin_e->name='tools';
-        $seccion_admin_e->display_name='Herramientas';
-        $seccion_admin_e->icons='fa fa-wrench';
-        $seccion_admin_e->save();
-
-      //Menu Inventario
-        $menuAdminA0 = new Menu;
-        $menuAdminA0->name='detailed_hotel';
-        $menuAdminA0->display_name='Detallado por Hotel';
-        $menuAdminA0->description='Permite visualizar el inventario actual de los sitios permitidos.';
-        $menuAdminA0->url='detailed_hotel';
-        $menuAdminA0->section_id=$seccion_admin_a->id;
-        $menuAdminA0->icons='fa fa-circle-o';
-        $menuAdminA0->save();
-        $assigned_menu_a0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA0->id]);
-        $assigned_menu_a1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA0->id]);
-        $assigned_menu_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA0->id]);
-        $assigned_menu_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA0->id]);
-
-        // $menuAdminA1 = new Menu;
-        // $menuAdminA1->name='detailed_hotels';
-        // $menuAdminA1->display_name='Detallado por Hotel con precios';
-        // $menuAdminA1->description='Permite visualizar el inventario actual de los sitios con precios permitidos.';
-        // $menuAdminA1->url='detailed_hotels';
-        // $menuAdminA1->section_id=$seccion_admin_a->id;
-        // $menuAdminA1->icons='fa fa-circle-o';
-        // $menuAdminA1->save();
-        // $assigned_menu_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA1->id]);
-        // $assigned_menu_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA1->id]);
-        // $assigned_menu_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA1->id]);
-        // $assigned_menu_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA1->id]);
-
-        $menuAdminA2 = new Menu;
-        $menuAdminA2->name='detailed_proyect';
-        $menuAdminA2->display_name='Detallado por proyecto';
-        $menuAdminA2->description='Permite visualizar el inventario actual en base a los proyectos.';
-        $menuAdminA2->url='detailed_proyect';
-        $menuAdminA2->section_id=$seccion_admin_a->id;
-        $menuAdminA2->icons='fa fa-circle-o';
-        $menuAdminA2->save();
-        $assigned_menu_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA2->id]);
-        $assigned_menu_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA2->id]);
-        $assigned_menu_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA2->id]);
-        $assigned_menu_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA2->id]);
-
-        $menuAdminA3 = new Menu;
-        $menuAdminA3->name='detailed_cover';
-        $menuAdminA3->display_name='Carta de entrega';
-        $menuAdminA3->description='Permite visualizar la carta de entrega.';
-        $menuAdminA3->url='detailed_cover';
-        $menuAdminA3->section_id=$seccion_admin_a->id;
-        $menuAdminA3->icons='fa fa-circle-o';
-        $menuAdminA3->save();
-        $assigned_menu_d0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA3->id]);
-        $assigned_menu_d1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA3->id]);
-        $assigned_menu_d2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA3->id]);
-        $assigned_menu_d3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA3->id]);
-
-        $menuAdminA4 = new Menu;
-        $menuAdminA4->name='detailed_distribution';
-        $menuAdminA4->display_name='Distribucion';
-        $menuAdminA4->description='Permite visualizar la distribución actual.';
-        $menuAdminA4->url='detailed_distribution';
-        $menuAdminA4->section_id=$seccion_admin_a->id;
-        $menuAdminA4->icons='fa fa-circle-o';
-        $menuAdminA4->save();
-        $assigned_menu_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminA4->id]);
-        $assigned_menu_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminA4->id]);
-        $assigned_menu_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminA4->id]);
-        $assigned_menu_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminA4->id]);
-
-      //Menu Equipos
-
-        $menuAdminB0 = new Menu;
-        $menuAdminB0->name='up_equipment';
-        $menuAdminB0->display_name='Altas';
-        $menuAdminB0->description='Permite dar de altas nuevos equipos';
-        $menuAdminB0->url='up_equipment';
-        $menuAdminB0->section_id=$seccion_admin_d->id;
-        $menuAdminB0->icons='fa fa-chevron-circle-up';
-        $menuAdminB0->save();
-        $assigned_menu_one_a0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB0->id]);
-        $assigned_menu_one_a1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB0->id]);
-        $assigned_menu_one_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB0->id]);
-        $assigned_menu_one_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB0->id]);
-
-        $menuAdminB1 = new Menu;
-        $menuAdminB1->name='down_equipment';
-        $menuAdminB1->display_name='Bajas';
-        $menuAdminB1->description='Permite dar de baja equipos';
-        $menuAdminB1->url='down_equipment';
-        $menuAdminB1->section_id=$seccion_admin_d->id;
-        $menuAdminB1->icons='fa fa-chevron-circle-down';
-        $menuAdminB1->save();
-        $assigned_menu_one_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB1->id]);
-        $assigned_menu_one_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB1->id]);
-        $assigned_menu_one_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB1->id]);
-        $assigned_menu_one_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB1->id]);
-
-        $menuAdminB2 = new Menu;
-        $menuAdminB2->name='detailed_search';
-        $menuAdminB2->display_name='Buscador';
-        $menuAdminB2->description='Permite visualizar el buscador de equipos';
-        $menuAdminB2->url='detailed_search';
-        $menuAdminB2->section_id=$seccion_admin_d->id;
-        $menuAdminB2->icons='fa fa-search';
-        $menuAdminB2->save();
-        $assigned_menu_one_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB2->id]);
-        $assigned_menu_one_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB2->id]);
-        $assigned_menu_one_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB2->id]);
-        $assigned_menu_one_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB2->id]);
-
-        $menuAdminB3 = new Menu;
-        $menuAdminB3->name='move_equipment';
-        $menuAdminB3->display_name='Movimientos';
-        $menuAdminB3->description='Permite mover equipos';
-        $menuAdminB3->url='move_equipment';
-        $menuAdminB3->section_id=$seccion_admin_d->id;
-        $menuAdminB3->icons='fa fa-arrows';
-        $menuAdminB3->save();
-        $assigned_menu_one_d0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB3->id]);
-        $assigned_menu_one_d1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB3->id]);
-        $assigned_menu_one_d2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB3->id]);
-        $assigned_menu_one_d3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB3->id]);
-
-        $menuAdminB4 = new Menu;
-        $menuAdminB4->name='group_equipment';
-        $menuAdminB4->display_name='Grupos';
-        $menuAdminB4->description='Permite agrupar equipos';
-        $menuAdminB4->url='group_equipment';
-        $menuAdminB4->section_id=$seccion_admin_d->id;
-        $menuAdminB4->icons='fa fa-object-group';
-        $menuAdminB4->save();
-        $assigned_menu_one_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB4->id]);
-        $assigned_menu_one_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB4->id]);
-        $assigned_menu_one_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB4->id]);
-        $assigned_menu_one_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB4->id]);
-
-        $menuAdminB5 = new Menu;
-        $menuAdminB5->name='provider';
-        $menuAdminB5->display_name='Proveedor';
-        $menuAdminB5->description='Permite agregar los proveedores';
-        $menuAdminB5->url='provider';
-        $menuAdminB5->section_id=$seccion_admin_d->id;
-        $menuAdminB5->icons='fa fa-handshake-o';
-        $menuAdminB5->save();
-        $assigned_menu_one_f0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminB5->id]);
-        $assigned_menu_one_f1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminB5->id]);
-        $assigned_menu_one_f2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminB5->id]);
-        $assigned_menu_one_f3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminB5->id]);
-
-
-      //Menu Reportes
-        $menuAdminC0 = new Menu;
-        $menuAdminC0->name='type_report';
-        $menuAdminC0->display_name='Asignación de reporte';
-        $menuAdminC0->description='Permite manipular y establecer los valor predeterminados para cada hotel.';
-        $menuAdminC0->url='type_report';
-        $menuAdminC0->section_id=$seccion_admin_b->id;
-        $menuAdminC0->icons='fa fa-square-o';
-        $menuAdminC0->save();
-
-        $assigned_menu_two_a0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC0->id]);
-        $assigned_menu_two_a1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC0->id]);
-        $assigned_menu_two_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC0->id]);
-        $assigned_menu_two_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC0->id]);
-
-        // $menuAdminC1 = new Menu;
-        // $menuAdminC1->name='generate';
-        // $menuAdminC1->display_name='Generar Reporte';
-        // $menuAdminC1->description='Permite capturar de manera generar el reporte diario del hotel asignado.';
-        // $menuAdminC1->url='generate';
-        // $menuAdminC1->section_id=$seccion_admin_b->id;
-        // $menuAdminC1->icons='fa fa-square-o';
-        // $menuAdminC1->save();
-        //
-        // $assigned_menu_two_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC1->id]);
-        // $assigned_menu_two_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC1->id]);
-        // $assigned_menu_two_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC1->id]);
-        // $assigned_menu_two_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC1->id]);
-
-        $menuAdminC2 = new Menu;
-        $menuAdminC2->name='individual';
-        $menuAdminC2->display_name='Captura reporte';
-        $menuAdminC2->description='Permite realizar la captura individual de cada hotel asignado.';
-        $menuAdminC2->url='individual';
-        $menuAdminC2->section_id=$seccion_admin_b->id;
-        $menuAdminC2->icons='fa fa-square-o';
-        $menuAdminC2->save();
-
-        $assigned_menu_two_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC2->id]);
-        $assigned_menu_two_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC2->id]);
-        $assigned_menu_two_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC2->id]);
-        $assigned_menu_two_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC2->id]);
-
-        $menuAdminC3 = new Menu;
-        $menuAdminC3->name='edit_report';
-        $menuAdminC3->display_name='Editar Reportes';
-        $menuAdminC3->description='Permite editar el reporte capturado de cada hotel asignado.';
-        $menuAdminC3->url='edit_report';
-        $menuAdminC3->section_id=$seccion_admin_b->id;
-        $menuAdminC3->icons='fa fa-square-o';
-        $menuAdminC3->save();
-
-        $assigned_menu_two_d0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC3->id]);
-        $assigned_menu_two_d1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC3->id]);
-        $assigned_menu_two_d2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC3->id]);
-        $assigned_menu_two_d3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC3->id]);
-
-
-        $menuAdminC4 = new Menu;
-        $menuAdminC4->name='approval';
-        $menuAdminC4->display_name='Aprobación Concierge';
-        $menuAdminC4->description='Permite realizar la aprobación de concierge.';
-        $menuAdminC4->url='approval';
-        $menuAdminC4->section_id=$seccion_admin_b->id;
-        $menuAdminC4->icons='fa fa-square-o';
-        $menuAdminC4->save();
-
-        $assigned_menu_two_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC4->id]);
-        $assigned_menu_two_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC4->id]);
-        $assigned_menu_two_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC4->id]);
-        $assigned_menu_two_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC4->id]);
-
-        $menuAdminC5 = new Menu;
-        $menuAdminC5->name='approvals';
-        $menuAdminC5->display_name='Aprobación Admin';
-        $menuAdminC5->description='Permite verificar y aprobar reportes.';
-        $menuAdminC5->url='approvals';
-        $menuAdminC5->section_id=$seccion_admin_b->id;
-        $menuAdminC5->icons='fa fa-square-o';
-        $menuAdminC5->save();
-
-        $assigned_menu_two_f0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC5->id]);
-        $assigned_menu_two_f1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC5->id]);
-        $assigned_menu_two_f2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC5->id]);
-        $assigned_menu_two_f3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC5->id]);
-
-        $menuAdminC6 = new Menu;
-        $menuAdminC6->name='viewreports';
-        $menuAdminC6->display_name='Ver Reportes';
-        $menuAdminC6->description='Permite visualizar los reportes de cada hotel.';
-        $menuAdminC6->url='viewreports';
-        $menuAdminC6->section_id=$seccion_admin_b->id;
-        $menuAdminC6->icons='fa fa-square-o';
-        $menuAdminC6->save();
-
-        $assigned_menu_two_g0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC6->id]);
-        $assigned_menu_two_g1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC6->id]);
-        $assigned_menu_two_g2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC6->id]);
-        $assigned_menu_two_g3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC6->id]);
-
-        $menuAdminC7 = new Menu;
-        $menuAdminC7->name='viewreportscont';
-        $menuAdminC7->display_name='Ver Reportes Cont';
-        $menuAdminC7->description='Permite visualizar el reporte concatenado de cada cadena.';
-        $menuAdminC7->url='viewreportscont';
-        $menuAdminC7->section_id=$seccion_admin_b->id;
-        $menuAdminC7->icons='fa fa-square-o';
-        $menuAdminC7->save();
-
-        $assigned_menu_two_g0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminC7->id]);
-        $assigned_menu_two_g1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminC7->id]);
-        $assigned_menu_two_g2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminC7->id]);
-        $assigned_menu_two_g3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminC7->id]);
-
-
-      //Menu Calificaciones
-        $menuAdminD01 = new Menu;
-        $menuAdminD01->name='view_dashboard_survey_nps';
-        $menuAdminD01->display_name='Dashboard encuesta NPS';
-        $menuAdminD01->description='Permite visualizar los resultados de la encuesta NPS.';
-        $menuAdminD01->url='view_dashboard_survey_nps';
-        $menuAdminD01->section_id=$seccion_admin_c->id;
-        $menuAdminD01->icons='fa fa-tachometer';
-        $menuAdminD01->save();
-        $assigned_menu_three_a0A = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD01->id]);
-        $assigned_menu_three_a1A = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD01->id]);
-        $assigned_menu_three_a2A = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD01->id]);
-        $assigned_menu_three_a3A = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD01->id]);
-
-        $menuAdminD02 = new Menu;
-        $menuAdminD02->name='view_dashboard_survey_sit';
-        $menuAdminD02->display_name='Dashboard encuesta gral';
-        $menuAdminD02->description='Permite visualizar los resultados de la encuesta Sitwfi.';
-        $menuAdminD02->url='view_dashboard_survey_sit';
-        $menuAdminD02->section_id=$seccion_admin_c->id;
-        $menuAdminD02->icons='fa fa-tachometer';
-        $menuAdminD02->save();
-        $assigned_menu_three_a0B = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD02->id]);
-        $assigned_menu_three_a1B = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD02->id]);
-        $assigned_menu_three_a2B = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD02->id]);
-        $assigned_menu_three_a3B = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD02->id]);
-
-        $menuAdminD0 = new Menu;
-        $menuAdminD0->name='create_survey_admin';
-        $menuAdminD0->display_name='Crear encuesta';
-        $menuAdminD0->description='Permite crear la encuesta mensual.';
-        $menuAdminD0->url='create_survey_admin';
-        $menuAdminD0->section_id=$seccion_admin_c->id;
-        $menuAdminD0->icons='fa fa-plus-square-o';
-        $menuAdminD0->save();
-        $assigned_menu_three_a0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD0->id]);
-        $assigned_menu_three_a1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD0->id]);
-        $assigned_menu_three_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD0->id]);
-        $assigned_menu_three_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD0->id]);
-
-        // $menuAdminD1 = new Menu;
-        // $menuAdminD1->name='fill_survey_admin';
-        // $menuAdminD1->display_name='Llenar encuesta';
-        // $menuAdminD1->description='Permite capturar la encuesta mensual de un hotel de manera manual.';
-        // $menuAdminD1->url='fill_survey_admin';
-        // $menuAdminD1->section_id=$seccion_admin_c->id;
-        // $menuAdminD1->icons='fa fa-indent';
-        // $menuAdminD1->save();
-        // $assigned_menu_three_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD1->id]);
-        // $assigned_menu_three_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD1->id]);
-        // $assigned_menu_three_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD1->id]);
-        // $assigned_menu_three_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD1->id]);
-
-        // $menuAdminD2 = new Menu;
-        // $menuAdminD2->name='edit_survey_admin';
-        // $menuAdminD2->display_name='Editar encuesta';
-        // $menuAdminD2->description='Permite editar una encuesta mensual capturada por un miembro de un hotel.';
-        // $menuAdminD2->url='edit_survey_admin';
-        // $menuAdminD2->section_id=$seccion_admin_c->id;
-        // $menuAdminD2->icons='fa fa-inbox';
-        // $menuAdminD2->save();
-        // $assigned_menu_three_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD2->id]);
-        // $assigned_menu_three_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD2->id]);
-        // $assigned_menu_three_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD2->id]);
-        // $assigned_menu_three_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD2->id]);
-
-        $menuAdminD3 = new Menu;
-        $menuAdminD3->name='survey_results';
-        $menuAdminD3->display_name='Resultados encuesta NPS';
-        $menuAdminD3->description='Permite visualizar las calificaciones de cada sitio.';
-        $menuAdminD3->url='survey_results';
-        $menuAdminD3->section_id=$seccion_admin_c->id;
-        $menuAdminD3->icons='fa fa-info-circle';
-        $menuAdminD3->save();
-        $assigned_menu_three_d0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD3->id]);
-        $assigned_menu_three_d1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD3->id]);
-        $assigned_menu_three_d2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD3->id]);
-        $assigned_menu_three_d3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD3->id]);
-
-        // $menuAdminD4 = new Menu;
-        // $menuAdminD4->name='configure_survey_admin';
-        // $menuAdminD4->display_name='Configuración encuesta gral.';
-        // $menuAdminD4->description='Permite configurar las encuestas de cada sitio.';
-        // $menuAdminD4->url='configure_survey_admin';
-        // $menuAdminD4->section_id=$seccion_admin_c->id;
-        // $menuAdminD4->icons='fa fa-cog';
-        // $menuAdminD4->save();
-        // $assigned_menu_three_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD4->id]);
-        // $assigned_menu_three_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD4->id]);
-        // $assigned_menu_three_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD4->id]);
-        // $assigned_menu_three_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD4->id]);
-
-        $menuAdminD5 = new Menu;
-        $menuAdminD5->name='configure_survey_admin_nps';
-        $menuAdminD5->display_name='Configuración encuesta NPS.';
-        $menuAdminD5->description='Permite configurar las encuestas NPS para los clientes.';
-        $menuAdminD5->url='configure_survey_admin_nps';
-        $menuAdminD5->section_id=$seccion_admin_c->id;
-        $menuAdminD5->icons='fa fa-cog';
-        $menuAdminD5->save();
-        $assigned_menu_four_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD5->id]);
-        $assigned_menu_four_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD5->id]);
-        $assigned_menu_four_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD5->id]);
-        $assigned_menu_four_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD5->id]);
-
-        $menuAdminD6 = new Menu;
-        $menuAdminD6->name='configure_survey_admin_sit';
-        $menuAdminD6->display_name='Configuración encuesta gral.';
-        $menuAdminD6->description='Permite configurar las encuestas sitwifi para el personal.';
-        $menuAdminD6->url='configure_survey_admin_sit';
-        $menuAdminD6->section_id=$seccion_admin_c->id;
-        $menuAdminD6->icons='fa fa-cog';
-        $menuAdminD6->save();
-        $assigned_menu_five_e0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminD6->id]);
-        $assigned_menu_five_e1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminD6->id]);
-        $assigned_menu_five_e2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminD6->id]);
-        $assigned_menu_five_e3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminD6->id]);
-      //Menu Herramientas
-        $menuAdminE0 = new Menu;
-        $menuAdminE0->name='detailed_guest_review';
-        $menuAdminE0->display_name='Diagnósticos huéspedes';
-        $menuAdminE0->description='Permite visualizar el diagnósticos huéspedes';
-        $menuAdminE0->url='detailed_guest_review';
-        $menuAdminE0->section_id=$seccion_admin_e->id;
-        $menuAdminE0->icons='fa fa-tag';
-        $menuAdminE0->save();
-        $assigned_menu_four_a0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminE0->id]);
-        $assigned_menu_four_a1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminE0->id]);
-        $assigned_menu_four_a2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminE0->id]);
-        $assigned_menu_four_a3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminE0->id]);
-
-        $menuAdminE1 = new Menu;
-        $menuAdminE1->name='detailed_server_review';
-        $menuAdminE1->display_name='Diagnósticos servidores';
-        $menuAdminE1->description='Permite visualizar el diagnósticos servidores';
-        $menuAdminE1->url='detailed_server_review';
-        $menuAdminE1->section_id=$seccion_admin_e->id;
-        $menuAdminE1->icons='fa fa-tag';
-        $menuAdminE1->save();
-        $assigned_menu_four_b0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminE1->id]);
-        $assigned_menu_four_b1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminE1->id]);
-        $assigned_menu_four_b2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminE1->id]);
-        $assigned_menu_four_b3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminE1->id]);
-
-        $menuAdminE2 = new Menu;
-        $menuAdminE2->name='testzone';
-        $menuAdminE2->display_name='Testeo ZD';
-        $menuAdminE2->description='Permite realizar los testeos de direcciónes ip con puertos.';
-        $menuAdminE2->url='testzone';
-        $menuAdminE2->section_id=$seccion_admin_e->id;
-        $menuAdminE2->icons='fa fa-tag';
-        $menuAdminE2->save();
-        $assigned_menu_two_c0 = DB::table('menu_user')->insert(['user_id' => $super_admin_a0->id ,'menu_id' => $menuAdminE2->id]);
-        $assigned_menu_two_c1 = DB::table('menu_user')->insert(['user_id' => $super_admin_a->id ,'menu_id' => $menuAdminE2->id]);
-        $assigned_menu_two_c2 = DB::table('menu_user')->insert(['user_id' => $super_admin_b->id ,'menu_id' => $menuAdminE2->id]);
-        $assigned_menu_two_c3 = DB::table('menu_user')->insert(['user_id' => $super_admin_c->id ,'menu_id' => $menuAdminE2->id]);
-
-        //Usuarios del sistema actual
-        $user_1 = new User;
-        $user_1->name='Oscar Chan';
-        $user_1->email='ochan@sitwifi.com';
-        $user_1->city='Cancún, México';
-        $user_1->password= bcrypt('123456');
-        $user_1->avatar= 'dist/img/user.jpg';
-        $user_1->save();
-        $user_1->assignRole($conciergeRole);
-
-        $user_2 = new User;
-        $user_2->name='David Tejero';
-        $user_2->email='dtejero@sitwifi.com';
-        $user_2->city='Cancún, México';
-        $user_2->password= bcrypt('123456');
-        $user_2->avatar= 'dist/img/user.jpg';
-        $user_2->save();
-        $user_2->assignRole($conciergeRole);
-
-        $user_3 = new User;
-        $user_3->name='Jose Luis Ortiz';
-        $user_3->email='jortiz@sitwifi.com';
-        $user_3->city='Cancún, México';
-        $user_3->password= bcrypt('123456');
-        $user_3->avatar= 'dist/img/user.jpg';
-        $user_3->save();
-        $user_3->assignRole($conciergeRole);
-
-        $user_4 = new User;
-        $user_4->name='Angel Lopez';
-        $user_4->email='alopez@sitwifi.com';
-        $user_4->city='Cancún, México';
-        $user_4->password= bcrypt('123456');
-        $user_4->avatar= 'dist/img/user.jpg';
-        $user_4->save();
-        $user_4->assignRole($conciergeRole);
-
-        $user_5 = new User;
-        $user_5->name='Jimmy Novelo';
-        $user_5->email='jnovelo@sitwifi.com';
-        $user_5->city='Cancún, México';
-        $user_5->password= bcrypt('123456');
-        $user_5->avatar= 'dist/img/user.jpg';
-        $user_5->save();
-        $user_5->assignRole($conciergeRole);
-
-        $user_6 = new User;
-        $user_6->name='Wilbert Manzanero';
-        $user_6->email='wmanzanero@sitwifi.com';
-        $user_6->city='Cancún, México';
-        $user_6->password= bcrypt('123456');
-        $user_6->avatar= 'dist/img/user.jpg';
-        $user_6->save();
-        $user_6->assignRole($conciergeRole);
-
-        $user_7 = new User;
-        $user_7->name='Edgar Miranda';
-        $user_7->email='emiranda@sitwifi.com';
-        $user_7->city='Cancún, México';
-        $user_7->password= bcrypt('123456');
-        $user_7->avatar= 'dist/img/user.jpg';
-        $user_7->save();
-        $user_7->assignRole($conciergeRole);
-
-        $user_8 = new User;
-        $user_8->name='Alfredo Lagunes';
-        $user_8->email='alagunes@sitwifi.com';
-        $user_8->city='Cancún, México';
-        $user_8->password= bcrypt('123456');
-        $user_8->avatar= 'dist/img/user.jpg';
-        $user_8->save();
-        $user_8->assignRole($conciergeRole);
-
-        $user_9 = new User;
-        $user_9->name='Romahn Gachuz';
-        $user_9->email='rgachuz@sitwifi.com';
-        $user_9->city='Cancún, México';
-        $user_9->password= bcrypt('123456');
-        $user_9->avatar= 'dist/img/user.jpg';
-        $user_9->save();
-        $user_9->assignRole($conciergeRole);
-
-        $user_10 = new User;
-        $user_10->name='Jose Luis Briceño';
-        $user_10->email='jbriceno@sitwifi.com';
-        $user_10->city='Cancún, México';
-        $user_10->password= bcrypt('123456');
-        $user_10->avatar= 'dist/img/user.jpg';
-        $user_10->save();
-        $user_10->assignRole($conciergeRole);
-
-        $user_11 = new User;
-        $user_11->name='Israel Ojeda';
-        $user_11->email='iojeda@sitwifi.com';
-        $user_11->city='Cancún, México';
-        $user_11->password= bcrypt('123456');
-        $user_11->avatar= 'dist/img/user.jpg';
-        $user_11->save();
-        $user_11->assignRole($conciergeRole);
-
-        $user_12 = new User;
-        $user_12->name='Ivan Jim';
-        $user_12->email='ajim@sitwifi.com';
-        $user_12->city='Cancún, México';
-        $user_12->password= bcrypt('123456');
-        $user_12->avatar= 'dist/img/user.jpg';
-        $user_12->save();
-        $user_12->assignRole($conciergeRole);
-
-        $user_13 = new User;
-        $user_13->name='Rene Sanchez';
-        $user_13->email='fsanchez@sitwifi.com';
-        $user_13->city='Cancún, México';
-        $user_13->password= bcrypt('123456');
-        $user_13->avatar= 'dist/img/user.jpg';
-        $user_13->save();
-        $user_13->assignRole($conciergeRole);
-
-        $user_14 = new User;
-        $user_14->name='Martha Isabel';
-        $user_14->email='marthaisabel@sitwifi.com';
-        $user_14->city='Cancún, México';
-        $user_14->password= bcrypt('123456');
-        $user_14->avatar= 'dist/img/user.jpg';
-        $user_14->save();
-        $user_14->assignRole($conciergeRole);
-
-        $user_15 = new User;
-        $user_15->name='Ricardo Nuñez';
-        $user_15->email='rnunez@sitwifi.com';
-        $user_15->city='Cancún, México';
-        $user_15->password= bcrypt('123456');
-        $user_15->avatar= 'dist/img/user.jpg';
-        $user_15->save();
-        $user_15->assignRole($conciergeRole);
-
-        $user_16 = new User;
-        $user_16->name='Kevin Perez';
-        $user_16->email='kperez@sitwifi.com';
-        $user_16->city='Cancún, México';
-        $user_16->password= bcrypt('123456');
-        $user_16->avatar= 'dist/img/user.jpg';
-        $user_16->save();
-        $user_16->assignRole($conciergeRole);
-
-        $user_17 = new User;
-        $user_17->name='José Jorge Medina';
-        $user_17->email='jmedina@sitwifi.com';
-        $user_17->city='Cancún, México';
-        $user_17->password= bcrypt('123456');
-        $user_17->avatar= 'dist/img/user.jpg';
-        $user_17->save();
-        $user_17->assignRole($conciergeRole);
-
-        $user_18 = new User;
-        $user_18->name='Maria del Jesús Ortiz';
-        $user_18->email='mortiz@sitwifi.com';
-        $user_18->city='Cancún, México';
-        $user_18->password= bcrypt('123456');
-        $user_18->avatar= 'dist/img/user.jpg';
-        $user_18->save();
-        $user_18->assignRole($conciergeRole);
-
-        $user_19 = new User;
-        $user_19->name='Eloir Bautista';
-        $user_19->email='ebautista@sitwifi.com';
-        $user_19->city='Cancún, México';
-        $user_19->password= bcrypt('123456');
-        $user_19->avatar= 'dist/img/user.jpg';
-        $user_19->save();
-        $user_19->assignRole($conciergeRole);
-
-        $user_20 = new User;
-        $user_20->name='Luis Gonzalez';
-        $user_20->email='lgonzalez@sitwifi.com';
-        $user_20->city='Cancún, México';
-        $user_20->password= bcrypt('123456');
-        $user_20->avatar= 'dist/img/user.jpg';
-        $user_20->save();
-        $user_20->assignRole($conciergeRole);
-
-        $user_21 = new User;
-        $user_21->name='Jorge Quintanar';
-        $user_21->email='jquintanar@sitwifi.com';
-        $user_21->city='Cancún, México';
-        $user_21->password= bcrypt('123456');
-        $user_21->avatar= 'dist/img/user.jpg';
-        $user_21->save();
-        $user_21->assignRole($conciergeRole);
-
-        $user_22 = new User;
-        $user_22->name='Alejandro Maldonado';
-        $user_22->email='amaldonado@sitwifi.com';
-        $user_22->city='Cancún, México';
-        $user_22->password= bcrypt('123456');
-        $user_22->avatar= 'dist/img/user.jpg';
-        $user_22->save();
-        $user_22->assignRole($conciergeRole);
-
-        $user_23 = new User;
-        $user_23->name='Omar Serrano';
-        $user_23->email='oserrano@sitwifi.com';
-        $user_23->city='Cancún, México';
-        $user_23->password= bcrypt('123456');
-        $user_23->avatar= 'dist/img/user.jpg';
-        $user_23->save();
-        $user_23->assignRole($conciergeRole);
-
-        $user_24 = new User;
-        $user_24->name='Johnny Segura';
-        $user_24->email='jsegura@sitwifi.com';
-        $user_24->city='Cancún, México';
-        $user_24->password= bcrypt('123456');
-        $user_24->avatar= 'dist/img/user.jpg';
-        $user_24->save();
-        $user_24->assignRole($conciergeRole);
-
-        $user_25 = new User;
-        $user_25->name='Jose Luis Muñoz';
-        $user_25->email='jlmunoz@sitwifi.com';
-        $user_25->city='Cancún, México';
-        $user_25->password= bcrypt('123456');
-        $user_25->avatar= 'dist/img/user.jpg';
-        $user_25->save();
-        $user_25->assignRole($conciergeRole);
-
-        $user_26 = new User;
-        $user_26->name='Miguel Aristides Mateo';
-        $user_26->email='amateo@sitwifi.com';
-        $user_26->city='Cancún, México';
-        $user_26->password= bcrypt('123456');
-        $user_26->avatar= 'dist/img/user.jpg';
-        $user_26->save();
-        $user_26->assignRole($conciergeRole);
-
-        $user_27 = new User;
-        $user_27->name='Leo Daniel Fernandez del Angel';
-        $user_27->email='lfernandez@sitwifi.com';
-        $user_27->city='Cancún, México';
-        $user_27->password= bcrypt('123456');
-        $user_27->avatar= 'dist/img/user.jpg';
-        $user_27->save();
-        $user_27->assignRole($conciergeRole);
-
-        $user_28 = new User;
-        $user_28->name='Juan Carlos May';
-        $user_28->email='jcmay@sitwifi.com';
-        $user_28->city='Cancún, México';
-        $user_28->password= bcrypt('123456');
-        $user_28->avatar= 'dist/img/user.jpg';
-        $user_28->save();
-        $user_28->assignRole($conciergeRole);
-
-        $user_29 = new User;
-        $user_29->name='Manuel Pech';
-        $user_29->email='mpech@sitwifi.com';
-        $user_29->city='Cancún, México';
-        $user_29->password= bcrypt('123456');
-        $user_29->avatar= 'dist/img/user.jpg';
-        $user_29->save();
-        $user_29->assignRole($conciergeRole);
-
-        $user_30 = new User;
-        $user_30->name='Miguel Angel Morin Ochoa';
-        $user_30->email='morin@sitwifi.com';
-        $user_30->city='Cancún, México';
-        $user_30->password= bcrypt('123456');
-        $user_30->avatar= 'dist/img/user.jpg';
-        $user_30->save();
-        $user_30->assignRole($conciergeRole);
-
-        $user_31 = new User;
-        $user_31->name='Oscar Montes';
-        $user_31->email='omontes@sitwifi.com';
-        $user_31->city='Cancún, México';
-        $user_31->password= bcrypt('123456');
-        $user_31->avatar= 'dist/img/user.jpg';
-        $user_31->save();
-        $user_31->assignRole($conciergeRole);
-
-        $user_32 = new User;
-        $user_32->name='Daniel Elena';
-        $user_32->email='delena@sitwifi.com';
-        $user_32->city='Cancún, México';
-        $user_32->password= bcrypt('123456');
-        $user_32->avatar= 'dist/img/user.jpg';
-        $user_32->save();
-        $user_32->assignRole($conciergeRole);
-
-        $user_33 = new User;
-        $user_33->name='Diego Orea';
-        $user_33->email='dorea@sitwifi.com';
-        $user_33->city='Cancún, México';
-        $user_33->password= bcrypt('123456');
-        $user_33->avatar= 'dist/img/user.jpg';
-        $user_33->save();
-        $user_33->assignRole($conciergeRole);
-
-        $user_34 = new User;
-        $user_34->name='Victor Perez';
-        $user_34->email='vperez@sitwifi.com';
-        $user_34->city='Cancún, México';
-        $user_34->password= bcrypt('123456');
-        $user_34->avatar= 'dist/img/user.jpg';
-        $user_34->save();
-        $user_34->assignRole($conciergeRole);
-
-        $user_35 = new User;
-        $user_35->name='Oliver Garcia';
-        $user_35->email='ogarcia@sitwifi.com';
-        $user_35->city='Cancún, México';
-        $user_35->password= bcrypt('123456');
-        $user_35->avatar= 'dist/img/user.jpg';
-        $user_35->save();
-        $user_35->assignRole($conciergeRole);
-
-        $user_36 = new User;
-        $user_36->name='Jesus Castillo';
-        $user_36->email='jcastillo@sitwifi.com';
-        $user_36->city='Cancún, México';
-        $user_36->password= bcrypt('123456');
-        $user_36->avatar= 'dist/img/user.jpg';
-        $user_36->save();
-        $user_36->assignRole($conciergeRole);
-
-        $user_37 = new User;
-        $user_37->name='Diego Angeles';
-        $user_37->email='dangeles@sitwifi.com';
-        $user_37->city='Cancún, México';
-        $user_37->password= bcrypt('123456');
-        $user_37->avatar= 'dist/img/user.jpg';
-        $user_37->save();
-        $user_37->assignRole($conciergeRole);
-        //User admin
-        $user_38 = new User;
-        $user_38->name='Carlos Mata';
-        $user_38->email='cmata@sitwifi.com';
-        $user_38->city='Cancún, México';
-        $user_38->password= bcrypt('123456');
-        $user_38->avatar= 'dist/img/user.jpg';
-        $user_38->save();
-        $user_38->assignRole($adminRole);
-
-        $user_39 = new User;
-        $user_39->name='Ricardo Delgado';
-        $user_39->email='rdelgado@sitwifi.com';
-        $user_39->city='Cancún, México';
-        $user_39->password= bcrypt('123456');
-        $user_39->avatar= 'dist/img/user.jpg';
-        $user_39->save();
-        $user_39->assignRole($adminRole);
-
-        $user_40 = new User;
-        $user_40->name='Alejandro Espejo';
-        $user_40->email='aespejob@sitwifi.com';
-        $user_40->city='Cancún, México';
-        $user_40->password= bcrypt('123456');
-        $user_40->avatar= 'dist/img/user.jpg';
-        $user_40->save();
-        $user_40->assignRole($adminRole);
-
-        $user_41 = new User;
-        $user_41->name='John Walker';
-        $user_41->email='jwalker@sitwifi.com';
-        $user_41->city='Cancún, México';
-        $user_41->password= bcrypt('123456');
-        $user_41->avatar= 'dist/img/user.jpg';
-        $user_41->save();
-        $user_41->assignRole($adminRole);
-
-        $user_42 = new User;
-        $user_42->name='René González';
-        $user_42->email='rgonzalez@sitwifi.com';
-        $user_42->city='Cancún, México';
-        $user_42->password= bcrypt('123456');
-        $user_42->avatar= 'dist/img/user.jpg';
-        $user_42->save();
-        $user_42->assignRole($adminRole);
-
-        $user_43 = new User;
-        $user_43->name='Alejandro Espejo';
-        $user_43->email='alejandro.espejo@fodeli.com.mx';
-        $user_43->city='Cancún, México';
-        $user_43->password= bcrypt('123456');
-        $user_43->avatar= 'dist/img/user.jpg';
-        $user_43->save();
-        $user_43->assignRole($adminRole);
-
-        $user_44 = new User;
-        $user_44->name='Carlos Rangel';
-        $user_44->email='crangel@sitwifi.com';
-        $user_44->city='Cancún, México';
-        $user_44->password= bcrypt('123456');
-        $user_44->avatar= 'dist/img/user.jpg';
-        $user_44->save();
-        $user_44->assignRole($adminRole);
-
-        $user_45 = new User;
-        $user_45->name='Hector Tavera';
-        $user_45->email='htavera@sitwifi.com';
-        $user_45->city='Cancún, México';
-        $user_45->password= bcrypt('123456');
-        $user_45->avatar= 'dist/img/user.jpg';
-        $user_45->save();
-        $user_45->assignRole($adminRole);
-
-        $user_46 = new User;
-        $user_46->name='Javier Martinez';
-        $user_46->email='jmartinez@sitwifi.com';
-        $user_46->city='Cancún, México';
-        $user_46->password= bcrypt('123456');
-        $user_46->avatar= 'dist/img/user.jpg';
-        $user_46->save();
-        $user_46->assignRole($adminRole);
-
-        $user_47 = new User;
-        $user_47->name='Erick Mayorga';
-        $user_47->email='emayorga@sitwifi.com';
-        $user_47->city='Cancún, México';
-        $user_47->password= bcrypt('123456');
-        $user_47->avatar= 'dist/img/user.jpg';
-        $user_47->save();
-        $user_47->assignRole($adminRole);
-
-        $user_48 = new User;
-        $user_48->name='M Montiaga';
-        $user_48->email='mmontiaga@sitwifi.com';
-        $user_48->city='Cancún, México';
-        $user_48->password= bcrypt('123456');
-        $user_48->avatar= 'dist/img/user.jpg';
-        $user_48->save();
-        $user_48->assignRole($adminRole);
-
-        $user_49 = new User;
-        $user_49->name='Mariana	Presuel';
-        $user_49->email='mariana@sitwifi.com';
-        $user_49->city='Cancún, México';
-        $user_49->password= bcrypt('123456');
-        $user_49->avatar= 'dist/img/user.jpg';
-        $user_49->save();
-        $user_49->assignRole($adminRole);
-
-        $user_50 = new User;
-        $user_50->name='Alejandra Perez';
-        $user_50->email='aperez@sitwifi.com';
-        $user_50->city='Cancún, México';
-        $user_50->password= bcrypt('123456');
-        $user_50->avatar= 'dist/img/user.jpg';
-        $user_50->save();
-        $user_50->assignRole($adminRole);
-
-        $user_51 = new User;
-        $user_51->name='Aaron Arciga';
-        $user_51->email='aarciga@sitwifi.com';
-        $user_51->city='Cancún, México';
-        $user_51->password= bcrypt('123456');
-        $user_51->avatar= 'dist/img/user.jpg';
-        $user_51->save();
-        $user_51->assignRole($adminRole);
-        //monitor
-        $user_52 = new User;
-        $user_52->name='Paola Ku';
-        $user_52->email='pku@sitwifi.com';
-        $user_52->city='Cancún, México';
-        $user_52->password= bcrypt('123456');
-        $user_52->avatar= 'dist/img/user.jpg';
-        $user_52->save();
-        $user_52->assignRole($monitorRole);
-
-        $user_53 = new User;
-        $user_53->name='Jessica Bernal';
-        $user_53->email='jbernal@sitwifi.com';
-        $user_53->city='Cancún, México';
-        $user_53->password= bcrypt('123456');
-        $user_53->avatar= 'dist/img/user.jpg';
-        $user_53->save();
-        $user_53->assignRole($monitorRole);
-
-        $user_53 = new User;
-        $user_53->name='Helpdesk';
-        $user_53->email='helpdesk@sitwifi.com';
-        $user_53->city='Cancún, México';
-        $user_53->password= bcrypt('123456');
-        $user_53->avatar= 'dist/img/user.jpg';
-        $user_53->save();
-        $user_53->assignRole($monitorRole);
-
-      //Creamos las operaciones
-        $operation_a = new Operacione;
-        $operation_a->Nombre_operacion='Oficinas Sureste y Caribe';
-        $operation_a->Descripcion='CUN';
-        $operation_a->save();
-
-        $operation_b = new Operacione;
-        $operation_b->Nombre_operacion='Oficinas Centro y Norte';
-        $operation_b->Descripcion='CDMX';
-        $operation_b->save();
-      //Creamos las Verticales
-        $vertical_a = new Vertical;    $vertical_a->name='Aeropuerto';     $vertical_a->save();
-        $vertical_b = new Vertical;    $vertical_b->name='Educación';      $vertical_b->save();
-        $vertical_c = new Vertical;    $vertical_c->name='Eventos';        $vertical_c->save();
-        $vertical_d = new Vertical;    $vertical_d->name='Hospitalidad';   $vertical_d->save();
-        $vertical_e = new Vertical;    $vertical_e->name='MB';             $vertical_e->save();
-        $vertical_f = new Vertical;    $vertical_f->name='Oficinas';       $vertical_f->save();
-        $vertical_g = new Vertical;    $vertical_g->name='Parques';        $vertical_g->save();
-        $vertical_h = new Vertical;    $vertical_h->name='Plaza';          $vertical_h->save();
-        $vertical_i = new Vertical;    $vertical_i->name='Restaurantes';   $vertical_i->save();
-        $vertical_j = new Vertical;    $vertical_j->name='Retail';         $vertical_j->save();
-        $vertical_k = new Vertical;    $vertical_k->name='SITWIFI';        $vertical_k->save();
-        $vertical_l = new Vertical;    $vertical_l->name='Transporte';     $vertical_l->save();
-      //Creamos las Cadena
-        $cadena_1 = new Cadena;    $cadena_1->name='No Aplica';     $cadena_1->save();
-        $cadena_2 = new Cadena;    $cadena_2->name='Adamantine';     $cadena_2->save();
-        $cadena_3 = new Cadena;    $cadena_3->name='ADO';     $cadena_3->save();
-        $cadena_4 = new Cadena;    $cadena_4->name='Aldea Thai';     $cadena_4->save();
-        $cadena_5 = new Cadena;    $cadena_5->name='Aliat Universidades';     $cadena_5->save();
-        $cadena_6 = new Cadena;    $cadena_6->name='Aluxes';     $cadena_6->save();
-        $cadena_7 = new Cadena;    $cadena_7->name='Aquamarina';     $cadena_7->save();
-        $cadena_8 = new Cadena;    $cadena_8->name='ASUR';     $cadena_8->save();
-        $cadena_9 = new Cadena;    $cadena_9->name='BestDay';     $cadena_9->save();
-        $cadena_10 = new Cadena;    $cadena_10->name='Bluebay Resorts';     $cadena_10->save();
-        $cadena_11 = new Cadena;    $cadena_11->name='CancunBay';     $cadena_11->save();
-        $cadena_12 = new Cadena;    $cadena_12->name='Casa Maya';     $cadena_12->save();
-        $cadena_13 = new Cadena;    $cadena_13->name='Colegio Americano de San Carlos';     $cadena_13->save();
-        $cadena_14 = new Cadena;    $cadena_14->name='Colegio la Florida';     $cadena_14->save();
-        $cadena_15 = new Cadena;    $cadena_15->name='EBC';     $cadena_15->save();
-        $cadena_16 = new Cadena;    $cadena_16->name='Experiencias Xcaret';     $cadena_16->save();
-        $cadena_17 = new Cadena;    $cadena_17->name='Fiesta Americana';     $cadena_17->save();
-        $cadena_18 = new Cadena;    $cadena_18->name='Fontan';     $cadena_18->save();
-        $cadena_19 = new Cadena;    $cadena_19->name='FourPoints';     $cadena_19->save();
-        $cadena_20 = new Cadena;    $cadena_20->name='Galerias';     $cadena_20->save();
-        $cadena_21 = new Cadena;    $cadena_21->name='GAP';     $cadena_21->save();
-        $cadena_22 = new Cadena;    $cadena_22->name='H10';     $cadena_22->save();
-        $cadena_23 = new Cadena;    $cadena_23->name='Hard Rock';     $cadena_23->save();
-        $cadena_24 = new Cadena;    $cadena_24->name='Hostal de la Luz';     $cadena_24->save();
-        $cadena_25 = new Cadena;    $cadena_25->name='Iberostar Hoteles';     $cadena_25->save();
-        $cadena_26 = new Cadena;    $cadena_26->name='ISEC';     $cadena_26->save();
-        $cadena_27 = new Cadena;    $cadena_27->name='ITEMS';     $cadena_27->save();
-        $cadena_28 = new Cadena;    $cadena_28->name='Ixchel';     $cadena_28->save();
-        $cadena_29 = new Cadena;    $cadena_29->name='Karisma';     $cadena_29->save();
-        $cadena_30 = new Cadena;    $cadena_30->name='Kidzania';     $cadena_30->save();
-        $cadena_31 = new Cadena;    $cadena_31->name='Laureate Universidades';     $cadena_31->save();
-        $cadena_32 = new Cadena;    $cadena_32->name='Liverpool';     $cadena_32->save();
-        $cadena_33 = new Cadena;    $cadena_33->name='Mayacobá';     $cadena_33->save();
-        $cadena_34 = new Cadena;    $cadena_34->name='McDonalds';     $cadena_34->save();
-        $cadena_35 = new Cadena;    $cadena_35->name='Melia hotels';     $cadena_35->save();
-        $cadena_36 = new Cadena;    $cadena_36->name='Nuevo Continente';     $cadena_36->save();
-        $cadena_37 = new Cadena;    $cadena_37->name='Numa';     $cadena_37->save();
-        $cadena_38 = new Cadena;    $cadena_38->name='NYX';     $cadena_38->save();
-        $cadena_39 = new Cadena;    $cadena_39->name='Ocean Dream';     $cadena_39->save();
-        $cadena_40 = new Cadena;    $cadena_40->name='Okol';     $cadena_40->save();
-        $cadena_41 = new Cadena;    $cadena_41->name='OMA';     $cadena_41->save();
-        $cadena_42 = new Cadena;    $cadena_42->name='Orbis';     $cadena_42->save();
-        $cadena_43 = new Cadena;    $cadena_43->name='Oxford';     $cadena_43->save();
-        $cadena_44 = new Cadena;    $cadena_44->name='Palace Resorts';     $cadena_44->save();
-        $cadena_45 = new Cadena;    $cadena_45->name='Parnassus Resorts';     $cadena_45->save();
-        $cadena_46 = new Cadena;    $cadena_46->name='Patio Universidad';     $cadena_46->save();
-        $cadena_47 = new Cadena;    $cadena_47->name='Real Resorts';     $cadena_47->save();
-        $cadena_48 = new Cadena;    $cadena_48->name='Sirenis Resorts';     $cadena_48->save();
-        $cadena_49 = new Cadena;    $cadena_49->name='Sunset World';     $cadena_49->save();
-        $cadena_50 = new Cadena;    $cadena_50->name='UDLA';     $cadena_50->save();
-        $cadena_51 = new Cadena;    $cadena_51->name='Unitec';     $cadena_51->save();
-        $cadena_52 = new Cadena;    $cadena_52->name='UNLA';     $cadena_52->save();
-        $cadena_53 = new Cadena;    $cadena_53->name='UVAQ';     $cadena_53->save();
-        $cadena_54 = new Cadena;    $cadena_54->name='UVP';     $cadena_54->save();
-        $cadena_55 = new Cadena;    $cadena_55->name='Volaris';     $cadena_55->save();
-        $cadena_56 = new Cadena;    $cadena_56->name='WRK';     $cadena_56->save();
-        $cadena_57 = new Cadena;    $cadena_57->name='Zentralia';     $cadena_57->save();
-      //Creamos las referencias de los hoteles
-        $reference_1 = new Reference;
-        $reference_1->responsable='Eduardo Arzua';
-        $reference_1->area='Gerente de Operaciones  ';
-        $reference_1->telefono='(984) 803 14 00';
-        $reference_1->correo='eduardo@rivieramanagement.mx';
-        $reference_1->save();
-
-        $reference_2 = new Reference;
-        $reference_2->responsable='Arturo Sánchez';
-        $reference_2->area='Sistemas';
-        $reference_2->telefono='(52) 8728080 ext 4034';
-        $reference_2->correo='asanchez@azulbeachresorts.com';
-        $reference_2->save();
-
-        $reference_3 = new Reference;
-        $reference_3->responsable='Julio Ovando';
-        $reference_3->area='Gerente de TI';
-        $reference_3->telefono='9841278356';
-        $reference_3->correo='jovando@azulfiveshotel.com';
-        $reference_3->save();
-
-        $reference_4 = new Reference;
-        $reference_4->responsable='José Manuel Rivera';
-        $reference_4->area='Jefe de Sistemas';
-        $reference_4->telefono='9848078830';
-        $reference_4->correo='jmrivera@soportech.com.mx';
-        $reference_4->save();
-
-        $reference_5 = new Reference;
-        $reference_5->responsable='Jorge Pererira Ek';
-        $reference_5->area='Gerente de Sistemas';
-        $reference_5->telefono='9982243487';
-        $reference_5->correo='jpereira@ixco.com.mx';
-        $reference_5->save();
-
-        $reference_6 = new Reference;
-        $reference_6->responsable='Rigoberto Gomez';
-        $reference_6->area='Jefe de Sistemas';
-        $reference_6->telefono='9842063477';
-        $reference_6->correo='rgomez@eldoradomaroma.com';
-        $reference_6->save();
-
-        $reference_7 = new Reference;
-        $reference_7->responsable='Robert Juarez';
-        $reference_7->area='Gerente de Sistemas';
-        $reference_7->telefono='9981957946';
-        $reference_7->correo='robert.juarez@oceanhotels.net';
-        $reference_7->save();
-
-        $reference_8 = new Reference;
-        $reference_8->responsable='Robert Juárez';
-        $reference_8->area='Gerente de sistemas';
-        $reference_8->telefono='9982872484';
-        $reference_8->correo='jlroberto@gmail.com';
-        $reference_8->save();
-
-        $reference_9 = new Reference;
-        $reference_9->responsable='Hector Aguilera';
-        $reference_9->area='Gerente de sistemas';
-        $reference_9->telefono='9841697609';
-        $reference_9->correo='hector.aguilera@iberostar.com.mx';
-        $reference_9->save();
-
-        $reference_10 = new Reference;
-        $reference_10->responsable='Guadalupe Constantino';
-        $reference_10->area='Gerente de Sistemas';
-        $reference_10->telefono='8491047';
-        $reference_10->correo='g.constantino@iberostar.com.mx';
-        $reference_10->save();
-
-        $reference_11 = new Reference;
-        $reference_11->responsable='Lic. Luz del Carmen López';
-        $reference_11->area='Operación';
-        $reference_11->telefono='019989992010 ext. 5000';
-        $reference_11->correo='operations@ixchelbeachhotel.com';
-        $reference_11->save();
-
-        $reference_12 = new Reference;
-        $reference_12->responsable='Ing. Antonio Salinas';
-        $reference_12->area='Sistemas informaticos';
-        $reference_12->correo='antonio.salinas@rosewoodhotels.com';
-        $reference_12->save();
-
-        $reference_13 = new Reference;
-        $reference_13->responsable='Luis Trejo Hurtado';
-        $reference_13->area='Infraestructura Tecnológica';
-        $reference_13->telefono='8814500';
-        $reference_13->correo='ltrejo@sunset.com.mx';
-        $reference_13->save();
-
-        $reference_14 = new Reference;
-        $reference_14->responsable='Guillermo Ojeda Valera';
-        $reference_14->area='GTE Sistemas';
-        $reference_14->telefono='3223563718';
-        $reference_14->correo='sistemas@grandsirenismatlali.com';
-        $reference_14->save();
-
-        $reference_15 = new Reference;
-        $reference_15->responsable='Ing Adiacna  Chuy Flores';
-        $reference_15->area='Jefe de Mantenimiento';
-        $reference_15->telefono='9386885131';
-        $reference_15->correo='mantenimiento@zentraliacdcarmen.com';
-        $reference_15->save();
-
-        $reference_16 = new Reference;
-        $reference_16->responsable='Israel Rivera';
-        $reference_16->area='Gte. Sistemas';
-        $reference_16->telefono='9848078831';
-        $reference_16->correo='sistemas.bbdiamond@bluebayresorts.com';
-        $reference_16->save();
-
-        $reference_17 = new Reference;
-        $reference_17->responsable='Ing Pedro Joaquin Ortiz Vales';
-        $reference_17->area='Jefe de sistemas';
-        $reference_17->telefono='9995763429';
-        $reference_17->correo='pvales@asur.com.mx';
-        $reference_17->save();
-
-        $reference_18 = new Reference;
-        $reference_18->responsable='Jimmy Alexis Huezo Garcia';
-        $reference_18->area='Sistemas';
-        $reference_18->telefono='987-872-0647 EXT 23117';
-        $reference_18->correo='jhuezo@asur.com.mx';
-        $reference_18->save();
-
-        $reference_19 = new Reference;
-        $reference_19->responsable='Salomon Groman';
-        $reference_19->area='Gerente General';
-        $reference_19->telefono='(987) 8720300 Ext.415';
-        $reference_19->correo='gerencia@hotelbcozumel.com';
-
-        $reference_20 = new Reference;
-        $reference_20->responsable='Ing. Omar Luna Rodríguez';
-        $reference_20->area='Jefe de mantenimiento';
-        $reference_20->telefono='2299775354';
-        $reference_20->correo='Negrito721ol@gmail.com';
-        $reference_20->save();
-
-        $reference_21 = new Reference;
-        $reference_21->responsable='Ing. Felix Tapia';
-        $reference_21->area='Sistemas';
-        $reference_21->telefono='(755) 114 8586';
-        $reference_21->correo='sistemasfi@hotelesfontan.com';
-        $reference_21->save();
-
-        $reference_22 = new Reference;
-        $reference_22->responsable='Ing Enrique Sosa';
-        $reference_22->area='Gte de sistemas';
-        $reference_22->telefono='9981472112';
-        $reference_22->correo='enrique.sosa@oceanhotel.com';
-        $reference_22->save();
-
-        $reference_23 = new Reference;
-        $reference_23->responsable='Ing. Freddy Tun';
-        $reference_23->area='Gte. Sistemas';
-        $reference_23->telefono='01(52) 998 848 9334';
-        $reference_23->correo='sistemas@nyxhotels.com';
-        $reference_23->save();
-
-        $reference_24 = new Reference;
-        $reference_24->responsable='Ángel Castro';
-        $reference_24->area='Mantenimiento';
-        $reference_24->telefono='2292814512';
-        $reference_24->save();
-
-        $reference_25 = new Reference;
-        $reference_25->responsable='Vucko Raskovic';
-        $reference_25->area='IT Manager';
-        $reference_25->telefono='+18766200100 Ext. 8026';
-        $reference_25->correo='vraskovic@azulsensatorihoteljamaica.com';
-        $reference_25->save();
-
-        $reference_26 = new Reference;
-        $reference_26->responsable='Jesus Yamanaka';
-        $reference_26->area='Sistemas';
-        $reference_26->save();
-
-        $reference_27 = new Reference;
-        $reference_27->responsable='Guillermo Vazquez Montes de Oca';
-        $reference_27->save();
-
-        $reference_28 = new Reference;
-        $reference_28->responsable='Araceli Dorado';
-        $reference_28->area='Sistemas';
-        $reference_28->telefono='(55) 14438370';
-        $reference_28->correo='araceli.dorado@laurete.mx';
-        $reference_28->save();
-
-        $reference_29 = new Reference;
-        $reference_29->responsable='Ing. Carlos Pech';
-        $reference_29->area='Gte. Sistemas';
-        $reference_29->telefono='984 175 1813';
-        $reference_29->correo='cpech@unicohotelrm.com';
-        $reference_29->save();
-
-        $reference_30 = new Reference;
-        $reference_30->responsable='Itzel Servin Maravelez';
-        $reference_30->area='Presidenta de la Liga de Football en Bikini';
-        $reference_30->telefono='9982101476';
-        $reference_30->correo='itzel@lfb.com.mx';
-        $reference_30->save();
-
-        $reference_31 = new Reference;
-        $reference_31->responsable='Lorenzo Antonio Gonzalez Corona';
-        $reference_31->area='Soporte Técnico';
-        $reference_31->telefono='55 1865 8986';
-        $reference_31->correo='antonio.gonzalez@laureate.mx';
-        $reference_31->save();
-
-        $reference_32 = new Reference;
-        $reference_32->responsable='Héctor Gómez';
-        $reference_32->area='Sistemas';
-        $reference_32->telefono='5531969484';
-        $reference_32->correo='hrgomez@itesm.mx';
-        $reference_32->save();
-
-        $reference_33 = new Reference;
-        $reference_33->responsable='Christian Maya';
-        $reference_33->area='Soporte Tecnico';
-        $reference_33->telefono='442 1816 548';
-        $reference_33->correo='cmayaabo@mail.unitec.mx';
-        $reference_33->save();
-
-        $reference_34 = new Reference;
-        $reference_34->responsable='José Alvarado Torres';
-        $reference_34->area='Sistemas';
-        $reference_34->telefono='921 211 1860';
-        $reference_34->correo='jose.alvarado@uvg.edu.mx';
-        $reference_34->save();
-
-        $reference_35 = new Reference;
-        $reference_35->responsable='Roberto Crespo Schmidt';
-        $reference_35->area='Director de Sistemas';
-        $reference_35->telefono='5585037114';
-        $reference_35->correo='roberto.crespo@gmd.com.mx';
-        $reference_35->save();
-
-        $reference_36 = new Reference;
-        $reference_36->responsable='Ing. Erick Dueñas';
-        $reference_36->area='Sistemas';
-        $reference_36->telefono='(55) 7676 7700';
-        $reference_36->save();
-
-        $reference_37 = new Reference;
-        $reference_37->responsable='Geovanys Leyva';
-        $reference_37->save();
-
-        $reference_38 = new Reference;
-        $reference_38->responsable='Ing. Erick Boni';
-        $reference_38->area='Sistemas';
-        $reference_38->telefono='(558) 5716393';
-        $reference_38->correo='erick.boni@mazenod.com';
-        $reference_38->save();
-
-        $reference_39 = new Reference;
-        $reference_39->responsable='Ing. Erick Merino Merino';
-        $reference_39->area='Sistemas';
-        $reference_39->telefono='01 222 409 9777';
-        $reference_39->correo='Sin información';
-        $reference_39->save();
-
-        $reference_40 = new Reference;
-        $reference_40->responsable='Ing. Gualberto Marquez';
-        $reference_40->area='Sistemas';
-        $reference_40->telefono='01 55 5485 4988';
-        $reference_40->save();
-        //Creamos la sucursals
-        $sucursal_01 = new Sucursal;
-        $sucursal_01->name='SITWIFI';
-        $sucursal_01->address='Av. Yachilan';
-        $sucursal_01->correo='soporte@sitwifi.zendesk.com';
-        $sucursal_01->phone='Sin informacion';
-        $sucursal_01->save();
-        //Creamos la Servicio
-        $servicio_01 = new Servicio;
-        $servicio_01->Nombre_servicio='Arrendamiento';
-        $servicio_01->save();
-
-        $servicio_02 = new Servicio;
-        $servicio_02->Nombre_servicio='Venta';
-        $servicio_02->save();
-
-        $servicio_03 = new Servicio;
-        $servicio_03->Nombre_servicio='Demo';
-        $servicio_03->save();
-
-        $servicio_04 = new Servicio;
-        $servicio_04->Nombre_servicio='No aplica';
-        $servicio_04->save();
-
-        $servicio_05 = new Servicio;
-        $servicio_05->Nombre_servicio='Prestamo';
-        $servicio_05->save();
-
-        //Creamos la Proyecto
-        // $proyecto_01 = new Proyecto;
-        // $proyecto_01->Nombre_proyecto='Aldea Thai Resorts';
-        // $proyecto_01->Fecha_inicio='Sin informacion';
-        // $proyecto_01->Fecha_termino='Sin informacion';
-        // $proyecto_01->save();
-        //
-        // $proyecto_02 = new Proyecto;
-        // $proyecto_02->Nombre_proyecto='Aluxes';
-        // $proyecto_02->Fecha_inicio='Sin informacion';
-        // $proyecto_02->Fecha_termino='Sin informacion';
-        // $proyecto_02->save();
-
-      //Creamos los hoteles
-      $hotel_1 = new Hotel;
-      $hotel_1->Nombre_hotel='Aldea Thai';
-      $hotel_1->Direccion='Playa del Carmen Centro, 77710';
-      $hotel_1->Telefono='Sin informacion';
-      $hotel_1->cadena_id=$cadena_4->id;
-      $hotel_1->Pais='México';
-      $hotel_1->Estado='Quintana Roo';
-      $hotel_1->vertical_id=$vertical_d->id;
-      $hotel_1->dirlogo1='Aldea_Thai.svg';
-      $hotel_1->operaciones_id=$operation_a->id;
-      $hotel_1->Fecha_inicioP='Sin información';
-      $hotel_1->Fecha_terminoP='Sin información';
-      $hotel_1->Latitude='20.631871';
-      $hotel_1->Longitude='-87.066404';
-      $hotel_1->RM='58';
-      $hotel_1->ActivarCalificacion='1';
-      $hotel_1->ActivarReportes='1';
-      $hotel_1->servicios_id =$servicio_01->id;
-      // $hotel_1->proyectos_id =$proyecto_01->id;
-      $hotel_1->sucursal_id =$sucursal_01->id;
-      $hotel_1->save();
-
-      $hotel_2 = new Hotel;
-      $hotel_2->Nombre_hotel='Aluxes';
-      $hotel_2->Direccion='Av. Adolfo Lopez Mateos S/N, Centro, 77400';
-      $hotel_2->Telefono='Sin informacion';
-      $hotel_2->cadena_id=$cadena_6->id;
-      $hotel_2->Pais='México';
-      $hotel_2->Estado='Quintana Roo';
-      $hotel_2->vertical_id=$vertical_d->id;
-      $hotel_2->dirlogo1='Aluxes.svg';
-      $hotel_2->operaciones_id=$operation_a->id;
-      $hotel_2->Fecha_inicioP='Sin información';
-      $hotel_2->Fecha_terminoP='Sin información';
-      $hotel_2->Latitude='21.257913';
-      $hotel_2->Longitude='-86.750884';
-      $hotel_2->RM='49';
-      $hotel_2->ActivarCalificacion='1';
-      $hotel_2->ActivarReportes='1';
-      $hotel_2->servicios_id =$servicio_02->id;
-      // $hotel_2->proyectos_id =$proyecto_01->id;
-      $hotel_2->sucursal_id =$sucursal_01->id;
-      $hotel_2->save();
-
-      $hotel_3 = new Hotel;
-      $hotel_3->Nombre_hotel='Azul Beach';
-      $hotel_3->Direccion='Carretera Cancún – Puerto Morelos Km 27.5';
-      $hotel_3->Telefono='Sin informacion';
-      $hotel_3->cadena_id=$cadena_29->id;
-      $hotel_3->Pais='México';
-      $hotel_3->Estado='Quintana Roo';
-      $hotel_3->vertical_id=$vertical_d->id;
-      $hotel_3->dirlogo1='Azul_Beach.svg';
-      $hotel_3->operaciones_id=$operation_a->id;
-      $hotel_3->Fecha_inicioP='Sin información';
-      $hotel_3->Fecha_terminoP='Sin información';
-      $hotel_3->Latitude='20.905489';
-      $hotel_3->Longitude='-86.847187';
-      $hotel_3->RM='102';
-      $hotel_3->ActivarCalificacion='1';
-      $hotel_3->ActivarReportes='1';
-      $hotel_3->servicios_id =$servicio_02->id;
-      // $hotel_3->proyectos_id =$proyecto_01->id;
-      $hotel_3->sucursal_id =$sucursal_01->id;
-      $hotel_3->save();
-
-      $hotel_4 = new Hotel;
-      $hotel_4->Nombre_hotel='Azul Sensatori';
-      $hotel_4->Direccion='Carretera Federal Cancún-Puerto Morelos';
-      $hotel_4->Telefono='Sin informacion';
-      $hotel_4->cadena_id=$cadena_29->id;
-      $hotel_4->Pais='México';
-      $hotel_4->Estado='Quintana Roo';
-      $hotel_4->vertical_id=$vertical_d->id;
-      $hotel_4->dirlogo1='Azul_Sensatori.svg';
-      $hotel_4->operaciones_id=$operation_a->id;
-      $hotel_4->Fecha_inicioP='Sin información';
-      $hotel_4->Fecha_terminoP='Sin información';
-      $hotel_4->Latitude='20.896263';
-      $hotel_4->Longitude='-86.856488';
-      $hotel_4->RM='153';
-      $hotel_4->ActivarCalificacion='1';
-      $hotel_4->ActivarReportes='1';
-      $hotel_4->servicios_id =$servicio_02->id;
-      // $hotel_4->proyectos_id =$proyecto_01->id;
-      $hotel_4->sucursal_id =$sucursal_01->id;
-      $hotel_4->save();
-
-      $hotel_5 = new Hotel;
-      $hotel_5->Nombre_hotel='Azul Five';
-      $hotel_5->Direccion='El Limonar Fraccion 2, Acceso Xcalacoco, 7771';
-      $hotel_5->Telefono='Sin informacion';
-      $hotel_5->cadena_id=$cadena_29->id;
-      $hotel_5->Pais='México';
-      $hotel_5->Estado='Quintana Roo';
-      $hotel_5->vertical_id=$vertical_d->id;
-      $hotel_5->dirlogo1='Azul_Five.svg';
-      $hotel_5->operaciones_id=$operation_a->id;
-      $hotel_5->Fecha_inicioP='Sin información';
-      $hotel_5->Fecha_terminoP='Sin información';
-      $hotel_5->Latitude='20.665152';
-      $hotel_5->Longitude='-87.03463';
-      $hotel_5->RM='366';
-      $hotel_5->ActivarCalificacion='1';
-      $hotel_5->ActivarReportes='1';
-      $hotel_5->servicios_id =$servicio_02->id;
-      // $hotel_5->proyectos_id =$proyecto_01->id;
-      $hotel_5->sucursal_id =$sucursal_01->id;
-      $hotel_5->save();
-
-      $hotel_6 = new Hotel;
-      $hotel_6->Nombre_hotel='Beach Palace';
-      $hotel_6->Direccion='Km 11.5, Blvd. Kukulcan, Zona Hotelera, 77500';
-      $hotel_6->Telefono='Sin informacion';
-      $hotel_6->cadena_id=$cadena_44->id;
-      $hotel_6->Pais='México';
-      $hotel_6->Estado='Quintana Roo';
-      $hotel_6->vertical_id=$vertical_d->id;
-      $hotel_6->dirlogo1='Beach_Palace.svg';
-      $hotel_6->operaciones_id=$operation_a->id;
-      $hotel_6->Fecha_inicioP='Sin información';
-      $hotel_6->Fecha_terminoP='Sin información';
-      $hotel_6->Latitude='21.114136';
-      $hotel_6->Longitude='-86.759096';
-      $hotel_6->RM='103';
-      $hotel_6->ActivarCalificacion='1';
-      $hotel_6->ActivarReportes='1';
-      $hotel_6->servicios_id =$servicio_02->id;
-      // $hotel_6->proyectos_id =$proyecto_01->id;
-      $hotel_6->sucursal_id =$sucursal_01->id;
-      $hotel_6->save();
-
-      $hotel_7 = new Hotel;
-      $hotel_7->Nombre_hotel='Bluebay';
-      $hotel_7->Direccion='Carretera Chetumal-Puerto Juarez Km. 300';
-      $hotel_7->Telefono='Sin informacion';
-      $hotel_7->cadena_id=$cadena_10->id;
-      $hotel_7->Pais='México';
-      $hotel_7->Estado='Quintana Roo';
-      $hotel_7->vertical_id=$vertical_d->id;
-      $hotel_7->dirlogo1='Bluebay.svg';
-      $hotel_7->operaciones_id=$operation_a->id;
-      $hotel_7->Fecha_inicioP='Sin información';
-      $hotel_7->Fecha_terminoP='Sin información';
-      $hotel_7->Latitude='20.700463';
-      $hotel_7->Longitude='-87.012931';
-      $hotel_7->RM='95';
-      $hotel_7->ActivarCalificacion='1';
-      $hotel_7->ActivarReportes='1';
-      $hotel_7->servicios_id =$servicio_02->id;
-      // $hotel_7->proyectos_id =$proyecto_01->id;
-      $hotel_7->sucursal_id =$sucursal_01->id;
-      $hotel_7->save();
-
-      $hotel_8 = new Hotel;
-      $hotel_8->Nombre_hotel='Cancun Bay';
-      $hotel_8->Direccion='Blvd. Kulkucan Km. 3.5, Zona Hotelera';
-      $hotel_8->Telefono='Sin informacion';
-      $hotel_8->cadena_id=$cadena_11->id;
-      $hotel_8->Pais='México';
-      $hotel_8->Estado='Quintana Roo';
-      $hotel_8->vertical_id=$vertical_d->id;
-      $hotel_8->dirlogo1='cancun_bay.svg';
-      $hotel_8->operaciones_id=$operation_a->id;
-      $hotel_8->Fecha_inicioP='Sin información';
-      $hotel_8->Fecha_terminoP='Sin información';
-      $hotel_8->Latitude='21.149924';
-      $hotel_8->Longitude='-86.793257';
-      $hotel_8->RM='0';
-      $hotel_8->ActivarCalificacion='1';
-      $hotel_8->ActivarReportes='1';
-      $hotel_8->servicios_id =$servicio_02->id;
-      // $hotel_8->proyectos_id =$proyecto_01->id;
-      $hotel_8->sucursal_id =$sucursal_01->id;
-      $hotel_8->save();
-
-      $hotel_9 = new Hotel;
-      $hotel_9->Nombre_hotel='Casa Maya';
-      $hotel_9->Direccion='Blvd. Kukulcán Km. 5.5, Zona Hotelera';
-      $hotel_9->Telefono='Sin informacion';
-      $hotel_9->cadena_id=$cadena_12->id;
-      $hotel_9->Pais='México';
-      $hotel_9->Estado='Quintana Roo';
-      $hotel_9->vertical_id=$vertical_d->id;
-      $hotel_9->dirlogo1='casa_maya.svg';
-      $hotel_9->operaciones_id=$operation_a->id;
-      $hotel_9->Fecha_inicioP='Sin información';
-      $hotel_9->Fecha_terminoP='Sin información';
-      $hotel_9->Latitude='21.144984';
-      $hotel_9->Longitude='-86.778898';
-      $hotel_9->RM='108';
-      $hotel_9->ActivarCalificacion='1';
-      $hotel_9->ActivarReportes='1';
-      $hotel_9->servicios_id =$servicio_02->id;
-      // $hotel_9->proyectos_id =$proyecto_01->id;
-      $hotel_9->sucursal_id =$sucursal_01->id;
-      $hotel_9->save();
-
-      $hotel_10 = new Hotel;
-      $hotel_10->Nombre_hotel='Cozumel Palace';
-      $hotel_10->Direccion='Av. Rafael E. Melgar Km 15, Zona Hotelera';
-      $hotel_10->Telefono='Sin informacion';
-      $hotel_10->cadena_id=$cadena_44->id;
-      $hotel_10->Pais='México';
-      $hotel_10->Estado='Quintana Roo';
-      $hotel_10->vertical_id=$vertical_d->id;
-      $hotel_10->dirlogo1='cozumel_palace.svg';
-      $hotel_10->operaciones_id=$operation_a->id;
-      $hotel_10->Fecha_inicioP='Sin información';
-      $hotel_10->Fecha_terminoP='Sin información';
-      $hotel_10->Latitude='20.503371';
-      $hotel_10->Longitude='-86.959408';
-      $hotel_10->RM='72';
-      $hotel_10->ActivarCalificacion='1';
-      $hotel_10->ActivarReportes='1';
-      $hotel_10->servicios_id =$servicio_02->id;
-      // $hotel_10->proyectos_id =$proyecto_01->id;
-      $hotel_10->sucursal_id =$sucursal_01->id;
-      $hotel_10->save();
-
-      $hotel_11 = new Hotel;
-      $hotel_11->Nombre_hotel='Dorado Maroma';
-      $hotel_11->Direccion='Carretera Federal Cancun Tulum Km. 55.3';
-      $hotel_11->Telefono='Sin informacion';
-      $hotel_11->cadena_id=$cadena_29->id;
-      $hotel_11->Pais='México';
-      $hotel_11->Estado='Quintana Roo';
-      $hotel_11->vertical_id=$vertical_d->id;
-      $hotel_11->dirlogo1='dorado_maroma.svg';
-      $hotel_11->operaciones_id=$operation_a->id;
-      $hotel_11->Fecha_inicioP='Sin información';
-      $hotel_11->Fecha_terminoP='Sin información';
-      $hotel_11->Latitude='20.723633';
-      $hotel_11->Longitude='-87.03463';
-      $hotel_11->RM='119';
-      $hotel_11->ActivarCalificacion='1';
-      $hotel_11->ActivarReportes='1';
-      $hotel_11->servicios_id =$servicio_02->id;
-      // $hotel_11->proyectos_id =$proyecto_01->id;
-      $hotel_11->sucursal_id =$sucursal_01->id;
-      $hotel_11->save();
-
-      $hotel_12 = new Hotel;
-      $hotel_12->Nombre_hotel='Dorado Seaside';
-      $hotel_12->Direccion='Carr Cancun-Tulum km 95, 77710 Kantenah, Q.R';
-      $hotel_12->Telefono='Sin informacion';
-      $hotel_12->cadena_id=$cadena_29->id;
-      $hotel_12->Pais='México';
-      $hotel_12->Estado='Quintana Roo';
-      $hotel_12->vertical_id=$vertical_d->id;
-      $hotel_12->dirlogo1='dorado_seaside.svg';
-      $hotel_12->operaciones_id=$operation_a->id;
-      $hotel_12->Fecha_inicioP='Sin información';
-      $hotel_12->Fecha_terminoP='Sin información';
-      $hotel_12->Latitude='20.454772';
-      $hotel_12->Longitude='-87.272032';
-      $hotel_12->RM='285';
-      $hotel_12->ActivarCalificacion='1';
-      $hotel_12->ActivarReportes='1';
-      $hotel_12->servicios_id =$servicio_02->id;
-      // $hotel_12->proyectos_id =$proyecto_01->id;
-      $hotel_12->sucursal_id =$sucursal_01->id;
-      $hotel_12->save();
-
-      $hotel_13 = new Hotel;
-      $hotel_13->Nombre_hotel='Dorado Royal';
-      $hotel_13->Direccion='Carretera Cancún - Tulum Km. 45, 77710 Tulum';
-      $hotel_13->Telefono='Sin informacion';
-      $hotel_13->cadena_id=$cadena_44->id;
-      $hotel_13->Pais='México';
-      $hotel_13->Estado='Quintana Roo';
-      $hotel_13->vertical_id=$vertical_d->id;
-      $hotel_13->dirlogo1='dorado_royal.svg';
-      $hotel_13->operaciones_id=$operation_a->id;
-      $hotel_13->Fecha_inicioP='Sin información';
-      $hotel_13->Fecha_terminoP='Sin información';
-      $hotel_13->Latitude='20.787275';
-      $hotel_13->Longitude='-86.939346';
-      $hotel_13->RM='485';
-      $hotel_13->ActivarCalificacion='1';
-      $hotel_13->ActivarReportes='1';
-      $hotel_13->servicios_id =$servicio_02->id;
-      // $hotel_13->proyectos_id =$proyecto_01->id;
-      $hotel_13->sucursal_id =$sucursal_01->id;
-      $hotel_13->save();
-
-      $hotel_14 = new Hotel;
-      $hotel_14->Nombre_hotel='Gran Caribe Real';
-      $hotel_14->Direccion='Blvd. Kukulcan Km. 11.5, Zona Hotelera, 77500';
-      $hotel_14->Telefono='Sin informacion';
-      $hotel_14->cadena_id=$cadena_47->id;
-      $hotel_14->Pais='México';
-      $hotel_14->Estado='Quintana Roo';
-      $hotel_14->vertical_id=$vertical_d->id;
-      $hotel_14->dirlogo1='caribe_real.svg';
-      $hotel_14->operaciones_id=$operation_a->id;
-      $hotel_14->Fecha_inicioP='Sin información';
-      $hotel_14->Fecha_terminoP='Sin información';
-      $hotel_14->Latitude='21.120755';
-      $hotel_14->Longitude='-86.755327';
-      $hotel_14->RM='172';
-      $hotel_14->ActivarCalificacion='1';
-      $hotel_14->ActivarReportes='1';
-      $hotel_14->servicios_id =$servicio_02->id;
-      // $hotel_14->proyectos_id =$proyecto_01->id;
-      $hotel_14->sucursal_id =$sucursal_01->id;
-      $hotel_14->save();
-
-      $hotel_15 = new Hotel;
-      $hotel_15->Nombre_hotel='Gran Porto';
-      $hotel_15->Direccion='Av. Constituyentes 1 x 10 y 5ta';
-      $hotel_15->Telefono='Sin informacion';
-      $hotel_15->cadena_id=$cadena_47->id;
-      $hotel_15->Pais='México';
-      $hotel_15->Estado='Quintana Roo';
-      $hotel_15->vertical_id=$vertical_d->id;
-      $hotel_15->dirlogo1='gran_porto.svg';
-      $hotel_15->operaciones_id=$operation_a->id;
-      $hotel_15->Fecha_inicioP='Sin información';
-      $hotel_15->Fecha_terminoP='Sin información';
-      $hotel_15->Latitude='20.628532';
-      $hotel_15->Longitude='-87.068487';
-      $hotel_15->RM='114';
-      $hotel_15->ActivarCalificacion='1';
-      $hotel_15->ActivarReportes='1';
-      $hotel_15->servicios_id =$servicio_02->id;
-      // $hotel_15->proyectos_id =$proyecto_01->id;
-      $hotel_15->sucursal_id =$sucursal_01->id;
-      $hotel_15->save();
-
-      $hotel_16 = new Hotel;
-      $hotel_16->Nombre_hotel='H10 Ocean Coral Turqueza';
-      $hotel_16->Direccion='Carretera Cancún - Playa del Carmen';
-      $hotel_16->Telefono='Sin informacion';
-      $hotel_16->cadena_id=$cadena_22->id;
-      $hotel_16->Pais='México';
-      $hotel_16->Estado='Quintana Roo';
-      $hotel_16->vertical_id=$vertical_d->id;
-      $hotel_16->dirlogo1='oct.svg';
-      $hotel_16->operaciones_id=$operation_a->id;
-      $hotel_16->Fecha_inicioP='Sin información';
-      $hotel_16->Fecha_terminoP='Sin información';
-      $hotel_16->Latitude='20.8842348';
-      $hotel_16->Longitude='-86.8660951';
-      $hotel_16->RM='251';
-      $hotel_16->ActivarCalificacion='1';
-      $hotel_16->ActivarReportes='1';
-      $hotel_16->servicios_id =$servicio_02->id;
-      // $hotel_16->proyectos_id =$proyecto_01->id;
-      $hotel_16->sucursal_id =$sucursal_01->id;
-      $hotel_16->save();
-
-      $hotel_17 = new Hotel;
-      $hotel_17->Nombre_hotel='H10 Ocean Maya Royale';
-      $hotel_17->Direccion='Carretera Federal Chetumal Km. 299, 77710';
-      $hotel_17->Telefono='Sin informacion';
-      $hotel_17->cadena_id=$cadena_22->id;
-      $hotel_17->Pais='México';
-      $hotel_17->Estado='Quintana Roo';
-      $hotel_17->vertical_id=$vertical_d->id;
-      $hotel_17->dirlogo1='omr.svg';
-      $hotel_17->operaciones_id=$operation_a->id;
-      $hotel_17->Fecha_inicioP='Sin información';
-      $hotel_17->Fecha_terminoP='Sin información';
-      $hotel_17->Latitude='20.6989735';
-      $hotel_17->Longitude='-87.0191677';
-      $hotel_17->RM='118';
-      $hotel_17->ActivarCalificacion='1';
-      $hotel_17->ActivarReportes='1';
-      $hotel_17->servicios_id =$servicio_02->id;
-      // $hotel_17->proyectos_id =$proyecto_01->id;
-      $hotel_17->sucursal_id =$sucursal_01->id;
-      $hotel_17->save();
-
-      $hotel_18 = new Hotel;
-      $hotel_18->Nombre_hotel='Hard Rock Punta Cana';
-      $hotel_18->Direccion='Bv. Turístico del Este Km. 28';
-      $hotel_18->Telefono='Sin informacion';
-      $hotel_18->cadena_id=$cadena_23->id;
-      $hotel_18->Pais='México';
-      $hotel_18->Estado='Quintana Roo';
-      $hotel_18->vertical_id=$vertical_d->id;
-      $hotel_18->dirlogo1='hr_punta_cana.svg';
-      $hotel_18->operaciones_id=$operation_a->id;
-      $hotel_18->Fecha_inicioP='Sin información';
-      $hotel_18->Fecha_terminoP='Sin información';
-      $hotel_18->Latitude='18.733323';
-      $hotel_18->Longitude='-68.482971';
-      $hotel_18->RM='753';
-      $hotel_18->ActivarCalificacion='1';
-      $hotel_18->ActivarReportes='1';
-      $hotel_18->servicios_id =$servicio_02->id;
-      // $hotel_18->proyectos_id =$proyecto_01->id;
-      $hotel_18->sucursal_id =$sucursal_01->id;
-      $hotel_18->save();
-
-      $hotel_19 = new Hotel;
-      $hotel_19->Nombre_hotel='Hacienda Tres Rios';
-      $hotel_19->Direccion='Carretera Federal Cancún-Tulum Km. 54';
-      $hotel_19->Telefono='Sin informacion';
-      $hotel_19->cadena_id=$cadena_49->id;
-      $hotel_19->Pais='México';
-      $hotel_19->Estado='Quintana Roo';
-      $hotel_19->vertical_id=$vertical_d->id;
-      $hotel_19->dirlogo1='htr.svg';
-      $hotel_19->operaciones_id=$operation_a->id;
-      $hotel_19->Fecha_inicioP='Sin información';
-      $hotel_19->Fecha_terminoP='Sin información';
-      $hotel_19->Latitude='20.7050416';
-      $hotel_19->Longitude='-87.0099105';
-      $hotel_19->RM='99';
-      $hotel_19->ActivarCalificacion='1';
-      $hotel_19->ActivarReportes='1';
-      $hotel_19->servicios_id =$servicio_02->id;
-      // $hotel_19->proyectos_id =$proyecto_01->id;
-      $hotel_19->sucursal_id =$sucursal_01->id;
-      $hotel_19->save();
-
-      $hotel_20 = new Hotel;
-      $hotel_20->Nombre_hotel='Hyatt Zilara';
-      $hotel_20->Direccion='Blvd.Kukulcan KM 11.5, Zona Hotelera, 77500';
-      $hotel_20->Telefono='Sin informacion';
-      $hotel_20->cadena_id=$cadena_47->id;
-      $hotel_20->Pais='México';
-      $hotel_20->Estado='Quintana Roo';
-      $hotel_20->vertical_id=$vertical_d->id;
-      $hotel_20->dirlogo1='hyatt_zilara.svg';
-      $hotel_20->operaciones_id=$operation_a->id;
-      $hotel_20->Fecha_inicioP='Sin información';
-      $hotel_20->Fecha_terminoP='Sin información';
-      $hotel_20->Latitude='21.118987';
-      $hotel_20->Longitude='-86.756328';
-      $hotel_20->RM='88';
-      $hotel_20->ActivarCalificacion='1';
-      $hotel_20->ActivarReportes='1';
-      $hotel_20->servicios_id =$servicio_02->id;
-      // $hotel_20->proyectos_id =$proyecto_01->id;
-      $hotel_20->sucursal_id =$sucursal_01->id;
-      $hotel_20->save();
-
-      $hotel_21 = new Hotel;
-      $hotel_21->Nombre_hotel='Iberostar Cancun';
-      $hotel_21->Direccion='Blvd. Kukulcan, Zona Hotelera, 77500';
-      $hotel_21->Telefono='Sin informacion';
-      $hotel_21->cadena_id=$cadena_25->id;
-      $hotel_21->Pais='México';
-      $hotel_21->Estado='Quintana Roo';
-      $hotel_21->vertical_id=$vertical_d->id;
-      $hotel_21->dirlogo1='iberostar_cancun.svg';
-      $hotel_21->operaciones_id=$operation_a->id;
-      $hotel_21->Fecha_inicioP='Sin información';
-      $hotel_21->Fecha_terminoP='Sin información';
-      $hotel_21->Latitude='21.0671683';
-      $hotel_21->Longitude='-86.7805068';
-      $hotel_21->RM='197';
-      $hotel_21->ActivarCalificacion='1';
-      $hotel_21->ActivarReportes='1';
-      $hotel_21->servicios_id =$servicio_02->id;
-      // $hotel_21->proyectos_id =$proyecto_01->id;
-      $hotel_21->sucursal_id =$sucursal_01->id;
-      $hotel_21->save();
-
-      $hotel_22 = new Hotel;
-      $hotel_22->Nombre_hotel='Iberostar Cozumel';
-      $hotel_22->Direccion='Carretera Costera Sur Km. 17782';
-      $hotel_22->Telefono='Sin informacion';
-      $hotel_22->cadena_id=$cadena_25->id;
-      $hotel_22->Pais='México';
-      $hotel_22->Estado='Quintana Roo';
-      $hotel_22->vertical_id=$vertical_d->id;
-      $hotel_22->dirlogo1='iberostar_cozumel.svg';
-      $hotel_22->operaciones_id=$operation_a->id;
-      $hotel_22->Fecha_inicioP='Sin información';
-      $hotel_22->Fecha_terminoP='Sin información';
-      $hotel_22->Latitude='20.370339';
-      $hotel_22->Longitude='-87.0244907';
-      $hotel_22->RM='55';
-      $hotel_22->ActivarCalificacion='1';
-      $hotel_22->ActivarReportes='1';
-      $hotel_22->servicios_id =$servicio_02->id;
-      // $hotel_22->proyectos_id =$proyecto_01->id;
-      $hotel_22->sucursal_id =$sucursal_01->id;
-      $hotel_22->save();
-
-      $hotel_23 = new Hotel;
-      $hotel_23->Nombre_hotel='Iberostar Paraiso';
-      $hotel_23->Direccion='Blvd. Kukulkan Km 17, Zona Hotelera';
-      $hotel_23->Telefono='Sin informacion';
-      $hotel_23->cadena_id=$cadena_25->id;
-      $hotel_23->Pais='México';
-      $hotel_23->Estado='Quintana Roo';
-      $hotel_23->vertical_id=$vertical_d->id;
-      $hotel_23->dirlogo1='iberostar_paraiso.svg';
-      $hotel_23->operaciones_id=$operation_a->id;
-      $hotel_23->Fecha_inicioP='Sin información';
-      $hotel_23->Fecha_terminoP='Sin información';
-      $hotel_23->Latitude='20.7598856';
-      $hotel_23->Longitude='-86.9648475';
-      $hotel_23->RM='689';
-      $hotel_23->ActivarCalificacion='1';
-      $hotel_23->ActivarReportes='1';
-      $hotel_23->servicios_id =$servicio_02->id;
-      // $hotel_23->proyectos_id =$proyecto_01->id;
-      $hotel_23->sucursal_id =$sucursal_01->id;
-      $hotel_23->save();
-
-      $hotel_24 = new Hotel;
-      $hotel_24->Nombre_hotel='Iberostar Playacar';
-      $hotel_24->Direccion='Av. Xaman-Ha Lote Hotelero 2';
-      $hotel_24->Telefono='Sin informacion';
-      $hotel_24->cadena_id=$cadena_25->id;
-      $hotel_24->Pais='México';
-      $hotel_24->Estado='Quintana Roo';
-      $hotel_24->vertical_id=$vertical_d->id;
-      $hotel_24->dirlogo1='iberostar_playacar.svg';
-      $hotel_24->operaciones_id=$operation_a->id;
-      $hotel_24->Fecha_inicioP='Sin información';
-      $hotel_24->Fecha_terminoP='Sin información';
-      $hotel_24->Latitude='20.60458';
-      $hotel_24->Longitude='-87.0959475';
-      $hotel_24->RM='243';
-      $hotel_24->ActivarCalificacion='1';
-      $hotel_24->ActivarReportes='1';
-      $hotel_24->servicios_id =$servicio_02->id;
-      // $hotel_24->proyectos_id =$proyecto_01->id;
-      $hotel_24->sucursal_id =$sucursal_01->id;
-      $hotel_24->save();
-
-      $hotel_25 = new Hotel;
-      $hotel_25->Nombre_hotel='Isla Palace';
-      $hotel_25->Direccion='Blvd. Kukulcan Km. 11.5, Zona Hotelera, 77500';
-      $hotel_25->Telefono='Sin informacion';
-      $hotel_25->cadena_id=$cadena_44->id;
-      $hotel_25->Pais='México';
-      $hotel_25->Estado='Quintana Roo';
-      $hotel_25->vertical_id=$vertical_d->id;
-      $hotel_25->dirlogo1='cozumel_palace.svg';
-      $hotel_25->operaciones_id=$operation_a->id;
-      $hotel_25->Fecha_inicioP='Sin información';
-      $hotel_25->Fecha_terminoP='Sin información';
-      $hotel_25->Latitude='21.21928';
-      $hotel_25->Longitude='-86.7306947';
-      $hotel_25->RM='30';
-      $hotel_25->ActivarCalificacion='1';
-      $hotel_25->ActivarReportes='1';
-      $hotel_25->servicios_id =$servicio_02->id;
-      // $hotel_25->proyectos_id =$proyecto_01->id;
-      $hotel_25->sucursal_id =$sucursal_01->id;
-      $hotel_25->save();
-
-      //Relacionaremos el hotel con su usuario
-        $assigned_hotel_user_1 = DB::table('hotel_user')->insert(['user_id' => $user_26->id ,'hotel_id' => $hotel_1->id]);
-        $assigned_hotel_user_121 = DB::table('hotel_user')->insert(['user_id' => $user_28->id ,'hotel_id' => $hotel_1->id]);
-
-        $assigned_hotel_user_2 = DB::table('hotel_user')->insert(['user_id' => $user_28->id ,'hotel_id' => $hotel_2->id]);
-        $assigned_hotel_user_3 = DB::table('hotel_user')->insert(['user_id' => $user_2->id ,'hotel_id' => $hotel_3->id]);
-        $assigned_hotel_user_4 = DB::table('hotel_user')->insert(['user_id' => $user_2->id ,'hotel_id' => $hotel_4->id]);
-        $assigned_hotel_user_5 = DB::table('hotel_user')->insert(['user_id' => $user_33->id ,'hotel_id' => $hotel_5->id]);
-        $assigned_hotel_user_6 = DB::table('hotel_user')->insert(['user_id' => $user_29->id ,'hotel_id' => $hotel_6->id]);
-        $assigned_hotel_user_7 = DB::table('hotel_user')->insert(['user_id' => $user_33->id ,'hotel_id' => $hotel_7->id]);
-        $assigned_hotel_user_8 = DB::table('hotel_user')->insert(['user_id' => $user_29->id ,'hotel_id' => $hotel_8->id]);
-        $assigned_hotel_user_9 = DB::table('hotel_user')->insert(['user_id' => $user_14->id ,'hotel_id' => $hotel_9->id]);
-        $assigned_hotel_user_10 = DB::table('hotel_user')->insert(['user_id' => $user_26->id ,'hotel_id' => $hotel_10->id]);
-        $assigned_hotel_user_11 = DB::table('hotel_user')->insert(['user_id' => $user_3->id ,'hotel_id' => $hotel_11->id]);
-        $assigned_hotel_user_12 = DB::table('hotel_user')->insert(['user_id' => $user_5->id ,'hotel_id' => $hotel_12->id]);
-        $assigned_hotel_user_13 = DB::table('hotel_user')->insert(['user_id' => $user_3->id ,'hotel_id' => $hotel_13->id]);
-        $assigned_hotel_user_14 = DB::table('hotel_user')->insert(['user_id' => $user_14->id ,'hotel_id' => $hotel_14->id]);
-        $assigned_hotel_user_15 = DB::table('hotel_user')->insert(['user_id' => $user_5->id ,'hotel_id' => $hotel_15->id]);
-        $assigned_hotel_user_16 = DB::table('hotel_user')->insert(['user_id' => $user_2->id ,'hotel_id' => $hotel_16->id]);
-        $assigned_hotel_user_17 = DB::table('hotel_user')->insert(['user_id' => $user_33->id ,'hotel_id' => $hotel_17->id]);
-        $assigned_hotel_user_18 = DB::table('hotel_user')->insert(['user_id' => $user_3->id ,'hotel_id' => $hotel_18->id]);
-        $assigned_hotel_user_19 = DB::table('hotel_user')->insert(['user_id' => $user_33->id ,'hotel_id' => $hotel_19->id]);
-        $assigned_hotel_user_20 = DB::table('hotel_user')->insert(['user_id' => $user_14->id ,'hotel_id' => $hotel_20->id]);
-        $assigned_hotel_user_21 = DB::table('hotel_user')->insert(['user_id' => $user_24->id ,'hotel_id' => $hotel_21->id]);
-        $assigned_hotel_user_22 = DB::table('hotel_user')->insert(['user_id' => $user_26->id ,'hotel_id' => $hotel_22->id]);
-        $assigned_hotel_user_23 = DB::table('hotel_user')->insert(['user_id' => $user_24->id ,'hotel_id' => $hotel_23->id]);
-        $assigned_hotel_user_24 = DB::table('hotel_user')->insert(['user_id' => $user_26->id ,'hotel_id' => $hotel_24->id]);
-        $assigned_hotel_user_25 = DB::table('hotel_user')->insert(['user_id' => $user_28->id ,'hotel_id' => $hotel_25->id]);
-
-      //Relacionaremos la referencia_hotel
-        $assigned_reference_hotel_1 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_1->id ,'reference_id' => $reference_1->id]);
-        $assigned_reference_hotel_2 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_3->id ,'reference_id' => $reference_2->id]);
-        $assigned_reference_hotel_3 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_5->id ,'reference_id' => $reference_3->id]);
-        $assigned_reference_hotel_4 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_7->id ,'reference_id' => $reference_4->id]);
-        $assigned_reference_hotel_5 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_9->id ,'reference_id' => $reference_5->id]);
-        $assigned_reference_hotel_6 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_11->id ,'reference_id' => $reference_6->id]);
-        $assigned_reference_hotel_7 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_16->id ,'reference_id' => $reference_7->id]);
-        $assigned_reference_hotel_8 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_17->id ,'reference_id' => $reference_8->id]);
-        $assigned_reference_hotel_9 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_23->id ,'reference_id' => $reference_9->id]);
-       $assigned_reference_hotel_10 = DB::table('reference_hotel')->insert(['hotel_id' => $hotel_24->id ,'reference_id' => $reference_10->id]);
-      //Creamos los oids
-        $oid_1 = new Oid;
-        $oid_1->name='ruckusZD1000';
-        $oid_1->oid='1.3.6.1.4.1.25053.3.1.5.1.4';
-        $oid_1->save();
-
-        $oid_2 = new Oid;
-        $oid_2->name='ruckusZD1100';
-        $oid_2->oid='1.3.6.1.4.1.25053.3.1.5.2.4';
-        $oid_2->save();
-
-        $oid_3 = new Oid;
-        $oid_3->name='ruckusZD3000';
-        $oid_3->oid='1.3.6.1.4.1.25053.3.1.5.3.4';
-        $oid_3->save();
-
-        $oid_4 = new Oid;
-        $oid_4->name='ruckusZD5000';
-        $oid_4->oid='1.3.6.1.4.1.25053.3.1.5.8.4';
-        $oid_4->save();
-
-        $oid_5 = new Oid;
-        $oid_5->name='ruckusZD1200 v10';
-        $oid_5->oid='1.3.6.1.4.1.25053.3.1.5.15.4';
-        $oid_5->save();
-      //Creamos los tipos de reportes
-        $typereport_1 = new Typereport;
-        $typereport_1->name='Basico';
-        $typereport_1->save();
-
-        $typereport_2 = new Typereport;
-        $typereport_2->name='Concatenado';
-        $typereport_2->save();
-      //Creamos las direcciones ip de cada Hotel
-        $zd_1 = new Zonedirect_ip;
-        $zd_1->hotel_id=$hotel_3->id;
-        $zd_1->ip='187.157.165.6:1161';
-        $zd_1->status='1';
-        $zd_1->oid_id=$oid_3->id;
-        $zd_1->save();
-
-        $zd_2 = new Zonedirect_ip;
-        $zd_2->hotel_id=$hotel_4->id;
-        $zd_2->ip='187.141.65.236:1161';
-        $zd_2->status='1';
-        $zd_2->oid_id=$oid_3->id;
-        $zd_2->save();
-
-        $zd_3 = new Zonedirect_ip;
-        $zd_3->hotel_id=$hotel_5->id;
-        $zd_3->ip='187.157.183.71:1161';
-        $zd_3->status='1';
-        $zd_3->oid_id=$oid_3->id;
-        $zd_3->save();
-
-        $zd_4 = new Zonedirect_ip;
-        $zd_4->hotel_id=$hotel_6->id;
-        $zd_4->ip='187.237.104.164';
-        $zd_4->status='1';
-        $zd_4->oid_id=$oid_3->id;
-        $zd_4->save();
-
-        $zd_5 = new Zonedirect_ip;
-        $zd_5->hotel_id=$hotel_7->id;
-        $zd_5->ip='187.189.135.250';
-        $zd_5->status='1';
-        $zd_5->oid_id=$oid_3->id;
-        $zd_5->save();
-
-        $zd_6 = new Zonedirect_ip;
-        $zd_6->hotel_id=$hotel_9->id;
-        $zd_6->ip='187.189.63.69:161';
-        $zd_6->status='1';
-        $zd_6->oid_id=$oid_3->id;
-        $zd_6->save();
-
-        $zd_7 = new Zonedirect_ip;
-        $zd_7->hotel_id=$hotel_10->id;
-        $zd_7->ip='187.157.151.52';
-        $zd_7->status='1';
-        $zd_7->oid_id=$oid_3->id;
-        $zd_7->save();
-
-        $zd_8 = new Zonedirect_ip;
-        $zd_8->hotel_id=$hotel_11->id;
-        $zd_8->ip='189.240.197.4:1161';
-        $zd_8->status='1';
-        $zd_8->oid_id=$oid_3->id;
-        $zd_8->save();
-
-        $zd_9 = new Zonedirect_ip;
-        $zd_9->hotel_id=$hotel_12->id;
-        $zd_9->ip='187.217.120.133:1161';
-        $zd_9->status='1';
-        $zd_9->oid_id=$oid_3->id;
-        $zd_9->save();
-
-        $zd_10 = new Zonedirect_ip;
-        $zd_10->hotel_id=$hotel_13->id;
-        $zd_10->ip='187.217.115.165:1161';
-        $zd_10->status='1';
-        $zd_10->oid_id=$oid_3->id;
-        $zd_10->save();
-
-        $zd_11 = new Zonedirect_ip;
-        $zd_11->hotel_id=$hotel_14->id;
-        $zd_11->ip='201.140.181.201';
-        $zd_11->status='1';
-        $zd_11->oid_id=$oid_3->id;
-        $zd_11->save();
-
-        $zd_12 = new Zonedirect_ip;
-        $zd_12->hotel_id=$hotel_15->id;
-        $zd_12->ip='177.237.72.62:162';
-        $zd_12->status='1';
-        $zd_12->oid_id=$oid_3->id;
-        $zd_12->save();
-
-        $zd_13 = new Zonedirect_ip;
-        $zd_13->hotel_id=$hotel_16->id;
-        $zd_13->ip='187.189.195.200';
-        $zd_13->status='1';
-        $zd_13->oid_id=$oid_3->id;
-        $zd_13->save();
-
-        $zd_14 = new Zonedirect_ip;
-        $zd_14->hotel_id=$hotel_17->id;
-        $zd_14->ip='200.78.168.169';
-        $zd_14->status='1';
-        $zd_14->oid_id=$oid_3->id;
-        $zd_14->save();
-
-        $zd_15 = new Zonedirect_ip;
-        $zd_15->hotel_id=$hotel_18->id;
-        $zd_15->ip='179.51.74.43:1161';
-        $zd_15->status='1';
-        $zd_15->oid_id=$oid_3->id;
-        $zd_15->save();
-
-        $zd_16 = new Zonedirect_ip;
-        $zd_16->hotel_id=$hotel_18->id;
-        $zd_16->ip='179.51.74.43:2161';
-        $zd_16->status='1';
-        $zd_16->oid_id=$oid_3->id;
-        $zd_16->save();
-
-        $zd_17 = new Zonedirect_ip;
-        $zd_17->hotel_id=$hotel_18->id;
-        $zd_17->ip='179.51.74.43:4161';
-        $zd_17->status='1';
-        $zd_17->oid_id=$oid_3->id;
-        $zd_17->save();
-
-        $zd_18 = new Zonedirect_ip;
-        $zd_18->hotel_id=$hotel_18->id;
-        $zd_18->ip='179.51.74.43:3161';
-        $zd_18->status='1';
-        $zd_18->oid_id=$oid_3->id;
-        $zd_18->save();
-
-        $zd_19 = new Zonedirect_ip;
-        $zd_19->hotel_id=$hotel_19->id;
-        $zd_19->ip='187.210.92.67';
-        $zd_19->status='1';
-        $zd_19->oid_id=$oid_3->id;
-        $zd_19->save();
-
-        $zd_20 = new Zonedirect_ip;
-        $zd_20->hotel_id=$hotel_20->id;
-        $zd_20->ip='201.140.187.157';
-        $zd_20->status='1';
-        $zd_20->oid_id=$oid_3->id;
-        $zd_20->save();
-
-        $zd_21 = new Zonedirect_ip;
-        $zd_21->hotel_id=$hotel_21->id;
-        $zd_21->ip='189.206.2.209:1161';
-        $zd_21->status='1';
-        $zd_21->oid_id=$oid_3->id;
-        $zd_21->save();
-
-        $zd_22 = new Zonedirect_ip;
-        $zd_22->hotel_id=$hotel_22->id;
-        $zd_22->ip='187.157.233.30:1161';
-        $zd_22->status='1';
-        $zd_22->oid_id=$oid_3->id;
-        $zd_22->save();
-
-        $zd_23 = new Zonedirect_ip;
-        $zd_23->hotel_id=$hotel_23->id;
-        $zd_23->ip='177.237.78.100:1161';
-        $zd_23->status='1';
-        $zd_23->oid_id=$oid_3->id;
-        $zd_23->save();
-
-        $zd_24 = new Zonedirect_ip;
-        $zd_24->hotel_id=$hotel_23->id;
-        $zd_24->ip='177.237.78.98:1161';
-        $zd_24->status='1';
-        $zd_24->oid_id=$oid_3->id;
-        $zd_24->save();
-
-        $zd_25 = new Zonedirect_ip;
-        $zd_25->hotel_id=$hotel_24->id;
-        $zd_25->ip='177.237.79.186:1161';
-        $zd_25->status='1';
-        $zd_25->oid_id=$oid_3->id;
-        $zd_25->save();
-
-        $zd_26 = new Zonedirect_ip;
-        $zd_26->hotel_id=$hotel_25->id;
-        $zd_26->ip='187.210.77.197';
-        $zd_26->status='1';
-        $zd_26->oid_id=$oid_2->id;
-        $zd_26->save();
-      //Creamos hotel_typereport
-        $hotel_typereport_1 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_3->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_2 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_4->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_3 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_5->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_4 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_6->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_5 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_7->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_6 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_9->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_7 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_10->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_8 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_11->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_9 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_12->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_10 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_13->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_11 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_14->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_12 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_15->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_13 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_16->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_14 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_17->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_15 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_18->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_16 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_19->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_17 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_20->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_18 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_21->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_19 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_22->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_20 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_23->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_21 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_24->id , 'typereport_id' => $typereport_1->id]);
-        $hotel_typereport_22 = DB::table('hotel_typereport')->insert(['hotel_id' => $hotel_25->id , 'typereport_id' => $typereport_1->id]);
-
-        //encuesta
-        $estatus_1 = new Estatu;
-        $estatus_1->name='Activo';
-        $estatus_1->save();
-
-        $estatus_2 = new Estatu;
-        $estatus_2->name='Inactivo';
-        $estatus_2->save();
-
-        //name encuesta
-        $encuesta_1 = new Encuesta;
-        $encuesta_1->name='NPS';
-        $encuesta_1->save();
-
-        //name encuesta
-        $pregunta_1 = new Pregunta;
-        $pregunta_1->name='¿Recomendaría el producto o servicio a un familiar o amigo?';
-        $pregunta_1->save();
-
-        $encuesta_pregunt= DB::table('encuesta_pregunta')->insert(['encuesta_id' => $encuesta_1->id ,'pregunta_id' => $pregunta_1->id]);
-
-        //Jefe Directo
-        $jefedirecto_1 = new Jefedirecto;
-        $jefedirecto_1->Nombre='Alejandro Espejo';
-        $jefedirecto_1->AreaTrabajo='Director General';
-        $jefedirecto_1->email='aespejob@sitwifi.com';
-        $jefedirecto_1->save();
-
-        $jefedirecto_2 = new Jefedirecto;
-        $jefedirecto_2->Nombre='John Walker';
-        $jefedirecto_2->AreaTrabajo='Director Comercial';
-        $jefedirecto_2->email='jwalker@sitwifi.com';
-        $jefedirecto_2->save();
-
-        $jefedirecto_3 = new Jefedirecto;
-        $jefedirecto_3->Nombre='René González';
-        $jefedirecto_3->AreaTrabajo='Director Operativo';
-        $jefedirecto_3->email='rgonzalez@sitwifi.com';
-        $jefedirecto_3->save();
-
-        $jefedirecto_4 = new Jefedirecto;
-        $jefedirecto_4->Nombre='Ricardo Delgado';
-        $jefedirecto_4->AreaTrabajo='Gerente Soporte Tecnico';
-        $jefedirecto_4->email='rdelgado@sitwifi.com';
-        $jefedirecto_4->save();
-
-        $jefedirecto_5 = new Jefedirecto;
-        $jefedirecto_5->Nombre='Mariana Presuel ';
-        $jefedirecto_5->AreaTrabajo='Gerente Recursos Humanos';
-        $jefedirecto_5->email='mariana@sitwifi.com';
-        $jefedirecto_5->save();
-
-        $jefedirecto_6 = new Jefedirecto;
-        $jefedirecto_6->Nombre='Aaron Arciga';
-        $jefedirecto_6->AreaTrabajo='Gerente Proyectos e Instalaciones';
-        $jefedirecto_6->email='aarciga@sitwifi.com';
-        $jefedirecto_6->save();
-
-        //MARCAS Equipos
-        $marcas_1 = new Marca;
-        $marcas_1->Nombre_marca='ZYXEL';
-        $marcas_1->Distribuidor='ZyXEL Communications Corp';
-        $marcas_1->save();
-
-        $marcas_2 = new Marca;
-        $marcas_2->Nombre_marca='CISCO';
-        $marcas_2->Distribuidor='Cisco Systems';
-        $marcas_2->save();
-
-        $marcas_3 = new Marca;
-        $marcas_3->Nombre_marca='RUCKUS';
-        $marcas_3->Distribuidor='Ruckus Wireless';
-        $marcas_3->save();
-
-        $marcas_4 = new Marca;
-        $marcas_4->Nombre_marca='SonicWall';
-        $marcas_4->Distribuidor='DELL';
-        $marcas_4->save();
-
-        $marcas_5 = new Marca;
-        $marcas_5->Nombre_marca='BitRail';
-        $marcas_5->Distribuidor='BITRAIL';
-        $marcas_5->save();
-
-        $marcas_6 = new Marca;
-        $marcas_6->Nombre_marca='ZEQUENZE';
-        $marcas_6->Distribuidor='ZEQUENZE';
-        $marcas_6->save();
-
-        $marcas_7 = new Marca;
-        $marcas_7->Nombre_marca='RUCKUS Zone Director';
-        $marcas_7->Distribuidor='Ruckus Wireless';
-        $marcas_7->save();
-
-        $marcas_8 = new Marca;
-        $marcas_8->Nombre_marca='Gigabyte';
-        $marcas_8->Distribuidor='Gigabyte';
-        $marcas_8->save();
-
-        $marcas_9 = new Marca;
-        $marcas_9->Nombre_marca='Xi3 Corporation';
-        $marcas_9->Distribuidor='Xi3 Corporation';
-        $marcas_9->save();
-
-        $marcas_10 = new Marca;
-        $marcas_10->Nombre_marca='DELL';
-        $marcas_10->Distribuidor='Inc. NASDAQ';
-        $marcas_10->save();
-
-        $marcas_11 = new Marca;
-        $marcas_11->Nombre_marca='Lenovo';
-        $marcas_11->Distribuidor='Lenovo';
-        $marcas_11->save();
-
-        $marcas_12 = new Marca;
-        $marcas_12->Nombre_marca='Toshiba';
-        $marcas_12->Distribuidor='Toshiba';
-        $marcas_12->save();
-
-        $marcas_13 = new Marca;
-        $marcas_13->Nombre_marca='APC';
-        $marcas_13->Distribuidor='American Power Conversion';
-        $marcas_13->save();
-
-        $marcas_14 = new Marca;
-        $marcas_14->Nombre_marca='MAC';
-        $marcas_14->Distribuidor='Apple';
-        $marcas_14->save();
-
-        $marcas_15 = new Marca;
-        $marcas_15->Nombre_marca='HP';
-        $marcas_15->Distribuidor='Hewlett-Packard';
-        $marcas_15->save();
-
-        $marcas_16 = new Marca;
-        $marcas_16->Nombre_marca='Meraki Cisco';
-        $marcas_16->Distribuidor='Cisco Systems';
-        $marcas_16->save();
-
-        $marcas_17 = new Marca;
-        $marcas_17->Nombre_marca='Icomera';
-        $marcas_17->Distribuidor='Icomera AB';
-        $marcas_17->save();
-
-        $marcas_18 = new Marca;
-        $marcas_18->Nombre_marca='ASUS';
-        $marcas_18->Distribuidor='ASUS';
-        $marcas_18->save();
-
-        $marcas_19 = new Marca;
-        $marcas_19->Nombre_marca='Ruckus Smart Zone';
-        $marcas_19->Distribuidor='Ruckus Wireless';
-        $marcas_19->save();
-
-        $marcas_20 = new Marca;
-        $marcas_20->Nombre_marca='3COM';
-        $marcas_20->Distribuidor='3COM';
-        $marcas_20->save();
-
-        $marcas_21 = new Marca;
-        $marcas_21->Nombre_marca='Cyber Energy';
-        $marcas_21->Distribuidor='Cyber Energy';
-        $marcas_21->save();
-
-        //Modelos equipos
-        $modelo_1 = new Modelo;
-        $modelo_1->ModeloNombre = 'BR700G';
-        $modelo_1->Costo= '365';
-        $modelo_1->save();
-
-        $modelo_2 = new Modelo;
-        $modelo_2->ModeloNombre = 'Dell Inspiron 5447';
-        $modelo_2->Costo= '365';
-        $modelo_2->save();
-
-        $modelo_3 = new Modelo;
-        $modelo_3->ModeloNombre = 'Dell Inspiron 5458';
-        $modelo_3->Costo= '365';
-        $modelo_3->save();
-
-        $modelo_4 = new Modelo;
-        $modelo_4->ModeloNombre = 'Dell Inspiton 3442';
-        $modelo_4->Costo= '365';
-        $modelo_4->save();
-
-        $modelo_5 = new Modelo;
-        $modelo_5->ModeloNombre = 'FW7541D-NG1';
-        $modelo_5->Costo= '365';
-        $modelo_5->save();
-
-        $modelo_6 = new Modelo;
-        $modelo_6->ModeloNombre = 'GIGABYTE';
-        $modelo_6->Costo= '365';
-        $modelo_6->save();
-
-        $modelo_7 = new Modelo;
-        $modelo_7->ModeloNombre = 'GS1910-48HP';
-        $modelo_7->Costo= '365';
-        $modelo_7->save();
-
-        $modelo_8 = new Modelo;
-        $modelo_8->ModeloNombre = 'GS1910-8HP';
-        $modelo_8->Costo= '365';
-        $modelo_8->save();
-
-        $modelo_9 = new Modelo;
-        $modelo_9->ModeloNombre = 'GS2200-8HP';
-        $modelo_9->Costo= '365';
-        $modelo_9->save();
-
-        $modelo_10 = new Modelo;
-        $modelo_10->ModeloNombre =  'GS2210-24HP';
-        $modelo_10->Costo= '365';
-        $modelo_10->save();
-
-        $modelo_11 = new Modelo;
-        $modelo_11->ModeloNombre =  'GS2210-48HP';
-        $modelo_11->Costo= '365';
-        $modelo_11->save();
-
-        $modelo_12 = new Modelo;
-        $modelo_12->ModeloNombre =  'GS2210-8';
-        $modelo_12->Costo= '365';
-        $modelo_12->save();
-
-        $modelo_13 = new Modelo;
-        $modelo_13->ModeloNombre =  'GS2210-8HP';
-        $modelo_13->Costo= '365';
-        $modelo_13->save();
-
-        $modelo_14 = new Modelo;
-        $modelo_14->ModeloNombre =  'h500';
-        $modelo_14->Costo= '365';
-        $modelo_14->save();
-
-        $modelo_15 = new Modelo;
-        $modelo_15->ModeloNombre =  'Macbook Pro';
-        $modelo_15->Costo= '365';
-        $modelo_15->save();
-
-        $modelo_16 = new Modelo;
-        $modelo_16->ModeloNombre = 'NSA 250 M';
-        $modelo_16->Costo= '365';
-        $modelo_16->save();
-
-        $modelo_17 = new Modelo;
-        $modelo_17->ModeloNombre = 'NSA 2600';
-        $modelo_17->Costo= '365';
-        $modelo_17->save();
-
-        $modelo_18 = new Modelo;
-        $modelo_18->ModeloNombre = 'NSA 3600';
-        $modelo_18->Costo= '365';
-        $modelo_18->save();
-
-        $modelo_19 = new Modelo;
-        $modelo_19->ModeloNombre = 'p300';
-        $modelo_19->Costo= '365';
-        $modelo_19->save();
-
-        $modelo_20 = new Modelo;
-        $modelo_20->ModeloNombre = 'PRO700';
-        $modelo_20->Costo= '365';
-        $modelo_20->save();
-
-        $modelo_21 = new Modelo;
-        $modelo_21->ModeloNombre = 'r300';
-        $modelo_21->Costo= '365';
-        $modelo_21->save();
-
-        $modelo_22 = new Modelo;
-        $modelo_22->ModeloNombre = 'r600';
-        $modelo_22->Costo= '365';
-        $modelo_22->save();
-
-        $modelo_23 = new Modelo;
-        $modelo_23->ModeloNombre = 'r710';
-        $modelo_23->Costo= '365';
-        $modelo_23->save();
-
-        $modelo_24 = new Modelo;
-        $modelo_24->ModeloNombre = 'Satellite P855-S5312';
-        $modelo_24->Costo= '365';
-        $modelo_24->save();
-
-        $modelo_25 = new Modelo;
-        $modelo_25->ModeloNombre = 'SF200-24P';
-        $modelo_25->Costo= '365';
-        $modelo_25->save();
-
-        $modelo_26 = new Modelo;
-        $modelo_26->ModeloNombre = 'SF300-08';
-        $modelo_26->Costo= '365';
-        $modelo_26->save();
-
-        $modelo_27 = new Modelo;
-        $modelo_27->ModeloNombre = 'SF300-10P';
-        $modelo_27->Costo= '365';
-        $modelo_27->save();
-
-        $modelo_28 = new Modelo;
-        $modelo_28->ModeloNombre = 'SF300-24MP';
-        $modelo_28->Costo= '365';
-        $modelo_28->save();
-
-        $modelo_29 = new Modelo;
-        $modelo_29->ModeloNombre = 'SF300-24P';
-        $modelo_29->Costo= '365';
-        $modelo_29->save();
-
-        $modelo_30 = new Modelo;
-        $modelo_30->ModeloNombre = 'SF300-24PP';
-        $modelo_30->Costo= '365';
-        $modelo_30->save();
-
-        $modelo_31 = new Modelo;
-        $modelo_31->ModeloNombre = 'SF300-48P';
-        $modelo_31->Costo= '365';
-        $modelo_31->save();
-
-        $modelo_32 = new Modelo;
-        $modelo_32->ModeloNombre = 'SF300-8P';
-        $modelo_32->Costo= '365';
-        $modelo_32->save();
-
-        $modelo_33 = new Modelo;
-        $modelo_33->ModeloNombre = 'SF302-08';
-        $modelo_33->Costo= '365';
-        $modelo_33->save();
-
-        $modelo_34 = new Modelo;
-        $modelo_34->ModeloNombre = 'SF302-08M';
-        $modelo_34->Costo= '365';
-        $modelo_34->save();
-
-        $modelo_35 = new Modelo;
-        $modelo_35->ModeloNombre = 'SF302-08MP';
-        $modelo_35->Costo= '365';
-        $modelo_35->save();
-
-        $modelo_36 = new Modelo;
-        $modelo_36->ModeloNombre = 'SF302-08P';
-        $modelo_36->Costo= '365';
-        $modelo_36->save();
-
-        $modelo_37 = new Modelo;
-        $modelo_37->ModeloNombre = 'SG200-26P';
-        $modelo_37->Costo= '365';
-        $modelo_37->save();
-
-        $modelo_38 = new Modelo;
-        $modelo_38->ModeloNombre = 'SG300-10';
-        $modelo_38->Costo= '365';
-        $modelo_38->save();
-
-        $modelo_39 = new Modelo;
-        $modelo_39->ModeloNombre = 'SG300-10MP';
-        $modelo_39->Costo= '365';
-        $modelo_39->save();
-
-        $modelo_40 = new Modelo;
-        $modelo_40->ModeloNombre = 'SG300-10P';
-        $modelo_40->Costo= '365';
-        $modelo_40->save();
-
-        $modelo_41 = new Modelo;
-        $modelo_41->ModeloNombre = 'SG300-24MP';
-        $modelo_41->Costo= '365';
-        $modelo_41->save();
-
-        $modelo_42 = new Modelo;
-        $modelo_42->ModeloNombre = 'SG300-28MP';
-        $modelo_42->Costo= '365';
-        $modelo_42->save();
-
-        $modelo_43 = new Modelo;
-        $modelo_43->ModeloNombre = 'SG300-28P';
-        $modelo_43->Costo= '365';
-        $modelo_43->save();
-
-        $modelo_44 = new Modelo;
-        $modelo_44->ModeloNombre = 'SG300-28PP';
-        $modelo_44->Costo= '365';
-        $modelo_44->save();
-
-        $modelo_45 = new Modelo;
-        $modelo_45->ModeloNombre = 'SG300-52MP';
-        $modelo_45->Costo= '365';
-        $modelo_45->save();
-
-        $modelo_46 = new Modelo;
-        $modelo_46->ModeloNombre = 'SG500-28';
-        $modelo_46->Costo= '365';
-        $modelo_46->save();
-
-        $modelo_47 = new Modelo;
-        $modelo_47->ModeloNombre = 'SG500-28P';
-        $modelo_47->Costo= '365';
-        $modelo_47->save();
-
-        $modelo_48 = new Modelo;
-        $modelo_48->ModeloNombre = 'SG500-52MP';
-        $modelo_48->Costo= '365';
-        $modelo_48->save();
-
-        $modelo_49 = new Modelo;
-        $modelo_49->ModeloNombre = 'SG500X-24';
-        $modelo_49->Costo= '365';
-        $modelo_49->save();
-
-        $modelo_50 = new Modelo;
-        $modelo_50->ModeloNombre = 't300';
-        $modelo_50->Costo= '1295';
-        $modelo_50->save();
-
-        $modelo_51 = new Modelo;
-        $modelo_51->ModeloNombre = 'WS-C2960S-24PS-L';
-        $modelo_51->Costo= '365';
-        $modelo_51->save();
-
-
-        $modelo_52 = new Modelo;
-        $modelo_52->ModeloNombre = 'Xi3 Corporation';
-        $modelo_52->Costo= '365';
-        $modelo_52->save();
-
-        $modelo_53 = new Modelo;
-        $modelo_53->ModeloNombre = 'z40-70';
-        $modelo_53->Costo= '365';
-        $modelo_53->save();
-
-        $modelo_54 = new Modelo;
-        $modelo_54->ModeloNombre = 'ZD1050';
-        $modelo_54->Costo= '365';
-        $modelo_54->save();
-
-        $modelo_55 = new Modelo;
-        $modelo_55->ModeloNombre = 'ZD1106';
-        $modelo_55->Costo= '1200';
-        $modelo_55->save();
-
-        $modelo_56 = new Modelo;
-        $modelo_56->ModeloNombre = 'ZD1112';
-        $modelo_56->Costo= '2000';
-        $modelo_56->save();
-
-        $modelo_57 = new Modelo;
-        $modelo_57->ModeloNombre = 'ZD1150';
-        $modelo_57->Costo= '7000';
-        $modelo_57->save();
-
-        $modelo_58 = new Modelo;
-        $modelo_58->ModeloNombre = 'ZD1200';
-        $modelo_58->Costo= '365';
-        $modelo_58->save();
-
-        $modelo_59 = new Modelo;
-        $modelo_59->ModeloNombre = 'ZD3025';
-        $modelo_59->Costo= '6000';
-        $modelo_59->save();
-
-        $modelo_60 = new Modelo;
-        $modelo_60->ModeloNombre = 'ZD3050';
-        $modelo_60->Costo= '9000';
-        $modelo_60->save();
-
-        $modelo_61 = new Modelo;
-        $modelo_61->ModeloNombre = 'zf2741';
-        $modelo_61->Costo= '1095';
-        $modelo_61->save();
-
-        $modelo_62 = new Modelo;
-        $modelo_62->ModeloNombre = 'zf2942';
-        $modelo_62->Costo= '365';
-        $modelo_62->save();
-
-        $modelo_63 = new Modelo;
-        $modelo_63->ModeloNombre = 'zf7025';
-        $modelo_63->Costo= '249';
-        $modelo_63->save();
-
-        $modelo_64 = new Modelo;
-        $modelo_64->ModeloNombre = 'zf7055';
-        $modelo_64->Costo= '379';
-        $modelo_64->save();
-
-        $modelo_65 = new Modelo;
-        $modelo_65->ModeloNombre = 'zf7321';
-        $modelo_65->Costo= '349';
-        $modelo_65->save();
-
-        $modelo_66 = new Modelo;
-        $modelo_66->ModeloNombre = 'zf7341';
-        $modelo_66->Costo= '399';
-        $modelo_66->save();
-
-        $modelo_67 = new Modelo;
-        $modelo_67->ModeloNombre = 'zf7352';
-        $modelo_67->Costo= '449';
-        $modelo_67->save();
-
-        $modelo_68 = new Modelo;
-        $modelo_68->ModeloNombre = 'zf7363';
-        $modelo_68->Costo= '599';
-        $modelo_68->save();
-
-        $modelo_69 = new Modelo;
-        $modelo_69->ModeloNombre = 'zf7372';
-        $modelo_69->Costo= '649';
-        $modelo_69->save();
-
-        $modelo_70 = new Modelo;
-        $modelo_70->ModeloNombre = 'zf7731';
-        $modelo_70->Costo= '365';
-        $modelo_70->save();
-
-        $modelo_71 = new Modelo;
-        $modelo_71->ModeloNombre = 'zf7762';
-        $modelo_71->Costo= '1999';
-        $modelo_71->save();
-
-        $modelo_72 = new Modelo;
-        $modelo_72->ModeloNombre = 'zf7782';
-        $modelo_72->Costo= '2999';
-        $modelo_72->save();
-
-        $modelo_73 = new Modelo;
-        $modelo_73->ModeloNombre = 'zf7942';
-        $modelo_73->Costo= '365';
-        $modelo_73->save();
-
-        $modelo_74 = new Modelo;
-        $modelo_74->ModeloNombre = 'zf7962';
-        $modelo_74->Costo= '365';
-        $modelo_74->save();
-
-        $modelo_75 = new Modelo;
-        $modelo_75->ModeloNombre = 'zf7982';
-        $modelo_75->Costo= '995';
-        $modelo_75->save();
-
-        //Estado
-        $estado_1 = new Estado;
-        $estado_1->Nombre_estado = 'Activo';
-        $estado_1->Descripcion_estado ='EQUIPO EN PRODUCCION';
-        $estado_1->save();
-
-        $estado_2 = new Estado;
-        $estado_2->Nombre_estado = 'Baja';
-        $estado_2->Descripcion_estado = 'EQUIPO NO FUNCIONAL';
-        $estado_2->save();
-
-        $estado_3 = new Estado;
-        $estado_3->Nombre_estado = 'Bodega';
-        $estado_3->Descripcion_estado = 'EQUIPO NO FUNCIONAL';
-        $estado_3->save();
-
-        $estado_4 = new Estado;
-        $estado_4->Nombre_estado = 'Stock';
-        $estado_4->Descripcion_estado = 'EQUIPO DISPONIBLE';
-        $estado_4->save();
-
-        $estado_5 = new Estado;
-        $estado_5->Nombre_estado = 'Prestamo';
-        $estado_5->Descripcion_estado = 'EQUIPO EN CALIDAD DE PRESTAMO';
-        $estado_5->save();
-
-        $estado_6 = new Estado;
-        $estado_6->Nombre_estado = 'Verificar';
-        $estado_6->Descripcion_estado = 'EQUIPO NO IDENTIFICADO O LOCALIZADO';
-        $estado_6->save();
-
-        $estado_7 = new Estado;
-        $estado_7->Nombre_estado = 'Desconectado';
-        $estado_7->Descripcion_estado = 'NO ACTIVO';
-        $estado_7->save();
-
-        $estado_8 = new Estado;
-        $estado_8->Nombre_estado = 'Stock en sitio';
-        $estado_8->Descripcion_estado = 'EQUIPO EN SITIO NO ACTIVO';
-        $estado_8->save();
-
-        $estado_9 = new Estado;
-        $estado_9->Nombre_estado = 'Cambio';
-        $estado_9->Descripcion_estado = 'Equipo cambiado';
-        $estado_9->save();
-
-        $estado_10 = new Estado;
-        $estado_10->Nombre_estado = 'Venta';
-        $estado_10->Descripcion_estado ='Equipo vendido';
-        $estado_10->save();
-
-        $estado_11 = new Estado;
-        $estado_11->Nombre_estado = 'Garantia';
-        $estado_11->Descripcion_estado = 'Equipo en garantía';
-        $estado_11->save();
-
-        $estado_12 = new Estado;
-        $estado_12->Nombre_estado = 'Missing Inventory';
-        $estado_12->Descripcion_estado = 'Equipo extraviado';
-        $estado_12->save();
-
-        $estado_13 = new Estado;
-        $estado_13->Nombre_estado = 'Propiedad del hotel';
-        $estado_13->save();
-
-        $estado_14 = new Estado;
-        $estado_14->Nombre_estado = 'Demo';
-        $estado_14->save();
-
-        $estado_15 = new Estado;
-        $estado_15->Nombre_estado = 'Envio';
-        $estado_15->save();
-
-
-
-
-
-    }
+//Creamos los roles predeterminados
+$superadminRole = Role::create(['name' => 'SuperAdmin']);
+     $adminRole = Role::create(['name' => 'Admin']);
+  $operatorRole = Role::create(['name' => 'Operator']);
+      $userRole = Role::create(['name' => 'UserRole']);
+   $monitorRole = Role::create(['name' => 'Monitor']);
+  $surveyedRole = Role::create(['name' => 'Surveyed']);
+ $conciergeRole = Role::create(['name' => 'Itconcierge']);
+
+ //Creamos los permisos predeterminados
+   //- Dashboard principal
+   $viewdashboardpral= Permission::create(['name' => 'View dashboard pral']);
+   //- Inventario
+   $inventoryviewdethotel= Permission::create(['name' => 'View detailed for hotel']);
+   $inventoryviewdethotel3= Permission::create(['name' => 'View detailed for proyect']);
+   $inventoryviewdethotel4= Permission::create(['name' => 'View cover']);
+   $inventoryviewdethotel5= Permission::create(['name' => 'View distribucion']);
+   //- Equipos
+   $equipmentview= Permission::create(['name' => 'View add equipment']);
+   $equipmentviewadd= Permission::create(['name' => 'Create equipment']);
+   $equipmentviewremoved= Permission::create(['name' => 'View removed equipment']);
+   $equipmentremoved= Permission::create(['name' => 'Removed equipment']);
+   $equipmentviewsearch= Permission::create(['name' => 'View search equipment']);
+   $equipmentviewmove= Permission::create(['name' => 'View move equipment']);
+   $equipmentmove= Permission::create(['name' => 'Move equipment']);
+   $equipmentviewgroup= Permission::create(['name' => 'View equipment group']);
+   $equipmentviewgroupadd= Permission::create(['name' => 'Add equipment group']);
+   $equipmentviewgroupremoved= Permission::create(['name' => 'Removed equipment group']);
+   //- Reportes
+   $viewassignreport= Permission::create(['name' => 'View assign report']);
+   $viewcreatassignreport= Permission::create(['name' => 'Create assign report']);
+   $vieweditreport= Permission::create(['name' => 'Edit assign report']);
+   $viewdeletereport= Permission::create(['name' => 'Delete assign report']);
+   $viewcreatgeneralreport= Permission::create(['name' => 'Create general report']);
+   $viewindividualreport= Permission::create(['name' => 'View individual capture']);
+   $viewcreatindividualreport= Permission::create(['name' => 'Create individual capture']);
+   $viewviewgeneratereport= Permission::create(['name' => 'View individual general report']);
+   $vieweditgeneratereport= Permission::create(['name' => 'Edit individual general report']);
+   $viewconciergeapproval= Permission::create(['name' => 'View concierge approval']);
+   $viewcreatconciergeapproval= Permission::create(['name' => 'Create concierge approval']);
+   $viewdeletconciergeapproval= Permission::create(['name' => 'Delete concierge approval']);
+   $viewadminapproval = Permission::create(['name' => 'View admin approval']);
+   $viewacceptadminapproval = Permission::create(['name' => 'Option admin approval']);
+   $viewnotificationadminapproval = Permission::create(['name' => 'Notification admin approval']);
+   $viewreport = Permission::create(['name' => 'View report']);
+   $viewreport2 = Permission::create(['name' => 'View report concat']);
+   $viewprovider = Permission::create(['name' => 'View provider']);
+   $viewcreatprovider= Permission::create(['name' => 'Create provider']);
+   $viewcreatprovider= Permission::create(['name' => 'Edit provider']);
+   $viewdeletprovider= Permission::create(['name' => 'Delete provider']);
+   //Calificaciones
+   $viewdashboardsurveynps = Permission::create(['name' => 'View dashboard survey nps']);
+   $viewaddsurvey = Permission::create(['name' => 'View create survey']);
+   $viewgeneratesurvey = Permission::create(['name' => 'Generate survey']);
+   $viewcapturesurvey = Permission::create(['name' => 'View capture survey']);
+   $viewcreatsurvey = Permission::create(['name' => 'Create survey']);
+   $vieweditsurvey = Permission::create(['name' => 'View edit survey']);
+   $vieweditsurvey = Permission::create(['name' => 'Edit survey']);
+   $viewresultsurvey = Permission::create(['name' => 'View results survey']);
+   $viewconfigsurvey = Permission::create(['name' => 'View survey configuration']);
+   $viewconfigaddsurvey = Permission::create(['name' => 'Assign user survey']);
+   $viewconfigremovedsurvey = Permission::create(['name' => 'Removed user survey']);
+   $viewconfiggeneratekeysurvey = Permission::create(['name' => 'Generate key user survey']);
+   $viewconfigsendkeysurvey = Permission::create(['name' => 'Send email user survey']);
+   $viewconfigviewkeysurvey = Permission::create(['name' => 'View key user survey']);
+   $viewconfigsurveynps = Permission::create(['name' => 'View survey nps configuration']);
+   //Asignacion
+   $viewcaptureassignuser = Permission::create(['name' => 'View assign hotel user']);
+   $viewcreatsassignuser= Permission::create(['name' => 'Create assign hotel user']);
+   $viewdeletesassignuser= Permission::create(['name' => 'Delete assign hotel user']);
+   $viewcaptureassignlistuser = Permission::create(['name' => 'View list assign hotel user']);
+   $viewdeletassignuser = Permission::create(['name' => 'View assign delete client']);
+   $viewnpsconfigautomatic = Permission::create(['name' => 'View config nps automatic']);
+   $createnpsconfigautomatic = Permission::create(['name' => 'Create config nps automatic']);
+   $viewnpsconfigindividual = Permission::create(['name' => 'View config nps individual']);
+   $createnpsconfigindividual = Permission::create(['name' => 'Create config nps individual']);
+   //- Herramientas
+   $toolsviewdiagnostic1= Permission::create(['name' => 'View guest review']);
+   $toolsviewdiagnostic2= Permission::create(['name' => 'View server review']);
+   $toolsviewtest = Permission::create(['name' => 'View test zd']);
+   //- Configuración
+   $viewcreatuserconfiguration = Permission::create(['name' => 'Create user']);
+   $viewedituserconfiguration = Permission::create(['name' => 'Edit user']);
+   $viewdeleteuserconfiguration = Permission::create(['name' => 'Delete user']);
+   $viewconfiguration = Permission::create(['name' => 'View Configuration']);
+   $vieweditconfiguration = Permission::create(['name' => 'Edit Configuration']);
+   //Encuesta sitwifi
+   $encuestasitwifidashboard= Permission::create(['name' => 'View dashboard sitwifi']);
+   $encuestasitwifivconfig= Permission::create(['name' => 'View config sitwifi']);
+   $encuestasitwifidconfig= Permission::create(['name' => 'Delete config sitwifi']);
+   $encuestasitwifisend= Permission::create(['name' => 'Send mail sitwifi']);
+
+   //Creamos los usuarios por default
+     $user_default_0 = new User;
+     $user_default_0->name='SuperAdmin';
+     $user_default_0->email='desarrollo@sitwifi.com';
+     $user_default_0->city='Cancún, México';
+     $user_default_0->password= bcrypt('123456');
+     $user_default_0->avatar= 'dist/img/user.jpg';
+     $user_default_0->save();
+     $user_default_0->assignRole($superadminRole);
+
+     $user_default_1 = new User;
+     $user_default_1->name='Default Admin User';
+     $user_default_1->email='default_admin@sitwifi.com';
+     $user_default_1->city='Cancún, México';
+     $user_default_1->password= bcrypt('123456');
+     $user_default_1->avatar= 'dist/img/user.jpg';
+     $user_default_1->save();
+     $user_default_1->assignRole($adminRole);
+     //
+     $user_default_2 = new User;
+     $user_default_2->name='Default Operator User';
+     $user_default_2->email='operator@sitwifi.com';
+     $user_default_2->city='Cancún, México';
+     $user_default_2->password= bcrypt('123456');
+     $user_default_2->avatar= 'dist/img/user.jpg';
+     $user_default_2->save();
+     $user_default_2->assignRole($operatorRole);
+     //
+     $user_default_3 = new User;
+     $user_default_3->name='Default User';
+     $user_default_3->email='user@sitwifi.com';
+     $user_default_3->city='Cancún, México';
+     $user_default_3->password= bcrypt('123456');
+     $user_default_3->avatar= 'dist/img/user.jpg';
+     $user_default_3->save();
+     $user_default_3->assignRole($userRole);
+     //
+     $user_default_4 = new User;
+     $user_default_4->name='Default Monitor User';
+     $user_default_4->email='monitor@sitwifi.com';
+     $user_default_4->city='Cancún, México';
+     $user_default_4->password= bcrypt('123456');
+     $user_default_4->avatar= 'dist/img/user.jpg';
+     $user_default_4->save();
+     $user_default_4->assignRole($monitorRole);
+
+    //Usuarios de desarrollo e investigación sitwifi
+     $super_admin_a1 = new User;
+     $super_admin_a1->name='Alonso de Jesus Cauich Viana';
+     $super_admin_a1->email='acauich@sitwifi.com';
+     $super_admin_a1->city='Cancún, México';
+     $super_admin_a1->password= bcrypt('123456');
+     $super_admin_a1->avatar= 'dist/img/user.jpg';
+     $super_admin_a1->save();
+     $super_admin_a1->assignRole($superadminRole);
+
+     $super_admin_a2 = new User;
+     $super_admin_a2->name='Jose Antonio Esquinca Bonilla';
+     $super_admin_a2->email='jesquinca@sitwifi.com';
+     $super_admin_a2->city='Cancún, México';
+     $super_admin_a2->password= bcrypt('123456');
+     $super_admin_a2->avatar= 'dist/img/user.jpg';
+     $super_admin_a2->save();
+     $super_admin_a2->assignRole($superadminRole);
+
+     $super_admin_a3 = new User;
+     $super_admin_a3->name='Angel Gabriel Ramirez Ruiz';
+     $super_admin_a3->email='gramirez@sitwifi.com';
+     $super_admin_a3->city='Cancún, México';
+     $super_admin_a3->password= bcrypt('123456');
+     $super_admin_a3->avatar= 'dist/img/user.jpg';
+     $super_admin_a3->save();
+     $super_admin_a3->assignRole($superadminRole);
+
+     $super_admin_a4 = new User;
+     $super_admin_a4->name='Oscar Chan';
+     $super_admin_a4->email='ochan@sitwifi.com';
+     $super_admin_a4->city='Cancún, México';
+     $super_admin_a4->password= bcrypt('123456');
+     $super_admin_a4->avatar= 'dist/img/user.jpg';
+     $super_admin_a4->save();
+     $super_admin_a4->assignRole($superadminRole);
+
+     $super_admin_a5 = new User;
+     $super_admin_a5->name='Edgar Miranda';
+     $super_admin_a5->email='emiranda@sitwifi.com';
+     $super_admin_a5->city='Cancún, México';
+     $super_admin_a5->password= bcrypt('123456');
+     $super_admin_a5->avatar= 'dist/img/user.jpg';
+     $super_admin_a5->save();
+     $super_admin_a5->assignRole($superadminRole);
+
+    //Usuarios Jefes sitwifi
+      $user_000 = new User;
+      $user_000->name='Alejandro	Espejo';
+      $user_000->email='aespejo@sitwifi.com';
+      $user_000->city='Cancún, México';
+      $user_000->password= bcrypt('123456');
+      $user_000->avatar= 'dist/img/user.jpg';
+      $user_000->save();
+      $user_000->assignRole($monitorRole);
+
+      $user_001 = new User;
+      $user_001->name='Alejandro Espejo Bartra';
+      $user_001->email='aespejob@sitwifi.com';
+      $user_001->city='Cancún, México';
+      $user_001->password= bcrypt('123456');
+      $user_001->avatar= 'dist/img/user.jpg';
+      $user_001->save();
+      $user_001->assignRole($adminRole);
+
+      $user_002 = new User;
+      $user_002->name='John Walker';
+      $user_002->email='jwalker@sitwifi.com';
+      $user_002->city='Cancún, México';
+      $user_002->password= bcrypt('123456');
+      $user_002->avatar= 'dist/img/user.jpg';
+      $user_002->save();
+      $user_002->assignRole($adminRole);
+
+      $user_003 = new User;
+      $user_003->name='René González';
+      $user_003->email='rgonzalez@sitwifi.com';
+      $user_003->city='Cancún, México';
+      $user_003->password= bcrypt('123456');
+      $user_003->avatar= 'dist/img/user.jpg';
+      $user_003->save();
+      $user_003->assignRole($adminRole);
+
+      $user_004 = new User;
+      $user_004->name='Mariana Presuel';
+      $user_004->email='mariana@sitwifi.com';
+      $user_004->city='Cancún, México';
+      $user_004->password= bcrypt('123456');
+      $user_004->avatar= 'dist/img/user.jpg';
+      $user_004->save();
+      $user_004->assignRole($adminRole);
+
+      $user_005 = new User;
+      $user_005->name='Ricardo Delgado';
+      $user_005->email='rdelgado@sitwifi.com';
+      $user_005->city='Cancún, México';
+      $user_005->password= bcrypt('123456');
+      $user_005->avatar= 'dist/img/user.jpg';
+      $user_005->save();
+      $user_005->assignRole($adminRole);
+
+      $user_006 = new User;
+      $user_006->name='Carlos Mata';
+      $user_006->email='cmata@sitwifi.com';
+      $user_006->city='Cancún, México';
+      $user_006->password= bcrypt('123456');
+      $user_006->avatar= 'dist/img/user.jpg';
+      $user_006->save();
+      $user_006->assignRole($adminRole);
+
+      $user_007 = new User;
+      $user_007->name='Aaron Arciga';
+      $user_007->email='aarciga@sitwifi.com';
+      $user_007->city='Cancún, México';
+      $user_007->password= bcrypt('123456');
+      $user_007->avatar= 'dist/img/user.jpg';
+      $user_007->save();
+      $user_007->assignRole($adminRole);
+
+      $user_008 = new User;
+      $user_008->name='Alejandra Pérez García';
+      $user_008->email='aperez@sitwifi.com';
+      $user_008->city='Cancún, México';
+      $user_008->password= bcrypt('123456');
+      $user_008->avatar= 'dist/img/user.jpg';
+      $user_008->save();
+      $user_008->assignRole($adminRole);
+
+      $user_009 = new User;
+      $user_009->name='Carlos Rangel';
+      $user_009->email='crangel@sitwifi.com';
+      $user_009->city='Cancún, México';
+      $user_009->password= bcrypt('123456');
+      $user_009->avatar= 'dist/img/user.jpg';
+      $user_009->save();
+      $user_009->assignRole($monitorRole);
+
+      $user_010 = new User;
+      $user_010->name='Sandra Cruz';
+      $user_010->email='admin@sitwifi.com';
+      $user_010->city='Cancún, México';
+      $user_010->password= bcrypt('123456');
+      $user_010->avatar= 'dist/img/user.jpg';
+      $user_010->save();
+      $user_010->assignRole($monitorRole);
+
+      $user_011 = new User;
+      $user_011->name='Arturo Caballero';
+      $user_011->email='acaballero@sitwifi.com';
+      $user_011->city='Cancún, México';
+      $user_011->password= bcrypt('123456');
+      $user_011->avatar= 'dist/img/user.jpg';
+      $user_011->save();
+      $user_011->assignRole($conciergeRole);
+
+      $user_012 = new User;
+      $user_012->name='Abraham	Calderón';
+      $user_012->email='acalderon@sitwifi.com';
+      $user_012->city='Cancún, México';
+      $user_012->password= bcrypt('123456');
+      $user_012->avatar= 'dist/img/user.jpg';
+      $user_012->save();
+      $user_012->assignRole($conciergeRole);
+
+      $user_013 = new User;
+      $user_013->name='David Tejero';
+      $user_013->email='dtejero@sitwifi.com';
+      $user_013->city='Cancún, México';
+      $user_013->password= bcrypt('123456');
+      $user_013->avatar= 'dist/img/user.jpg';
+      $user_013->save();
+      $user_013->assignRole($conciergeRole);
+
+      $user_014 = new User;
+      $user_014->name='Jose Luis Ortiz';
+      $user_014->email='jortiz@sitwifi.com';
+      $user_014->city='Cancún, México';
+      $user_014->password= bcrypt('123456');
+      $user_014->avatar= 'dist/img/user.jpg';
+      $user_014->save();
+      $user_014->assignRole($conciergeRole);
+
+      $user_015 = new User;
+      $user_015->name='Angel Lopez';
+      $user_015->email='alopez@sitwifi.com';
+      $user_015->city='Cancún, México';
+      $user_015->password= bcrypt('123456');
+      $user_015->avatar= 'dist/img/user.jpg';
+      $user_015->save();
+      $user_015->assignRole($conciergeRole);
+
+      $user_016 = new User;
+      $user_016->name='Jimmy Novelo';
+      $user_016->email='jnovelo@sitwifi.com';
+      $user_016->city='Cancún, México';
+      $user_016->password= bcrypt('123456');
+      $user_016->avatar= 'dist/img/user.jpg';
+      $user_016->save();
+      $user_016->assignRole($conciergeRole);
+
+      $user_017 = new User;
+      $user_017->name='Wilbert Manzanero';
+      $user_017->email='wmanzanero@sitwifi.com';
+      $user_017->city='Cancún, México';
+      $user_017->password= bcrypt('123456');
+      $user_017->avatar= 'dist/img/user.jpg';
+      $user_017->save();
+      $user_017->assignRole($conciergeRole);
+
+      $user_018 = new User;
+      $user_018->name='Alfredo Lagunes';
+      $user_018->email='alagunes@sitwifi.com';
+      $user_018->city='Cancún, México';
+      $user_018->password= bcrypt('123456');
+      $user_018->avatar= 'dist/img/user.jpg';
+      $user_018->save();
+      $user_018->assignRole($conciergeRole);
+
+      $user_019 = new User;
+      $user_019->name='Israel Ojeda';
+      $user_019->email='iojeda@sitwifi.com';
+      $user_019->city='Cancún, México';
+      $user_019->password= bcrypt('123456');
+      $user_019->avatar= 'dist/img/user.jpg';
+      $user_019->save();
+      $user_019->assignRole($conciergeRole);
+
+      $user_020 = new User;
+      $user_020->name='Ivan Jim';
+      $user_020->email='ajim@sitwifi.com';
+      $user_020->city='Cancún, México';
+      $user_020->password= bcrypt('123456');
+      $user_020->avatar= 'dist/img/user.jpg';
+      $user_020->save();
+      $user_020->assignRole($conciergeRole);
+
+      $user_021 = new User;
+      $user_021->name='Francisco René	Sánchez';
+      $user_021->email='fsanchez@sitwifi.com';
+      $user_021->city='Cancún, México';
+      $user_021->password= bcrypt('123456');
+      $user_021->avatar= 'dist/img/user.jpg';
+      $user_021->save();
+      $user_021->assignRole($conciergeRole);
+
+      $user_022 = new User;
+      $user_022->name='Martha Isabel Uh Poot';
+      $user_022->email='marthaisabel@sitwifi.com';
+      $user_022->city='Cancún, México';
+      $user_022->password= bcrypt('123456');
+      $user_022->avatar= 'dist/img/user.jpg';
+      $user_022->save();
+      $user_022->assignRole($conciergeRole);
+
+      $user_023 = new User;
+      $user_023->name='Ricardo Nuñez';
+      $user_023->email='rnunez@sitwifi.com';
+      $user_023->city='Cancún, México';
+      $user_023->password= bcrypt('123456');
+      $user_023->avatar= 'dist/img/user.jpg';
+      $user_023->save();
+      $user_023->assignRole($conciergeRole);
+
+      $user_024 = new User;
+      $user_024->name='Kevin Pérez';
+      $user_024->email='kperez@sitwifi.com';
+      $user_024->city='Cancún, México';
+      $user_024->password= bcrypt('123456');
+      $user_024->avatar= 'dist/img/user.jpg';
+      $user_024->save();
+      $user_024->assignRole($conciergeRole);
+
+      $user_025 = new User;
+      $user_025->name='Maria del Jesús Ortiz';
+      $user_025->email='mortiz@sitwifi.com';
+      $user_025->city='Cancún, México';
+      $user_025->password= bcrypt('123456');
+      $user_025->avatar= 'dist/img/user.jpg';
+      $user_025->save();
+      $user_025->assignRole($conciergeRole);
+
+      $user_026 = new User;
+      $user_026->name='Luis Gonzalez';
+      $user_026->email='lgonzalez@sitwifi.com';
+      $user_026->city='Cancún, México';
+      $user_026->password= bcrypt('123456');
+      $user_026->avatar= 'dist/img/user.jpg';
+      $user_026->save();
+      $user_026->assignRole($conciergeRole);
+
+      $user_027 = new User;
+      $user_027->name='Jorge Ángel Quintanar';
+      $user_027->email='jquintanar@sitwifi.com';
+      $user_027->city='Cancún, México';
+      $user_027->password= bcrypt('123456');
+      $user_027->avatar= 'dist/img/user.jpg';
+      $user_027->save();
+      $user_027->assignRole($conciergeRole);
+
+      $user_028 = new User;
+      $user_028->name='Omar Serrano';
+      $user_028->email='oserrano@sitwifi.com';
+      $user_028->city='Cancún, México';
+      $user_028->password= bcrypt('123456');
+      $user_028->avatar= 'dist/img/user.jpg';
+      $user_028->save();
+      $user_028->assignRole($conciergeRole);
+
+      $user_029 = new User;
+      $user_029->name='Johnny Segura';
+      $user_029->email='jsegura@sitwifi.com';
+      $user_029->city='Cancún, México';
+      $user_029->password= bcrypt('123456');
+      $user_029->avatar= 'dist/img/user.jpg';
+      $user_029->save();
+      $user_029->assignRole($conciergeRole);
+
+      $user_030 = new User;
+      $user_030->name='José Luis Muñoz Lozano';
+      $user_030->email='jlmunoz@sitwifi.com';
+      $user_030->city='Cancún, México';
+      $user_030->password= bcrypt('123456');
+      $user_030->avatar= 'dist/img/user.jpg';
+      $user_030->save();
+      $user_030->assignRole($conciergeRole);
+
+      $user_031 = new User;
+      $user_031->name='Miguel Aristides Mateo';
+      $user_031->email='amateo@sitwifi.com';
+      $user_031->city='Cancún, México';
+      $user_031->password= bcrypt('123456');
+      $user_031->avatar= 'dist/img/user.jpg';
+      $user_031->save();
+      $user_031->assignRole($conciergeRole);
+
+      $user_032 = new User;
+      $user_032->name='Leo Daniel Fernandez del Angel';
+      $user_032->email='lfernandez@sitwifi.com';
+      $user_032->city='Cancún, México';
+      $user_032->password= bcrypt('123456');
+      $user_032->avatar= 'dist/img/user.jpg';
+      $user_032->save();
+      $user_032->assignRole($conciergeRole);
+
+      $user_033 = new User;
+      $user_033->name='Juan Carlos May Muñoz';
+      $user_033->email='jcmay@sitwifi.com';
+      $user_033->city='Cancún, México';
+      $user_033->password= bcrypt('123456');
+      $user_033->avatar= 'dist/img/user.jpg';
+      $user_033->save();
+      $user_033->assignRole($conciergeRole);
+
+      $user_034 = new User;
+      $user_034->name='Manuel Jesús	Pech Chan';
+      $user_034->email='mpech@sitwifi.com';
+      $user_034->city='Cancún, México';
+      $user_034->password= bcrypt('123456');
+      $user_034->avatar= 'dist/img/user.jpg';
+      $user_034->save();
+      $user_034->assignRole($conciergeRole);
+
+      $user_035 = new User;
+      $user_035->name='Miguel Angel Morin Ochoa';
+      $user_035->email='morin@sitwifi.com';
+      $user_035->city='Cancún, México';
+      $user_035->password= bcrypt('123456');
+      $user_035->avatar= 'dist/img/user.jpg';
+      $user_035->save();
+      $user_035->assignRole($conciergeRole);
+
+      $user_036 = new User;
+      $user_036->name='Oscar Alejandro Montes Alvarado';
+      $user_036->email='omontes@sitwifi.com';
+      $user_036->city='Cancún, México';
+      $user_036->password= bcrypt('123456');
+      $user_036->avatar= 'dist/img/user.jpg';
+      $user_036->save();
+      $user_036->assignRole($conciergeRole);
+
+      $user_037 = new User;
+      $user_037->name='Daniel	Elena Ramirez';
+      $user_037->email='delena@sitwifi.com';
+      $user_037->city='Cancún, México';
+      $user_037->password= bcrypt('123456');
+      $user_037->avatar= 'dist/img/user.jpg';
+      $user_037->save();
+      $user_037->assignRole($conciergeRole);
+
+       $user_038 = new User;
+       $user_038->name='Diego Edmundo Oréa Campos';
+       $user_038->email='dorea@sitwifi.com';
+       $user_038->city='Cancún, México';
+       $user_038->password= bcrypt('123456');
+       $user_038->avatar= 'dist/img/user.jpg';
+       $user_038->save();
+       $user_038->assignRole($conciergeRole);
+
+       $user_039 = new User;
+       $user_039->name='Victor Perez';
+       $user_039->email='vperez@sitwifi.com';
+       $user_039->city='Cancún, México';
+       $user_039->password= bcrypt('123456');
+       $user_039->avatar= 'dist/img/user.jpg';
+       $user_039->save();
+       $user_039->assignRole($conciergeRole);
+
+       $user_040 = new User;
+       $user_040->name='Oliver Fernando Garcia Uc';
+       $user_040->email='ogarcia@sitwifi.com';
+       $user_040->city='Cancún, México';
+       $user_040->password= bcrypt('123456');
+       $user_040->avatar= 'dist/img/user.jpg';
+       $user_040->save();
+       $user_040->assignRole($conciergeRole);
+
+       $user_041 = new User;
+       $user_041->name='Jesus Castillo';
+       $user_041->email='jcastillo@sitwifi.com';
+       $user_041->city='Cancún, México';
+       $user_041->password= bcrypt('123456');
+       $user_041->avatar= 'dist/img/user.jpg';
+       $user_041->save();
+       $user_041->assignRole($conciergeRole);
+
+       $user_042 = new User;
+       $user_042->name='Diego Angeles';
+       $user_042->email='dangeles@sitwifi.com';
+       $user_042->city='Cancún, México';
+       $user_042->password= bcrypt('123456');
+       $user_042->avatar= 'dist/img/user.jpg';
+       $user_042->save();
+       $user_042->assignRole($conciergeRole);
+
+       //Otros usuarios
+       $user_043 = new User;
+       $user_043->name='Hector Tavera';
+       $user_043->email='htavera@sitwifi.com';
+       $user_043->city='Cancún, México';
+       $user_043->password= bcrypt('123456');
+       $user_043->avatar= 'dist/img/user.jpg';
+       $user_043->save();
+       $user_043->assignRole($monitorRole);
+
+       $user_044 = new User;
+       $user_044->name='Javier Martinez';
+       $user_044->email='jmartinez@sitwifi.com';
+       $user_044->city='Cancún, México';
+       $user_044->password= bcrypt('123456');
+       $user_044->avatar= 'dist/img/user.jpg';
+       $user_044->save();
+       $user_044->assignRole($monitorRole);
+
+       $user_045 = new User;
+       $user_045->name='Paola Ku';
+       $user_045->email='pku@sitwifi.com';
+       $user_045->city='Cancún, México';
+       $user_045->password= bcrypt('123456');
+       $user_045->avatar= 'dist/img/user.jpg';
+       $user_045->save();
+       $user_045->assignRole($monitorRole);
+
+       $user_046 = new User;
+       $user_046->name='Jessica Bernal';
+       $user_046->email='jbernal@sitwifi.com';
+       $user_046->city='Cancún, México';
+       $user_046->password= bcrypt('123456');
+       $user_046->avatar= 'dist/img/user.jpg';
+       $user_046->save();
+       $user_046->assignRole($monitorRole);
+
+       $user_047 = new User;
+       $user_047->name='Help desk Caribe';
+       $user_047->email='helpdesk@sitwifi.com';
+       $user_047->city='Cancún, México';
+       $user_047->password= bcrypt('123456');
+       $user_047->avatar= 'dist/img/user.jpg';
+       $user_047->save();
+       $user_047->assignRole($monitorRole);
+
+       $user_048 = new User;
+       $user_048->name='Alfredo	López';
+       $user_048->email='alfredolopez@sitwifi.com';
+       $user_048->city='Cancún, México';
+       $user_048->password= bcrypt('123456');
+       $user_048->avatar= 'dist/img/user.jpg';
+       $user_048->save();
+       $user_048->assignRole($monitorRole);
+
+       $user_049 = new User;
+       $user_049->name='Angie	Mendoza';
+       $user_049->email='amendoza@sitwifi.com';
+       $user_049->city='Cancún, México';
+       $user_049->password= bcrypt('123456');
+       $user_049->avatar= 'dist/img/user.jpg';
+       $user_049->save();
+       $user_049->assignRole($monitorRole);
+
+       $user_050 = new User;
+       $user_050->name='Alejandro	Padilla Gil';
+       $user_050->email='apadilla@sitwifi.com';
+       $user_050->city='Cancún, México';
+       $user_050->password= bcrypt('123456');
+       $user_050->avatar= 'dist/img/user.jpg';
+       $user_050->save();
+       $user_050->assignRole($monitorRole);
+
+       $user_051 = new User;
+       $user_051->name='Ana Lilia	Ríos';
+       $user_051->email='arios@sitwifi.com';
+       $user_051->city='Cancún, México';
+       $user_051->password= bcrypt('123456');
+       $user_051->avatar= 'dist/img/user.jpg';
+       $user_051->save();
+       $user_051->assignRole($monitorRole);
+
+       $user_052 = new User;
+       $user_052->name='Alejandro	Rojas Páez';
+       $user_052->email='arojas@sitwifi.com';
+       $user_052->city='Cancún, México';
+       $user_052->password= bcrypt('123456');
+       $user_052->avatar= 'dist/img/user.jpg';
+       $user_052->save();
+       $user_052->assignRole($monitorRole);
+
+       $user_053 = new User;
+       $user_053->name='Berenice	de Jesús';
+       $user_053->email='bdejesus@sitwifi.com';
+       $user_053->city='Cancún, México';
+       $user_053->password= bcrypt('123456');
+       $user_053->avatar= 'dist/img/user.jpg';
+       $user_053->save();
+       $user_053->assignRole($monitorRole);
+
+       $user_054 = new User;
+       $user_054->name='Guadalupe	Margarito';
+       $user_054->email='conta@sitwifi.com';
+       $user_054->city='Cancún, México';
+       $user_054->password= bcrypt('123456');
+       $user_054->avatar= 'dist/img/user.jpg';
+       $user_054->save();
+       $user_054->assignRole($monitorRole);
+
+       $user_055 = new User;
+       $user_055->name='César	Sánchez';
+       $user_055->email='csanchez@sitwifi.com';
+       $user_055->city='Cancún, México';
+       $user_055->password= bcrypt('123456');
+       $user_055->avatar= 'dist/img/user.jpg';
+       $user_055->save();
+       $user_055->assignRole($monitorRole);
+
+       $user_056 = new User;
+       $user_056->name='Diana	Márquez';
+       $user_056->email='dmarquez@sitwifi.com';
+       $user_056->city='Cancún, México';
+       $user_056->password= bcrypt('123456');
+       $user_056->avatar= 'dist/img/user.jpg';
+       $user_056->save();
+       $user_056->assignRole($monitorRole);
+
+       $user_057 = new User;
+       $user_057->name='David	Santander Gallardo';
+       $user_057->email='dsantander@sitwifi.com';
+       $user_057->city='Cancún, México';
+       $user_057->password= bcrypt('123456');
+       $user_057->avatar= 'dist/img/user.jpg';
+       $user_057->save();
+       $user_057->assignRole($monitorRole);
+
+       $user_058 = new User;
+       $user_058->name='Elizabeth	López';
+       $user_058->email='elopez@sitwifi.com';
+       $user_058->city='Cancún, México';
+       $user_058->password= bcrypt('123456');
+       $user_058->avatar= 'dist/img/user.jpg';
+       $user_058->save();
+       $user_058->assignRole($monitorRole);
+
+       $user_059 = new User;
+       $user_059->name='Salvador Márquez';
+       $user_059->email='smarquez@sitwifi.com';
+       $user_059->city='Cancún, México';
+       $user_059->password= bcrypt('123456');
+       $user_059->avatar= 'dist/img/user.jpg';
+       $user_059->save();
+       $user_059->assignRole($monitorRole);
+
+       $user_060 = new User;
+       $user_060->name='Erick	Tamay';
+       $user_060->email='etamay@sitwifi.com';
+       $user_060->city='Cancún, México';
+       $user_060->password= bcrypt('123456');
+       $user_060->avatar= 'dist/img/user.jpg';
+       $user_060->save();
+       $user_060->assignRole($conciergeRole);
+
+       $user_061 = new User;
+       $user_061->name='Fernanda	Del Toro';
+       $user_061->email='fdeltoro@sitwifi.com';
+       $user_061->city='Cancún, México';
+       $user_061->password= bcrypt('123456');
+       $user_061->avatar= 'dist/img/user.jpg';
+       $user_061->save();
+       $user_061->assignRole($monitorRole);
+
+       $user_062 = new User;
+       $user_062->name='Gerardo	Martínez';
+       $user_062->email='gmartinez@sitwifi.com';
+       $user_062->city='Cancún, México';
+       $user_062->password= bcrypt('123456');
+       $user_062->avatar= 'dist/img/user.jpg';
+       $user_062->save();
+       $user_062->assignRole($monitorRole);
+
+       $user_063 = new User;
+       $user_063->name='Gabriel Omar	Rosas Castañon';
+       $user_063->email='grosas@sitwifi.com';
+       $user_063->city='Cancún, México';
+       $user_063->password= bcrypt('123456');
+       $user_063->avatar= 'dist/img/user.jpg';
+       $user_063->save();
+       $user_063->assignRole($monitorRole);
+
+       $user_064 = new User;
+       $user_064->name='Julio Ernesto	Díaz ';
+       $user_064->email='jdiaz@sitwifi.com';
+       $user_064->city='Cancún, México';
+       $user_064->password= bcrypt('123456');
+       $user_064->avatar= 'dist/img/user.jpg';
+       $user_064->save();
+       $user_064->assignRole($monitorRole);
+
+       $user_065 = new User;
+       $user_065->name='Jesús Alfredo	Galván González';
+       $user_065->email='jgalvan@sitwifi.com';
+       $user_065->city='Cancún, México';
+       $user_065->password= bcrypt('123456');
+       $user_065->avatar= 'dist/img/user.jpg';
+       $user_065->save();
+       $user_065->assignRole($monitorRole);
+
+       $user_066 = new User;
+       $user_066->name='José Juan	Gil';
+       $user_066->email='jgil@sitwifi.com';
+       $user_066->city='Cancún, México';
+       $user_066->password= bcrypt('123456');
+       $user_066->avatar= 'dist/img/user.jpg';
+       $user_066->save();
+       $user_066->assignRole($monitorRole);
+
+       $user_067 = new User;
+       $user_067->name='Jessica	González';
+       $user_067->email='jgonzalez@sitwifi.com';
+       $user_067->city='Cancún, México';
+       $user_067->password= bcrypt('123456');
+       $user_067->avatar= 'dist/img/user.jpg';
+       $user_067->save();
+       $user_067->assignRole($monitorRole);
+
+       $user_068 = new User;
+       $user_068->name='Rocío Jacqueline Ramírez Hernández';
+       $user_068->email='jramirez@sitwifi.com';
+       $user_068->city='Cancún, México';
+       $user_068->password= bcrypt('123456');
+       $user_068->avatar= 'dist/img/user.jpg';
+       $user_068->save();
+       $user_068->assignRole($monitorRole);
+
+       $user_069 = new User;
+       $user_069->name='Jonathan Vargas';
+       $user_069->email='jvargas@sitwifi.com';
+       $user_069->city='Cancún, México';
+       $user_069->password= bcrypt('123456');
+       $user_069->avatar= 'dist/img/user.jpg';
+       $user_069->save();
+       $user_069->assignRole($monitorRole);
+
+       $user_070 = new User;
+       $user_070->name='Javier Zambrano';
+       $user_070->email='jzambrano@sitwifi.com';
+       $user_070->city='Cancún, México';
+       $user_070->password= bcrypt('123456');
+       $user_070->avatar= 'dist/img/user.jpg';
+       $user_070->save();
+       $user_070->assignRole($monitorRole);
+
+       $user_071 = new User;
+       $user_071->name='Karina Sebastián';
+       $user_071->email='ksebastian@sitwifi.com';
+       $user_071->city='Cancún, México';
+       $user_071->password= bcrypt('123456');
+       $user_071->avatar= 'dist/img/user.jpg';
+       $user_071->save();
+       $user_071->assignRole($monitorRole);
+
+       $user_072 = new User;
+       $user_072->name='Lorena Castilla Badillo';
+       $user_072->email='lcastilla@sitwifi.com';
+       $user_072->city='Cancún, México';
+       $user_072->password= bcrypt('123456');
+       $user_072->avatar= 'dist/img/user.jpg';
+       $user_072->save();
+       $user_072->assignRole($monitorRole);
+
+       $user_073 = new User;
+       $user_073->name='Mauricio	Cárdenas';
+       $user_073->email='mcardenas@sitwifi.com';
+       $user_073->city='Cancún, México';
+       $user_073->password= bcrypt('123456');
+       $user_073->avatar= 'dist/img/user.jpg';
+       $user_073->save();
+       $user_073->assignRole($conciergeRole);
+
+       $user_074 = new User;
+       $user_074->name='Mizael Cienfuegoz';
+       $user_074->email='mizael@sitwifi.com';
+       $user_074->city='Cancún, México';
+       $user_074->password= bcrypt('123456');
+       $user_074->avatar= 'dist/img/user.jpg';
+       $user_074->save();
+       $user_074->assignRole($monitorRole);
+
+       $user_075 = new User;
+       $user_075->name='Mario Herón	Lara Suárez';
+       $user_075->email='mlara@sitwifi.com';
+       $user_075->city='Cancún, México';
+       $user_075->password= bcrypt('123456');
+       $user_075->avatar= 'dist/img/user.jpg';
+       $user_075->save();
+       $user_075->assignRole($monitorRole);
+
+       $user_076 = new User;
+       $user_076->name='Manuel Felipe	Moreno Fuentes';
+       $user_076->email='mmoreno@sitwifi.com';
+       $user_076->city='Cancún, México';
+       $user_076->password= bcrypt('123456');
+       $user_076->avatar= 'dist/img/user.jpg';
+       $user_076->save();
+       $user_076->assignRole($monitorRole);
+
+       $user_077 = new User;
+       $user_077->name='Mauricio Pacheco';
+       $user_077->email='mpacheco@sitwifi.com';
+       $user_077->city='Cancún, México';
+       $user_077->password= bcrypt('123456');
+       $user_077->avatar= 'dist/img/user.jpg';
+       $user_077->save();
+       $user_077->assignRole($monitorRole);
+
+       $user_078 = new User;
+       $user_078->name='María	Paniagua';
+       $user_078->email='mpaniagua@sitwifi.com';
+       $user_078->city='Cancún, México';
+       $user_078->password= bcrypt('123456');
+       $user_078->avatar= 'dist/img/user.jpg';
+       $user_078->save();
+       $user_078->assignRole($monitorRole);
+
+       $user_079 = new User;
+       $user_079->name='Marinaty Tagano';
+       $user_079->email='mtagano@sitwifi.com';
+       $user_079->city='Cancún, México';
+       $user_079->password= bcrypt('123456');
+       $user_079->avatar= 'dist/img/user.jpg';
+       $user_079->save();
+       $user_079->assignRole($monitorRole);
+
+       $user_080 = new User;
+       $user_080->name='Omar Flores';
+       $user_080->email='oflores@sitwifi.com';
+       $user_080->city='Cancún, México';
+       $user_080->password= bcrypt('123456');
+       $user_080->avatar= 'dist/img/user.jpg';
+       $user_080->save();
+       $user_080->assignRole($monitorRole);
+
+       $user_081 = new User;
+       $user_081->name='Omar López';
+       $user_081->email='olopez@sitwifi.com';
+       $user_081->city='Cancún, México';
+       $user_081->password= bcrypt('123456');
+       $user_081->avatar= 'dist/img/user.jpg';
+       $user_081->save();
+       $user_081->assignRole($monitorRole);
+
+       $user_082 = new User;
+       $user_082->name='Oliver Eduardo Olvera Carrillo';
+       $user_082->email='oolvera@sitwifi.com';
+       $user_082->city='Cancún, México';
+       $user_082->password= bcrypt('123456');
+       $user_082->avatar= 'dist/img/user.jpg';
+       $user_082->save();
+       $user_082->assignRole($monitorRole);
+
+       $user_083 = new User;
+       $user_083->name='Oscar	Sampedro';
+       $user_083->email='osampedro@sitwifi.com';
+       $user_083->city='Cancún, México';
+       $user_083->password= bcrypt('123456');
+       $user_083->avatar= 'dist/img/user.jpg';
+       $user_083->save();
+       $user_083->assignRole($monitorRole);
+
+       $user_084 = new User;
+       $user_084->name='Oscar	Velázquez';
+       $user_084->email='ovelazquez@sitwifi.com';
+       $user_084->city='Cancún, México';
+       $user_084->password= bcrypt('123456');
+       $user_084->avatar= 'dist/img/user.jpg';
+       $user_084->save();
+       $user_084->assignRole($monitorRole);
+
+       $user_085 = new User;
+       $user_085->name='Pavel Michel Delgado';
+       $user_085->email='pavel@sitwifi.com';
+       $user_085->city='Cancún, México';
+       $user_085->password= bcrypt('123456');
+       $user_085->avatar= 'dist/img/user.jpg';
+       $user_085->save();
+       $user_085->assignRole($monitorRole);
+
+       $user_086 = new User;
+       $user_086->name='Paola	García-Luna';
+       $user_086->email='polagalu@sitwifi.com';
+       $user_086->city='Cancún, México';
+       $user_086->password= bcrypt('123456');
+       $user_086->avatar= 'dist/img/user.jpg';
+       $user_086->save();
+       $user_086->assignRole($monitorRole);
+
+       $user_087 = new User;
+       $user_087->name='Philip Walker';
+       $user_087->email='pwalker@sitwifi.com';
+       $user_087->city='Cancún, México';
+       $user_087->password= bcrypt('123456');
+       $user_087->avatar= 'dist/img/user.jpg';
+       $user_087->save();
+       $user_087->assignRole($monitorRole);
+
+      //  $user_089 = new User;
+      //  $user_089->name='Luis Ramos';
+      //  $user_089->email='proyectos3@sitwifi.com';
+      //  $user_089->city='Cancún, México';
+      //  $user_089->password= bcrypt('123456');
+      //  $user_089->avatar= 'dist/img/user.jpg';
+      //  $user_089->save();
+      //  $user_089->assignRole($monitorRole);
+
+      //  $user_090 = new User;
+      //  $user_090->name='Víctor Abaunza';
+      //  $user_090->email='proyectos@sitwifi.com';
+      //  $user_090->city='Cancún, México';
+      //  $user_090->password= bcrypt('123456');
+      //  $user_090->avatar= 'dist/img/user.jpg';
+      //  $user_090->save();
+      //  $user_090->assignRole($monitorRole);
+
+    //Clientes nps
+       $surveyed_000 = new User;
+       $surveyed_000->name='Francisco Zumaya (fzumaya)';
+       $surveyed_000->email='fzumaya@aeropuertosgap.com.mx';
+       $surveyed_000->password= bcrypt('543210');
+       $surveyed_000->avatar= 'dist/img/user.jpg';
+       $surveyed_000->save();
+       $surveyed_000->assignRole($surveyedRole);
+
+       $surveyed_001 = new User;
+       $surveyed_001->name='Erick Enrique Jimenez (ejimenezv)';
+       $surveyed_001->email='ejimenezv@aeropuertosgap.com.mx';
+       $surveyed_001->password= bcrypt('543210');
+       $surveyed_001->avatar= 'dist/img/user.jpg';
+       $surveyed_001->save();
+       $surveyed_001->assignRole($surveyedRole);
+
+       $surveyed_002 = new User;
+       $surveyed_002->name='Jorge Calderón (mmvazquezs)';
+       $surveyed_002->email='mmvazquezs@liverpool.com.mx';
+       $surveyed_002->password= bcrypt('543210');
+       $surveyed_002->avatar= 'dist/img/user.jpg';
+       $surveyed_002->save();
+       $surveyed_002->assignRole($surveyedRole);
+
+       $surveyed_003 = new User;
+       $surveyed_003->name='Martha L. Calderon (mlcalderonq)';
+       $surveyed_003->email='mlcalderonq@liverpool.com.mx';
+       $surveyed_003->password= bcrypt('543210');
+       $surveyed_003->avatar= 'dist/img/user.jpg';
+       $surveyed_003->save();
+       $surveyed_003->assignRole($surveyedRole);
+
+       $surveyed_004 = new User;
+       $surveyed_004->name='Alfredo Lopez  (alopezn)';
+       $surveyed_004->email='alopezn@liverpool.com.mx';
+       $surveyed_004->password= bcrypt('543210');
+       $surveyed_004->avatar= 'dist/img/user.jpg';
+       $surveyed_004->save();
+       $surveyed_004->assignRole($surveyedRole);
+
+       $surveyed_005 = new User;
+       $surveyed_005->name='Ana Zepeda';
+       $surveyed_005->email='ascepedav@liverpool.com.mx';
+       $surveyed_005->password= bcrypt('543210');
+       $surveyed_005->avatar= 'dist/img/user.jpg';
+       $surveyed_005->save();
+       $surveyed_005->assignRole($surveyedRole);
+
+       $surveyed_006 = new User;
+       $surveyed_006->name='Cristian Flores';
+       $surveyed_006->email='cflores@azulbeachresort.com';
+       $surveyed_006->password= bcrypt('543210');
+       $surveyed_006->avatar= 'dist/img/user.jpg';
+       $surveyed_006->save();
+       $surveyed_006->assignRole($surveyedRole);
+
+       $surveyed_007 = new User;
+       $surveyed_007->name='Miguel Leyva';
+       $surveyed_007->email='mleyva@azulsensatori.com';
+       $surveyed_007->password= bcrypt('543210');
+       $surveyed_007->avatar= 'dist/img/user.jpg';
+       $surveyed_007->save();
+       $surveyed_007->assignRole($surveyedRole);
+
+       $surveyed_008 = new User;
+       $surveyed_008->name='Robert Juárez';
+       $surveyed_008->email='robert.juarez@oceanhotels.net';
+       $surveyed_008->password= bcrypt('543210');
+       $surveyed_008->avatar= 'dist/img/user.jpg';
+       $surveyed_008->save();
+       $surveyed_008->assignRole($surveyedRole);
+
+       $surveyed_009 = new User;
+       $surveyed_009->name='Felix Tapia';
+       $surveyed_009->email='sistemas@hotelfontanixtapa.com';
+       $surveyed_009->password= bcrypt('543210');
+       $surveyed_009->avatar= 'dist/img/user.jpg';
+       $surveyed_009->save();
+       $surveyed_009->assignRole($surveyedRole);
+
+       $surveyed_010 = new User;
+       $surveyed_010->name='Antonio Rios';
+       $surveyed_010->email='arios@hrhcancun.com';
+       $surveyed_010->password= bcrypt('543210');
+       $surveyed_010->avatar= 'dist/img/user.jpg';
+       $surveyed_010->save();
+       $surveyed_010->assignRole($surveyedRole);
+
+       $surveyed_011 = new User;
+       $surveyed_011->name='Yonathan Chalas';
+       $surveyed_011->email='yonathan.chalas@melia.com';
+       $surveyed_011->password= bcrypt('543210');
+       $surveyed_011->avatar= 'dist/img/user.jpg';
+       $surveyed_011->save();
+       $surveyed_011->assignRole($surveyedRole);
+
+       $surveyed_012 = new User;
+       $surveyed_012->name='Mariana Sosa';
+       $surveyed_012->email='okol@rivieramanagement.mx';
+       $surveyed_012->password= bcrypt('543210');
+       $surveyed_012->avatar= 'dist/img/user.jpg';
+       $surveyed_012->save();
+       $surveyed_012->assignRole($surveyedRole);
+
+       $surveyed_013 = new User;
+       $surveyed_013->name='Antonio Suárez';
+       $surveyed_013->email='antonio.suarez@uneg.edu.mx';
+       $surveyed_013->password= bcrypt('543210');
+       $surveyed_013->avatar= 'dist/img/user.jpg';
+       $surveyed_013->save();
+       $surveyed_013->assignRole($surveyedRole);
+
+       $surveyed_014 = new User;
+       $surveyed_014->name='Rodrigo Sánchez';
+       $surveyed_014->email='rodrigo.sanchez@universidadetac.edu.mx';
+       $surveyed_014->password= bcrypt('543210');
+       $surveyed_014->avatar= 'dist/img/user.jpg';
+       $surveyed_014->save();
+       $surveyed_014->assignRole($surveyedRole);
+
+       $surveyed_015 = new User;
+       $surveyed_015->name='Eder';
+       $surveyed_015->email='ederj@lafloridastj.edu.mx';
+       $surveyed_015->password= bcrypt('543210');
+       $surveyed_015->avatar= 'dist/img/user.jpg';
+       $surveyed_015->save();
+       $surveyed_015->assignRole($surveyedRole);
+
+       $surveyed_016 = new User;
+       $surveyed_016->name='Oscar Vega';
+       $surveyed_016->email='direccioncalidad@hostaldelaluz.mx';
+       $surveyed_016->password= bcrypt('543210');
+       $surveyed_016->avatar= 'dist/img/user.jpg';
+       $surveyed_016->save();
+       $surveyed_016->assignRole($surveyedRole);
+
+       $surveyed_017 = new User;
+       $surveyed_017->name='Joel García';
+       $surveyed_017->email='sistemas@fourpointsmexicoroma.com';
+       $surveyed_017->password= bcrypt('543210');
+       $surveyed_017->avatar= 'dist/img/user.jpg';
+       $surveyed_017->save();
+       $surveyed_017->assignRole($surveyedRole);
+
+       $surveyed_018 = new User;
+       $surveyed_018->name='Eduardo Urzua';
+       $surveyed_018->email='eduardo@rivieramanagement.mx';
+       $surveyed_018->password= bcrypt('543210');
+       $surveyed_018->avatar= 'dist/img/user.jpg';
+       $surveyed_018->save();
+       $surveyed_018->assignRole($surveyedRole);
+
+       $surveyed_019 = new User;
+       $surveyed_019->name='Guadalupe Constantino';
+       $surveyed_019->email='g.constantino@iberostar.com.mx';
+       $surveyed_019->password= bcrypt('543210');
+       $surveyed_019->avatar= 'dist/img/user.jpg';
+       $surveyed_019->save();
+       $surveyed_019->assignRole($surveyedRole);
+
+       $surveyed_020 = new User;
+       $surveyed_020->name='Armando Pascual (it.cozumel)';
+       $surveyed_020->email='it.cozumel@iberostar.com.mx';
+       $surveyed_020->password= bcrypt('543210');
+       $surveyed_020->avatar= 'dist/img/user.jpg';
+       $surveyed_020->save();
+       $surveyed_020->assignRole($surveyedRole);
+
+       $surveyed_021 = new User;
+       $surveyed_021->name='Alexis Márquez';
+       $surveyed_021->email='gerencia@hotelbcozumel.com';
+       $surveyed_021->password= bcrypt('543210');
+       $surveyed_021->avatar= 'dist/img/user.jpg';
+       $surveyed_021->save();
+       $surveyed_021->assignRole($surveyedRole);
+
+       $surveyed_022 = new User;
+       $surveyed_022->name='Damián Domínguez';
+       $surveyed_022->email='damian.dominguez@unea.edu.mx';
+       $surveyed_022->password= bcrypt('543210');
+       $surveyed_022->avatar= 'dist/img/user.jpg';
+       $surveyed_022->save();
+       $surveyed_022->assignRole($surveyedRole);
+
+       $surveyed_023 = new User;
+       $surveyed_023->name='Benito Hernandez';
+       $surveyed_023->email='bhernandez@unla.edu.mx';
+       $surveyed_023->password= bcrypt('543210');
+       $surveyed_023->avatar= 'dist/img/user.jpg';
+       $surveyed_023->save();
+       $surveyed_023->assignRole($surveyedRole);
+
+       $surveyed_024 = new User;
+       $surveyed_024->name='Claudia Galindo';
+       $surveyed_024->email='claudia.galindo@itesm.mx';
+       $surveyed_024->password= bcrypt('543210');
+       $surveyed_024->avatar= 'dist/img/user.jpg';
+       $surveyed_024->save();
+       $surveyed_024->assignRole($surveyedRole);
+
+       $surveyed_025 = new User;
+       $surveyed_025->name='César Mendoza';
+       $surveyed_025->email='cmendoza@uvaq.edu.mx';
+       $surveyed_025->password= bcrypt('543210');
+       $surveyed_025->avatar= 'dist/img/user.jpg';
+       $surveyed_025->save();
+       $surveyed_025->assignRole($surveyedRole);
+
+       $surveyed_026 = new User;
+       $surveyed_026->name='Constanza Riveros';
+       $surveyed_026->email='coni.r@numa.co';
+       $surveyed_026->password= bcrypt('543210');
+       $surveyed_026->avatar= 'dist/img/user.jpg';
+       $surveyed_026->save();
+       $surveyed_026->assignRole($surveyedRole);
+
+       $surveyed_027 = new User;
+       $surveyed_027->name='Karla González';
+       $surveyed_027->email='mercadotecnia@galerias-pachuca.com';
+       $surveyed_027->password= bcrypt('543210');
+       $surveyed_027->avatar= 'dist/img/user.jpg';
+       $surveyed_027->save();
+       $surveyed_027->assignRole($surveyedRole);
+
+       $surveyed_028 = new User;
+       $surveyed_028->name='Rosy Salazar';
+       $surveyed_028->email='resalazarv@liverpool.com.mx';
+       $surveyed_028->password= bcrypt('543210');
+       $surveyed_028->avatar= 'dist/img/user.jpg';
+       $surveyed_028->save();
+       $surveyed_028->assignRole($surveyedRole);
+
+       $surveyed_029 = new User;
+       $surveyed_029->name='Kenia García';
+       $surveyed_029->email='kgarciah@liverpool.com.mx';
+       $surveyed_029->password= bcrypt('543210');
+       $surveyed_029->avatar= 'dist/img/user.jpg';
+       $surveyed_029->save();
+       $surveyed_029->assignRole($surveyedRole);
+
+       $surveyed_030 = new User;
+       $surveyed_030->name='Omar Torres / Alma Salinas ';
+       $surveyed_030->email='acaotorres@oma.aero';
+       $surveyed_030->password= bcrypt('543210');
+       $surveyed_030->avatar= 'dist/img/user.jpg';
+       $surveyed_030->save();
+       $surveyed_030->assignRole($surveyedRole);
+
+       $surveyed_031 = new User;
+       $surveyed_031->name='Elvira Baca';
+       $surveyed_031->email='cuuebaca@oma.aero';
+       $surveyed_031->password= bcrypt('543210');
+       $surveyed_031->avatar= 'dist/img/user.jpg';
+       $surveyed_031->save();
+       $surveyed_031->assignRole($surveyedRole);
+
+       $surveyed_032 = new User;
+       $surveyed_032->name='Wendy Holguin';
+       $surveyed_032->email='cjswholguin@oma.aero';
+       $surveyed_032->password= bcrypt('543210');
+       $surveyed_032->avatar= 'dist/img/user.jpg';
+       $surveyed_032->save();
+       $surveyed_032->assignRole($surveyedRole);
+
+       $surveyed_033 = new User;
+       $surveyed_033->name='Sandra Rivera';
+       $surveyed_033->email='zihsrivera@oma.aero';
+       $surveyed_033->password= bcrypt('543210');
+       $surveyed_033->avatar= 'dist/img/user.jpg';
+       $surveyed_033->save();
+       $surveyed_033->assignRole($surveyedRole);
+
+       $surveyed_034 = new User;
+       $surveyed_034->name='Julio Cesar Ovando';
+       $surveyed_034->email='jovando@azulfiveshotel.com';
+       $surveyed_034->password= bcrypt('543210');
+       $surveyed_034->avatar= 'dist/img/user.jpg';
+       $surveyed_034->save();
+       $surveyed_034->assignRole($surveyedRole);
+
+       $surveyed_035 = new User;
+       $surveyed_035->name='Enrique Sosa';
+       $surveyed_035->email='enrique.sosa@oceanhotels.net';
+       $surveyed_035->password= bcrypt('543210');
+       $surveyed_035->avatar= 'dist/img/user.jpg';
+       $surveyed_035->save();
+       $surveyed_035->assignRole($surveyedRole);
+
+       $surveyed_036 = new User;
+       $surveyed_036->name='Luis Trejo';
+       $surveyed_036->email='ltrejo@sunset.com.mx';
+       $surveyed_036->password= bcrypt('543210');
+       $surveyed_036->avatar= 'dist/img/user.jpg';
+       $surveyed_036->save();
+       $surveyed_036->assignRole($surveyedRole);
+
+       $surveyed_037 = new User;
+       $surveyed_037->name='Hugo García / Yonathan Mendoza';
+       $surveyed_037->email='sistemas.esmeralda3@buelbayresorts.com';
+       $surveyed_037->password= bcrypt('543210');
+       $surveyed_037->avatar= 'dist/img/user.jpg';
+       $surveyed_037->save();
+       $surveyed_037->assignRole($surveyedRole);
+
+       $surveyed_038 = new User;
+       $surveyed_038->name='Antonio Salinas';
+       $surveyed_038->email='antonio.salinas@rosewoodhotels.com';
+       $surveyed_038->password= bcrypt('543210');
+       $surveyed_038->avatar= 'dist/img/user.jpg';
+       $surveyed_038->save();
+       $surveyed_038->assignRole($surveyedRole);
+
+       $surveyed_039 = new User;
+       $surveyed_039->name='Alejandra Dominguez';
+       $surveyed_039->email='adominguezs@liverpool.com.mx';
+       $surveyed_039->password= bcrypt('543210');
+       $surveyed_039->avatar= 'dist/img/user.jpg';
+       $surveyed_039->save();
+       $surveyed_039->assignRole($surveyedRole);
+
+       $surveyed_040 = new User;
+       $surveyed_040->name='Elsa Viviana Gonzalez';
+       $surveyed_040->email='evgonzaleze@liverpool.com.mx';
+       $surveyed_040->password= bcrypt('543210');
+       $surveyed_040->avatar= 'dist/img/user.jpg';
+       $surveyed_040->save();
+       $surveyed_040->assignRole($surveyedRole);
+
+       $surveyed_041 = new User;
+       $surveyed_041->name='Zoraya Cortés';
+       $surveyed_041->email='mtyzcortes@oma.aero';
+       $surveyed_041->password= bcrypt('543210');
+       $surveyed_041->avatar= 'dist/img/user.jpg';
+       $surveyed_041->save();
+       $surveyed_041->assignRole($surveyedRole);
+
+       $surveyed_042 = new User;
+       $surveyed_042->name='Ariana Moreno';
+       $surveyed_042->email='rexamoreno@oma.aero';
+       $surveyed_042->password= bcrypt('543210');
+       $surveyed_042->avatar= 'dist/img/user.jpg';
+       $surveyed_042->save();
+       $surveyed_042->assignRole($surveyedRole);
+
+       $surveyed_043 = new User;
+       $surveyed_043->name='Lourdes Medina';
+       $surveyed_043->email='tamlmedina@oma.aero';
+       $surveyed_043->password= bcrypt('543210');
+       $surveyed_043->avatar= 'dist/img/user.jpg';
+       $surveyed_043->save();
+       $surveyed_043->assignRole($surveyedRole);
+
+       $surveyed_044 = new User;
+       $surveyed_044->name='Carlos Magaña';
+       $surveyed_044->email='cmagana@altariacomercial.com.mx';
+       $surveyed_044->password= bcrypt('543210');
+       $surveyed_044->avatar= 'dist/img/user.jpg';
+       $surveyed_044->save();
+       $surveyed_044->assignRole($surveyedRole);
+
+       $surveyed_045 = new User;
+       $surveyed_045->name='Alicia López';
+       $surveyed_045->email='aclopezr@liverpool.com.mx';
+       $surveyed_045->password= bcrypt('543210');
+       $surveyed_045->avatar= 'dist/img/user.jpg';
+       $surveyed_045->save();
+       $surveyed_045->assignRole($surveyedRole);
+
+       $surveyed_046 = new User;
+       $surveyed_046->name='Azul Maya';
+       $surveyed_046->email='amayao@liverpool.com.mx';
+       $surveyed_046->password= bcrypt('543210');
+       $surveyed_046->avatar= 'dist/img/user.jpg';
+       $surveyed_046->save();
+       $surveyed_046->assignRole($surveyedRole);
+
+       $surveyed_047 = new User;
+       $surveyed_047->name='Martín Ortiz (mortiz)';
+       $surveyed_047->email='mortiz@aeropuertosgap.com.mx';
+       $surveyed_047->password= bcrypt('543210');
+       $surveyed_047->avatar= 'dist/img/user.jpg';
+       $surveyed_047->save();
+       $surveyed_047->assignRole($surveyedRole);
+
+       $surveyed_048 = new User;
+       $surveyed_048->name='Javier  Rodriguez (jrodriguez)';
+       $surveyed_048->email='jrodriguez@aeropuertosgap.com.mx';
+       $surveyed_048->password= bcrypt('543210');
+       $surveyed_048->avatar= 'dist/img/user.jpg';
+       $surveyed_048->save();
+       $surveyed_048->assignRole($surveyedRole);
+
+       $surveyed_049 = new User;
+       $surveyed_049->name='Victor Garcia (vigarcia)';
+       $surveyed_049->email='vigarcia@aeropuertosgap.com.mx';
+       $surveyed_049->password= bcrypt('543210');
+       $surveyed_049->avatar= 'dist/img/user.jpg';
+       $surveyed_049->save();
+       $surveyed_049->assignRole($surveyedRole);
+
+       $surveyed_050 = new User;
+       $surveyed_050->name='Jose Luis Lopez (jlopezm)';
+       $surveyed_050->email='jlopezm@aeropuertosgap.com.mx';
+       $surveyed_050->password= bcrypt('543210');
+       $surveyed_050->avatar= 'dist/img/user.jpg';
+       $surveyed_050->save();
+       $surveyed_050->assignRole($surveyedRole);
+
+       $surveyed_051 = new User;
+       $surveyed_051->name='Luz Silva';
+       $surveyed_051->email='trclsilva@oma.aero';
+       $surveyed_051->password= bcrypt('543210');
+       $surveyed_051->avatar= 'dist/img/user.jpg';
+       $surveyed_051->save();
+       $surveyed_051->assignRole($surveyedRole);
+
+       $surveyed_052 = new User;
+       $surveyed_052->name='Clitlalitl Armienta';
+       $surveyed_052->email='culcarmienta@oma.aero';
+       $surveyed_052->password= bcrypt('543210');
+       $surveyed_052->avatar= 'dist/img/user.jpg';
+       $surveyed_052->save();
+       $surveyed_052->assignRole($surveyedRole);
+
+       $surveyed_053 = new User;
+       $surveyed_053->name='Jovita Rodríguez';
+       $surveyed_053->email='dgojrodriguez@oma.aero';
+       $surveyed_053->password= bcrypt('543210');
+       $surveyed_053->avatar= 'dist/img/user.jpg';
+       $surveyed_053->save();
+       $surveyed_053->assignRole($surveyedRole);
+
+       $surveyed_054 = new User;
+       $surveyed_054->name='Cecilia Fletes';
+       $surveyed_054->email='mztcfletes@oma.aero';
+       $surveyed_054->password= bcrypt('543210');
+       $surveyed_054->avatar= 'dist/img/user.jpg';
+       $surveyed_054->save();
+       $surveyed_054->assignRole($surveyedRole);
+
+       $surveyed_055 = new User;
+       $surveyed_055->name='Nancy Márquez';
+       $surveyed_055->email='zclnmarquez@oma.aero';
+       $surveyed_055->password= bcrypt('543210');
+       $surveyed_055->avatar= 'dist/img/user.jpg';
+       $surveyed_055->save();
+       $surveyed_055->assignRole($surveyedRole);
+
+       $surveyed_056 = new User;
+       $surveyed_056->name='André Rosas';
+       $surveyed_056->email='oceandream.sup.frontdesk@gmail.com';
+       $surveyed_056->password= bcrypt('543210');
+       $surveyed_056->avatar= 'dist/img/user.jpg';
+       $surveyed_056->save();
+       $surveyed_056->assignRole($surveyedRole);
+
+       $surveyed_057 = new User;
+       $surveyed_057->name='Jaime Pérez Vazquez';
+       $surveyed_057->email='j,perez@iberostar.com.mx';
+       $surveyed_057->password= bcrypt('543210');
+       $surveyed_057->avatar= 'dist/img/user.jpg';
+       $surveyed_057->save();
+       $surveyed_057->assignRole($surveyedRole);
+
+       $surveyed_058 = new User;
+       $surveyed_058->name='Héctor Aguilera';
+       $surveyed_058->email='hector.aguilera@iberostar.com.mx';
+       $surveyed_058->password= bcrypt('543210');
+       $surveyed_058->avatar= 'dist/img/user.jpg';
+       $surveyed_058->save();
+       $surveyed_058->assignRole($surveyedRole);
+
+       $surveyed_059 = new User;
+       $surveyed_059->name='Martin Del Moral.';
+       $surveyed_059->email='mdelmoral@bestday.com';
+       $surveyed_059->password= bcrypt('543210');
+       $surveyed_059->avatar= 'dist/img/user.jpg';
+       $surveyed_059->save();
+       $surveyed_059->assignRole($surveyedRole);
+
+       $surveyed_060 = new User;
+       $surveyed_060->name='Heriberto Martinez (hmartinez)';
+       $surveyed_060->email='hmartinez@aeropuertosgap.com.mx';
+       $surveyed_060->password= bcrypt('543210');
+       $surveyed_060->avatar= 'dist/img/user.jpg';
+       $surveyed_060->save();
+       $surveyed_060->assignRole($surveyedRole);
+
+       $surveyed_061 = new User;
+       $surveyed_061->name='Salvador Vargas (svargar)';
+       $surveyed_061->email='svargar@aeropuertosgap.com.mx';
+       $surveyed_061->password= bcrypt('543210');
+       $surveyed_061->avatar= 'dist/img/user.jpg';
+       $surveyed_061->save();
+       $surveyed_061->assignRole($surveyedRole);
+
+       $surveyed_062 = new User;
+       $surveyed_062->name='Virginia Guzmán';
+       $surveyed_062->email='slpvguzman@oma.aero';
+       $surveyed_062->password= bcrypt('543210');
+       $surveyed_062->avatar= 'dist/img/user.jpg';
+       $surveyed_062->save();
+       $surveyed_062->assignRole($surveyedRole);
+
+       $surveyed_063 = new User;
+       $surveyed_063->name='Armando Ruiz';
+       $surveyed_063->email='aruiz@aryba.com.mx';
+       $surveyed_063->password= bcrypt('543210');
+       $surveyed_063->avatar= 'dist/img/user.jpg';
+       $surveyed_063->save();
+       $surveyed_063->assignRole($surveyedRole);
+
+       $surveyed_064 = new User;
+       $surveyed_064->name='Flor del Rocio Martínez';
+       $surveyed_064->email='frmartinezj@liverpool.com.mx';
+       $surveyed_064->password= bcrypt('543210');
+       $surveyed_064->avatar= 'dist/img/user.jpg';
+       $surveyed_064->save();
+       $surveyed_064->assignRole($surveyedRole);
+
+       $surveyed_065 = new User;
+       $surveyed_065->name='Paulina Hernández';
+       $surveyed_065->email='pehernandez@liverpool.com.mx';
+       $surveyed_065->password= bcrypt('543210');
+       $surveyed_065->avatar= 'dist/img/user.jpg';
+       $surveyed_065->save();
+       $surveyed_065->assignRole($surveyedRole);
+
+       $surveyed_066 = new User;
+       $surveyed_066->name='Jessica González';
+       $surveyed_066->email='jgonzalezd01@liverpool.com.mx';
+       $surveyed_066->password= bcrypt('543210');
+       $surveyed_066->avatar= 'dist/img/user.jpg';
+       $surveyed_066->save();
+       $surveyed_066->assignRole($surveyedRole);
+
+       $surveyed_067 = new User;
+       $surveyed_067->name='David Ayala';
+       $surveyed_067->email='dayala@aryba.com.mx';
+       $surveyed_067->password= bcrypt('543210');
+       $surveyed_067->avatar= 'dist/img/user.jpg';
+       $surveyed_067->save();
+       $surveyed_067->assignRole($surveyedRole);
+
+       $surveyed_068 = new User;
+       $surveyed_068->name='Amalia Martinez';
+       $surveyed_068->email='amartinezj01@liverpool.com.mx';
+       $surveyed_068->password= bcrypt('543210');
+       $surveyed_068->avatar= 'dist/img/user.jpg';
+       $surveyed_068->save();
+       $surveyed_068->assignRole($surveyedRole);
+
+       $surveyed_069 = new User;
+       $surveyed_069->name='Monserrat Sánchez';
+       $surveyed_069->email='msanchezy@liverpool.com.mx';
+       $surveyed_069->password= bcrypt('543210');
+       $surveyed_069->avatar= 'dist/img/user.jpg';
+       $surveyed_069->save();
+       $surveyed_069->assignRole($surveyedRole);
+
+       $surveyed_070 = new User;
+       $surveyed_070->name='Lizette Montaño';
+       $surveyed_070->email='almontanob@liverpool.com.mx';
+       $surveyed_070->password= bcrypt('543210');
+       $surveyed_070->avatar= 'dist/img/user.jpg';
+       $surveyed_070->save();
+       $surveyed_070->assignRole($surveyedRole);
+
+       $surveyed_071 = new User;
+       $surveyed_071->name='Palmira Gamboa';
+       $surveyed_071->email='pgamboal@liverpool.com.mx';
+       $surveyed_071->password= bcrypt('543210');
+       $surveyed_071->avatar= 'dist/img/user.jpg';
+       $surveyed_071->save();
+       $surveyed_071->assignRole($surveyedRole);
+
+       $surveyed_072 = new User;
+       $surveyed_072->name='Angélica Sánchez';
+       $surveyed_072->email='angelica.sanchez@copri.com.mx';
+       $surveyed_072->password= bcrypt('543210');
+       $surveyed_072->avatar= 'dist/img/user.jpg';
+       $surveyed_072->save();
+       $surveyed_072->assignRole($surveyedRole);
+
+       $surveyed_073 = new User;
+       $surveyed_073->name='Karla González / Ezequiel Carrillo ';
+       $surveyed_073->email='gte_universidad@fibrauno.mx';
+       $surveyed_073->password= bcrypt('543210');
+       $surveyed_073->avatar= 'dist/img/user.jpg';
+       $surveyed_073->save();
+       $surveyed_073->assignRole($surveyedRole);
+
+       $surveyed_074 = new User;
+       $surveyed_074->name='Silvia Bocanegra';
+       $surveyed_074->email='sbocanegra@oasiscoyoacan.com';
+       $surveyed_074->password= bcrypt('543210');
+       $surveyed_074->avatar= 'dist/img/user.jpg';
+       $surveyed_074->save();
+       $surveyed_074->assignRole($surveyedRole);
+
+       $surveyed_075 = new User;
+       $surveyed_075->name='Blanca Gomez Lomelí';
+       $surveyed_075->email='bpgomezl@liverpool.com.mx';
+       $surveyed_075->password= bcrypt('543210');
+       $surveyed_075->avatar= 'dist/img/user.jpg';
+       $surveyed_075->save();
+       $surveyed_075->assignRole($surveyedRole);
+
+       $surveyed_076 = new User;
+       $surveyed_076->name='Rubén Mora';
+       $surveyed_076->email='rmoram@innovacionydiseno.com.mx';
+       $surveyed_076->password= bcrypt('543210');
+       $surveyed_076->avatar= 'dist/img/user.jpg';
+       $surveyed_076->save();
+       $surveyed_076->assignRole($surveyedRole);
+
+       $surveyed_077 = new User;
+       $surveyed_077->name='Francisco González';
+       $surveyed_077->email='francisco.gonzalez@playaresorts.com';
+       $surveyed_077->password= bcrypt('543210');
+       $surveyed_077->avatar= 'dist/img/user.jpg';
+       $surveyed_077->save();
+       $surveyed_077->assignRole($surveyedRole);
+
+       $surveyed_078 = new User;
+       $surveyed_078->name='Omar Caballero / Juan Carlos  Tolentino';
+       $surveyed_078->email='ocaballero@eldoradoseasidesuites.com.mx';
+       $surveyed_078->password= bcrypt('543210');
+       $surveyed_078->avatar= 'dist/img/user.jpg';
+       $surveyed_078->save();
+       $surveyed_078->assignRole($surveyedRole);
+
+       $surveyed_079 = new User;
+       $surveyed_079->name='Carlos Pech';
+       $surveyed_079->email='cpech@unicohotelrm.com';
+       $surveyed_079->password= bcrypt('543210');
+       $surveyed_079->avatar= 'dist/img/user.jpg';
+       $surveyed_079->save();
+       $surveyed_079->assignRole($surveyedRole);
+
+       $surveyed_080 = new User;
+       $surveyed_080->name='Octavio Valenzuela';
+       $surveyed_080->email='ovalenzuela@sirenishotels.com';
+       $surveyed_080->password= bcrypt('543210');
+       $surveyed_080->avatar= 'dist/img/user.jpg';
+       $surveyed_080->save();
+       $surveyed_080->assignRole($surveyedRole);
+
+       $surveyed_081 = new User;
+       $surveyed_081->name='Enrique Camacho';
+       $surveyed_081->email='ecamacho@parnassusresorts.com';
+       $surveyed_081->password= bcrypt('543210');
+       $surveyed_081->avatar= 'dist/img/user.jpg';
+       $surveyed_081->save();
+       $surveyed_081->assignRole($surveyedRole);
+
+       $surveyed_082 = new User;
+       $surveyed_082->name='Ulises Nuñez';
+       $surveyed_082->email='ununez@hrhrivieramaya.com';
+       $surveyed_082->password= bcrypt('543210');
+       $surveyed_082->avatar= 'dist/img/user.jpg';
+       $surveyed_082->save();
+       $surveyed_082->assignRole($surveyedRole);
+
+       $surveyed_083 = new User;
+       $surveyed_083->name='Melina Martinez';
+       $surveyed_083->email='gmmartineze@liverpool.com.mx';
+       $surveyed_083->password= bcrypt('543210');
+       $surveyed_083->avatar= 'dist/img/user.jpg';
+       $surveyed_083->save();
+       $surveyed_083->assignRole($surveyedRole);
+
+       $surveyed_084 = new User;
+       $surveyed_084->name='Ingrid Kaiser';
+       $surveyed_084->email='ikaisero@liverpool.com.mx';
+       $surveyed_084->password= bcrypt('543210');
+       $surveyed_084->avatar= 'dist/img/user.jpg';
+       $surveyed_084->save();
+       $surveyed_084->assignRole($surveyedRole);
+
+       $surveyed_085 = new User;
+       $surveyed_085->name='Daniela Eli Diaz';
+       $surveyed_085->email='dediazv@liverpool.com.mx';
+       $surveyed_085->password= bcrypt('543210');
+       $surveyed_085->avatar= 'dist/img/user.jpg';
+       $surveyed_085->save();
+       $surveyed_085->assignRole($surveyedRole);
+
+       $surveyed_086 = new User;
+       $surveyed_086->name='Luis Vizcaino';
+       $surveyed_086->email='lvizcaino@sirenishotels.com';
+       $surveyed_086->password= bcrypt('543210');
+       $surveyed_086->avatar= 'dist/img/user.jpg';
+       $surveyed_086->save();
+       $surveyed_086->assignRole($surveyedRole);
+
+       $surveyed_087 = new User;
+       $surveyed_087->name='Juan Ciriaco';
+       $surveyed_087->email='jciriaco@hrhcpuntacana.com';
+       $surveyed_087->password= bcrypt('543210');
+       $surveyed_087->avatar= 'dist/img/user.jpg';
+       $surveyed_087->save();
+       $surveyed_087->assignRole($surveyedRole);
+
+       $surveyed_088 = new User;
+       $surveyed_088->name='Guillermo Ojeda';
+       $surveyed_088->email='sistemas@grandsirenismatlali.com';
+       $surveyed_088->password= bcrypt('543210');
+       $surveyed_088->avatar= 'dist/img/user.jpg';
+       $surveyed_088->save();
+       $surveyed_088->assignRole($surveyedRole);
+
+       $surveyed_089 = new User;
+       $surveyed_089->name='Edwgar Zarate';
+       $surveyed_089->email='ezarate@hrhvallarta.com';
+       $surveyed_089->password= bcrypt('543210');
+       $surveyed_089->avatar= 'dist/img/user.jpg';
+       $surveyed_089->save();
+       $surveyed_089->assignRole($surveyedRole);
+
+       $surveyed_090 = new User;
+       $surveyed_090->name='Marco Cauich';
+       $surveyed_090->email='mcauich@eldoradoroyale.com.mx';
+       $surveyed_090->password= bcrypt('543210');
+       $surveyed_090->avatar= 'dist/img/user.jpg';
+       $surveyed_090->save();
+       $surveyed_090->assignRole($surveyedRole);
+
+       $surveyed_091 = new User;
+       $surveyed_091->name='Jhonny Tun';
+       $surveyed_091->email='jtun@eldoradomaroma.com';
+       $surveyed_091->password= bcrypt('543210');
+       $surveyed_091->avatar= 'dist/img/user.jpg';
+       $surveyed_091->save();
+       $surveyed_091->assignRole($surveyedRole);
+
+       $surveyed_092 = new User;
+       $surveyed_092->name='Gaby Rojas';
+       $surveyed_092->email='gabriela@wrk.com.mx';
+       $surveyed_092->password= bcrypt('543210');
+       $surveyed_092->avatar= 'dist/img/user.jpg';
+       $surveyed_092->save();
+       $surveyed_092->assignRole($surveyedRole);
+
+       $surveyed_093 = new User;
+       $surveyed_093->name='Tomás Rios';
+       $surveyed_093->email='soporte.uvg@uvg.edu.mx';
+       $surveyed_093->password= bcrypt('543210');
+       $surveyed_093->avatar= 'dist/img/user.jpg';
+       $surveyed_093->save();
+       $surveyed_093->assignRole($surveyedRole);
+
+       $surveyed_094 = new User;
+       $surveyed_094->name='Kevin Cabrera';
+       $surveyed_094->email='kevin.cabrera@universidadetac.edu.mx';
+       $surveyed_094->password= bcrypt('543210');
+       $surveyed_094->avatar= 'dist/img/user.jpg';
+       $surveyed_094->save();
+       $surveyed_094->assignRole($surveyedRole);
+
+       $surveyed_095 = new User;
+       $surveyed_095->name='Edwin Carranza';
+       $surveyed_095->email='edwin.carranza@universidadetac.edu.mx';
+       $surveyed_095->password= bcrypt('543210');
+       $surveyed_095->avatar= 'dist/img/user.jpg';
+       $surveyed_095->save();
+       $surveyed_095->assignRole($surveyedRole);
+
+       $surveyed_096 = new User;
+       $surveyed_096->name='Jesica Alcalá';
+       $surveyed_096->email='jalcala@nuevocontinente.edu.mx';
+       $surveyed_096->password= bcrypt('543210');
+       $surveyed_096->avatar= 'dist/img/user.jpg';
+       $surveyed_096->save();
+       $surveyed_096->assignRole($surveyedRole);
+
+       $surveyed_097 = new User;
+       $surveyed_097->name='Alejandra Jiménez';
+       $surveyed_097->email='a.jimenez@colegioxford.edu.mx';
+       $surveyed_097->password= bcrypt('543210');
+       $surveyed_097->avatar= 'dist/img/user.jpg';
+       $surveyed_097->save();
+       $surveyed_097->assignRole($surveyedRole);
+
+       $surveyed_098 = new User;
+       $surveyed_098->name='Gerardo Castilla';
+       $surveyed_098->email='gcastilla@oxfordmexicomasc.com';
+       $surveyed_098->password= bcrypt('543210');
+       $surveyed_098->avatar= 'dist/img/user.jpg';
+       $surveyed_098->save();
+       $surveyed_098->assignRole($surveyedRole);
+
+       $surveyed_099 = new User;
+       $surveyed_099->name='Andres Tejeda';
+       $surveyed_099->email='atejeda@cancunbayresort.com';
+       $surveyed_099->password= bcrypt('543210');
+       $surveyed_099->avatar= 'dist/img/user.jpg';
+       $surveyed_099->save();
+       $surveyed_099->assignRole($surveyedRole);
+
+       $surveyed_100 = new User;
+       $surveyed_100->name='Julio Carillo';
+       $surveyed_100->email='sstt.aluxes@privilegehotels.com';
+       $surveyed_100->password= bcrypt('543210');
+       $surveyed_100->avatar= 'dist/img/user.jpg';
+       $surveyed_100->save();
+       $surveyed_100->assignRole($surveyedRole);
+
+       $surveyed_101 = new User;
+       $surveyed_101->name='Ricardo Javier Pech Pech';
+       $surveyed_101->email='sistemas@izlahotel.com';
+       $surveyed_101->password= bcrypt('543210');
+       $surveyed_101->avatar= 'dist/img/user.jpg';
+       $surveyed_101->save();
+       $surveyed_101->assignRole($surveyedRole);
+
+       $surveyed_102 = new User;
+       $surveyed_102->name='Oscar Condado';
+       $surveyed_102->email='sistemas@aquamarinabeach.com';
+       $surveyed_102->password= bcrypt('543210');
+       $surveyed_102->avatar= 'dist/img/user.jpg';
+       $surveyed_102->save();
+       $surveyed_102->assignRole($surveyedRole);
+
+       $surveyed_103 = new User;
+       $surveyed_103->name='Fredy Tun';
+       $surveyed_103->email='sistemas@nyxhotels.com';
+       $surveyed_103->password= bcrypt('543210');
+       $surveyed_103->avatar= 'dist/img/user.jpg';
+       $surveyed_103->save();
+       $surveyed_103->assignRole($surveyedRole);
+
+       $surveyed_104 = new User;
+       $surveyed_104->name=' Jorge Pereira';
+       $surveyed_104->email='jpereira@ixco.com.mx';
+       $surveyed_104->password= bcrypt('543210');
+       $surveyed_104->avatar= 'dist/img/user.jpg';
+       $surveyed_104->save();
+       $surveyed_104->assignRole($surveyedRole);
+
+       $surveyed_105 = new User;
+       $surveyed_105->name='Jaime Arrieta';
+       $surveyed_105->email='sistemas@parnassusresorts.com.mx';
+       $surveyed_105->password= bcrypt('543210');
+       $surveyed_105->avatar= 'dist/img/user.jpg';
+       $surveyed_105->save();
+       $surveyed_105->assignRole($surveyedRole);
+
+       $surveyed_106 = new User;
+       $surveyed_106->name='Luis Orozco';
+       $surveyed_106->email='luis.orozco@kidzania.com';
+       $surveyed_106->password= bcrypt('543210');
+       $surveyed_106->avatar= 'dist/img/user.jpg';
+       $surveyed_106->save();
+       $surveyed_106->assignRole($surveyedRole);
+
+       $surveyed_107 = new User;
+       $surveyed_107->name='Gonzalo Izaguirre';
+       $surveyed_107->email='gizaguirre@realresorts.com';
+       $surveyed_107->password= bcrypt('543210');
+       $surveyed_107->avatar= 'dist/img/user.jpg';
+       $surveyed_107->save();
+       $surveyed_107->assignRole($surveyedRole);
+
+       $surveyed_108 = new User;
+       $surveyed_108->name='Freddy Velázquez';
+       $surveyed_108->email='fvelazquez@experienciasxcaret.com.mx';
+       $surveyed_108->password= bcrypt('543210');
+       $surveyed_108->avatar= 'dist/img/user.jpg';
+       $surveyed_108->save();
+       $surveyed_108->assignRole($surveyedRole);
+
+       $surveyed_109 = new User;
+       $surveyed_109->name='Abel Suarez';
+       $surveyed_109->email='ba.suarez@ebc.edu.mx';
+       $surveyed_109->password= bcrypt('543210');
+       $surveyed_109->avatar= 'dist/img/user.jpg';
+       $surveyed_109->save();
+       $surveyed_109->assignRole($surveyedRole);
+
+       $surveyed_110 = new User;
+       $surveyed_110->name='Hector Gómez';
+       $surveyed_110->email='hrgomez@itesm.mx';
+       $surveyed_110->password= bcrypt('543210');
+       $surveyed_110->avatar= 'dist/img/user.jpg';
+       $surveyed_110->save();
+       $surveyed_110->assignRole($surveyedRole);
+
+       $surveyed_111 = new User;
+       $surveyed_111->name='Aldo Toledo';
+       $surveyed_111->email='aldo.toledo@uvg.edu.mx';
+       $surveyed_111->password= bcrypt('543210');
+       $surveyed_111->avatar= 'dist/img/user.jpg';
+       $surveyed_111->save();
+       $surveyed_111->assignRole($surveyedRole);
+
+       $surveyed_112 = new User;
+       $surveyed_112->name='Santos Ortiz';
+       $surveyed_112->email='isc.santos11@gmail.com';
+       $surveyed_112->password= bcrypt('543210');
+       $surveyed_112->avatar= 'dist/img/user.jpg';
+       $surveyed_112->save();
+       $surveyed_112->assignRole($surveyedRole);
+
+       $surveyed_113 = new User;
+       $surveyed_113->name='Alberto Sánchez';
+       $surveyed_113->email='asanchezo@unea.edu.mx';
+       $surveyed_113->password= bcrypt('543210');
+       $surveyed_113->avatar= 'dist/img/user.jpg';
+       $surveyed_113->save();
+       $surveyed_113->assignRole($surveyedRole);
+
+       $surveyed_114 = new User;
+       $surveyed_114->name='Rodrigo Gutierrez o Fred';
+       $surveyed_114->email='rodrigo.gutierrez@universidadlaconcordia.edu.mx';
+       $surveyed_114->password= bcrypt('543210');
+       $surveyed_114->avatar= 'dist/img/user.jpg';
+       $surveyed_114->save();
+       $surveyed_114->assignRole($surveyedRole);
+
+       $surveyed_115 = new User;
+       $surveyed_115->name='Ernesto Moncivais';
+       $surveyed_115->email='emoncivais@utan.edu.mx';
+       $surveyed_115->password= bcrypt('543210');
+       $surveyed_115->avatar= 'dist/img/user.jpg';
+       $surveyed_115->save();
+       $surveyed_115->assignRole($surveyedRole);
+
+       $surveyed_116 = new User;
+       $surveyed_116->name='Luis Enrique Monreal (lmonreal) ';
+       $surveyed_116->email='lmonreal@utan.edu.mx';
+       $surveyed_116->password= bcrypt('543210');
+       $surveyed_116->avatar= 'dist/img/user.jpg';
+       $surveyed_116->save();
+       $surveyed_116->assignRole($surveyedRole);
+
+       $surveyed_117 = new User;
+       $surveyed_117->name='Héctor Romero';
+       $surveyed_117->email='hromero@utan.edu.mx';
+       $surveyed_117->password= bcrypt('543210');
+       $surveyed_117->avatar= 'dist/img/user.jpg';
+       $surveyed_117->save();
+       $surveyed_117->assignRole($surveyedRole);
+
+       $surveyed_118 = new User;
+       $surveyed_118->name='Jose Luis Maqueda';
+       $surveyed_118->email='jmaqueda@utan.edu.mx';
+       $surveyed_118->password= bcrypt('543210');
+       $surveyed_118->avatar= 'dist/img/user.jpg';
+       $surveyed_118->save();
+       $surveyed_118->assignRole($surveyedRole);
+
+       $surveyed_119 = new User;
+       $surveyed_119->name='Lorena Irigoyen';
+       $surveyed_119->email='lirigoyen@colegioamericano-sonora.com';
+       $surveyed_119->password= bcrypt('543210');
+       $surveyed_119->avatar= 'dist/img/user.jpg';
+       $surveyed_119->save();
+       $surveyed_119->assignRole($surveyedRole);
+
+       $surveyed_120 = new User;
+       $surveyed_120->name='Lidia Paola Borbolla (lborbolla)';
+       $surveyed_120->email='lborbolla@aeropuertosgap.com.mx';
+       $surveyed_120->password= bcrypt('543210');
+       $surveyed_120->avatar= 'dist/img/user.jpg';
+       $surveyed_120->save();
+       $surveyed_120->assignRole($surveyedRole);
+
+       $surveyed_121 = new User;
+       $surveyed_121->name='Jonas Leonel Urias (lurias)';
+       $surveyed_121->email='lurias@aeropuertosgap.com.mx';
+       $surveyed_121->password= bcrypt('543210');
+       $surveyed_121->avatar= 'dist/img/user.jpg';
+       $surveyed_121->save();
+       $surveyed_121->assignRole($surveyedRole);
+
+       $surveyed_122 = new User;
+       $surveyed_122->name='Edgar Rivera';
+       $surveyed_122->email='eriverao@aeropuertosgap.com.mx';
+       $surveyed_122->password= bcrypt('543210');
+       $surveyed_122->avatar= 'dist/img/user.jpg';
+       $surveyed_122->save();
+       $surveyed_122->assignRole($surveyedRole);
+
+       $surveyed_123 = new User;
+       $surveyed_123->name='Julio Cesar García';
+       $surveyed_123->email='julio.garcia@universidadetac.edu.mx';
+       $surveyed_123->password= bcrypt('543210');
+       $surveyed_123->avatar= 'dist/img/user.jpg';
+       $surveyed_123->save();
+       $surveyed_123->assignRole($surveyedRole);
+
+       $surveyed_124 = new User;
+       $surveyed_124->name='Salvador Ayala';
+       $surveyed_124->email='sayala@udla.mx';
+       $surveyed_124->password= bcrypt('543210');
+       $surveyed_124->avatar= 'dist/img/user.jpg';
+       $surveyed_124->save();
+       $surveyed_124->assignRole($surveyedRole);
+
+
+
+
+    //Permisos para super admin
+       //Usuario Desarrollo
+       //- Dashboard
+       $user_default_0->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $user_default_0->givePermissionTo('View detailed for hotel');
+       $user_default_0->givePermissionTo('View detailed for proyect');
+       $user_default_0->givePermissionTo('View cover');
+       $user_default_0->givePermissionTo('View distribucion');
+       //- Equipos
+       $user_default_0->givePermissionTo('View add equipment');
+       $user_default_0->givePermissionTo('Create equipment');
+       $user_default_0->givePermissionTo('View removed equipment');
+       $user_default_0->givePermissionTo('Removed equipment');
+       $user_default_0->givePermissionTo('View search equipment');
+       $user_default_0->givePermissionTo('View move equipment');
+       $user_default_0->givePermissionTo('Move equipment');
+       $user_default_0->givePermissionTo('View equipment group');
+       $user_default_0->givePermissionTo('Add equipment group');
+       $user_default_0->givePermissionTo('Removed equipment group');
+       $user_default_0->givePermissionTo('View provider');
+       $user_default_0->givePermissionTo('Create provider');
+       $user_default_0->givePermissionTo('Edit provider');
+       $user_default_0->givePermissionTo('Delete provider');
+       //- Reportes
+       $user_default_0->givePermissionTo('View assign report');
+       $user_default_0->givePermissionTo('Create assign report');
+       $user_default_0->givePermissionTo('Edit assign report');
+       $user_default_0->givePermissionTo('Delete assign report');
+
+       $user_default_0->givePermissionTo('Create general report');
+       $user_default_0->givePermissionTo('View individual capture');
+       $user_default_0->givePermissionTo('Create individual capture');
+       $user_default_0->givePermissionTo('View individual general report');
+       $user_default_0->givePermissionTo('Edit individual general report');
+       $user_default_0->givePermissionTo('View concierge approval');
+       $user_default_0->givePermissionTo('Create concierge approval');
+       $user_default_0->givePermissionTo('Delete concierge approval');
+       $user_default_0->givePermissionTo('View admin approval');
+       $user_default_0->givePermissionTo('Option admin approval');
+       $user_default_0->givePermissionTo('Notification admin approval');
+       $user_default_0->givePermissionTo('View report');
+       $user_default_0->givePermissionTo('View report concat');
+       //Calificaciones
+       $user_default_0->givePermissionTo('View dashboard survey nps');
+       $user_default_0->givePermissionTo('View create survey');
+       $user_default_0->givePermissionTo('Generate survey');
+       $user_default_0->givePermissionTo('View capture survey');
+       $user_default_0->givePermissionTo('Create survey');
+       $user_default_0->givePermissionTo('View edit survey');
+       $user_default_0->givePermissionTo('Edit survey');
+       $user_default_0->givePermissionTo('View results survey');
+       $user_default_0->givePermissionTo('View survey configuration');
+       $user_default_0->givePermissionTo('Assign user survey');
+       $user_default_0->givePermissionTo('Removed user survey');
+       $user_default_0->givePermissionTo('Generate key user survey');
+       $user_default_0->givePermissionTo('Send email user survey');
+       $user_default_0->givePermissionTo('View key user survey');
+       $user_default_0->givePermissionTo('View survey nps configuration');
+       //NPS
+       $user_default_0->givePermissionTo('View assign hotel user');
+       $user_default_0->givePermissionTo('Create assign hotel user');
+       $user_default_0->givePermissionTo('Delete assign hotel user');
+       $user_default_0->givePermissionTo('View list assign hotel user');
+       $user_default_0->givePermissionTo('View assign delete client');
+       $user_default_0->givePermissionTo('View config nps automatic');
+       $user_default_0->givePermissionTo('Create config nps automatic');
+       $user_default_0->givePermissionTo('View config nps individual');
+       $user_default_0->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $user_default_0->givePermissionTo('View dashboard sitwifi');
+       $user_default_0->givePermissionTo('View config sitwifi');
+       $user_default_0->givePermissionTo('Delete config sitwifi');
+       $user_default_0->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $user_default_0->givePermissionTo('View guest review');
+       $user_default_0->givePermissionTo('View server review');
+       $user_default_0->givePermissionTo('View test zd');
+       //- Configuración
+       $user_default_0->givePermissionTo('Create user');
+       $user_default_0->givePermissionTo('Edit user');
+       $user_default_0->givePermissionTo('Delete user');
+       $user_default_0->givePermissionTo('View Configuration');
+       $user_default_0->givePermissionTo('Edit Configuration');
+
+       //Usuario Desarrollo- Alonso
+       //- Dashboard
+       $super_admin_a1->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $super_admin_a1->givePermissionTo('View detailed for hotel');
+       $super_admin_a1->givePermissionTo('View detailed for proyect');
+       $super_admin_a1->givePermissionTo('View cover');
+       $super_admin_a1->givePermissionTo('View distribucion');
+       //- Equipos
+       $super_admin_a1->givePermissionTo('View add equipment');
+       $super_admin_a1->givePermissionTo('Create equipment');
+       $super_admin_a1->givePermissionTo('View removed equipment');
+       $super_admin_a1->givePermissionTo('Removed equipment');
+       $super_admin_a1->givePermissionTo('View search equipment');
+       $super_admin_a1->givePermissionTo('View move equipment');
+       $super_admin_a1->givePermissionTo('Move equipment');
+       $super_admin_a1->givePermissionTo('View equipment group');
+       $super_admin_a1->givePermissionTo('Add equipment group');
+       $super_admin_a1->givePermissionTo('Removed equipment group');
+       $super_admin_a1->givePermissionTo('View provider');
+       $super_admin_a1->givePermissionTo('Create provider');
+       $super_admin_a1->givePermissionTo('Edit provider');
+       $super_admin_a1->givePermissionTo('Delete provider');
+       //- Reportes
+       $super_admin_a1->givePermissionTo('View assign report');
+       $super_admin_a1->givePermissionTo('Create assign report');
+       $super_admin_a1->givePermissionTo('Edit assign report');
+       $super_admin_a1->givePermissionTo('Delete assign report');
+       $super_admin_a1->givePermissionTo('Create general report');
+       $super_admin_a1->givePermissionTo('View individual capture');
+       $super_admin_a1->givePermissionTo('Create individual capture');
+       $super_admin_a1->givePermissionTo('View individual general report');
+       $super_admin_a1->givePermissionTo('Edit individual general report');
+       $super_admin_a1->givePermissionTo('View concierge approval');
+       $super_admin_a1->givePermissionTo('Create concierge approval');
+       $super_admin_a1->givePermissionTo('Delete concierge approval');
+       $super_admin_a1->givePermissionTo('View admin approval');
+       $super_admin_a1->givePermissionTo('Option admin approval');
+       $super_admin_a1->givePermissionTo('Notification admin approval');
+       $super_admin_a1->givePermissionTo('View report');
+       $super_admin_a1->givePermissionTo('View report concat');
+       //Calificaciones
+       $super_admin_a1->givePermissionTo('View dashboard survey nps');
+       $super_admin_a1->givePermissionTo('View create survey');
+       $super_admin_a1->givePermissionTo('Generate survey');
+       $super_admin_a1->givePermissionTo('View capture survey');
+       $super_admin_a1->givePermissionTo('Create survey');
+       $super_admin_a1->givePermissionTo('View edit survey');
+       $super_admin_a1->givePermissionTo('Edit survey');
+       $super_admin_a1->givePermissionTo('View results survey');
+       $super_admin_a1->givePermissionTo('View survey configuration');
+       $super_admin_a1->givePermissionTo('Assign user survey');
+       $super_admin_a1->givePermissionTo('Removed user survey');
+       $super_admin_a1->givePermissionTo('Generate key user survey');
+       $super_admin_a1->givePermissionTo('Send email user survey');
+       $super_admin_a1->givePermissionTo('View key user survey');
+       $super_admin_a1->givePermissionTo('View survey nps configuration');
+       //NPS
+       $super_admin_a1->givePermissionTo('View assign hotel user');
+       $super_admin_a1->givePermissionTo('Create assign hotel user');
+       $super_admin_a1->givePermissionTo('Delete assign hotel user');
+       $super_admin_a1->givePermissionTo('View list assign hotel user');
+       $super_admin_a1->givePermissionTo('View assign delete client');
+       $super_admin_a1->givePermissionTo('View config nps automatic');
+       $super_admin_a1->givePermissionTo('Create config nps automatic');
+       $super_admin_a1->givePermissionTo('View config nps individual');
+       $super_admin_a1->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $super_admin_a1->givePermissionTo('View dashboard sitwifi');
+       $super_admin_a1->givePermissionTo('View config sitwifi');
+       $super_admin_a1->givePermissionTo('Delete config sitwifi');
+       $super_admin_a1->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $super_admin_a1->givePermissionTo('View guest review');
+       $super_admin_a1->givePermissionTo('View server review');
+       $super_admin_a1->givePermissionTo('View test zd');
+       //- Configuración
+       $super_admin_a1->givePermissionTo('Create user');
+       $super_admin_a1->givePermissionTo('Edit user');
+       $super_admin_a1->givePermissionTo('Delete user');
+       $super_admin_a1->givePermissionTo('View Configuration');
+       $super_admin_a1->givePermissionTo('Edit Configuration');
+
+       //Usuario Desarrollo- Esquinca
+       //- Dashboard
+       $super_admin_a2->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $super_admin_a2->givePermissionTo('View detailed for hotel');
+       $super_admin_a2->givePermissionTo('View detailed for proyect');
+       $super_admin_a2->givePermissionTo('View cover');
+       $super_admin_a2->givePermissionTo('View distribucion');
+       //- Equipos
+       $super_admin_a2->givePermissionTo('View add equipment');
+       $super_admin_a2->givePermissionTo('Create equipment');
+       $super_admin_a2->givePermissionTo('View removed equipment');
+       $super_admin_a2->givePermissionTo('Removed equipment');
+       $super_admin_a2->givePermissionTo('View search equipment');
+       $super_admin_a2->givePermissionTo('View move equipment');
+       $super_admin_a2->givePermissionTo('Move equipment');
+       $super_admin_a2->givePermissionTo('View equipment group');
+       $super_admin_a2->givePermissionTo('Add equipment group');
+       $super_admin_a2->givePermissionTo('Removed equipment group');
+       $super_admin_a2->givePermissionTo('View provider');
+       $super_admin_a2->givePermissionTo('Create provider');
+       $super_admin_a2->givePermissionTo('Edit provider');
+       $super_admin_a2->givePermissionTo('Delete provider');
+       //- Reportes
+       $super_admin_a2->givePermissionTo('View assign report');
+       $super_admin_a2->givePermissionTo('Create assign report');
+       $super_admin_a2->givePermissionTo('Edit assign report');
+       $super_admin_a2->givePermissionTo('Delete assign report');
+       $super_admin_a2->givePermissionTo('Create general report');
+       $super_admin_a2->givePermissionTo('View individual capture');
+       $super_admin_a2->givePermissionTo('Create individual capture');
+       $super_admin_a2->givePermissionTo('View individual general report');
+       $super_admin_a2->givePermissionTo('Edit individual general report');
+       $super_admin_a2->givePermissionTo('View concierge approval');
+       $super_admin_a2->givePermissionTo('Create concierge approval');
+       $super_admin_a2->givePermissionTo('Delete concierge approval');
+       $super_admin_a2->givePermissionTo('View admin approval');
+       $super_admin_a2->givePermissionTo('Option admin approval');
+       $super_admin_a2->givePermissionTo('Notification admin approval');
+       $super_admin_a2->givePermissionTo('View report');
+       $super_admin_a2->givePermissionTo('View report concat');
+       //Calificaciones
+       $super_admin_a2->givePermissionTo('View dashboard survey nps');
+       $super_admin_a2->givePermissionTo('View create survey');
+       $super_admin_a2->givePermissionTo('Generate survey');
+       $super_admin_a2->givePermissionTo('View capture survey');
+       $super_admin_a2->givePermissionTo('Create survey');
+       $super_admin_a2->givePermissionTo('View edit survey');
+       $super_admin_a2->givePermissionTo('Edit survey');
+       $super_admin_a2->givePermissionTo('View results survey');
+       $super_admin_a2->givePermissionTo('View survey configuration');
+       $super_admin_a2->givePermissionTo('Assign user survey');
+       $super_admin_a2->givePermissionTo('Removed user survey');
+       $super_admin_a2->givePermissionTo('Generate key user survey');
+       $super_admin_a2->givePermissionTo('Send email user survey');
+       $super_admin_a2->givePermissionTo('View key user survey');
+       $super_admin_a2->givePermissionTo('View survey nps configuration');
+       //NPS
+       $super_admin_a2->givePermissionTo('View assign hotel user');
+       $super_admin_a2->givePermissionTo('Create assign hotel user');
+       $super_admin_a2->givePermissionTo('Delete assign hotel user');
+       $super_admin_a2->givePermissionTo('View list assign hotel user');
+       $super_admin_a2->givePermissionTo('View assign delete client');
+       $super_admin_a2->givePermissionTo('View config nps automatic');
+       $super_admin_a2->givePermissionTo('Create config nps automatic');
+       $super_admin_a2->givePermissionTo('View config nps individual');
+       $super_admin_a2->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $super_admin_a2->givePermissionTo('View dashboard sitwifi');
+       $super_admin_a2->givePermissionTo('View config sitwifi');
+       $super_admin_a2->givePermissionTo('Delete config sitwifi');
+       $super_admin_a2->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $super_admin_a2->givePermissionTo('View guest review');
+       $super_admin_a2->givePermissionTo('View server review');
+       $super_admin_a2->givePermissionTo('View test zd');
+       //- Configuración
+       $super_admin_a2->givePermissionTo('Create user');
+       $super_admin_a2->givePermissionTo('Edit user');
+       $super_admin_a2->givePermissionTo('Delete user');
+       $super_admin_a2->givePermissionTo('View Configuration');
+       $super_admin_a2->givePermissionTo('Edit Configuration');
+
+       //Usuario Desarrollo- Angel Gabriel
+       //- Dashboard
+       $super_admin_a3->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $super_admin_a3->givePermissionTo('View detailed for hotel');
+       $super_admin_a3->givePermissionTo('View detailed for proyect');
+       $super_admin_a3->givePermissionTo('View cover');
+       $super_admin_a3->givePermissionTo('View distribucion');
+       //- Equipos
+       $super_admin_a3->givePermissionTo('View add equipment');
+       $super_admin_a3->givePermissionTo('Create equipment');
+       $super_admin_a3->givePermissionTo('View removed equipment');
+       $super_admin_a3->givePermissionTo('Removed equipment');
+       $super_admin_a3->givePermissionTo('View search equipment');
+       $super_admin_a3->givePermissionTo('View move equipment');
+       $super_admin_a3->givePermissionTo('Move equipment');
+       $super_admin_a3->givePermissionTo('View equipment group');
+       $super_admin_a3->givePermissionTo('Add equipment group');
+       $super_admin_a3->givePermissionTo('Removed equipment group');
+       $super_admin_a3->givePermissionTo('View provider');
+       $super_admin_a3->givePermissionTo('Create provider');
+       $super_admin_a3->givePermissionTo('Edit provider');
+       $super_admin_a3->givePermissionTo('Delete provider');
+       //- Reportes
+       $super_admin_a3->givePermissionTo('View assign report');
+       $super_admin_a3->givePermissionTo('Create assign report');
+       $super_admin_a3->givePermissionTo('Edit assign report');
+       $super_admin_a3->givePermissionTo('Delete assign report');
+       $super_admin_a3->givePermissionTo('Create general report');
+       $super_admin_a3->givePermissionTo('View individual capture');
+       $super_admin_a3->givePermissionTo('Create individual capture');
+       $super_admin_a3->givePermissionTo('View individual general report');
+       $super_admin_a3->givePermissionTo('Edit individual general report');
+       $super_admin_a3->givePermissionTo('View concierge approval');
+       $super_admin_a3->givePermissionTo('Create concierge approval');
+       $super_admin_a3->givePermissionTo('Delete concierge approval');
+       $super_admin_a3->givePermissionTo('View admin approval');
+       $super_admin_a3->givePermissionTo('Option admin approval');
+       $super_admin_a3->givePermissionTo('Notification admin approval');
+       $super_admin_a3->givePermissionTo('View report');
+       $super_admin_a3->givePermissionTo('View report concat');
+       //Calificaciones
+       $super_admin_a3->givePermissionTo('View dashboard survey nps');
+       $super_admin_a3->givePermissionTo('View create survey');
+       $super_admin_a3->givePermissionTo('Generate survey');
+       $super_admin_a3->givePermissionTo('View capture survey');
+       $super_admin_a3->givePermissionTo('Create survey');
+       $super_admin_a3->givePermissionTo('View edit survey');
+       $super_admin_a3->givePermissionTo('Edit survey');
+       $super_admin_a3->givePermissionTo('View results survey');
+       $super_admin_a3->givePermissionTo('View survey configuration');
+       $super_admin_a3->givePermissionTo('Assign user survey');
+       $super_admin_a3->givePermissionTo('Removed user survey');
+       $super_admin_a3->givePermissionTo('Generate key user survey');
+       $super_admin_a3->givePermissionTo('Send email user survey');
+       $super_admin_a3->givePermissionTo('View key user survey');
+       $super_admin_a3->givePermissionTo('View survey nps configuration');
+       //NPS
+       $super_admin_a3->givePermissionTo('View assign hotel user');
+       $super_admin_a3->givePermissionTo('Create assign hotel user');
+       $super_admin_a3->givePermissionTo('Delete assign hotel user');
+       $super_admin_a3->givePermissionTo('View list assign hotel user');
+       $super_admin_a3->givePermissionTo('View assign delete client');
+       $super_admin_a3->givePermissionTo('View config nps automatic');
+       $super_admin_a3->givePermissionTo('Create config nps automatic');
+       $super_admin_a3->givePermissionTo('View config nps individual');
+       $super_admin_a3->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $super_admin_a3->givePermissionTo('View dashboard sitwifi');
+       $super_admin_a3->givePermissionTo('View config sitwifi');
+       $super_admin_a3->givePermissionTo('Delete config sitwifi');
+       $super_admin_a3->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $super_admin_a3->givePermissionTo('View guest review');
+       $super_admin_a3->givePermissionTo('View server review');
+       $super_admin_a3->givePermissionTo('View test zd');
+       //- Configuración
+       $super_admin_a3->givePermissionTo('Create user');
+       $super_admin_a3->givePermissionTo('Edit user');
+       $super_admin_a3->givePermissionTo('Delete user');
+       $super_admin_a3->givePermissionTo('View Configuration');
+       $super_admin_a3->givePermissionTo('Edit Configuration');
+
+       //Usuario Desarrollo- Oscar
+       //- Dashboard
+       $super_admin_a4->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $super_admin_a4->givePermissionTo('View detailed for hotel');
+       $super_admin_a4->givePermissionTo('View detailed for proyect');
+       $super_admin_a4->givePermissionTo('View cover');
+       $super_admin_a4->givePermissionTo('View distribucion');
+       //- Equipos
+       $super_admin_a4->givePermissionTo('View add equipment');
+       $super_admin_a4->givePermissionTo('Create equipment');
+       $super_admin_a4->givePermissionTo('View removed equipment');
+       $super_admin_a4->givePermissionTo('Removed equipment');
+       $super_admin_a4->givePermissionTo('View search equipment');
+       $super_admin_a4->givePermissionTo('View move equipment');
+       $super_admin_a4->givePermissionTo('Move equipment');
+       $super_admin_a4->givePermissionTo('View equipment group');
+       $super_admin_a4->givePermissionTo('Add equipment group');
+       $super_admin_a4->givePermissionTo('Removed equipment group');
+       $super_admin_a4->givePermissionTo('View provider');
+       $super_admin_a4->givePermissionTo('Create provider');
+       $super_admin_a4->givePermissionTo('Edit provider');
+       $super_admin_a4->givePermissionTo('Delete provider');
+       //- Reportes
+       $super_admin_a4->givePermissionTo('View assign report');
+       $super_admin_a4->givePermissionTo('Create assign report');
+       $super_admin_a4->givePermissionTo('Edit assign report');
+       $super_admin_a4->givePermissionTo('Delete assign report');
+       $super_admin_a4->givePermissionTo('Create general report');
+       $super_admin_a4->givePermissionTo('View individual capture');
+       $super_admin_a4->givePermissionTo('Create individual capture');
+       $super_admin_a4->givePermissionTo('View individual general report');
+       $super_admin_a4->givePermissionTo('Edit individual general report');
+       $super_admin_a4->givePermissionTo('View concierge approval');
+       $super_admin_a4->givePermissionTo('Create concierge approval');
+       $super_admin_a4->givePermissionTo('Delete concierge approval');
+       $super_admin_a4->givePermissionTo('View admin approval');
+       $super_admin_a4->givePermissionTo('Option admin approval');
+       $super_admin_a4->givePermissionTo('Notification admin approval');
+       $super_admin_a4->givePermissionTo('View report');
+       $super_admin_a4->givePermissionTo('View report concat');
+       //Calificaciones
+       $super_admin_a4->givePermissionTo('View dashboard survey nps');
+       $super_admin_a4->givePermissionTo('View create survey');
+       $super_admin_a4->givePermissionTo('Generate survey');
+       $super_admin_a4->givePermissionTo('View capture survey');
+       $super_admin_a4->givePermissionTo('Create survey');
+       $super_admin_a4->givePermissionTo('View edit survey');
+       $super_admin_a4->givePermissionTo('Edit survey');
+       $super_admin_a4->givePermissionTo('View results survey');
+       $super_admin_a4->givePermissionTo('View survey configuration');
+       $super_admin_a4->givePermissionTo('Assign user survey');
+       $super_admin_a4->givePermissionTo('Removed user survey');
+       $super_admin_a4->givePermissionTo('Generate key user survey');
+       $super_admin_a4->givePermissionTo('Send email user survey');
+       $super_admin_a4->givePermissionTo('View key user survey');
+       $super_admin_a4->givePermissionTo('View survey nps configuration');
+       //NPS
+       $super_admin_a4->givePermissionTo('View assign hotel user');
+       $super_admin_a4->givePermissionTo('Create assign hotel user');
+       $super_admin_a4->givePermissionTo('Delete assign hotel user');
+       $super_admin_a4->givePermissionTo('View list assign hotel user');
+       $super_admin_a4->givePermissionTo('View assign delete client');
+       $super_admin_a4->givePermissionTo('View config nps automatic');
+       $super_admin_a4->givePermissionTo('Create config nps automatic');
+       $super_admin_a4->givePermissionTo('View config nps individual');
+       $super_admin_a4->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $super_admin_a4->givePermissionTo('View dashboard sitwifi');
+       $super_admin_a4->givePermissionTo('View config sitwifi');
+       $super_admin_a4->givePermissionTo('Delete config sitwifi');
+       $super_admin_a4->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $super_admin_a4->givePermissionTo('View guest review');
+       $super_admin_a4->givePermissionTo('View server review');
+       $super_admin_a4->givePermissionTo('View test zd');
+       //- Configuración
+       $super_admin_a4->givePermissionTo('Create user');
+       $super_admin_a4->givePermissionTo('Edit user');
+       $super_admin_a4->givePermissionTo('Delete user');
+       $super_admin_a4->givePermissionTo('View Configuration');
+       $super_admin_a4->givePermissionTo('Edit Configuration');
+
+       //Usuario Desarrollo- Edgar
+       //- Dashboard
+       $super_admin_a5->givePermissionTo('View dashboard pral');
+       //- Inventario
+       $super_admin_a5->givePermissionTo('View detailed for hotel');
+       $super_admin_a5->givePermissionTo('View detailed for proyect');
+       $super_admin_a5->givePermissionTo('View cover');
+       $super_admin_a5->givePermissionTo('View distribucion');
+       //- Equipos
+       $super_admin_a5->givePermissionTo('View add equipment');
+       $super_admin_a5->givePermissionTo('Create equipment');
+       $super_admin_a5->givePermissionTo('View removed equipment');
+       $super_admin_a5->givePermissionTo('Removed equipment');
+       $super_admin_a5->givePermissionTo('View search equipment');
+       $super_admin_a5->givePermissionTo('View move equipment');
+       $super_admin_a5->givePermissionTo('Move equipment');
+       $super_admin_a5->givePermissionTo('View equipment group');
+       $super_admin_a5->givePermissionTo('Add equipment group');
+       $super_admin_a5->givePermissionTo('Removed equipment group');
+       $super_admin_a5->givePermissionTo('View provider');
+       $super_admin_a5->givePermissionTo('Create provider');
+       $super_admin_a5->givePermissionTo('Edit provider');
+       $super_admin_a5->givePermissionTo('Delete provider');
+       //- Reportes
+       $super_admin_a5->givePermissionTo('View assign report');
+       $super_admin_a5->givePermissionTo('Create assign report');
+       $super_admin_a5->givePermissionTo('Edit assign report');
+       $super_admin_a5->givePermissionTo('Delete assign report');
+       $super_admin_a5->givePermissionTo('Create general report');
+       $super_admin_a5->givePermissionTo('View individual capture');
+       $super_admin_a5->givePermissionTo('Create individual capture');
+       $super_admin_a5->givePermissionTo('View individual general report');
+       $super_admin_a5->givePermissionTo('Edit individual general report');
+       $super_admin_a5->givePermissionTo('View concierge approval');
+       $super_admin_a5->givePermissionTo('Create concierge approval');
+       $super_admin_a5->givePermissionTo('Delete concierge approval');
+       $super_admin_a5->givePermissionTo('View admin approval');
+       $super_admin_a5->givePermissionTo('Option admin approval');
+       $super_admin_a5->givePermissionTo('Notification admin approval');
+       $super_admin_a5->givePermissionTo('View report');
+       $super_admin_a5->givePermissionTo('View report concat');
+       //Calificaciones
+       $super_admin_a5->givePermissionTo('View dashboard survey nps');
+       $super_admin_a5->givePermissionTo('View create survey');
+       $super_admin_a5->givePermissionTo('Generate survey');
+       $super_admin_a5->givePermissionTo('View capture survey');
+       $super_admin_a5->givePermissionTo('Create survey');
+       $super_admin_a5->givePermissionTo('View edit survey');
+       $super_admin_a5->givePermissionTo('Edit survey');
+       $super_admin_a5->givePermissionTo('View results survey');
+       $super_admin_a5->givePermissionTo('View survey configuration');
+       $super_admin_a5->givePermissionTo('Assign user survey');
+       $super_admin_a5->givePermissionTo('Removed user survey');
+       $super_admin_a5->givePermissionTo('Generate key user survey');
+       $super_admin_a5->givePermissionTo('Send email user survey');
+       $super_admin_a5->givePermissionTo('View key user survey');
+       $super_admin_a5->givePermissionTo('View survey nps configuration');
+       //NPS
+       $super_admin_a5->givePermissionTo('View assign hotel user');
+       $super_admin_a5->givePermissionTo('Create assign hotel user');
+       $super_admin_a5->givePermissionTo('Delete assign hotel user');
+       $super_admin_a5->givePermissionTo('View list assign hotel user');
+       $super_admin_a5->givePermissionTo('View assign delete client');
+       $super_admin_a5->givePermissionTo('View config nps automatic');
+       $super_admin_a5->givePermissionTo('Create config nps automatic');
+       $super_admin_a5->givePermissionTo('View config nps individual');
+       $super_admin_a5->givePermissionTo('Create config nps individual');
+       //-Encuesta Sitwifi
+       $super_admin_a5->givePermissionTo('View dashboard sitwifi');
+       $super_admin_a5->givePermissionTo('View config sitwifi');
+       $super_admin_a5->givePermissionTo('Delete config sitwifi');
+       $super_admin_a5->givePermissionTo('Send mail sitwifi');
+       //- Herramientas
+       $super_admin_a5->givePermissionTo('View guest review');
+       $super_admin_a5->givePermissionTo('View server review');
+       $super_admin_a5->givePermissionTo('View test zd');
+       //- Configuración
+       $super_admin_a5->givePermissionTo('Create user');
+       $super_admin_a5->givePermissionTo('Edit user');
+       $super_admin_a5->givePermissionTo('Delete user');
+       $super_admin_a5->givePermissionTo('View Configuration');
+       $super_admin_a5->givePermissionTo('Edit Configuration');
+
+       //Creamos las categorias de los menus
+         $seccion_admin_a = new Section;
+         $seccion_admin_a->name='inventory';
+         $seccion_admin_a->display_name='Inventario';
+         $seccion_admin_a->icons='fa fa-archive';
+         $seccion_admin_a->save();
+
+         $seccion_admin_b = new Section;
+         $seccion_admin_b->name='report';
+         $seccion_admin_b->display_name='Reportes';
+         $seccion_admin_b->icons='fa fa-check-square-o';
+         $seccion_admin_b->save();
+
+         $seccion_admin_c = new Section;
+         $seccion_admin_c->name='qualification';
+         $seccion_admin_c->display_name='Calificación';
+         $seccion_admin_c->icons='fa fa-calendar-plus-o';
+         $seccion_admin_c->save();
+
+         $seccion_admin_d = new Section;
+         $seccion_admin_d->name='equipment';
+         $seccion_admin_d->display_name='Equipos';
+         $seccion_admin_d->icons='fa fa-briefcase';
+         $seccion_admin_d->save();
+
+         $seccion_admin_e = new Section;
+         $seccion_admin_e->name='tools';
+         $seccion_admin_e->display_name='Herramientas';
+         $seccion_admin_e->icons='fa fa-wrench';
+         $seccion_admin_e->save();
+
+       //Menu Inventario
+         $menu_inv_000 = new Menu;
+         $menu_inv_000->name='detailed_hotel';
+         $menu_inv_000->display_name='Detallado por Hotel';
+         $menu_inv_000->description='Permite visualizar el inventario actual de los sitios permitidos.';
+         $menu_inv_000->url='detailed_hotel';
+         $menu_inv_000->section_id=$seccion_admin_a->id;
+         $menu_inv_000->icons='fa fa-circle-o';
+         $menu_inv_000->save();
+         $assigned_menu_inv_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_inv_000->id]);
+         $assigned_menu_inv_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_inv_000->id]);
+         $assigned_menu_inv_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_inv_000->id]);
+         $assigned_menu_inv_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_inv_000->id]);
+         $assigned_menu_inv_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_inv_000->id]);
+         $assigned_menu_inv_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_inv_000->id]);
+
+         $menu_inv_001 = new Menu;
+         $menu_inv_001->name='detailed_proyect';
+         $menu_inv_001->display_name='Detallado por proyecto';
+         $menu_inv_001->description='Permite visualizar el inventario actual en base a los proyectos.';
+         $menu_inv_001->url='detailed_proyect';
+         $menu_inv_001->section_id=$seccion_admin_a->id;
+         $menu_inv_001->icons='fa fa-circle-o';
+         $menu_inv_001->save();
+         $assigned_menu_inv_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_inv_001->id]);
+         $assigned_menu_inv_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_inv_001->id]);
+         $assigned_menu_inv_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_inv_001->id]);
+         $assigned_menu_inv_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_inv_001->id]);
+         $assigned_menu_inv_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_inv_001->id]);
+         $assigned_menu_inv_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_inv_001->id]);
+
+         $menu_inv_002 = new Menu;
+         $menu_inv_002->name='detailed_cover';
+         $menu_inv_002->display_name='Carta de entrega';
+         $menu_inv_002->description='Permite visualizar la carta de entrega.';
+         $menu_inv_002->url='detailed_cover';
+         $menu_inv_002->section_id=$seccion_admin_a->id;
+         $menu_inv_002->icons='fa fa-circle-o';
+         $menu_inv_002->save();
+         $assigned_menu_inv_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_inv_002->id]);
+         $assigned_menu_inv_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_inv_002->id]);
+         $assigned_menu_inv_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_inv_002->id]);
+         $assigned_menu_inv_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_inv_002->id]);
+         $assigned_menu_inv_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_inv_002->id]);
+         $assigned_menu_inv_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_inv_002->id]);
+
+         $menu_inv_003 = new Menu;
+         $menu_inv_003->name='detailed_distribution';
+         $menu_inv_003->display_name='Distribucion';
+         $menu_inv_003->description='Permite visualizar la distribución actual.';
+         $menu_inv_003->url='detailed_distribution';
+         $menu_inv_003->section_id=$seccion_admin_a->id;
+         $menu_inv_003->icons='fa fa-circle-o';
+         $menu_inv_003->save();
+         $assigned_menu_inv_3_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_inv_003->id]);
+         $assigned_menu_inv_3_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_inv_003->id]);
+         $assigned_menu_inv_3_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_inv_003->id]);
+         $assigned_menu_inv_3_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_inv_003->id]);
+         $assigned_menu_inv_3_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_inv_003->id]);
+         $assigned_menu_inv_3_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_inv_003->id]);
+
+       //Menu Equipos
+         $menu_eqp_000 = new Menu;
+         $menu_eqp_000->name='up_equipment';
+         $menu_eqp_000->display_name='Altas';
+         $menu_eqp_000->description='Permite dar de altas nuevos equipos';
+         $menu_eqp_000->url='up_equipment';
+         $menu_eqp_000->section_id=$seccion_admin_d->id;
+         $menu_eqp_000->icons='fa fa-chevron-circle-up';
+         $menu_eqp_000->save();
+         $assigned_menu_eqp_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_000->id]);
+         $assigned_menu_eqp_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_000->id]);
+         $assigned_menu_eqp_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_000->id]);
+         $assigned_menu_eqp_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_000->id]);
+         $assigned_menu_eqp_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_000->id]);
+         $assigned_menu_eqp_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_000->id]);
+
+         $menu_eqp_001 = new Menu;
+         $menu_eqp_001->name='down_equipment';
+         $menu_eqp_001->display_name='Bajas';
+         $menu_eqp_001->description='Permite dar de baja equipos';
+         $menu_eqp_001->url='down_equipment';
+         $menu_eqp_001->section_id=$seccion_admin_d->id;
+         $menu_eqp_001->icons='fa fa-chevron-circle-down';
+         $menu_eqp_001->save();
+         $assigned_menu_eqp_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_001->id]);
+         $assigned_menu_eqp_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_001->id]);
+         $assigned_menu_eqp_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_001->id]);
+         $assigned_menu_eqp_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_001->id]);
+         $assigned_menu_eqp_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_001->id]);
+         $assigned_menu_eqp_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_001->id]);
+
+         $menu_eqp_002 = new Menu;
+         $menu_eqp_002->name='detailed_search';
+         $menu_eqp_002->display_name='Buscador';
+         $menu_eqp_002->description='Permite visualizar el buscador de equipos';
+         $menu_eqp_002->url='detailed_search';
+         $menu_eqp_002->section_id=$seccion_admin_d->id;
+         $menu_eqp_002->icons='fa fa-search';
+         $menu_eqp_002->save();
+         $assigned_menu_eqp_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_002->id]);
+         $assigned_menu_eqp_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_002->id]);
+         $assigned_menu_eqp_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_002->id]);
+         $assigned_menu_eqp_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_002->id]);
+         $assigned_menu_eqp_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_002->id]);
+         $assigned_menu_eqp_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_002->id]);
+
+         $menu_eqp_003 = new Menu;
+         $menu_eqp_003->name='move_equipment';
+         $menu_eqp_003->display_name='Movimientos';
+         $menu_eqp_003->description='Permite mover equipos';
+         $menu_eqp_003->url='move_equipment';
+         $menu_eqp_003->section_id=$seccion_admin_d->id;
+         $menu_eqp_003->icons='fa fa-arrows';
+         $menu_eqp_003->save();
+         $assigned_menu_eqp_3_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_003->id]);
+         $assigned_menu_eqp_3_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_003->id]);
+         $assigned_menu_eqp_3_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_003->id]);
+         $assigned_menu_eqp_3_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_003->id]);
+         $assigned_menu_eqp_3_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_003->id]);
+         $assigned_menu_eqp_3_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_003->id]);
+
+         $menu_eqp_004 = new Menu;
+         $menu_eqp_004->name='group_equipment';
+         $menu_eqp_004->display_name='Grupos';
+         $menu_eqp_004->description='Permite agrupar equipos';
+         $menu_eqp_004->url='group_equipment';
+         $menu_eqp_004->section_id=$seccion_admin_d->id;
+         $menu_eqp_004->icons='fa fa-object-group';
+         $menu_eqp_004->save();
+         $assigned_menu_eqp_4_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_004->id]);
+         $assigned_menu_eqp_4_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_004->id]);
+         $assigned_menu_eqp_4_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_004->id]);
+         $assigned_menu_eqp_4_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_004->id]);
+         $assigned_menu_eqp_4_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_004->id]);
+         $assigned_menu_eqp_4_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_004->id]);
+
+         $menu_eqp_005 = new Menu;
+         $menu_eqp_005->name='provider';
+         $menu_eqp_005->display_name='Proveedor';
+         $menu_eqp_005->description='Permite agregar los proveedores';
+         $menu_eqp_005->url='provider';
+         $menu_eqp_005->section_id=$seccion_admin_d->id;
+         $menu_eqp_005->icons='fa fa-handshake-o';
+         $menu_eqp_005->save();
+         $assigned_menu_eqp_5_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_eqp_005->id]);
+         $assigned_menu_eqp_5_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_eqp_005->id]);
+         $assigned_menu_eqp_5_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_eqp_005->id]);
+         $assigned_menu_eqp_5_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_eqp_005->id]);
+         $assigned_menu_eqp_5_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_eqp_005->id]);
+         $assigned_menu_eqp_5_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_eqp_005->id]);
+
+       //Menu Reportes
+         $menu_rep_000 = new Menu;
+         $menu_rep_000->name='type_report';
+         $menu_rep_000->display_name='Asignación de reporte';
+         $menu_rep_000->description='Permite manipular y establecer los valor predeterminados para cada hotel.';
+         $menu_rep_000->url='type_report';
+         $menu_rep_000->section_id=$seccion_admin_b->id;
+         $menu_rep_000->icons='fa fa-square-o';
+         $menu_rep_000->save();
+         $assigned_menu_rep_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_000->id]);
+         $assigned_menu_rep_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_000->id]);
+         $assigned_menu_rep_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_000->id]);
+         $assigned_menu_rep_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_000->id]);
+         $assigned_menu_rep_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_000->id]);
+         $assigned_menu_rep_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_000->id]);
+
+         $menu_rep_001 = new Menu;
+         $menu_rep_001->name='individual';
+         $menu_rep_001->display_name='Captura reporte';
+         $menu_rep_001->description='Permite realizar la captura individual de cada hotel asignado.';
+         $menu_rep_001->url='individual';
+         $menu_rep_001->section_id=$seccion_admin_b->id;
+         $menu_rep_001->icons='fa fa-square-o';
+         $menu_rep_001->save();
+         $assigned_menu_rep_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_001->id]);
+         $assigned_menu_rep_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_001->id]);
+         $assigned_menu_rep_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_001->id]);
+         $assigned_menu_rep_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_001->id]);
+         $assigned_menu_rep_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_001->id]);
+         $assigned_menu_rep_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_001->id]);
+
+         $menu_rep_002 = new Menu;
+         $menu_rep_002->name='edit_report';
+         $menu_rep_002->display_name='Editar Reportes';
+         $menu_rep_002->description='Permite editar el reporte capturado de cada hotel asignado.';
+         $menu_rep_002->url='edit_report';
+         $menu_rep_002->section_id=$seccion_admin_b->id;
+         $menu_rep_002->icons='fa fa-square-o';
+         $menu_rep_002->save();
+         $assigned_menu_rep_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_002->id]);
+         $assigned_menu_rep_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_002->id]);
+         $assigned_menu_rep_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_002->id]);
+         $assigned_menu_rep_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_002->id]);
+         $assigned_menu_rep_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_002->id]);
+         $assigned_menu_rep_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_002->id]);
+
+         $menu_rep_003 = new Menu;
+         $menu_rep_003->name='approval';
+         $menu_rep_003->display_name='Aprobación Concierge';
+         $menu_rep_003->description='Permite realizar la aprobación de concierge.';
+         $menu_rep_003->url='approval';
+         $menu_rep_003->section_id=$seccion_admin_b->id;
+         $menu_rep_003->icons='fa fa-square-o';
+         $menu_rep_003->save();
+         $assigned_menu_rep_3_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_003->id]);
+         $assigned_menu_rep_3_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_003->id]);
+         $assigned_menu_rep_3_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_003->id]);
+         $assigned_menu_rep_3_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_003->id]);
+         $assigned_menu_rep_3_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_003->id]);
+         $assigned_menu_rep_3_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_003->id]);
+
+         $menu_rep_004 = new Menu;
+         $menu_rep_004->name='approvals';
+         $menu_rep_004->display_name='Aprobación Admin';
+         $menu_rep_004->description='Permite verificar y aprobar reportes.';
+         $menu_rep_004->url='approvals';
+         $menu_rep_004->section_id=$seccion_admin_b->id;
+         $menu_rep_004->icons='fa fa-square-o';
+         $menu_rep_004->save();
+         $assigned_menu_rep_4_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_004->id]);
+         $assigned_menu_rep_4_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_004->id]);
+         $assigned_menu_rep_4_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_004->id]);
+         $assigned_menu_rep_4_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_004->id]);
+         $assigned_menu_rep_4_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_004->id]);
+         $assigned_menu_rep_4_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_004->id]);
+
+         $menu_rep_005 = new Menu;
+         $menu_rep_005->name='viewreports';
+         $menu_rep_005->display_name='Ver Reportes';
+         $menu_rep_005->description='Permite visualizar los reportes de cada hotel.';
+         $menu_rep_005->url='viewreports';
+         $menu_rep_005->section_id=$seccion_admin_b->id;
+         $menu_rep_005->icons='fa fa-square-o';
+         $menu_rep_005->save();
+         $assigned_menu_rep_5_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_005->id]);
+         $assigned_menu_rep_5_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_005->id]);
+         $assigned_menu_rep_5_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_005->id]);
+         $assigned_menu_rep_5_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_005->id]);
+         $assigned_menu_rep_5_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_005->id]);
+         $assigned_menu_rep_5_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_005->id]);
+
+         $menu_rep_006 = new Menu;
+         $menu_rep_006->name='viewreportscont';
+         $menu_rep_006->display_name='Ver Reportes Cont';
+         $menu_rep_006->description='Permite visualizar el reporte concatenado de cada cadena.';
+         $menu_rep_006->url='viewreportscont';
+         $menu_rep_006->section_id=$seccion_admin_b->id;
+         $menu_rep_006->icons='fa fa-square-o';
+         $menu_rep_006->save();
+         $assigned_menu_rep_6_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_rep_006->id]);
+         $assigned_menu_rep_6_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_rep_006->id]);
+         $assigned_menu_rep_6_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_rep_006->id]);
+         $assigned_menu_rep_6_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_rep_006->id]);
+         $assigned_menu_rep_6_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_rep_006->id]);
+         $assigned_menu_rep_6_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_rep_006->id]);
+
+
+       //Menu Calificaciones
+         $menu_cal_000 = new Menu;
+         $menu_cal_000->name='view_dashboard_survey_nps';
+         $menu_cal_000->display_name='Dashboard encuesta NPS';
+         $menu_cal_000->description='Permite visualizar los resultados de la encuesta NPS.';
+         $menu_cal_000->url='view_dashboard_survey_nps';
+         $menu_cal_000->section_id=$seccion_admin_c->id;
+         $menu_cal_000->icons='fa fa-tachometer';
+         $menu_cal_000->save();
+         $assigned_menu_cal_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_000->id]);
+         $assigned_menu_cal_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_000->id]);
+         $assigned_menu_cal_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_000->id]);
+         $assigned_menu_cal_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_000->id]);
+         $assigned_menu_cal_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_000->id]);
+         $assigned_menu_cal_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_000->id]);
+
+         $menu_cal_001 = new Menu;
+         $menu_cal_001->name='view_dashboard_survey_sit';
+         $menu_cal_001->display_name='Dashboard encuesta gral';
+         $menu_cal_001->description='Permite visualizar los resultados de la encuesta Sitwfi.';
+         $menu_cal_001->url='view_dashboard_survey_sit';
+         $menu_cal_001->section_id=$seccion_admin_c->id;
+         $menu_cal_001->icons='fa fa-tachometer';
+         $menu_cal_001->save();
+         $assigned_menu_cal_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_001->id]);
+         $assigned_menu_cal_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_001->id]);
+         $assigned_menu_cal_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_001->id]);
+         $assigned_menu_cal_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_001->id]);
+         $assigned_menu_cal_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_001->id]);
+         $assigned_menu_cal_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_001->id]);
+
+         $menu_cal_002 = new Menu;
+         $menu_cal_002->name='create_survey_admin';
+         $menu_cal_002->display_name='Crear encuesta';
+         $menu_cal_002->description='Permite crear la encuesta mensual.';
+         $menu_cal_002->url='create_survey_admin';
+         $menu_cal_002->section_id=$seccion_admin_c->id;
+         $menu_cal_002->icons='fa fa-plus-square-o';
+         $menu_cal_002->save();
+         $assigned_menu_cal_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_002->id]);
+         $assigned_menu_cal_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_002->id]);
+         $assigned_menu_cal_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_002->id]);
+         $assigned_menu_cal_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_002->id]);
+         $assigned_menu_cal_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_002->id]);
+         $assigned_menu_cal_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_002->id]);
+
+         $menu_cal_003 = new Menu;
+         $menu_cal_003->name='survey_results';
+         $menu_cal_003->display_name='Resultados encuesta NPS';
+         $menu_cal_003->description='Permite visualizar las calificaciones de cada sitio.';
+         $menu_cal_003->url='survey_results';
+         $menu_cal_003->section_id=$seccion_admin_c->id;
+         $menu_cal_003->icons='fa fa-info-circle';
+         $menu_cal_003->save();
+         $assigned_menu_cal_3_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_003->id]);
+         $assigned_menu_cal_3_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_003->id]);
+         $assigned_menu_cal_3_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_003->id]);
+         $assigned_menu_cal_3_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_003->id]);
+         $assigned_menu_cal_3_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_003->id]);
+         $assigned_menu_cal_3_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_003->id]);
+
+         $menu_cal_004 = new Menu;
+         $menu_cal_004->name='configure_survey_admin_nps';
+         $menu_cal_004->display_name='Configuración encuesta NPS.';
+         $menu_cal_004->description='Permite configurar las encuestas NPS para los clientes.';
+         $menu_cal_004->url='configure_survey_admin_nps';
+         $menu_cal_004->section_id=$seccion_admin_c->id;
+         $menu_cal_004->icons='fa fa-cog';
+         $menu_cal_004->save();
+         $assigned_menu_cal_4_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_004->id]);
+         $assigned_menu_cal_4_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_004->id]);
+         $assigned_menu_cal_4_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_004->id]);
+         $assigned_menu_cal_4_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_004->id]);
+         $assigned_menu_cal_4_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_004->id]);
+         $assigned_menu_cal_4_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_004->id]);
+
+         $menu_cal_005 = new Menu;
+         $menu_cal_005->name='configure_survey_admin_sit';
+         $menu_cal_005->display_name='Configuración encuesta gral.';
+         $menu_cal_005->description='Permite configurar las encuestas sitwifi para el personal.';
+         $menu_cal_005->url='configure_survey_admin_sit';
+         $menu_cal_005->section_id=$seccion_admin_c->id;
+         $menu_cal_005->icons='fa fa-cog';
+         $menu_cal_005->save();
+         $assigned_menu_cal_5_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_cal_005->id]);
+         $assigned_menu_cal_5_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_cal_005->id]);
+         $assigned_menu_cal_5_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_cal_005->id]);
+         $assigned_menu_cal_5_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_cal_005->id]);
+         $assigned_menu_cal_5_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_cal_005->id]);
+         $assigned_menu_cal_5_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_cal_005->id]);
+
+       //Menu Herramientas
+         $menu_her_000 = new Menu;
+         $menu_her_000->name='detailed_guest_review';
+         $menu_her_000->display_name='Diagnósticos huéspedes';
+         $menu_her_000->description='Permite visualizar el diagnósticos huéspedes';
+         $menu_her_000->url='detailed_guest_review';
+         $menu_her_000->section_id=$seccion_admin_e->id;
+         $menu_her_000->icons='fa fa-tag';
+         $menu_her_000->save();
+         $assigned_menu_her_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_her_000->id]);
+         $assigned_menu_her_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_her_000->id]);
+         $assigned_menu_her_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_her_000->id]);
+         $assigned_menu_her_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_her_000->id]);
+         $assigned_menu_her_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_her_000->id]);
+         $assigned_menu_her_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_her_000->id]);
+
+         $menu_her_001 = new Menu;
+         $menu_her_001->name='detailed_server_review';
+         $menu_her_001->display_name='Diagnósticos servidores';
+         $menu_her_001->description='Permite visualizar el diagnósticos servidores';
+         $menu_her_001->url='detailed_server_review';
+         $menu_her_001->section_id=$seccion_admin_e->id;
+         $menu_her_001->icons='fa fa-tag';
+         $menu_her_001->save();
+         $assigned_menu_her_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_her_001->id]);
+         $assigned_menu_her_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_her_001->id]);
+         $assigned_menu_her_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_her_001->id]);
+         $assigned_menu_her_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_her_001->id]);
+         $assigned_menu_her_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_her_001->id]);
+         $assigned_menu_her_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_her_001->id]);
+
+         $menu_her_002 = new Menu;
+         $menu_her_002->name='testzone';
+         $menu_her_002->display_name='Testeo ZD';
+         $menu_her_002->description='Permite realizar los testeos de direcciónes ip con puertos.';
+         $menu_her_002->url='testzone';
+         $menu_her_002->section_id=$seccion_admin_e->id;
+         $menu_her_002->icons='fa fa-tag';
+         $menu_her_002->save();
+         $assigned_menu_her_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_her_002->id]);
+         $assigned_menu_her_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_her_002->id]);
+         $assigned_menu_her_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_her_002->id]);
+         $assigned_menu_her_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_her_002->id]);
+         $assigned_menu_her_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_her_002->id]);
+         $assigned_menu_her_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_her_002->id]);
+
+
+  }
 }
