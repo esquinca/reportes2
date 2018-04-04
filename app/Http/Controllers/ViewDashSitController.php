@@ -89,7 +89,7 @@ class ViewDashSitController extends Controller
          'shell_data' => $encriptodata,
          'shell_status' => $encriptostatus
       ];
-      //$this->sentSurveyEmail($sql[0]->email, $datos);
+      $this->sentSurveyEmail($sql[0]->email, $datos);
       //dd($sql[0]->name);
       $operacion='1';
     }

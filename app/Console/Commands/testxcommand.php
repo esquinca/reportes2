@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use DB;
+
 class testxcommand extends Command
 {
     /**
@@ -11,7 +13,7 @@ class testxcommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'test:test';
 
     /**
      * The console command description.
@@ -37,6 +39,9 @@ class testxcommand extends Command
      */
     public function handle()
     {
-        //
+
+        $sql = DB::table('view_user_survey')->get();
+
+        dd($sql);
     }
 }

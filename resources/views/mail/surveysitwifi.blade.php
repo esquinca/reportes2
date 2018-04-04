@@ -27,14 +27,14 @@
                                   color: #74787E;
                                   line-height: 1.5em;
                                   font-size: 12px;
-                                  text-align: left;">Estimado <strong> Estimado {{$data['nombre']}}</strong></p>
+                                  text-align: left;">Estimado <strong> {{$data['nombre']}}</strong></p>
 
 
                         <p style="margin-top: 0;
                                   color: #74787E;
                                   line-height: 1.5em;
                                   font-size: 12px;
-                                  text-align: left;">Favor de ingresar al siguiente <a href="{{'http://sitwifi.com:8006' . $data['shell_data'] . '/' . $data['shell_status']}}" target="_blank">enlace y completar la encuesta.</a></p>
+                                  text-align: left;">Favor de ingresar al siguiente <a href="{{'http://sitwifi.com:8006/' . $data['shell_data'] . '/' . $data['shell_status']}}" target="_blank">enlace y completar la encuesta.</a></p>
 
 
                         <p style="margin-top: 0;
