@@ -2,6 +2,7 @@ $(document).ready(function() {
   clearmultiselect('select_ind_two');
   // clearmultiselect('select_hotels');
   table_surveyed();
+  table_surveyed_clients();
   $('.input-daterange').datepicker({language: 'es', format: "yyyy-mm-dd",});
   $('#month_evaluate').datepicker({
       language: 'es',
@@ -206,6 +207,42 @@ function table_equipment(datajson, table){
       status.nombre,
       status.Venue,
       '<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
+    ]);
+  });
+}
+
+function table_surveyed_clients(){
+  var _token = $('input[name="_token"]').val();
+  $.ajax({
+    type: "POST",
+    url: "./show_survey_table",
+    data: { _token : _token },
+    success: function (data){
+        table_surveys_clients(data, $("#example_survey"));
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}
+
+function table_surveys_clients(datajson, table){
+  table.DataTable().destroy();
+  var vartable = table.dataTable(Configuration_table_responsive_with_pdf_client_hotel);
+  vartable.fnClearTable();
+  $.each(JSON.parse(datajson), function(index, status){
+    vartable.fnAddData([
+      status.clientes,
+      status.email,
+      //status.id_eu,
+      //status.estatus_id,
+      status.estatus_res,
+      status.fecha_corresponde,
+      status.fecha_inicial,
+      status.fecha_final,
+      'test',
+      'test',
+      //'<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
     ]);
   });
 }

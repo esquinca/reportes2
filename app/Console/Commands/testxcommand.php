@@ -40,8 +40,10 @@ class testxcommand extends Command
     public function handle()
     {
 
-        $sql = DB::table('view_user_survey')->get();
-
+        // Encuestas clientes.
+        //$sql = DB::table('encuesta_user_clientes')->get(); 
+        // Encuestas personales (sitwifi).
+        $sql = DB::table('encuesta_user_sitwifi')->get();
         dd($sql);
     }
 }

@@ -116,6 +116,45 @@
           </div>
 
 
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="box box-solid">
+                <div class="box-body">
+                  <div class="media">
+                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                      Ver usuarios encuestados
+                    </h4>
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="clearfix">
+                                {{ csrf_field() }}
+                                <div class="table-responsive">
+                                  <table id="survey_personal" name='survey_personal' class="display nowrap table table-bordered table-hover" width="100%" cellspacing="0">
+                                    <input type='hidden' id='_tokenb' name='_tokenb' value='{!! csrf_token() !!}'>
+                                    <thead>
+                                        <tr class="bg-primary" style="background: #789F8A; font-size: 11.5px; ">
+                                            <th> <small>Hotel</small> </th>
+                                            <th> <small>Email</small> </th>
+                                            <th> <small>Estatus</small> </th>
+                                            <th> <small>Fecha corresponde</small> </th>
+                                            <th> <small>Fecha inicio</small> </th>
+                                            <th> <small>Fecha fin</small> </th>
+                                            <th> <small>Operación A</small> </th>
+                                            <th> <small>Operación B</small> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                  </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                 </div>
+              </div>
+            </div>
+
         </div>
       </div>
     @else
@@ -149,6 +188,7 @@
           endDate: '1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
           autoclose: true
       });
+      table_surveyed_sit();
     });
 
     $('#select_ind_one').on('change', function(e){
@@ -202,6 +242,44 @@
           $('#'+campo).multiselect('deselectAll', false);
           $('#'+campo).multiselect('updateButtonText');
       }
+
+      function table_surveyed_sit(){
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          type: "POST",
+          url: "./show_survey_table_sit",
+          data: { _token : _token },
+          success: function (data){
+              table_surveys_clients_sit(data, $("#survey_personal"));
+          },
+          error: function (data) {
+            console.log('Error:', data);
+          }
+        });
+      }
+
+      function table_surveys_clients_sit(datajson, table){
+        table.DataTable().destroy();
+        var vartable = table.dataTable(Configuration_table_responsive_with_pdf_client_hotel);
+        vartable.fnClearTable();
+        $.each(JSON.parse(datajson), function(index, status){
+          vartable.fnAddData([
+            status.name,
+            status.email,
+            //status.id_e,
+            //status.estatus_id,
+            status.estatus_res,
+            status.fecha_corresponde,
+            status.fecha_inicial,
+            status.fecha_final,
+            'test',
+            'test',
+            //'<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
+          ]);
+        });
+      }
+
+
   </script>
   @else
     <!--NO VER-->

@@ -314,6 +314,13 @@ class ConfigurationSurveyController extends Controller
 
   }
 
+  public function user_surveys_table(Request $request)
+  {
+    $result = DB::table('encuesta_user_clientes')->get();
+    //->orderBy('nombre', 'asc')
+    return json_encode($result);
+  }
+
   public function sentSurveyEmail($email, $data)
   {
       // $datos = [

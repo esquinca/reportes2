@@ -104,17 +104,26 @@ class ViewDashSitController extends Controller
 
   }
 
-    public function sentSurveyEmail($email, $data)
-    {
+  public function user_surveys_sitwifi(Request $request)
+  {
+    $result = DB::table('encuesta_user_sitwifi')->get();
+    //->orderBy('nombre', 'asc')
+    return json_encode($result);
+  }
 
-        // $nombre = $data[$i]['name'];
-        // $correo = $data[$i]['email'];
-        // $shell1 = $data[$i]['shelldata'];
-        // $shell2= $data[$i]['shellstatus'];
+  public function sentSurveyEmail($email, $data)
+  {
+
+      // $nombre = $data[$i]['name'];
+      // $correo = $data[$i]['email'];
+      // $shell1 = $data[$i]['shelldata'];
+      // $shell2= $data[$i]['shellstatus'];
 
 
-        Mail::to($email)->send(new Sentsurveysitwifimail($data));
-        
-    }
+      Mail::to($email)->send(new Sentsurveysitwifimail($data));
+      
+  }
+
+
 
 }
