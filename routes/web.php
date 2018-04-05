@@ -114,6 +114,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/delete_assign_surveyed', 'ConfigurationSurveyController@delete_assign_client_nps');
     Route::post('/create_data_client', 'ConfigurationSurveyController@capture_individual');
     Route::post('/create_data_auto_client', 'ConfigurationSurveyController@capture_auto');
+    Route::post('/show_survey_table', 'ConfigurationSurveyController@user_surveys_table');
 
   //Dashboard nps
     Route::post('/summary_info_nps' , 'ViewDashNPSController@show_summary_info_nps');
@@ -133,6 +134,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_data_result_q', 'ViewDashSitController@show_result_q');
     Route::post('/search_user_domain', 'ViewDashSitController@show_user');
     Route::post('/create_manual_survey_record', 'ViewDashSitController@survey_record');
+    Route::post('/show_survey_table_sit', 'ViewDashSitController@user_surveys_sitwifi');
 
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
