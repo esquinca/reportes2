@@ -67,7 +67,7 @@
               <p class="mb-0 mt-10 text-left">
                 Apreciado usuario.<br>
                 Queremos saber su nivel de satisfacción.<br>
-                Dediquenos un minuto de su valioso tiempo.
+                Dedíquenos un minuto de su valioso tiempo, para contestar esta encuesta que será de manera confidencial y anónima.
               </p>
               <input type="hidden" id="token_form" name="token_form" value="{{$encrypted_form}}">
               @foreach ($sacar_preg as $preguntithas)
@@ -99,7 +99,7 @@
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     <div class="form-row">
                       <div class="col-12 col-md-12 mb-12">
-                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Opcional"></textarea>
+                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Opcional" maxlength="150"></textarea>
                       </div>
                       <div class="col-12 col-md-12">
                         <br>

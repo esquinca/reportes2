@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Error</title>
+  <title>Encuesta</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600" rel="stylesheet">
   <!-- Linear icons -->
   <link rel="stylesheet" href="{{ asset('/survey/css/linearicons.css') }}" />
