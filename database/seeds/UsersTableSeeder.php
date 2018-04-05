@@ -2577,7 +2577,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
          $seccion_admin_c = new Section;
          $seccion_admin_c->name='qualification';
-         $seccion_admin_c->display_name='Calificación';
+         $seccion_admin_c->display_name='Encuesta';
          $seccion_admin_c->icons='fa fa-calendar-plus-o';
          $seccion_admin_c->save();
 
@@ -2855,7 +2855,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
        //Menu Calificaciones
          $menu_cal_000 = new Menu;
          $menu_cal_000->name='view_dashboard_survey_nps';
-         $menu_cal_000->display_name='Dashboard encuesta NPS';
+         $menu_cal_000->display_name='Dashboard NPS';
          $menu_cal_000->description='Permite visualizar los resultados de la encuesta NPS.';
          $menu_cal_000->url='view_dashboard_survey_nps';
          $menu_cal_000->section_id=$seccion_admin_c->id;
@@ -2870,7 +2870,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
          $menu_cal_001 = new Menu;
          $menu_cal_001->name='view_dashboard_survey_sit';
-         $menu_cal_001->display_name='Dashboard encuesta gral';
+         $menu_cal_001->display_name='Dashboard gral';
          $menu_cal_001->description='Permite visualizar los resultados de la encuesta Sitwfi.';
          $menu_cal_001->url='view_dashboard_survey_sit';
          $menu_cal_001->section_id=$seccion_admin_c->id;
@@ -2900,7 +2900,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
          $menu_cal_003 = new Menu;
          $menu_cal_003->name='survey_results';
-         $menu_cal_003->display_name='Resultados encuesta NPS';
+         $menu_cal_003->display_name='Resultados NPS';
          $menu_cal_003->description='Permite visualizar las calificaciones de cada sitio.';
          $menu_cal_003->url='survey_results';
          $menu_cal_003->section_id=$seccion_admin_c->id;
@@ -2915,7 +2915,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
          $menu_cal_004 = new Menu;
          $menu_cal_004->name='configure_survey_admin_nps';
-         $menu_cal_004->display_name='Configuración encuesta NPS.';
+         $menu_cal_004->display_name='Configuración NPS.';
          $menu_cal_004->description='Permite configurar las encuestas NPS para los clientes.';
          $menu_cal_004->url='configure_survey_admin_nps';
          $menu_cal_004->section_id=$seccion_admin_c->id;
@@ -2930,7 +2930,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
          $menu_cal_005 = new Menu;
          $menu_cal_005->name='configure_survey_admin_sit';
-         $menu_cal_005->display_name='Configuración encuesta gral.';
+         $menu_cal_005->display_name='Configuración gral.';
          $menu_cal_005->description='Permite configurar las encuestas sitwifi para el personal.';
          $menu_cal_005->url='configure_survey_admin_sit';
          $menu_cal_005->section_id=$seccion_admin_c->id;

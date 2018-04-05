@@ -47,11 +47,11 @@
                   {{ trans('auth.login') }}
               </button>
             </div>
-            <div class="col-xs-4">
+            <!-- <div class="col-xs-4">
               <a class="btn btn-link" href="{{ route('password.request') }}">
                   {{ trans('auth.forgotpassword') }}
               </a>
-            </div>
+            </div> -->
           </div>
 
 
