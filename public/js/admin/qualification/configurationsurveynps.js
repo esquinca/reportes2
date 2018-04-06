@@ -255,9 +255,38 @@ function table_surveys_clients(datajson, table){
       getValueStatusResp(status.estatus_res),
       status.fecha_corresponde,
       status.fecha_inicial,
-      status.fecha_final,
-      '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_eu+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a>'
+      status.fecha_fin,
+      '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_eu+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a><a href="javascript:void(0);" onclick="enviarModal(this)" value="'+status.id_eu+'" class="btn bg-orange btn-xs" role="button" data-target="#search_htls"><i class="fa fa-search"></i> Ver Hotel</a>'
     ]);
+  });
+}
+function enviarModal(e) {
+  var valor= e.getAttribute('value');
+  var _token = $('input[name="_token"]').val();
+  $.ajax({
+    type: "POST",
+    url: "./search_hotel_u",
+    data: {  uh : valor , _token : _token },
+    success: function (data){
+      if (data != '') {
+        var x='';
+        $.each(JSON.parse(data), function(index, status){
+          x=x+status.Nombre_hotel+'\n';
+        });
+
+        $('#search_hotel_text').val(x);
+        $('#search_hotel_text').prop('disabled', true);
+        $('#modal-searchhotel').modal('show');
+      }
+      else {
+        $('#search_hotel_text').val('');
+        $('#search_hotel_text').prop('disabled', true);
+        $('#modal-searchhotel').modal('show');
+      }
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
   });
 }
 function enviarMail(e) {

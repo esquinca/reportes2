@@ -26,6 +26,38 @@
 
 @section('content')
     @if( auth()->user()->can('View survey nps configuration') )
+    <div class="modal modal-default fade" id="modal-searchhotel" data-backdrop="static">
+        <div class="modal-dialog" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"><i class="fa fa-building-o" style="margin-right: 4px;"></i>Ver {{ trans('message.hotel') }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="box-body table-responsive">
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-xs-12">
+                        <form id="hotel_of_user" name="hotel_of_user" action="">
+                          {{ csrf_field() }}
+                            <div class="form-group">
+                               <label for="search_hotel_text" class="col-sm-4 control-label">{{ trans('message.hotel')}}</label>
+                               <div class="col-sm-12">
+                                 <textarea id="search_hotel_text" name="search_hotel_text" disabled style="width:100%" class="form-control" rows="5" ></textarea>
+                               </div>
+                             </div>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -343,7 +375,7 @@
                                     <input type='hidden' id='_tokenb' name='_tokenb' value='{!! csrf_token() !!}'>
                                     <thead>
                                         <tr class="bg-primary" style="background: #789F8A; font-size: 11.5px; ">
-                                            <th> <small>Hotel</small> </th>
+                                            <th> <small>Nombre</small> </th>
                                             <th> <small>Email</small> </th>
                                             <th> <small>Estatus</small> </th>
                                             <th> <small>Estado</small> </th>

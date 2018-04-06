@@ -276,13 +276,13 @@ class ConfigurationSurveyController extends Controller
                             ->count();
         //echo "count: " . $count_hotel_of_user . "<br>";
       if ($count_hotel_of_user === 0) {
-        
+
         $nuevolink = $clientes[$i].'/'.'1'.'/'.$mesanteriorfull.'/'.$fecha_fin;
         $encriptodata= Crypt::encryptString($nuevolink);
         $encriptostatus= Crypt::encryptString('1');
 
         //echo $clientes[$i] . ": es 0 -- Link:  " . $nuevolink ."\n ". "<br>";
-        
+
         $new_survey_individual = new Encuesta_user;
         $new_survey_individual->user_id=$clientes[$i];
         $new_survey_individual->encuesta_id='1';
@@ -330,7 +330,16 @@ class ConfigurationSurveyController extends Controller
       // ];
 
       Mail::to($email)->send(new Sentsurveynpsmail($data));
-      
+
+  }
+  public function search_hotel_user(Request $request)
+  {
+    $id_registro= $request->uh;
+    $user = Encuesta_user::select(['user_id'])->find($id_registro)->value('user_id');
+    $result1 = DB::select('CALL  buscar_venue_user (?)', array($user));
+
+    return json_encode($result1);
+
   }
 
 }
