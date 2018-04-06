@@ -126,26 +126,67 @@
                     <div class="media">
                         <div class="media-body">
                             <div class="clearfix">
-                                {{ csrf_field() }}
-                                <div class="table-responsive">
-                                  <table id="survey_personal" name='survey_personal' class="display nowrap table table-bordered table-hover" width="100%" cellspacing="0">
-                                    <input type='hidden' id='_tokenb' name='_tokenb' value='{!! csrf_token() !!}'>
-                                    <thead>
-                                        <tr class="bg-primary" style="background: #789F8A; font-size: 11.5px; ">
-                                            <th> <small>Hotel</small> </th>
-                                            <th> <small>Email</small> </th>
-                                            <th> <small>Estatus</small> </th>
-                                            <th> <small>Estado</small> </th>
-                                            <th> <small>Fecha corresponde</small> </th>
-                                            <th> <small>Fecha inicio</small> </th>
-                                            <th> <small>Fecha fin</small> </th>
-                                            <th> <small>Operación A</small> </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                  </table>
+                              <div class="row">
+
+
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                  <div class="box box-solid">
+                                    <div class="box-body">
+                                      <div class="form-inline">
+                                          {{ csrf_field() }}
+
+                                          <div class="form-group">
+                                            <label for="select_one_table" class="control-label">{{ trans('message.domain') }}: </label>
+                                            <select id="select_one_table" name="select_one_table"  class="form-control" required>
+                                              <option value="" selected> Elija </option>
+                                              @forelse ($dominios as $data_domain)
+                                              <option value="{{ $data_domain->domain }}"> {{ $data_domain->domain }} </option>
+                                              @empty
+                                              @endforelse
+                                            </select>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="select_two_table" class="control-label">{{ trans('message.survey') }}: </label>
+                                            <select id="select_two_table" name="select_two_table"  class="form-control" required>
+                                              <option value="" selected> Elija </option>
+                                              @forelse ($encuestas as $data_survey)
+                                              <option value="{{ $data_survey->id }}"> {{ $data_survey->name }} </option>
+                                              @empty
+                                              @endforelse
+                                            </select>
+                                          </div>
+                                          <div class="form-group">
+                                              <button type="button" id="btn-search_denc" class="btn btn-info btn-search_denc"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                                          </div>
+                                      </div>
+                                     </div>
+                                  </div>
                                 </div>
+
+                                <div class="col-xs-12">
+                                  {{ csrf_field() }}
+                                  <div class="table-responsive">
+                                    <table id="survey_personal" name='survey_personal' class="display nowrap table table-bordered table-hover" width="100%" cellspacing="0">
+                                      <input type='hidden' id='_tokenb' name='_tokenb' value='{!! csrf_token() !!}'>
+                                      <thead>
+                                        <tr class="bg-primary" style="background: #789F8A; font-size: 11.5px; ">
+                                          <th> <small>Nombre</small> </th>
+                                          <th> <small>Email</small> </th>
+                                          <th> <small>Estatus</small> </th>
+                                          <th> <small>Estado</small> </th>
+                                          <th> <small>Fecha corresponde</small> </th>
+                                          <th> <small>Fecha inicio</small> </th>
+                                          <th> <small>Fecha fin</small> </th>
+                                          <th> <small>Operación A</small> </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                <div>
+                              <div>
+
 
                             </div>
                         </div>
@@ -244,11 +285,13 @@
       }
 
       function table_surveyed_sit(){
+        var domain = $('#select_one_table').val();
+        var survey = $('#select_two_table').val();
         var _token = $('input[name="_token"]').val();
         $.ajax({
           type: "POST",
           url: "./show_survey_table_sit",
-          data: { _token : _token },
+          data:{  domain : domain ,enc : survey , _token : _token },
           success: function (data){
               table_surveys_clients_sit(data, $("#survey_personal"));
           },
@@ -276,7 +319,7 @@
 
       function table_surveys_clients_sit(datajson, table){
         table.DataTable().destroy();
-        var vartable = table.dataTable(Configuration_table_responsive_with_pdf_client_hotel);
+        var vartable = table.dataTable(Configuration_table_responsive_with_pdf_enc_dominio);
         vartable.fnClearTable();
         $.each(JSON.parse(datajson), function(index, status){
           vartable.fnAddData([
@@ -310,6 +353,11 @@
           }
         });
       }
+
+      $(".btn-search_denc").on("click", function () {
+        table_surveyed_sit();
+      });
+
 
 
   </script>

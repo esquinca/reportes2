@@ -83,7 +83,7 @@ class ViewDashSitController extends Controller
       $new_survey_individual->save();
 
       $sql = DB::table('users')->select('email', 'name')->where('id', $input_emails[$i])->get();
-      
+
       $datos = [
          'nombre' => $sql[0]->name,
          'shell_data' => $encriptodata,
@@ -106,9 +106,13 @@ class ViewDashSitController extends Controller
 
   public function user_surveys_sitwifi(Request $request)
   {
-    $result = DB::table('encuesta_user_sitwifi')->get();
-    //->orderBy('nombre', 'asc')
+    $input_domain = $request->domain;
+    $input_survey = $request->enc;
+    $result = DB::select('CALL encuesta_user_dominio (?, ?)', array($input_domain, $input_survey));
     return json_encode($result);
+
+    // $result = DB::table('encuesta_user_sitwifi')->get();
+    // return json_encode($result);
   }
 
   public function sentSurveyEmail($email, $data)
@@ -121,7 +125,7 @@ class ViewDashSitController extends Controller
 
 
       Mail::to($email)->send(new Sentsurveysitwifimail($data));
-      
+
   }
 
 
