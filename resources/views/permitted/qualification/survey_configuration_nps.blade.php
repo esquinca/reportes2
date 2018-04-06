@@ -346,11 +346,11 @@
                                             <th> <small>Hotel</small> </th>
                                             <th> <small>Email</small> </th>
                                             <th> <small>Estatus</small> </th>
+                                            <th> <small>Estado</small> </th>
                                             <th> <small>Fecha corresponde</small> </th>
                                             <th> <small>Fecha inicio</small> </th>
                                             <th> <small>Fecha fin</small> </th>
                                             <th> <small>Operación A</small> </th>
-                                            <th> <small>Operación B</small> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -494,7 +494,7 @@
           }
       });
     </script>
-    
+
     <script type="text/javascript">
       $(document).ready(function() {
         $('#form_auto_survey')

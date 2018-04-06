@@ -175,5 +175,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/approval', 'ApprovalConciergeController@index');
   //- Aproval admin
     Route::get('/approvals', 'ApprovalAdminController@index');
-
+    //Send Mail
+    Route::post('/send_mail_nps' , 'ConfigurationSurveyController@send_mail');
+    Route::post('/send_mail_sit' , 'ConfigurationSitController@send_mail');
 });

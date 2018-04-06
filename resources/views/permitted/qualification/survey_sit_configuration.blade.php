@@ -135,11 +135,11 @@
                                             <th> <small>Hotel</small> </th>
                                             <th> <small>Email</small> </th>
                                             <th> <small>Estatus</small> </th>
+                                            <th> <small>Estado</small> </th>
                                             <th> <small>Fecha corresponde</small> </th>
                                             <th> <small>Fecha inicio</small> </th>
                                             <th> <small>Fecha fin</small> </th>
                                             <th> <small>Operación A</small> </th>
-                                            <th> <small>Operación B</small> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -257,6 +257,22 @@
           }
         });
       }
+      function getValueStatus(qty) {
+          var retval;
+          var val=qty;
+          if (val == '1') { retval = '<span class="label label-success">Activo</span>';}
+          if (val == '2') { retval = '<span class="label label-danger">Inactivo</span>';}
+          if (val == '') { retval = '';}
+          return retval;
+      }
+      function getV(qty) {
+        var retval;
+        var val=qty;
+        if (val = '1') { retval = '<span class="label label-success">Contestada</span>';}
+        if (val = '0') { retval = '<span class="label label-danger">No contestada</span>';}
+        if (val == '') { retval = '';}
+        return retval;
+      }
 
       function table_surveys_clients_sit(datajson, table){
         table.DataTable().destroy();
@@ -266,16 +282,32 @@
           vartable.fnAddData([
             status.name,
             status.email,
-            //status.id_e,
-            //status.estatus_id,
-            status.estatus_res,
+            getValueStatus(status.estatus_id),
+            getV(status.estatus_res),
             status.fecha_corresponde,
             status.fecha_inicial,
-            status.fecha_final,
-            'test',
-            'test',
-            //'<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
+            status.fecha_fin,
+            '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_eu+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a>'
           ]);
+        });
+      }
+
+      function enviarMail(e) {
+        var valor= e.getAttribute('value');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          type: "POST",
+          url: "./send_mail_sit",
+          data: {  uh : valor , _token : _token },
+          success: function (data){
+              if (data == '1') {
+                menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
+                table_surveyed_clients();
+              }
+          },
+          error: function (data) {
+            console.log('Error:', data);
+          }
         });
       }
 

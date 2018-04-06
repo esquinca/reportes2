@@ -113,7 +113,7 @@ $('#cancela_hc').click(function(){
   $("#select_clients").val('').trigger('change');
 });
 $('#cancela_dc').click(function(){
-  $('#delete_all_client')[0].reset();
+    $('#delete_all_client')[0].reset();
 });
 
 
@@ -129,7 +129,9 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       $('#assign_hotel_client')[0].reset();
     }
     if (target == '#tab_3-2') {
-      $('#delete_all_client')[0].reset();
+      if ( $("#delete_all_client").length > 0 ) {
+          $('#delete_all_client')[0].reset();
+      }
     }
   });
 
@@ -225,7 +227,22 @@ function table_surveyed_clients(){
     }
   });
 }
-
+function getValueStatus(qty) {
+    var retval;
+    var val=qty;
+    if (val == '1') { retval = '<span class="label label-success">Activo</span>';}
+    if (val == '2') { retval = '<span class="label label-danger">Inactivo</span>';}
+    if (val == '' || val == 'NULL') { retval = '';}
+    return retval;
+}
+function getValueStatusResp(vxval) {
+    var retval;
+    var val=vxval;
+    if (val = '1') { retval = '<span class="label label-success">Contestada</span>';}
+    if (val = '0') { retval = '<span class="label label-danger">No contestada</span>';}
+    if (val == '') { retval = '';}
+    return retval;
+}
 function table_surveys_clients(datajson, table){
   table.DataTable().destroy();
   var vartable = table.dataTable(Configuration_table_responsive_with_pdf_client_hotel);
@@ -234,19 +251,33 @@ function table_surveys_clients(datajson, table){
     vartable.fnAddData([
       status.clientes,
       status.email,
-      //status.id_eu,
-      //status.estatus_id,
-      status.estatus_res,
+      getValueStatus(status.estatus_id),
+      getValueStatusResp(status.estatus_res),
       status.fecha_corresponde,
       status.fecha_inicial,
       status.fecha_final,
-      'test',
-      'test',
-      //'<a href="javascript:void(0);" onclick="enviart(this)" value="'+status.hotel_user_id+'" class="btn btn-danger btn-xs" role="button" data-target="#DeletServ">Eliminar</a>'
+      '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_eu+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a>'
     ]);
   });
 }
-
+function enviarMail(e) {
+  var valor= e.getAttribute('value');
+  var _token = $('input[name="_token"]').val();
+  $.ajax({
+    type: "POST",
+    url: "./send_mail_nps",
+    data: {  uh : valor , _token : _token },
+    success: function (data){
+        if (data == '1') {
+          menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
+          table_surveyed_clients();
+        }
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}
 function enviart(e) {
   var valor= e.getAttribute('value');
   var _token = $('input[name="_token"]').val();
