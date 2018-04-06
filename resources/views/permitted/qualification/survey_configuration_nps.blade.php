@@ -26,6 +26,43 @@
 
 @section('content')
     @if( auth()->user()->can('View survey nps configuration') )
+    <div class="modal modal-default fade" id="modal-delrelacion" data-backdrop="static">
+      <div class="modal-dialog" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-bookmark" style="margin-right: 4px;"></i>{{ trans('message.confirmacion') }}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-xs-12">
+                    @if( auth()->user()->can('Delete assign hotel user') )
+                    <form id="deleteuserhotel" name="deleteuserhotel" action="">
+                      {{ csrf_field() }}
+                      <input id='recibidoconf' name='recibidoconf' type="hidden" class="form-control" placeholder="">
+                      <h4 style="font-weight: bold;">{{ trans('message.preguntaconf') }}</h4>
+                    </form>
+                    @else
+                        @include('default.deniedmodule')
+                    @endif
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            @if( auth()->user()->can('Delete assign hotel user') )
+              <button type="button" class="btn btn-danger btndeletereluser"><i class="fa fa-trash" style="margin-right: 4px;"></i>{{ trans('message.eliminar') }}</button>
+            @endif
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal modal-default fade" id="modal-searchhotel" data-backdrop="static">
         <div class="modal-dialog" >
           <div class="modal-content">
@@ -152,7 +189,9 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
+                                @if( auth()->user()->can('Create assign hotel user') )
                                 <button id="capture_hc" type="submit" class="btn bg-navy" ><i class="fa fa-plus-square-o"></i> {{ trans('message.create')}}</button>
+                                @endif
                                 <!-- <a id="capture_hc" class="btn bg-navy create_user_data"><i class="fa fa-plus-square-o"></i> {{ trans('message.create')}}</a> -->
                                 <a id="cancela_hc" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
@@ -224,7 +263,9 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
+                                @if( auth()->user()->can('Delete user') )
                                 <button id="capture_dc" type="submit" class="btn bg-navy" ><i class="fa fa-user-times"></i> {{ trans('message.eliminar')}}</button>
+                                @endif
                                 <a id="cancela_dc" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>
@@ -255,8 +296,8 @@
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab_one">
                     <div class="row">
+                      @if( auth()->user()->can('View config nps individual') )
                       <div class="col-xs-12">
-
                         <form id="form_reg_survey" name="form_reg_survey" class="form-horizontal" method="POST" action="{{ url('create_data_client') }}">
                           {{ csrf_field() }}
                           <div class="form-group">
@@ -302,20 +343,27 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
+                                @if( auth()->user()->can('Create config nps individual') )
                                 <button id="capture" type="submit" class="btn btn-success" ><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</button>
+                                @endif
                                 <a id="clear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>
                           </div>
 
                         </form>
-
                       </div>
+                      @else
+                        <div class="col-xs-12">
+                          @include('default.deniedmodule')
+                        </div>
+                      @endif
                     </div>
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tabs_two">
                     <div class="row">
+                      @if( auth()->user()->can('View config nps automatic') )
                       <div class="col-xs-12">
                         <form id="form_auto_survey" name="form_auto_survey" class="form-horizontal" method="POST" action="{{ url('create_data_auto_client') }}">
                           {{ csrf_field() }}
@@ -343,14 +391,20 @@
                           <div class="form-group">
                             <div class="row">
                               <div class="col-sm-12 text-center">
+                                @if( auth()->user()->can('Create config nps automatic') )
                                 <button id="capture_auto" type="submit" class="btn btn-success" ><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</button>
+                                @endif
                                 <a id="clear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                               </div>
                             </div>
                           </div>
                         </form>
-
                       </div>
+                      @else
+                        <div class="col-xs-12">
+                          @include('default.deniedmodule')
+                        </div>
+                      @endif
                     </div>
                   </div>
                   <!-- /.tab-pane -->

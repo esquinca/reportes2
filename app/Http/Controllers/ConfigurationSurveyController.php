@@ -335,7 +335,7 @@ class ConfigurationSurveyController extends Controller
   public function search_hotel_user(Request $request)
   {
     $id_registro= $request->uh;
-    $user = Encuesta_user::select(['user_id'])->find($id_registro)->value('user_id');
+    $user = DB::table('encuesta_users')->where('id', $id_registro)->value('user_id');
     $result1 = DB::select('CALL  buscar_venue_user (?)', array($user));
 
     return json_encode($result1);
