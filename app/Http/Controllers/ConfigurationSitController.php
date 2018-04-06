@@ -13,6 +13,7 @@ use DateTime;
 use DB;
 use Auth;
 use Mail;
+use App\Mail\Sentsurveysitwifimail;
 use App\Hotel;
 use App\Encuesta;
 use App\Encuesta_user;
@@ -29,4 +30,45 @@ class ConfigurationSitController extends Controller
     $dominios = DB::select('select substring_index(email, "@", -1) as domain from users group by substring_index(email, "@", -1)');
     return view('permitted.qualification.survey_sit_configuration',compact('dominios', 'encuestas'));
   }
+
+  public function send_mail(Request $request)
+  {
+  	$flag = 1;
+  	$id_registro = $request->uh;
+  	$res2 = DB::table('encuesta_users')->select('user_id', 'shell_data', 'shell_status')->where('id', $id_registro)->get();
+  	$user_id = $res2[0]->user_id;
+
+  	$sql = DB::table('users')->select('email', 'name')->where('id', $user_id)->get();
+
+    $name = $sql[0]->name;
+    $email = $sql[0]->email;
+
+  	
+    $encriptodata = $res2[0]->shell_data;
+    $encriptostatus = $res2[0]->shell_status;
+
+	$datos = [
+	 'nombre' => $name,
+	 'shell_data' => $encriptodata,
+	 'shell_status' => $encriptostatus
+	];
+
+	$this->sentSurveyEmail($email, $datos);
+
+	return $flag;
+  }
+
+  public function sentSurveyEmail($email, $data)
+  {
+
+      // $nombre = $data[$i]['name'];
+      // $correo = $data[$i]['email'];
+      // $shell1 = $data[$i]['shelldata'];
+      // $shell2= $data[$i]['shellstatus'];
+
+
+      Mail::to($email)->send(new Sentsurveysitwifimail($data));
+
+  }
+
 }
