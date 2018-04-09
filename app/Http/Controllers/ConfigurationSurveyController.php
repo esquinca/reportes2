@@ -328,45 +328,50 @@ class ConfigurationSurveyController extends Controller
     $string1 = "";
     $id_registro = $request->uh;
     $res1 = DB::table('encuesta_user_clientes')->select('clientes', 'email', 'Special')->where('id_eu', $id_registro)->get();
-    $res2 = DB::table('encuesta_users')->select('user_id', 'shell_data', 'shell_status')->where('id', $id_registro)->get();
+    $res2 = DB::table('encuesta_users')->select('user_id', 'estatus_res','shell_data', 'shell_status')->where('id', $id_registro)->get();
 
     $name = $res1[0]->clientes;
     $email = $res1[0]->email;
     $status = $res1[0]->Special;
 
     $user_id = $res2[0]->user_id;
+    $estatus_res = $res2[0]->estatus_res;
     $encriptodata = $res2[0]->shell_data;
     $encriptostatus = $res2[0]->shell_status;
 
-    
-    if ($status === 0) {
-      $datos = [
-         'nombre' => $name,
-         'shell_data' => $encriptodata,
-         'shell_status' => $encriptostatus
-      ];
+    if ($estatus_res === 1) {
+      if ($status === 0) {
+        $datos = [
+           'nombre' => $name,
+           'shell_data' => $encriptodata,
+           'shell_status' => $encriptostatus
+        ];
 
-      $this->sentSurveyEmail($email, $datos);
-      return $flag = 1;
-    }else{
-      $res3 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
-      $count = count($res3);
+        $this->sentSurveyEmail($email, $datos);
+        return $flag = 1;
+      }else{
+        $res3 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
+        $count = count($res3);
 
-      for ($i=0; $i < $count; $i++) { 
-          $string1 = $string1 . $res3[$i]->Nombre_hotel . ", ";
+        for ($i=0; $i < $count; $i++) { 
+            $string1 = $string1 . $res3[$i]->Nombre_hotel . ", ";
+        }
+        $string1 = substr($string1, 0, -2);
+
+        $datos = [
+           'nombre' => $name,
+           'string' => $string1,
+           'shell_data' => $encriptodata,
+           'shell_status' => $encriptostatus
+        ];
+
+        $this->sentSurveyEmailRangel($datos);
+        return $flag = 1;
       }
-      $string1 = substr($string1, 0, -2);
-
-      $datos = [
-         'nombre' => $name,
-         'string' => $string1,
-         'shell_data' => $encriptodata,
-         'shell_status' => $encriptostatus
-      ];
-
-      $this->sentSurveyEmailRangel($datos);
-      return $flag = 1;
+    }else{
+      return $flag;
     }
+
     return $flag;
   }
 

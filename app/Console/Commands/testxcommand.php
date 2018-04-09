@@ -46,7 +46,7 @@ class testxcommand extends Command
         //$sql = DB::table('encuesta_user_sitwifi')->get();
 
         $res1 = DB::table('encuesta_user_clientes')->select('email', 'Special')->where('id_eu', 2)->get();
-        $res2 = DB::table('encuesta_users')->select('user_id', 'shell_data', 'shell_status')->where('id', 2)->get();
+        $res2 = DB::table('encuesta_users')->select('user_id', 'estatus_res', 'shell_data', 'shell_status')->where('id', 2)->get();
         //$res3 = DB::table('encuesta_users')->where('id', 2)->get();
 
         $res4 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
