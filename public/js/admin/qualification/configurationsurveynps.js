@@ -120,13 +120,17 @@ $('#cancela_dc').click(function(){
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var target = $(e.target).attr("href") // activated tab
     if (target == '#tab_1-1') {
-      $('#creatusersystem')[0].reset();
-      $('#creatusersystem').validator('destroy').validator();
+      if ( $("#creatusersystem").length > 0 ) {
+        $('#creatusersystem')[0].reset();
+        $('#creatusersystem').validator('destroy').validator();
+      }
     }
     if (target == '#tab_2-2') {
-      $('#select_hotels').multiselect('deselectAll', false);
-      $('#select_hotels').multiselect('updateButtonText');
-      $('#assign_hotel_client')[0].reset();
+      if ( $("#assign_hotel_client").length > 0 ) {
+        $('#select_hotels').multiselect('deselectAll', false);
+        $('#select_hotels').multiselect('updateButtonText');
+        $('#assign_hotel_client')[0].reset();
+      }
     }
     if (target == '#tab_3-2') {
       if ( $("#delete_all_client").length > 0 ) {
@@ -268,6 +272,7 @@ function enviarModal(e) {
     url: "./search_hotel_u",
     data: {  uh : valor , _token : _token },
     success: function (data){
+      console.log(data);
       if (data != '') {
         var x='';
         $.each(JSON.parse(data), function(index, status){
@@ -310,19 +315,30 @@ function enviarMail(e) {
 function enviart(e) {
   var valor= e.getAttribute('value');
   var _token = $('input[name="_token"]').val();
-  $.ajax({
-    type: "POST",
-    url: "./delete_assign_surveyed",
-    data: {  uh : valor , _token : _token },
-    success: function (data){
-        // table_surveyed();
-        if (data == '1') {
-          menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
-          table_surveyed();
-        }
-    },
-    error: function (data) {
-      console.log('Error:', data);
-    }
-  });
+  $('#recibidoconf').val(valor);
+  $('#modal-delrelacion').modal('show');
 }
+function deleterelacion(){
+    var _token = $('input[name="_token"]').val();
+    var valor= $('#recibidoconf').val();
+    $.ajax({
+      type: "POST",
+      url: "./delete_assign_surveyed",
+      data: {  uh : valor , _token : _token },
+      success: function (data){
+          // table_surveyed();
+          if (data == '1') {
+            $('#modal-delrelacion').modal('toggle');
+            menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
+            table_surveyed();
+          }
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+    });
+}
+
+$(".btndeletereluser").on("click", function () {
+deleterelacion();
+});

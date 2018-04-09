@@ -272,7 +272,7 @@
 @endsection
 
 @push('scripts')
-  @if( auth()->user()->can('View capture survey') )
+  @if( auth()->user()->can('View dashboard survey nps') )
 
   <script src="{{ asset('plugins/momentupdate/moment.js') }}" type="text/javascript"></script>
   <script src="{{ asset('plugins/momentupdate/moment-with-locales.js') }}" type="text/javascript"></script>
