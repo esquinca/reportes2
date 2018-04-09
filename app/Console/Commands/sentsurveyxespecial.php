@@ -4,6 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use DB;
+
+use Mail;
+use App\Mail\Sentsurveyrangelmail;
+use Illuminate\Support\Facades\Crypt;
+
 class sentsurveyxespecial extends Command
 {
     /**
@@ -11,14 +17,14 @@ class sentsurveyxespecial extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'survey:especial';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Envia correo a todos los usuarios con rol survey al inicio de cada mes solo a rangel ya que son especiales.';
 
     /**
      * Create a new command instance.
@@ -37,6 +43,89 @@ class sentsurveyxespecial extends Command
      */
     public function handle()
     {
-        //
+        $data_emails = [];
+        $data_insert = [];
+        $fechaini = "2018-04-01";
+        $fechafin = "2018-04-30";
+        $fecha_cur = "2018-04-01";
+        $mesanteriorfull = "2018-03-01";
+
+        // $fechaini = date('Y-m-01');
+        // $fechafin = date('Y-m-t');
+        // $fecha_cur = date('Y-m');
+
+        $mesanterior = strtotime ( '-1 month' , strtotime ( $fecha_cur ) ) ;
+        $mesanterior = date ( 'Y-m' , $mesanterior );
+
+        //$mesanteriorfull = $mesanterior . '-01';
+
+
+        $sql = DB::select('CALL List_User_NPS_Excluded(?)', array(6));
+        //$sql2 = DB::select('CALL Survey_Question_1(?,?)', array('2018-03-01', 2));
+        $sql_count = count($sql);
+        
+        
+        for ($i=0; $i < $sql_count; $i++) {
+            //$this->line('Current Iteration: ' . $i);
+            $nuevolink = $sql[$i]->id.'/'.'1'.'/'.$mesanteriorfull.'/'.$fechafin;
+            $encriptodata= Crypt::encryptString($nuevolink);
+            $encriptostatus= Crypt::encryptString('1');
+
+            $data_emails = [
+                'nombre' => $sql[$i]->name, 
+                'shell_data' => $encriptodata, 
+                'shell_status' => $encriptostatus
+            ];
+            array_push($data_insert, [
+                'user_id' => $sql[$i]->id,
+                'encuesta_id' => 1,
+                'estatus_id' => 1,
+                'estatus_res' => 0,
+                'fecha_inicial' => $fechaini,
+                'fecha_corresponde' => $mesanteriorfull,
+                'fecha_fin' => $fechafin,
+                'shell_data' => $encriptodata,
+                'shell_status' => $encriptostatus
+            ]);
+            //
+            $this->sentSurveyEmail($sql[$i]->email, $data_emails);
+        }
+
+        //$res = DB::table('encuesta_users')->insert($data_insert);
+        // if ($res) {
+        //     $this->line('Datos Insertados.');
+        // }else{
+        //     $this->error('no se insertaron datos.');
+        // }
+
+        
+        //dd($sql);
+        $this->info('Command Completed.');
+        //dd($sql2);
+    }
+
+    public function sentSurveyEmail($correo, $data)
+    {
+        //$this->line('Current Iteration: ' . $i);
+        //dd($data[0]['email']);
+
+        // $data_count = count($data);
+        // for ($i=0; $i < $data_count; $i++) { 
+        //     $nombre = $data[$i]['name'];
+        //     $correo = $data[$i]['email'];
+        //     $shell1 = $data[$i]['shelldata'];
+        //     $shell2= $data[$i]['shellstatus'];
+
+        //     $datos = [
+        //         'nombre' => $nombre,
+        //         'shell_data' => $shell1,
+        //         'shell_status' => $shell2,
+        //     ];
+            $this->line('Sending Email to: ' . $data['nombre'] . ', ' . $correo);
+            //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveyrangelmail($datos));
+            //Mail::to('crangel@sitwifi.com')->send(new Sentsurveyrangelmail($data));
+        //}
+    }
+
     }
 }
