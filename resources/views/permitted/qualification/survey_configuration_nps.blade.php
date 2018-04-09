@@ -289,7 +289,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
-                  <li><a href="#tabs_two" data-toggle="tab">Option 2 - Automatic</a></li>
+                  <!-- <li><a href="#tabs_two" data-toggle="tab">Option 2 - Automatic</a></li> -->
                   <li class="active"><a href="#tab_one" data-toggle="tab"> Option 1 - Individual</a></li>
                   <li class="pull-left header"><i class="fa fa-th"></i> Sending of surveys </li>
                 </ul>
