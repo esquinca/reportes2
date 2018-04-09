@@ -346,7 +346,7 @@ class ConfigurationSurveyController extends Controller
     $encriptodata = $res2[0]->shell_data;
     $encriptostatus = $res2[0]->shell_status;
 
-    if ($estatus_res === 1) {
+    if ($estatus_res === 0) {
       if ($status === 0) {
         $datos = [
            'nombre' => $name,
