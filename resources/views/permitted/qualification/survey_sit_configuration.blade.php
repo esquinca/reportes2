@@ -346,6 +346,9 @@
               if (data == '1') {
                 menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
                 table_surveyed_clients();
+              }else{
+                menssage_toast('Mensaje', '2', 'Operation abort!' , '4000');
+                table_surveyed_clients();
               }
           },
           error: function (data) {
