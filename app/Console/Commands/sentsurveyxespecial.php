@@ -63,8 +63,8 @@ class sentsurveyxespecial extends Command
         $sql = DB::select('CALL List_User_NPS_Excluded(?)', array(6));
         //$sql2 = DB::select('CALL Survey_Question_1(?,?)', array('2018-03-01', 2));
         $sql_count = count($sql);
-        
-        
+
+
         for ($i=0; $i < $sql_count; $i++) {
             //$this->line('Current Iteration: ' . $i);
             $nuevolink = $sql[$i]->id.'/'.'1'.'/'.$mesanteriorfull.'/'.$fechafin;
@@ -72,8 +72,8 @@ class sentsurveyxespecial extends Command
             $encriptostatus= Crypt::encryptString('1');
 
             $data_emails = [
-                'nombre' => $sql[$i]->name, 
-                'shell_data' => $encriptodata, 
+                'nombre' => $sql[$i]->name,
+                'shell_data' => $encriptodata,
                 'shell_status' => $encriptostatus
             ];
             array_push($data_insert, [
@@ -98,7 +98,7 @@ class sentsurveyxespecial extends Command
         //     $this->error('no se insertaron datos.');
         // }
 
-        
+
         //dd($sql);
         $this->info('Command Completed.');
         //dd($sql2);
@@ -110,7 +110,7 @@ class sentsurveyxespecial extends Command
         //dd($data[0]['email']);
 
         // $data_count = count($data);
-        // for ($i=0; $i < $data_count; $i++) { 
+        // for ($i=0; $i < $data_count; $i++) {
         //     $nombre = $data[$i]['name'];
         //     $correo = $data[$i]['email'];
         //     $shell1 = $data[$i]['shelldata'];
@@ -127,5 +127,5 @@ class sentsurveyxespecial extends Command
         //}
     }
 
-    }
+    
 }
