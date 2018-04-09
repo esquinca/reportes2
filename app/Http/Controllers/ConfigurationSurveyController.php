@@ -207,39 +207,46 @@ class ConfigurationSurveyController extends Controller
     $operacion='0';
 
     for ($i=0; $i < count($clientes); $i++) {
-      // $sql_hotel = DB::table('hotel_user')->select('hotel_id')->where('user_id', '=', $clientes[$i])->pluck('hotel_id');
-      // $result = $sql_hotel->toArray();
-      // $cadena_hotel = implode("&", $result);
       $month=$date_m.'-01';
 
-      $nuevolink = $clientes[$i].'/'.'1'.'/'.$month.'/'.$date_e;
+      $pregunto = DB::table('encuesta_users')
+                            ->where('user_id', $clientes[$i])
+                            ->where('encuesta_id', '1') // id encuesta nps
+                            ->where('estatus_id', '1') //Activa
+                            ->where('estatus_res', '0') //NO CONTESTADA
+                            ->where('fecha_corresponde', $month)
+                            ->count();
 
-      $encriptodata= Crypt::encryptString($nuevolink);
-      $encriptostatus= Crypt::encryptString('1');
+      if ($pregunto == '0') {
+        $nuevolink = $clientes[$i].'/'.'1'.'/'.$month.'/'.$date_e;
+        $encriptodata= Crypt::encryptString($nuevolink);
+        $encriptostatus= Crypt::encryptString('1');
 
-      $new_survey_individual = new Encuesta_user;
-      $new_survey_individual->user_id=$clientes[$i];
-      $new_survey_individual->encuesta_id='1';
-      $new_survey_individual->estatus_id='1';
-      $new_survey_individual->estatus_res='0';
-      $new_survey_individual->fecha_inicial=$date_i;
-      $new_survey_individual->fecha_corresponde=$month;
-      $new_survey_individual->fecha_fin=$date_e;
-      $new_survey_individual->shell_data=$encriptodata;
-      $new_survey_individual->shell_status=$encriptostatus;
-      $new_survey_individual->save();
+        $new_survey_individual = new Encuesta_user;
+        $new_survey_individual->user_id=$clientes[$i];
+        $new_survey_individual->encuesta_id='1';
+        $new_survey_individual->estatus_id='1';
+        $new_survey_individual->estatus_res='0';
+        $new_survey_individual->fecha_inicial=$date_i;
+        $new_survey_individual->fecha_corresponde=$month;
+        $new_survey_individual->fecha_fin=$date_e;
+        $new_survey_individual->shell_data=$encriptodata;
+        $new_survey_individual->shell_status=$encriptostatus;
+        $new_survey_individual->save();
+        $sql = DB::table('users')->select('email', 'name')->where('id', $clientes[$i])->get();
+        $datos = [
+           'nombre' => $sql[0]->name,
+           'shell_data' => $encriptodata,
+           'shell_status' => $encriptostatus
+        ];
+        $this->sentSurveyEmail($sql[0]->email, $datos);
 
-      $sql = DB::table('users')->select('email', 'name')->where('id', $clientes[$i])->get();
-
-      $datos = [
-         'nombre' => $sql[0]->name,
-         'shell_data' => $encriptodata,
-         'shell_status' => $encriptostatus
-      ];
-
-      $this->sentSurveyEmail($sql[0]->email, $datos);
-
-      $operacion='1';
+        $operacion='1';
+      }
+      else {
+        $operacion='0';
+      }
+      // $operacion='1';
     }
     if ($operacion == '1') {
       notificationMsg('success', 'Operation complete!');
@@ -353,7 +360,7 @@ class ConfigurationSurveyController extends Controller
         $res3 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
         $count = count($res3);
 
-        for ($i=0; $i < $count; $i++) { 
+        for ($i=0; $i < $count; $i++) {
             $string1 = $string1 . $res3[$i]->Nombre_hotel . ", ";
         }
         $string1 = substr($string1, 0, -2);

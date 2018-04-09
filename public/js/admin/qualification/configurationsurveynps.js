@@ -240,12 +240,12 @@ function getValueStatus(qty) {
     return retval;
 }
 function getValueStatusResp(vxval) {
-    var retval;
-    var val=vxval;
-    if (val == '1') { retval = '<span class="label label-success">Contestada</span>';}
-    if (val == '0') { retval = '<span class="label label-danger">No contestada</span>';}
-    if (val == '') { retval = '';}
-    return retval;
+    var retval2='';
+    var val2=vxval;
+    if (val2 == 0) { retval2 = '<span class="label label-danger">No contestada</span>'; }
+    else if (val2 == 1) { retval2 = '<span class="label label-success">Contestada</span>'; }
+    else if (val2 == '') { retval2 = ''; }
+    return retval2;
 }
 function table_surveys_clients(datajson, table){
   table.DataTable().destroy();
