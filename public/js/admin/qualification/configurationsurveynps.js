@@ -242,8 +242,8 @@ function getValueStatus(qty) {
 function getValueStatusResp(vxval) {
     var retval;
     var val=vxval;
-    if (val = '1') { retval = '<span class="label label-success">Contestada</span>';}
-    if (val = '0') { retval = '<span class="label label-danger">No contestada</span>';}
+    if (val == '1') { retval = '<span class="label label-success">Contestada</span>';}
+    if (val == '0') { retval = '<span class="label label-danger">No contestada</span>';}
     if (val == '') { retval = '';}
     return retval;
 }
@@ -255,8 +255,8 @@ function table_surveys_clients(datajson, table){
     vartable.fnAddData([
       status.clientes,
       status.email,
-      getValueStatus(status.estatus_id),
-      getValueStatusResp(status.estatus_res),
+      getValueStatus(parseInt(status.estatus_id)),
+      getValueStatusResp(parseInt(status.estatus_res)),
       status.fecha_corresponde,
       status.fecha_inicial,
       status.fecha_fin,
