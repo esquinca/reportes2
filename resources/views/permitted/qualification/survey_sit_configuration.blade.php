@@ -309,12 +309,12 @@
           return retval;
       }
       function getV(qty) {
-        var retval;
-        var val=qty;
-        if (val = '1') { retval = '<span class="label label-success">Contestada</span>';}
-        if (val = '0') { retval = '<span class="label label-danger">No contestada</span>';}
-        if (val == '') { retval = '';}
-        return retval;
+        var retval2='';
+        var val2=qty;
+        if (val2 == '0') { retval2 = '<span class="label label-danger">No contestada</span>';}
+        else if (val2 == '1') { retval2 = '<span class="label label-success">Contestada</span>';}
+        else if (val2 == '') { retval2 = '';}
+        return retval2;
       }
 
       function table_surveys_clients_sit(datajson, table){
@@ -325,8 +325,8 @@
           vartable.fnAddData([
             status.name,
             status.email,
-            getValueStatus(status.estatus_id),
-            getV(status.estatus_res),
+            getValueStatus(parseInt(status.estatus_id)),
+            getV(parseInt(status.estatus_res)),
             status.fecha_corresponde,
             status.fecha_inicial,
             status.fecha_fin,
