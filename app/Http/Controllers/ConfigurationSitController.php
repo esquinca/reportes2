@@ -33,29 +33,36 @@ class ConfigurationSitController extends Controller
 
   public function send_mail(Request $request)
   {
-  	$flag = 1;
+  	$flag = 0;
   	$id_registro = $request->uh;
-  	$res2 = DB::table('encuesta_users')->select('user_id', 'shell_data', 'shell_status')->where('id', $id_registro)->get();
+  	$res2 = DB::table('encuesta_users')->select('user_id', 'estatus_res','shell_data', 'shell_status')->where('id', $id_registro)->get();
+
   	$user_id = $res2[0]->user_id;
+    $estatus = $res2[0]->estatus_res;
 
-  	$sql = DB::table('users')->select('email', 'name')->where('id', $user_id)->get();
+    if ($estatus === 0) {
+      $sql = DB::table('users')->select('email', 'name')->where('id', $user_id)->get();
 
-    $name = $sql[0]->name;
-    $email = $sql[0]->email;
+      $name = $sql[0]->name;
+      $email = $sql[0]->email;
 
-  	
-    $encriptodata = $res2[0]->shell_data;
-    $encriptostatus = $res2[0]->shell_status;
+      
+      $encriptodata = $res2[0]->shell_data;
+      $encriptostatus = $res2[0]->shell_status;
 
-	$datos = [
-	 'nombre' => $name,
-	 'shell_data' => $encriptodata,
-	 'shell_status' => $encriptostatus
-	];
+      $datos = [
+       'nombre' => $name,
+       'shell_data' => $encriptodata,
+       'shell_status' => $encriptostatus
+      ];
 
-	$this->sentSurveyEmail($email, $datos);
+      $this->sentSurveyEmail($email, $datos);
+      return $flag = 1;
+    }else{
+      return $flag;
+    }
 
-	return $flag;
+  	return $flag;
   }
 
   public function sentSurveyEmail($email, $data)

@@ -330,7 +330,7 @@
             status.fecha_corresponde,
             status.fecha_inicial,
             status.fecha_fin,
-            '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_eu+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a>'
+            '<a href="javascript:void(0);" onclick="enviarMail(this)" value="'+status.id_e+'" class="btn bg-navy btn-xs" role="button" data-target="#Send_mailnps"><i class="fa fa-share-square"></i> Reenviar Mail</a>'
           ]);
         });
       }
@@ -345,10 +345,10 @@
           success: function (data){
               if (data == '1') {
                 menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
-                table_surveyed_clients();
+                table_surveyed_sit();
               }else{
                 menssage_toast('Mensaje', '2', 'Operation abort!' , '4000');
-                table_surveyed_clients();
+                table_surveyed_sit();
               }
           },
           error: function (data) {
