@@ -6,7 +6,7 @@
 
             <tr>
               <td  style="padding: 25px 0; text-align: center;">
-                <img src="http://i68.tinypic.com/1el0ub.jpg" style="width: 10%; text-align: center;" alt="Logo">
+                <img src="http://i63.tinypic.com/15gqjb8.jpg" style="width: 10%; text-align: center;" alt="Logo">
                 <br>
                 <hr style=" border: 1px solid #F15C22; border-radius: 100px ;   height: 0px;   text-align: center;">
                 <!--
