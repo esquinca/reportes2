@@ -117,6 +117,34 @@ class ViewDashSitController extends Controller
             $this->sentSurveyEmail($sql[0]->email, $datos);
             $operacion='1';
           }
+          else{
+            #De plano no existe
+            $nuevolink = $input_emails[$i].'/'.$input_survey.'/'.$month.'/'.$input_date_2;
+            $encriptodata= Crypt::encryptString($nuevolink);
+            $encriptostatus= Crypt::encryptString('1');
+
+            $new_survey_individual = new Encuesta_user;
+            $new_survey_individual->user_id=$input_emails[$i];
+            $new_survey_individual->encuesta_id=$input_survey;
+            $new_survey_individual->estatus_id='1';
+            $new_survey_individual->estatus_res='0';
+            $new_survey_individual->fecha_inicial=$input_date_1;
+            $new_survey_individual->fecha_corresponde=$month;
+            $new_survey_individual->fecha_fin=$input_date_2;
+            $new_survey_individual->shell_data=$encriptodata;
+            $new_survey_individual->shell_status=$encriptostatus;
+            $new_survey_individual->save();
+
+            $sql = DB::table('users')->select('email', 'name')->where('id', $input_emails[$i])->get();
+
+            $datos = [
+               'nombre' => $sql[0]->name,
+               'shell_data' => $encriptodata,
+               'shell_status' => $encriptostatus
+            ];
+            $this->sentSurveyEmail($sql[0]->email, $datos);
+            $operacion='1';
+          }
         }
         else {
           #OPERACION ABORTADA POR QUE SE CONTESTO ESTE MES
