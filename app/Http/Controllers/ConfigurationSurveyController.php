@@ -81,7 +81,7 @@ class ConfigurationSurveyController extends Controller
 
   public function index_nps()
   {
-      $hotels = Hotel::select('id', 'Nombre_hotel')->get();
+      $hotels = Hotel::select('id', 'Nombre_hotel')->orderBy('Nombre_hotel', 'ASC')->get();
       $users = User::role('Surveyed')->get();
       $count_users = User::role('Surveyed')->count();
       $surveyed = DB::table('venue_user_surveyed')->orderBy('nombre', 'asc')->get();
@@ -152,7 +152,8 @@ class ConfigurationSurveyController extends Controller
     $status = 0;
     echo $size_hotels.'<br>';
     for ($i=0; $i < $size_hotels; $i++) {
-      $count_h_x_u = DB::table('hotel_user')->where('user_id', $client)->where('hotel_id', $hotels[$i])->count();
+      $count_h_x_u = DB::select('CALL Comprobacion (?)', array($hotels[$i]));
+      // $count_h_x_u = DB::table('hotel_user')->where('user_id', $client)->where('hotel_id', $hotels[$i])->count();
       if ($count_h_x_u == 0) {
         DB::table('hotel_user')->insertGetId(['user_id' => $client, 'hotel_id' => $hotels[$i]]);
         $status = 1;
@@ -163,7 +164,7 @@ class ConfigurationSurveyController extends Controller
       return Redirect::back();
     }
     if ($status == '0') {
-      notificationMsg('danger', 'Operation Abort!');
+      notificationMsg('danger', 'Operation Abort!- Motivo sitio asignado a otro cliente');
       return Redirect::back();
     }
   }
