@@ -154,7 +154,7 @@ class ConfigurationSurveyController extends Controller
     for ($i=0; $i < $size_hotels; $i++) {
       $count_h_x_u = DB::select('CALL Comprobacion (?)', array($hotels[$i]));
       // $count_h_x_u = DB::table('hotel_user')->where('user_id', $client)->where('hotel_id', $hotels[$i])->count();
-      if ($count_h_x_u == 0) {
+      if ($count_h_x_u[0]->valor == '0') {
         DB::table('hotel_user')->insertGetId(['user_id' => $client, 'hotel_id' => $hotels[$i]]);
         $status = 1;
       }
@@ -206,7 +206,7 @@ class ConfigurationSurveyController extends Controller
     $date_m= $request->month_evaluate;
     $operacion='0';
 
-    if ($clientes == "" || $date_i == "" || $date_e = "" || $date_m = "") {
+    if ($clientes == "" || $date_i == "" || $date_e == "" || $date_m == "") {
       $operacion = '4';
     }else{
       for ($i=0; $i < count($clientes); $i++) {
