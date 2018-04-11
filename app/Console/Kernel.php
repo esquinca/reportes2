@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
       Commands\mostapxdia::class,
       Commands\roguedevices::class,
       Commands\wlanxdia::class,
+      Commands\terminationsurveyxnps::class,
     ];
 
     /**
