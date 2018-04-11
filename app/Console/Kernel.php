@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
       Commands\mostapxdia::class,
       Commands\roguedevices::class,
       Commands\wlanxdia::class,
+      Commands\terminationsurveyxnps::class,
     ];
 
     /**
@@ -36,7 +37,7 @@ class Kernel extends ConsoleKernel
       $schedule->command('wlan:dia')->daily();
       $schedule->command('rougue:mes')->monthly();
       //$schedule->command('survey:nps')->monthly(1,'1:00');
-      //$schedule->command('termination:nps')->daily();
+      $schedule->command('termination:nps')->daily();
     }
 
     /**
