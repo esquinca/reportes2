@@ -332,6 +332,36 @@
         }
 
     });
+
+    $('#btn-send_reenv_mail').on('click', function () {
+        var enc_id = $('#select_encuesta_mail').val();
+        var date = $('#month_correspond_mail').val();
+        var _token = $('input[name="_token"]').val();
+        if (date == "" || enc_id == "") {
+          menssage_toast('Mensaje', '2', 'Completa el campo de fecha.' , '3000');
+        }else{
+          $.ajax({
+            type: "POST",
+            url: "/send_unanswer_sit",
+            data: { enc_id = enc_id, date : date , _token : _token },
+            success: function (data){
+              console.log(data);
+              if (data == 1) {
+                menssage_toast('Mensaje', '3', 'Correos enviados exitosamente.' , '3000');
+              }else{
+                menssage_toast('Mensaje', '2', 'No hay clientes para enviar correo.' , '3000');
+              }
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+          });
+        }
+
+    });
+
+
+
     function clearmultiselect(campo){
           $('#'+campo).multiselect({
             buttonWidth: '100%',
