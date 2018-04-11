@@ -94,8 +94,8 @@ class SurveyController extends Controller
         $date_register = strtotime($enc_data_s);
         $date_current = strtotime($fecha_cancun);
         if ($date_current >= $date_register) {
-          $title = 'Error encontrado';
-          $message = 'La URL es incorrecta o finalizo el tiempo de valides de su enlace.! Nota: Se redireccionara a la pagina principal';
+          $title = 'Finalizado';
+          $message = 'Se completo la encuesta o finalizo el tiempo de valides de su enlace.! Nota: Se redireccionara a la pagina principal';
           return view('permitted.qualification.view_survey_rest', compact('title','message'));
         }
         else {
