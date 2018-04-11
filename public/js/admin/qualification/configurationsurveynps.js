@@ -13,6 +13,15 @@ $(document).ready(function() {
       endDate: '-1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
       autoclose: true
   });
+  $('#month_correspond_mail').datepicker({
+      language: 'es',
+      defaultDate: '',
+      format: "yyyy-mm",
+      viewMode: "months",
+      minViewMode: "months",
+      endDate: '-1m', //Esto indica que aparecera el mes hasta que termine el ultimo dia del mes.
+      autoclose: true
+  });
 });
 
 

@@ -186,4 +186,5 @@ return [
     'subtitle_survey' => 'Encuesta',
     'subtitle_survey_nps' => 'NPS',
     'domain' => 'Dominios',
+    'monthtocorrespond' => 'Mes corresponde',
 ];

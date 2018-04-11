@@ -418,6 +418,46 @@
                 <div class="box-body">
                   <div class="media">
                     <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                      Reenviar encuesta
+                    </h4>
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="clearfix">
+                              <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                  <div class="box box-solid">
+                                    <div class="box-body">
+                                      <div class="form-inline">
+                                          {{ csrf_field() }}
+
+                                          <div class="form-group">
+                                            <label class="col-md-5 control-label" for="month_correspond_mail">{{ trans('message.monthtocorrespond')}} </label>
+                                            <div class="col-md-7">
+                                              <input id="month_correspond_mail" name="month_correspond_mail"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                                                class="form-control input-md">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                              <button type="button" id="btn-send_reenv_mail" class="btn btn-info btn-send_reenv_mail"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                                          </div>
+                                      </div>
+                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="box box-solid">
+                <div class="box-body">
+                  <div class="media">
+                    <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
                       Ver usuarios encuestados
                     </h4>
                     <div class="media">
