@@ -433,12 +433,12 @@
                                           <div class="form-group">
                                             <label class="col-md-5 control-label" for="month_correspond_mail">{{ trans('message.monthtocorrespond')}} </label>
                                             <div class="col-md-7">
-                                              <input id="month_correspond_mail" name="month_correspond_mail"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                                              <input id="month_correspond_mail" name="month_correspond_mail"  type="text"  maxlength="10" placeholder=""
                                                 class="form-control input-md">
                                             </div>
                                           </div>
                                           <div class="form-group">
-                                              <button type="button" id="btn-send_reenv_mail" class="btn btn-info btn-send_reenv_mail"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
+                                              <button type="button" id="btn-send_reenv_mail" class="btn btn-info btn-send_reenv_mail"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.send_c') }}</button>
                                           </div>
                                       </div>
                                      </div>

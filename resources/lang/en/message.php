@@ -106,6 +106,7 @@ return [
     'type' => 'Tipo',
     'date' => 'Fecha',
     'generate' => 'Generar',
+    'send_c' => 'Enviar Correos',
     'export' => 'Exportar',
     'cadena' => 'Cadena',
     'estatus' => 'Estatus',

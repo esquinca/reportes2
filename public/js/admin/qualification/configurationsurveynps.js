@@ -110,6 +110,32 @@ $('#select_ind_one').on('change', function(e){
   }
 });
 
+$('#btn-send_reenv_mail').on('click', function () {
+    var date = $('#month_correspond_mail').val();
+    var _token = $('input[name="_token"]').val();
+    if (date == "") {
+      menssage_toast('Mensaje', '2', 'Completa el campo de fecha.' , '3000');
+    }else{
+      $.ajax({
+        type: "POST",
+        url: "/send_unanswer",
+        data: { date : date , _token : _token },
+        success: function (data){
+          console.log(data);
+          if (data == 1) {
+            menssage_toast('Mensaje', '3', 'Correos enviados exitosamente.' , '3000');
+          }else{
+            menssage_toast('Mensaje', '2', 'No hay clientes para enviar correo.' , '3000');
+          }
+        },
+        error: function (data) {
+          console.log('Error:', data);
+        }
+      });
+    }
+
+});
+
 $('#cancela_cu').click(function(){
   $('#creatusersystem')[0].reset();
   $('#creatusersystem').validator('destroy').validator();

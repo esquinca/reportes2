@@ -179,4 +179,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/send_mail_nps' , 'ConfigurationSurveyController@send_mail');
     Route::post('/send_mail_sit' , 'ConfigurationSitController@send_mail');
     Route::post('/search_hotel_u' , 'ConfigurationSurveyController@search_hotel_user');
+    Route::post('/send_unanswer', 'ConfigurationSurveyController@send_correo_unanswer');
 });

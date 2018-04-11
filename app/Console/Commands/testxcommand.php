@@ -45,20 +45,20 @@ class testxcommand extends Command
         // Encuestas personales (sitwifi).
         //$sql = DB::table('encuesta_user_sitwifi')->get();
 
-        $res1 = DB::table('encuesta_user_clientes')->select('email', 'Special')->where('id_eu', 2)->get();
-        $res2 = DB::table('encuesta_users')->select('user_id', 'estatus_res', 'shell_data', 'shell_status')->where('id', 2)->get();
+        //$res1 = DB::table('encuesta_user_clientes')->select('email', 'Special')->where('id_eu', 2)->get();
+        //$res2 = DB::table('encuesta_users')->select('user_id', 'estatus_res', 'shell_data', 'shell_status')->where('id', 2)->get();
         //$res3 = DB::table('encuesta_users')->where('id', 2)->get();
 
-        $res4 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
+        //$res4 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
+        $res5 = DB::select('CALL list_user_unanswer(?, ?)', array(1, '2018-03-01'));
+        // $count = count($res4);
+        // $string1 = "";
 
-        $count = count($res4);
-        $string1 = "";
-
-        for ($i=0; $i < $count; $i++) { 
-            $string1 = $string1 . $res4[$i]->Nombre_hotel . ", ";
-        }
-        $string1 = substr($string1, 0, -2);
+        // for ($i=0; $i < $count; $i++) { 
+        //     $string1 = $string1 . $res4[$i]->Nombre_hotel . ", ";
+        // }
+        // $string1 = substr($string1, 0, -2);
         
-        dd($string1);
+        dd($res5);
     }
 }

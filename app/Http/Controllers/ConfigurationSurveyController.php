@@ -412,6 +412,41 @@ class ConfigurationSurveyController extends Controller
     return json_encode($result);
   }
 
+  public function send_correo_unanswer(Request $request)
+  {
+    $operacion = 0;
+    $date_nor = $request->date;
+    $date_full = $date_nor . "-01";
+    $encuesta_id = 1;
+
+    $result = DB::select('CALL list_user_unanswer(?, ?)', array($encuesta_id, $date_full));
+
+    if ($result == []) {
+      return $operacion;
+    }else{
+      $count = count($result);
+
+      for ($i=0; $i < $count; $i++) { 
+        $email = $result[$i]->email;
+        $name = $result[$i]->name;
+        $shell_data = $result[$i]->shell_data;
+        $shell_status = $result[$i]->shell_status;
+
+        $datos = [
+           'nombre' => $name,
+           'shell_data' => $shell_data,
+           'shell_status' => $shell_status
+        ];
+
+        $this->sentSurveyEmail($email, $datos);
+
+      }
+      $operacion = 1;
+    }
+
+    return $operacion;
+  }
+
   public function send_mail(Request $request)
   {
     $flag = 0;
