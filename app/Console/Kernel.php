@@ -30,11 +30,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->command('estado:server')->daily();
-      $schedule->command('usuario:dia')->daily();
-      $schedule->command('bytes:dia')->daily();
-      $schedule->command('ap:dia')->daily();
-      $schedule->command('wlan:dia')->daily();
+      $schedule->command('estado:server')->dailyAt('22:00');
+      $schedule->command('usuario:dia')->dailyAt('22:10');
+      $schedule->command('bytes:dia')->dailyAt('22:20');
+      $schedule->command('ap:dia')->dailyAt('22:30');
+      $schedule->command('wlan:dia')->dailyAt('22:40');
       $schedule->command('rougue:mes')->monthly();
       //$schedule->command('survey:nps')->monthly(1,'1:00');
       $schedule->command('termination:nps')->daily();

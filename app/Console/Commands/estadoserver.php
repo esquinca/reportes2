@@ -10,7 +10,7 @@ use App\Hotel; //Importar el modelo eloquent
 use App\Zonedirect_ip; //Importar el modelo eloquent
 use App\Mail\CmdAlerts;
 use Jenssegers\Date\Date;
-
+use DB;
 class estadoserver extends Command
 {
     /**
@@ -48,11 +48,17 @@ class estadoserver extends Command
         $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
         $boolean = 0;
         //Creo un ciclo for para recorrer las posiciones del array
-        for ($i=0; $i < $contar_ip ; $i++) {
+        for ($i=0; $i < ($contar_ip-1) ; $i++) {
           $host=$zoneDirect_sql[$i]->ip;
           $hotel=$zoneDirect_sql[$i]->hotel_id;
           $email_user = Hotel::find($hotel);
-          $total_user_x_hotel =  count($email_user->usuarios);
+          $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
+          $total_user_x_hotel = count($result_proced);
+          Date::setLocale('es');
+          $date = Date::now()->format('l j F Y H:i:s');
+          $date2 = Date::now()->format('Y-m-d H:i:s');
+          $asunt = 'Acceso denegado';
+
 
           $boolean = $this->trySNMP($host);
           if ($boolean === 0){
@@ -64,15 +70,11 @@ class estadoserver extends Command
             if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
               //echo 'mayor'.$total_user_x_hotel;
               for ($j=0; $j <$total_user_x_hotel; $j++) {
-                $it_name = $email_user->usuarios[$j]->name;
-                $it_correo = $email_user->usuarios[$j]->email;
-                //$it_correos= 'acauich@sitwifi.com';
-                $asunt = 'Acceso denegado';
-                Date::setLocale('es');
-                $date = Date::now()->format('l j F Y H:i:s');
-                /*Actualizo estatus a inactivo*/
-                //echo '/'.$hotel.'-'.$host.'/';
-                Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 0]);
+                $it_name = $result_proced[$j]->name;
+                $it_correo = $result_proced[$j]->email;
+                Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 0, 'updated_at' => $date2]);
+                $this->info($hotel.'-'.$result_proced[$j]->email);
+
                 /*Actualizo estatus a inactivo*/
                 $data = [
                   'asunto' => $asunt,
@@ -83,8 +85,24 @@ class estadoserver extends Command
                   'fecha' => $date
                 ];
                 //Mail::to($it_correo)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
-                Mail::to($it_correo)->send(new CmdAlerts($data));
+                Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
+                // Mail::to($it_correo)->send(new CmdAlerts($data));
               }
+            }
+            else {
+              Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 0, 'updated_at' => $date2]);
+              $this->info($hotel.'- copia a RD');
+              /*Actualizo estatus a inactivo*/
+              $data = [
+                'asunto' => $asunt,
+                'ip' => $host,
+                'hotel' => $email_user->Nombre_hotel,
+                'nombre' => 'No disponible',
+                'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
+                'fecha' => $date
+              ];
+              Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
+
             }
 
             /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/

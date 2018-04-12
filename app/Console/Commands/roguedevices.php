@@ -73,7 +73,8 @@ class roguedevices extends Command
         $hotel=$zoneDirect_sql[$i]->hotel_id;
         /*Contar los usuarios*/
         $email_user = Hotel::find($hotel);
-        $total_user_x_hotel =  count($email_user->usuarios);
+        $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
+        $total_user_x_hotel = count($result_proced);
         /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
 

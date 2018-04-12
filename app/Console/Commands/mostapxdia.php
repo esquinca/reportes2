@@ -68,12 +68,13 @@ class mostapxdia extends Command
       // Mostap::truncate();
       Date::setLocale('en');
       //Creo un ciclo for para recorrer las posiciones del array
-      for ($i=0; $i < $contar_ip; $i++) {
+      for ($i=0; $i < ($contar_ip-1); $i++) {
         $host=$zoneDirect_sql[$i]->ip;
         $hotel=$zoneDirect_sql[$i]->hotel_id;
         /*Contar los usuarios*/
         $email_user = Hotel::find($hotel);
-        $total_user_x_hotel =  count($email_user->usuarios);
+        $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
+        $total_user_x_hotel = count($result_proced);
         /*Fin Contar los usuarios*/
 
         $boolean = $this->trySNMP($host);
@@ -86,7 +87,7 @@ class mostapxdia extends Command
           $contar_aps_act= count(${"snmp_aps_a".$i});
 
           DB::beginTransaction();
-          for ($j=0; $j <= $contar_aps_act-1; $j++) {
+          for ($j=0; $j <= ($contar_aps_act-1); $j++) {
             $contar_param_1= count(${"snmp_aps_a".$i});
             $contar_param_2= count(${"snmp_aps_b".$i});
             $contar_param_3= count(${"snmp_aps_c".$i});
@@ -123,7 +124,12 @@ class mostapxdia extends Command
               ${"Mostap".$i}->Fecha = Date::now()->format('Y-m-d');
               ${"Mostap".$i}->MAC= $mac_with_point;
               ${"Mostap".$i}->NumClientes = ${"snmp_aps_ab".$i}[1];
-              ${"Mostap".$i}->Modelo= str_replace('"','',${"snmp_aps_aa".$i}[1]);
+              if ( empty(${"snmp_aps_aa".$i}[1])) {
+                ${"Mostap".$i}->Modelo='';
+              }
+              else {
+                ${"Mostap".$i}->Modelo= str_replace('"','',${"snmp_aps_aa".$i}[1]);
+              }
               ${"Mostap".$i}->Mes= Date::now()->format('F Y');
               ${"Mostap".$i}->hotels_id= $hotel;
               ${"Mostap".$i}->save();
@@ -136,8 +142,8 @@ class mostapxdia extends Command
            /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
            if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
              for ($j=0; $j <$total_user_x_hotel; $j++) {
-               $it_name = $email_user->usuarios[$j]->name;
-               $it_correo = $email_user->usuarios[$j]->email;
+               $it_name = $result_proced[$j]->name;
+               $it_correo = $result_proced[$j]->email;
                $it_correos= 'acauich@sitwifi.com';
                $asunt = 'Top 5 de Ap&#8216;s';
                $data = [
@@ -149,8 +155,19 @@ class mostapxdia extends Command
                  'fecha' => Date::now()->format('l j F Y H:i:s')
                ];
                //Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
-               Mail::to($it_correo)->send(new CmdAlerts($data));
+               Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
              }
+           }
+           else {
+             $data = [
+               'asunto' => 'Top 5 de Ap&#8216;s',
+               'ip' => $host,
+               'hotel' => $email_user->Nombre_hotel,
+               'nombre' => 'No disponible',
+               'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
+               'fecha' => Date::now()->format('l j F Y H:i:s')
+             ];
+             Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
            }
            /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
         }

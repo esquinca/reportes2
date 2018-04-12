@@ -72,7 +72,8 @@ class wlanxdia extends Command
         $hotel=$zoneDirect_sql[$i]->hotel_id;
         /*Contar los usuarios*/
         $email_user = Hotel::find($hotel);
-        $total_user_x_hotel =  count($email_user->usuarios);
+        $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
+        $total_user_x_hotel = count($result_proced);
         /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
         if ($boolean === 0){
@@ -113,8 +114,8 @@ class wlanxdia extends Command
           // echo "Ping unsuccessful!";
           if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
             for ($j=0; $j <$total_user_x_hotel; $j++) {
-              $it_name = $email_user->usuarios[$j]->name;
-              $it_correo = $email_user->usuarios[$j]->email;
+              $it_name = $result_proced[$j]->name;
+              $it_correo = $result_proced[$j]->email;
               $it_correos= 'acauich@sitwifi.com';
               $asunt = 'Top 5 de Wlan';
               $data = [
@@ -126,8 +127,19 @@ class wlanxdia extends Command
                 'fecha' => Date::now()->format('l j F Y H:i:s')
               ];
               //Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
-              Mail::to($it_correo)->send(new CmdAlerts($data));
+              Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
             }
+          }
+          else {
+            $data = [
+              'asunto' => 'Top 5 de Wlan',
+              'ip' => $host,
+              'hotel' => $email_user->Nombre_hotel,
+              'nombre' => 'No disponible',
+              'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
+              'fecha' => Date::now()->format('l j F Y H:i:s')
+            ];
+            Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
           }
           /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
         }

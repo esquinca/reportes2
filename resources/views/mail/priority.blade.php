@@ -77,7 +77,7 @@ background-color: #f6f6f6;
                               color: #74787E;
                               line-height: 1.5em;
                               font-size: 14px;
-                              text-align: left;">Estimado<strong>{{ $param['nombre'] }}</strong></p>
+                              text-align: left;">Estimado <strong>{{ $param['nombre'] }}</strong></p>
 
 
                     <p style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
