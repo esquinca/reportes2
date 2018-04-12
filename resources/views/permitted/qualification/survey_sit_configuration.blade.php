@@ -343,7 +343,7 @@
           $.ajax({
             type: "POST",
             url: "/send_unanswer_sit",
-            data: { enc_id = enc_id, date : date , _token : _token },
+            data: { enc_id : enc_id, date : date , _token : _token },
             success: function (data){
               console.log(data);
               if (data == 1) {
