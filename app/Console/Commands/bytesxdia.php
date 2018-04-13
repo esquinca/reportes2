@@ -111,7 +111,7 @@ class bytesxdia extends Command
       Date::setLocale('en');
       //Gbxdia::truncate();
 
-      $consultar_ult_reg = Gbxdia::select('Fecha','ConsumoReal','days')
+      $consultar_ult_reg_hoy = Gbxdia::select('Fecha','ConsumoReal','days')
                             ->where('Captura', 1)
                             ->where('hotels_id', $hotel)
                             ->where('ZD', $nzd)
@@ -119,8 +119,9 @@ class bytesxdia extends Command
                             ->orderBy('id', 'desc')
                             ->take(1)
                             ->get();
-      if ($consultar_ult_reg->isEmpty()) {
-        echo '-/Entramos y registramos/';
+      $this->info('Hotel= '.$hotel.'/');
+      if ($consultar_ult_reg_hoy->isEmpty()) {
+        $this->info('Entramos y registramos');
         $consultar_ult_reg = Gbxdia::select('Fecha','ConsumoReal','days')
         ->where('Captura', 1)
         ->where('hotels_id', $hotel)
@@ -148,14 +149,18 @@ class bytesxdia extends Command
             $GBxDIA_cap->ZD= $nzd;
             $GBxDIA_cap->days= $ndias;
             $GBxDIA_cap->save();
+            $this->info('Aprobado por que cumple mas de 15 hrs');
           }
           else{ //Tiene un dia pero no tiene registro anterior entonces
             $asunt="Consumo GB..!!!";
             $mensaje= "No se ha registrado el consumo de GB, hasta que se reinicie el ZD";
             $this->envio_mail($hotel,$host, $asunt, $mensaje);
+            $this->info('No se ha registrado el consumo de GB, hasta que se reinicie el ZD/');
           }
         }
         else { // Si hay registro del dia anterior
+          $this->info('Si hay registro del dia anterior/');
+
           $cont_ult_reg_fecha= $consultar_ult_reg[0]->Fecha;
           //echo '/';
           $cont_ult_reg_consumo = $consultar_ult_reg[0]->ConsumoReal;
@@ -167,7 +172,9 @@ class bytesxdia extends Command
           $cont_ult_reg_f_month = date("m", strtotime($cont_ult_reg_fecha));
 
           if ($fecha_anio_act == $cont_ult_reg_f_year) { //Si el ultimo año registrado es igual al año actual
+            $this->info('Si el ultimo año registrado es igual al año actual');
             if ($fecha_mes_act > $cont_ult_reg_f_month) { //Si el mes actual es mayor al ulti. reg de bd. Entonces avanzamos un mes 1 (Pasamos a otro mes)
+              $this->info('Si el mes actual es mayor al ulti. reg de bd. Entonces avanzamos un mes 1 (Pasamos a otro mes)');
               if ($ndias <= 1) { //Si ndias es menor o igual a 1 registramos directo
                 $GBxDIA_cap = new Gbxdia;
                 $GBxDIA_cap->CantidadBytes= $data_consumo[1];
@@ -202,7 +209,11 @@ class bytesxdia extends Command
               }
             }
             if ($fecha_mes_act == $cont_ult_reg_f_month){//Si el mes actual es igual al ulti. reg de bd. Entonces estamos en el mismo mes
+              $this->info('Si el mes actual es igual al ulti. reg de bd. Entonces estamos en el mismo mes');
+              $this->info('consumo real='.$consumoreal);
+              $this->info('ndias='. $ndias);
               if ($ndias <= 1) { //Si ndias es menor o igual a 1 registramos directo
+                $this->info('Si ndias es menor o igual a 1 registramos directo');
                 $GBxDIA_cap = new Gbxdia;
                 $GBxDIA_cap->CantidadBytes= $consumoreal;
                 $GBxDIA_cap->ConsumoReal= $consumoreal;
@@ -215,28 +226,39 @@ class bytesxdia extends Command
                 $GBxDIA_cap->save();
               }
               else {
+                $this->info('ndias es mayor');
+                $this->info('ultimo dia registrado='.$cont_ult_reg_days);
+
                 if ($cont_ult_reg_days < $ndias) {
+                  $this->info('$cont_ult_reg_days < $ndias');
                   if ($consumoreal < $cont_ult_reg_consumo) {
+                    $this->info('IF');
                     $NcantidadBytes=$consumoreal;
                   }
                   else {
+                    $this->info('ELSE');
                     $NcantidadBytes=$consumoreal-$cont_ult_reg_consumo;
                   }
+                  $GBxDIA_cap = new Gbxdia;
+                  $GBxDIA_cap->CantidadBytes= $NcantidadBytes;
+                  $GBxDIA_cap->ConsumoReal= $consumoreal;
+                  $GBxDIA_cap->Fecha= Date::now()->format('Y-m-d');
+                  $GBxDIA_cap->Mes= Date::now()->format('F Y');
+                  $GBxDIA_cap->hotels_id= $hotel;
+                  $GBxDIA_cap->Captura= '1';
+                  $GBxDIA_cap->ZD= $nzd;
+                  $GBxDIA_cap->days= $ndias;
+                  $GBxDIA_cap->save();
                 }
-                $GBxDIA_cap = new Gbxdia;
-                $GBxDIA_cap->CantidadBytes= $NcantidadBytes;
-                $GBxDIA_cap->ConsumoReal= $consumoreal;
-                $GBxDIA_cap->Fecha= Date::now()->format('Y-m-d');
-                $GBxDIA_cap->Mes= Date::now()->format('F Y');
-                $GBxDIA_cap->hotels_id= $hotel;
-                $GBxDIA_cap->Captura= '1';
-                $GBxDIA_cap->ZD= $nzd;
-                $GBxDIA_cap->days= $ndias;
-                $GBxDIA_cap->save();
+                else {
+                  $this->info('no hacer nada');
+                }
+
               }
             }
           }
           if ($fecha_anio_act > $cont_ult_reg_f_year) { //Si el ultimo año registrado es menor al año actual (Cambiamos de año)
+            $this->info('Si el ultimo año registrado es menor al año actual (Cambiamos de año)');
             if ($cont_ult_reg_f_month > $fecha_mes_act) {//Si el mes registrado es mayor al mes actual
               if ($ndias <= 1) {
                 $GBxDIA_cap = new Gbxdia;
@@ -258,17 +280,17 @@ class bytesxdia extends Command
                   else {
                     $NcantidadBytes=$consumoreal-$cont_ult_reg_consumo;
                   }
+                  $GBxDIA_cap = new Gbxdia;
+                  $GBxDIA_cap->CantidadBytes= $NcantidadBytes;
+                  $GBxDIA_cap->ConsumoReal= $consumoreal;
+                  $GBxDIA_cap->Fecha= Date::now()->format('Y-m-d');
+                  $GBxDIA_cap->Mes= Date::now()->format('F Y');
+                  $GBxDIA_cap->hotels_id= $hotel;
+                  $GBxDIA_cap->Captura= '1';
+                  $GBxDIA_cap->ZD= $nzd;
+                  $GBxDIA_cap->days= $ndias;
+                  $GBxDIA_cap->save();
                 }
-                $GBxDIA_cap = new Gbxdia;
-                $GBxDIA_cap->CantidadBytes= $NcantidadBytes;
-                $GBxDIA_cap->ConsumoReal= $consumoreal;
-                $GBxDIA_cap->Fecha= Date::now()->format('Y-m-d');
-                $GBxDIA_cap->Mes= Date::now()->format('F Y');
-                $GBxDIA_cap->hotels_id= $hotel;
-                $GBxDIA_cap->Captura= '1';
-                $GBxDIA_cap->ZD= $nzd;
-                $GBxDIA_cap->days= $ndias;
-                $GBxDIA_cap->save();
               }
             }
             echo '*/Nuevo año/';
@@ -302,7 +324,7 @@ class bytesxdia extends Command
         $email_user = Hotel::find($hotel);
         $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
         $total_user_x_hotel = count($result_proced);
-                /*Fin Contar los usuarios*/
+        /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
         $ndias=0;
 
@@ -314,10 +336,10 @@ class bytesxdia extends Command
           $oid_respuesta = $this->trySNMP_oid($host, $oid_value);//Consultamos uptime
           if (!empty($oid_respuesta)) {
             $oid_respuesta_array= explode(': ', $oid_respuesta [key($oid_respuesta)]) ;
-            // $RespondeUptime= $oid_respuesta_array[1];
+            $RespondeUptime= $oid_respuesta_array[1];
             //$RespondeUptime='(22331665) 13:42:41.37';
              //$RespondeUptime='(66957) 11:19:09.57';
-            $RespondeUptime='(26377264) 1 days, 1:16:12.64';
+            // $RespondeUptime='(26377264) 1 days, 1:16:12.64';
             // var_dump($RespondeUptime);
             $buscarday = strpos($RespondeUptime, 'day');
             if ($buscarday === false) {
