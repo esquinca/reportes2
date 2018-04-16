@@ -309,8 +309,9 @@ class bytesxdia extends Command
      */
     public function handle()
     {
-      $zoneDirect_sql = Zonedirect_ip::select('id','ip','hotel_id', 'oid_id')->get();
+      $zoneDirect_sql = Zonedirect_ip::select('id','ip','hotel_id', 'oid_id')->where('status', '!=', 3)->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
+      $this->info('Cantidad de registros= '.($contar_ip-1));
       $boolean = 0;
       //Gbxdia::truncate();
       Date::setLocale('en');
@@ -324,11 +325,13 @@ class bytesxdia extends Command
         $email_user = Hotel::find($hotel);
         $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
         $total_user_x_hotel = count($result_proced);
+        $this->info('Hotel='.$hotel);
         /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
         $ndias=0;
 
         if ($boolean === 0){
+          $this->info('Ping successful!');
           /*Encontrar la cadena del oid del uptime*/
           $uptime_id=$zoneDirect_sql[$i]->oid_id;
           $find_uptime = Oid::find($uptime_id);
@@ -399,6 +402,7 @@ class bytesxdia extends Command
           /*Fin Encontrar la cadena del oid del uptime*/
         }
         else {
+          $this->info('Ping unsuccessful!');
           /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
           if ($total_user_x_hotel >= '1' ) { //Mas de un usuario asignado al hotel.
             for ($j=0; $j <$total_user_x_hotel; $j++) {
