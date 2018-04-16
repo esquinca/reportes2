@@ -30,6 +30,6 @@ class CmdAlerts extends Mailable
      */
     public function build()
     {
-        return $this->subject('Prioridad - Reporte Diario')->view('mail.priority');
+        return $this->subject('SNMP Error - ' . 'Cliente: ' . $this->param['hotel'])->view('mail.priority');
     }
 }
