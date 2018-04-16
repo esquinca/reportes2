@@ -44,8 +44,9 @@ class estadoserver extends Command
      */
     public function handle()
     {
-        $zoneDirect_sql= Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get(); //Retorna un array stdClass Object
+        $zoneDirect_sql= Zonedirect_ip::select('ip','hotel_id', 'oid_id')->where('status', '!=', 3)->get(); //Retorna un array stdClass Object
         $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
+        // $this->info('Cantidad de registros= '.($contar_ip-1));
         $boolean = 0;
         //Creo un ciclo for para recorrer las posiciones del array
         for ($i=0; $i < ($contar_ip-1) ; $i++) {
@@ -62,17 +63,17 @@ class estadoserver extends Command
 
           $boolean = $this->trySNMP($host);
           if ($boolean === 0){
-              echo "Ping successful!";
+            $this->info('Ping successful!');
           }
           else {
-            echo "Ping unsuccessful!";
+            $this->info('Ping unsuccessful!');
             /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
             if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
               //echo 'mayor'.$total_user_x_hotel;
               for ($j=0; $j <$total_user_x_hotel; $j++) {
                 $it_name = $result_proced[$j]->name;
                 $it_correo = $result_proced[$j]->email;
-                Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 0, 'updated_at' => $date2]);
+                Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 2, 'updated_at' => $date2]);
                 $this->info($hotel.'-'.$result_proced[$j]->email);
 
                 /*Actualizo estatus a inactivo*/
@@ -84,13 +85,14 @@ class estadoserver extends Command
                   'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
                   'fecha' => $date
                 ];
+                $this->info('ENVIO MASIVO');
                 //Mail::to($it_correo)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
                 Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
                 // Mail::to($it_correo)->send(new CmdAlerts($data));
               }
             }
             else {
-              Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 0, 'updated_at' => $date2]);
+              Zonedirect_ip::where('hotel_id', $hotel)->where('ip', $host)->update(['status' => 2, 'updated_at' => $date2]);
               $this->info($hotel.'- copia a RD');
               /*Actualizo estatus a inactivo*/
               $data = [
@@ -101,6 +103,7 @@ class estadoserver extends Command
                 'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
                 'fecha' => $date
               ];
+              $this->info('ENVIO UNICO ADMIN');
               Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
 
             }

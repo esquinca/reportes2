@@ -61,14 +61,16 @@ class usuarioxdia extends Command
      */
     public function handle()
     {
-      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get();
+      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->where('status', '!=', 3)->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
+      $this->info('Cantidad de registros= '.($contar_ip-1));
       $boolean = 0;
       //Usuariosxdia::truncate();
       Date::setLocale('en');
       for ($i=0; $i < $contar_ip; $i++) {
         $host=$zoneDirect_sql[$i]->ip;
         $hotel=$zoneDirect_sql[$i]->hotel_id;
+        $this->info('Hotel='.$hotel);
         /*Contar los usuarios*/
         $email_user = Hotel::find($hotel);
         $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
@@ -76,6 +78,7 @@ class usuarioxdia extends Command
         /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
         if ($boolean === 0){
+          $this->info('Ping successful!');
           ${"snmp_a".$i} = $this->trySNMP_oid($host, '1.3.6.1.4.1.25053.1.2.1.1.1.15.2');//Number of authorized client devices
           ${"snmp_a".$i}= array_shift(${"snmp_a".$i});
           ${"snmp_a".$i}= explode(': ', ${"snmp_a".$i});
@@ -88,7 +91,7 @@ class usuarioxdia extends Command
           ${"usuario".$i}->save();
         }
         else {
-          //echo "Ping unsuccessful!";
+          $this->info('Ping unsuccessful!');
           /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
           if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.
             for ($j=0; $j <$total_user_x_hotel; $j++) {
@@ -105,6 +108,7 @@ class usuarioxdia extends Command
                 'fecha' => Date::now()->format('l j F Y H:i:s')
               ];
               //Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+              $this->info('ENVIO MASIVO');
               Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
             }
           }
@@ -117,6 +121,7 @@ class usuarioxdia extends Command
               'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
               'fecha' => Date::now()->format('l j F Y H:i:s')
             ];
+            $this->info('ENVIO UNICO ADMIN');
             Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
           }
           /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/

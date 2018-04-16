@@ -62,8 +62,9 @@ class roguedevices extends Command
      */
     public function handle()
     {
-      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get();
+      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->where('status', '!=', 3)->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
+      $this->info('Cantidad de registros= '.($contar_ip-1));
       $boolean = 0;
       $var_sum_reg=1;
       Rouguedevice::truncate();
@@ -75,10 +76,12 @@ class roguedevices extends Command
         $email_user = Hotel::find($hotel);
         $result_proced = DB::select('CALL setemailsnmp (?)', array($hotel));
         $total_user_x_hotel = count($result_proced);
+        $this->info('Hotel='.$hotel);
         /*Fin Contar los usuarios*/
         $boolean = $this->trySNMP($host);
 
         if ($boolean === 0){
+          $this->info("Ping successful!");
           ${"snmp_a".$i} = $this->trySNMP_oid($host, '1.3.6.1.4.1.25053.1.2.2.1.1.4.1.1.1'); //Rogue device's MAC Address.
           ${"snmp_b".$i} = $this->trySNMP_oid($host, '1.3.6.1.4.1.25053.1.2.2.1.1.4.1.1.4'); //Radio channel.
           ${"snmp_c".$i} = $this->trySNMP_oid($host, '1.3.6.1.4.1.25053.1.2.2.1.1.4.1.1.3'); //Radio type.
@@ -146,6 +149,7 @@ class roguedevices extends Command
           DB::commit();
         }
         else {
+          $this->info("Ping unsuccessful!");
            /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------
            echo "Ping unsuccessful!";
            if ($total_user_x_hotel >= '1' ) {//Mas de un usuario asignado al hotel.

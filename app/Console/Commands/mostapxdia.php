@@ -62,8 +62,9 @@ class mostapxdia extends Command
      */
     public function handle()
     {
-      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->get();
+      $zoneDirect_sql = Zonedirect_ip::select('ip','hotel_id', 'oid_id')->where('status', '!=', 3)->get();
       $contar_ip= count($zoneDirect_sql); //Cuento el tamaño del array anterior
+      $this->info('Cantidad de registros= '.($contar_ip-1));
       $boolean = 0;
       // Mostap::truncate();
       Date::setLocale('en');
@@ -133,6 +134,8 @@ class mostapxdia extends Command
               ${"Mostap".$i}->Mes= Date::now()->format('F Y');
               ${"Mostap".$i}->hotels_id= $hotel;
               ${"Mostap".$i}->save();
+
+              $this->info('hotel'.$hotel);
             }
           }
           DB::commit();
@@ -154,7 +157,7 @@ class mostapxdia extends Command
                  'mensaje' => 'Favor de capturar el top 5 de ap&#8216;s de manera manual en el sistema de reportes. Los datos a capturar son pertenecientes a la fecha del ',
                  'fecha' => Date::now()->format('l j F Y H:i:s')
                ];
-               //Mail::to($it_correos)->bcc('alonsocauichv1@gmail.com')->send(new CmdAlerts($data));
+               $this->info('ENVIO UNICO= '.$it_correo);
                Mail::to($it_correo)->bcc(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
              }
            }
@@ -167,6 +170,7 @@ class mostapxdia extends Command
                'mensaje' => 'Favor de revisar el motivo de la no conexion y de capturar sus datos pertenecientes a la fecha del ',
                'fecha' => Date::now()->format('l j F Y H:i:s')
              ];
+             $this->info('ENVIO UNICO ADMIN');
              Mail::to(['acauich@sitwifi.com', 'gramirez@sitwifi.com', 'jesquinca@sitwifi.com'])->send(new CmdAlerts($data));
            }
            /*-------------------------VERIFICACIONES DE USUARIOS-----------------------------------------*/
