@@ -65,9 +65,9 @@
             {{ csrf_field() }}
             <div class="section-title text-center">
               <p class="mb-0 mt-10 text-left">
-                Apreciado usuario.<br>
+<!--                 Apreciado usuario.<br>
                 Queremos saber su nivel de satisfacción.<br>
-                Dedíquenos un minuto de su valioso tiempo, para contestar esta encuesta que será de manera confidencial y anónima.
+                Dedíquenos un minuto de su valioso tiempo, para contestar esta encuesta que será de manera confidencial y anónima. -->
               </p>
               <input type="hidden" id="token_form" name="token_form" value="{{$encrypted_form}}">
               @foreach ($sacar_preg as $preguntithas)

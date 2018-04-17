@@ -31,6 +31,6 @@ class Sentsurveysitwifimail extends Mailable
     public function build()
     {
         //return $this->view('view.name');
-        return $this->subject('Encuesta')->view('mail.surveysitwifi');
+        return $this->subject('Encuesta Sitwifi')->view('mail.surveysitwifi');
     }
 }
