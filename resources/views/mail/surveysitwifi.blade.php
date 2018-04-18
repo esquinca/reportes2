@@ -34,7 +34,7 @@
                                   color: #74787E;
                                   line-height: 1.5em;
                                   font-size: 12px;
-                                  text-align: left;">Agradecemos  <a href="{{'http://sitwifi.com:8008/' . $data['shell_data'] . '/' . $data['shell_status']}}" target="_blank">tu apoyo para contestar esta breve encuesta,</a> ¡no olvides ser objetivo y escribir tus comentarios ya que son muy importantes para nosotros! </p>
+                                  text-align: left;">Agradecemos  <a href="{{'http://sitwifi.com:8006/' . $data['shell_data'] . '/' . $data['shell_status']}}" target="_blank">tu apoyo para contestar esta breve encuesta,</a> ¡no olvides ser objetivo y escribir tus comentarios ya que son muy importantes para nosotros! </p>
 
 
                         <p style="margin-top: 0;
