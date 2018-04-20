@@ -137,6 +137,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/search_user_domain', 'ViewDashSitController@show_user');
     Route::post('/create_manual_survey_record', 'ViewDashSitController@survey_record');
     Route::post('/show_survey_table_sit', 'ViewDashSitController@user_surveys_sitwifi');
+    Route::post('/get_table_comments_gnrl', 'ViewDashSitController@table_comments');
+    Route::post('/get_count_enc', 'ViewDashSitController@conteoEncuestas');
 
   //- Herramientas
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
