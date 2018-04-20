@@ -9,6 +9,7 @@ $(function() {
   graph_tree_one();
   graph_tree_two();
   graph_resumen();
+  general_table_equipment();
 });
 
 function init() {
@@ -161,4 +162,46 @@ function graph_resumen() {
   var data_count = [{value:15646, name:'Mexico = 15646'},{value:447, name:'Jamaica = 447'},{value:1483, name:'Republica dominicana = 1483'}];
   var data_name = ["Mexico = 15646","Jamaica = 447","Republica dominicana = 1483"];
   graph_douhnut_default('main_distribution', 'Distribución de antenas', 'País', data_name, data_count);
+}
+
+$('#select_two').on('change', function(e){
+  var id= $(this).val();
+  var _token = $('input[name="_token"]').val();
+
+  if (id != ''){
+    general_table_equipment();
+  }
+  else {
+    menssage_toast('Mensaje', '2', 'Seleccione un hotel!' , '3000');
+  }
+});
+
+function general_table_equipment() {
+  var _token = $('input[name="_token"]').val();
+  var indent = $('#select_two').val();
+  $.ajax({
+      type: "POST",
+      url: "/detailed_equipament_all",
+      data: { ident: indent,_token : _token },
+      success: function (data){
+        table_equipment(data, $("#table_equipment_all"));
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+  });
+}
+function table_equipment(datajson, table){
+  table.DataTable().destroy();
+  var vartable = table.dataTable(Configuration_table_responsive_distribution);
+  vartable.fnClearTable();
+  $.each(JSON.parse(datajson), function(index, status){ //Este es el bueno
+    vartable.fnAddData([
+      status.Nombre_hotel,
+      status.name,
+      status.ModeloNombre,
+      status.Cantidad,
+      "<center><kbd style='background-color:grey'>"+status.Nombre_estado+"</kbd></center>",
+    ]);
+  });
 }

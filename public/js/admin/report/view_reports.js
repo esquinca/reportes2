@@ -356,7 +356,7 @@ function general_table_comparative() {
           }
           data_data.push({"concepto": objdata.Concepto,"mes1": objdata.Anterior,"mes2": objdata.Actual, "identificador": ind1});
         });
-
+        remplazar_thead_th($("#table_comparative"), 1 ,2);
         table_comparative(data_data, $("#table_comparative"));
       },
       error: function (data) {
@@ -378,6 +378,24 @@ function table_comparative(datajson, table){
     ]);
   });
 }
+
+function remplazar_thead_th(table, posicionini, posicionfin) {
+  var datepicker3 = $('#calendar_fecha').val();
+  if (datepicker3 == ''){
+    var datepicker3 = moment().subtract(1, 'months').format('YYYY-MM');
+  }
+  var datemod = datepicker3.split("-");
+  var goodFormat = datemod[0] + "-" + datemod[1];
+  var j= posicionfin-posicionini;
+
+  for (var i = posicionini; i <= posicionfin; i++) {
+    table.DataTable().columns(i).header().to$().text(
+      moment(goodFormat).subtract(j, 'months').format('MMMM YYYY')
+    );
+    j--;
+  }
+}
+
 
 $('.btn-export').on('click', function(){
     $("#captura_table_general").hide();

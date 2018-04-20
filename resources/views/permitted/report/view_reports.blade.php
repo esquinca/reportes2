@@ -295,6 +295,7 @@
     <script src="{{ asset('bower_components/jsPDF/dist/jspdf.min.js')}}"></script>
     <script src="{{ asset('bower_components/html2canvas/html2canvas.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/pdf.css')}}" >
+    <script src="/plugins/momentupdate/moment-with-locales.js"></script>
     <script src="{{ asset('js/admin/report/view_reports.js')}}"></script>
   @else
     <!--NO VER-->

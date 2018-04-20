@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth']], function() {
     /*Distribution*/
     Route::get('/detailed_distribution', 'DistributionController@index');
     Route::post('/geoHotel', 'DistributionController@show');
-
+    Route::post('/detailed_equipament_all', 'DistributionController@show_device');
   //- Equipos
     Route::get('/up_equipment', 'AddEquipmentController@index');
     Route::get('/down_equipment', 'RemovedEquipmentController@index');
@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/move_equipment', 'MoveEquipmentController@index');
     Route::get('/group_equipment', 'GroupEquipmentController@index');
     Route::get('/provider', 'ProviderController@index');
+    Route::post('/search_rem_equipament_hotel', 'RemovedEquipmentController@show');
+    Route::post('/send_item_drops_hotels', 'RemovedEquipmentController@edit');
   //- Reportes
     Route::get('/type_report' , 'AssignTypeController@index');
     Route::post('/data_type_report' , 'AssignTypeController@show');
@@ -181,5 +183,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/search_hotel_u' , 'ConfigurationSurveyController@search_hotel_user');
     Route::post('/send_unanswer', 'ConfigurationSurveyController@send_correo_unanswer');
     Route::post('/send_unanswer_sit', 'ConfigurationSitController@send_correo_unanswer_sit');
-    
+
 });

@@ -56,7 +56,7 @@ $('#select_one').on('change', function(e){
 $('#btn_generar').on('click', function(e){
   var hotel= $('#select_two').val();
   if (hotel == "") {
-    
+
   }else{
     document.getElementById("captura_pdf_general").style.display="block";
 
@@ -83,7 +83,7 @@ function headersEmpty() {
 
   // URL de imagen
   $("#client_img").attr("src","../images/hotel/Sin_imagen.png");
-  
+
   $("#email").empty();
   $("#tel").empty();
 

@@ -71,6 +71,51 @@
                     </div>
                   </div>
 
+                  <div class="row text-center contact-info">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <hr />
+                      <span>
+                        <strong>Equipamiento Total</strong>
+                      </span>
+                      <hr />
+                      <br/>
+                    </div>
+                  </div>
+
+                  <div class="row  ">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="form-inline">
+                          {{ csrf_field() }}
+                          <div class="form-group">
+                            <label for="select_two" class="control-label">{{ trans('message.hotel') }}: </label>
+                            <select id="select_two" name="select_two"  class="form-control select2" required>
+                              <option value="" selected> Elija </option>
+                              @forelse ($hotels as $data_hotel)
+                                <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
+                              @empty
+                              @endforelse
+                            </select>
+                          </div>
+                      </div>
+                      <div class="table-responsive" style="padding:10px;">
+                        <table id="table_equipment_all" class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>Hotel.</th>
+                              <th>Equipo.</th>
+                              <th>Modelo</th>
+                              <th>Cantidad</th>
+                              <th>Estado</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
 
 
               </div>

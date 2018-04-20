@@ -10,7 +10,7 @@ $(function() {
 $('#btn_generar').on('click', function(e){
   var cadena= $('#select_one').val();
   if (cadena == "") {
-    
+
   }else{
     document.getElementById("captura_pdf_general").style.display="block";
 
@@ -40,8 +40,8 @@ function headersEmpty() {
   $("#cliente_dir").empty();
   $("#cliente_tel").empty();
   $("#cliente_email").empty();
-  
-  
+
+
   $("#fecha_ini").empty();
   $("#fecha_fin").empty();
 }
@@ -56,30 +56,51 @@ function fillHeaders() {
     url: "/cover_header",
     data: { data_one : cadena,  _token : _token },
     success: function (data){
-      datax = JSON.parse(data);
-      //console.log(data);
-      $("#name_htl").text(datax[0].Nombre_hotel);
-      // URL de imagen
-      $("#client_img").attr("src","../images/hotel/"+datax[0].logo);
-
-      $("#email").text(datax[0].sucuralcorreo);
-      $("#tel").text(datax[0].sucursalphone);
-      $("#empresa").text(datax[0].empresa_name);
-      $("#responsable").text(datax[0].empresa_responsable);
-      $("#area").text(datax[0].empresa_area);
-      $("#dir").text(datax[0].empresa_addr);
-      $("#tel_empresa").text(datax[0].empresa_phone);
-      $("#correo_empresa").text(datax[0].empresa_email);
-
-      $("#cliente_nombre").text(datax[0].Nombre_hotel);
-      $("#cliente_responsable").text(datax[0].cliente_nombre);
-      $("#cliente_ubi").text(datax[0].ubicacion);
-      $("#cliente_dir").text(datax[0].cliente_direccion);
-      $("#cliente_tel").text(datax[0].cliente_tele);
-      $("#cliente_email").text(datax[0].cliente_email);
-      
-      $("#fecha_ini").text(datax[0].fecha_inicio);
-      $("#fecha_fin").text(datax[0].fecha_fin);
+      if (!$.trim(data)){
+        datax = JSON.parse(data);
+        //console.log(data);
+        $("#name_htl").text(datax[0].Nombre_hotel);
+        // URL de imagen
+        $("#client_img").attr("src","../images/hotel/"+datax[0].logo);
+        $("#email").text(datax[0].sucuralcorreo);
+        $("#tel").text(datax[0].sucursalphone);
+        $("#empresa").text(datax[0].empresa_name);
+        $("#responsable").text(datax[0].empresa_responsable);
+        $("#area").text(datax[0].empresa_area);
+        $("#dir").text(datax[0].empresa_addr);
+        $("#tel_empresa").text(datax[0].empresa_phone);
+        $("#correo_empresa").text(datax[0].empresa_email);
+        $("#cliente_nombre").text(datax[0].Nombre_hotel);
+        $("#cliente_responsable").text(datax[0].cliente_nombre);
+        $("#cliente_ubi").text(datax[0].ubicacion);
+        $("#cliente_dir").text(datax[0].cliente_direccion);
+        $("#cliente_tel").text(datax[0].cliente_tele);
+        $("#cliente_email").text(datax[0].cliente_email);
+        $("#fecha_ini").text(datax[0].fecha_inicio);
+        $("#fecha_fin").text(datax[0].fecha_fin);
+      }
+      else{
+        // alert('sindatos');
+        $("#name_htl").text('');
+        // URL de imagen
+        $("#client_img").attr("src","../images/hotel/default.svg");
+        $("#email").text('');
+        $("#tel").text('');
+        $("#empresa").text('');
+        $("#responsable").text('');
+        $("#area").text('');
+        $("#dir").text('');
+        $("#tel_empresa").text('');
+        $("#correo_empresa").text('');
+        $("#cliente_nombre").text('');
+        $("#cliente_responsable").text('');
+        $("#cliente_ubi").text('');
+        $("#cliente_dir").text('');
+        $("#cliente_tel").text('');
+        $("#cliente_email").text('');
+        $("#fecha_ini").text('');
+        $("#fecha_fin").text('');
+      }
     },
     error: function (data) {
       console.log('Error:', data);

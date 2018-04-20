@@ -113,34 +113,6 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <!-- <tr>
-                                <td>Stock</td>
-                                <td>1520</td>
-                              </tr>
-                              <tr>
-                                <td>Prestamo</td>
-                                <td>150</td>
-                              </tr>
-                              <tr>
-                                <td>Venta</td>
-                                <td>100</td>
-                              </tr>
-                              <tr>
-                                <td>Renta</td>
-                                <td>1520</td>
-                              </tr>
-                              <tr>
-                                <td>Demo</td>
-                                <td>150</td>
-                              </tr>
-                              <tr>
-                                <td>Cambio</td>
-                                <td>100</td>
-                              </tr>
-                              <tr>
-                                <td>Garantia</td>
-                                <td>100</td>
-                              </tr> -->
                             </tbody>
                           </table>
                     </div>
@@ -154,18 +126,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <!-- <tr>
-                            <td>Prestamo</td>
-                            <td>1520</td>
-                          </tr>
-                          <tr>
-                            <td>Demo</td>
-                            <td>150</td>
-                          </tr>
-                          <tr>
-                            <td>Renta</td>
-                            <td>1520</td>
-                          </tr> -->
                         </tbody>
                       </table>
                       <p class="text-center" style="border: 1px solid #3D9970" >Zone Director</p>
@@ -177,18 +137,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <!-- <tr>
-                            <td>Venta</td>
-                            <td>100</td>
-                          </tr>
-                          <tr>
-                            <td>Renta</td>
-                            <td>1520</td>
-                          </tr>
-                          <tr>
-                            <td>Demo</td>
-                            <td>150</td>
-                          </tr> -->
                         </tbody>
                       </table>
                     </div>

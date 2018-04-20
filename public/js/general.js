@@ -544,7 +544,7 @@ function graph_pie_default_two(title, campoa, campob){
             {
                 name: 'Información',
                 type: 'pie',
-                radius : '55%',
+                radius : '30%',
                 center: ['50%', '50%'],
                 data:campob,
                 itemStyle: {
@@ -1759,6 +1759,9 @@ var Configuration_table_responsive= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -1767,6 +1770,9 @@ var Configuration_table_responsive= {
         titleAttr: 'CSV',
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de  '+ $('#select_two :selected').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         className: 'btn btn-info',
       }
@@ -1811,6 +1817,9 @@ var Configuration_table_responsive_with_pdf_two= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de '+ $('#name_htl').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -1820,6 +1829,9 @@ var Configuration_table_responsive_with_pdf_two= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de '+ $('#name_htl').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn btn-info',
       },
       {
@@ -1827,6 +1839,9 @@ var Configuration_table_responsive_with_pdf_two= {
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de '+ $('#name_htl').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -1907,6 +1922,9 @@ var Configuration_table_responsive_with_pdf= {
         title: function ( e, dt, node, config ) {
           return 'Equipamiento de '+ $('#client').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -1914,7 +1932,11 @@ var Configuration_table_responsive_with_pdf= {
         text: '<i class="fa fa-file-text-o"></i> CSV',
         titleAttr: 'CSV',
         title: function ( e, dt, node, config ) {
+          $(node).removeClass('btn-default');
           return 'Equipamiento de '+ $('#client').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         className: 'btn btn-info',
       },
@@ -1922,7 +1944,11 @@ var Configuration_table_responsive_with_pdf= {
         extend: 'pdf',
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
+          $(node).removeClass('btn-default');
           return 'Equipamiento de '+ $('#client').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -2003,6 +2029,9 @@ var Configuration_table_responsive_two= {
         text: '<i class="fa fa-user-plus margin-r5"></i> Crear Usuario',
         titleAttr: 'Crear Usuario',
         className: 'btn btn-success creatadduser',
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         action: function ( e, dt, node, config ) {
           $('#modal-CreatUser').modal('show');
           if (document.getElementById("creatusersystem")) {
@@ -2013,16 +2042,28 @@ var Configuration_table_responsive_two= {
       {
         extend: 'excelHtml5',
         title: 'Export of user data',
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         text: '<i class="fa fa-file-excel-o margin-r5"></i> Extraer a Excel',
         titleAttr: 'Excel',
         className: 'btn bg-olive custombtntable',
+        exportOptions: {
+            columns: [ 0, 1, 2]
+        },
       },
       {
         extend: 'csvHtml5',
         title: 'Export of user data',
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         text: '<i class="fa fa-file-text-o margin-r5"></i> Extraer a CSV',
         titleAttr: 'CSV',
         className: 'btn btn-info',
+        exportOptions: {
+            columns: [ 0, 1, 2]
+        },
       }
   ],
   "processing": true,
@@ -2122,6 +2163,64 @@ var Configuration_table_responsive_simple_two={
               }
       }
 }
+var Configuration_table_responsive_distribution= {
+  "order": [[ 0, "asc" ]],
+  "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+  dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+    buttons: [
+      {
+        extend: 'excelHtml5',
+        text: '<i class="fa fa-file-excel-o"></i> Excel',
+        titleAttr: 'Excel',
+        title: function ( e, dt, node, config ) {
+          return 'Distribución de equipamiento';
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
+        className: 'btn bg-olive custombtntable',
+      },
+      {
+        extend: 'csvHtml5',
+        text: '<i class="fa fa-file-text-o"></i> CSV',
+        titleAttr: 'CSV',
+        title: function ( e, dt, node, config ) {
+          return 'Distribución de equipamiento';
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
+        className: 'btn btn-info',
+      },
+  ],
+  "processing": true,
+  language:{
+    "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+    },
+    "oAria": {
+      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+  }
+};
 
 var Configuration_table_responsive_with_cont_one_pdf= {
   dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
@@ -2336,6 +2435,9 @@ var Configuration_table_responsive_with_pdf_client_hotel= {
         title: function ( e, dt, node, config ) {
           return 'Relación cliente - hotel';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1]
         },
@@ -2348,6 +2450,9 @@ var Configuration_table_responsive_with_pdf_client_hotel= {
         title: function ( e, dt, node, config ) {
           return 'Relación cliente - hotel';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1]
         },
@@ -2359,10 +2464,13 @@ var Configuration_table_responsive_with_pdf_client_hotel= {
         title: function ( e, dt, node, config ) {
           return 'Relación cliente - hotel';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1],
             modifier: {
-                page: 'current',
+                page: 'all',
             }
         },
         className: 'btn btn-danger',
@@ -2408,6 +2516,9 @@ var Configuration_table_responsive_with_pdf_survey_nps= {
         title: function ( e, dt, node, config ) {
           return 'Resultados - Encuesta';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
         },
@@ -2419,6 +2530,9 @@ var Configuration_table_responsive_with_pdf_survey_nps= {
         titleAttr: 'CSV',
         title: function ( e, dt, node, config ) {
           return 'Resultados - Encuesta';
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         exportOptions: {
             columns: [  0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
@@ -2433,10 +2547,13 @@ var Configuration_table_responsive_with_pdf_survey_nps= {
         title: function ( e, dt, node, config ) {
           return 'Resultados - Encuesta';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],
             modifier: {
-                page: 'current',
+                page: 'all',
             }
         },
         className: 'btn btn-danger',
@@ -2482,6 +2599,9 @@ var Configuration_table_responsive_with_contenado_a= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table1').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -2491,6 +2611,9 @@ var Configuration_table_responsive_with_contenado_a= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table1').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn btn-info',
       },
       {
@@ -2499,6 +2622,9 @@ var Configuration_table_responsive_with_contenado_a= {
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table1').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -2582,6 +2708,9 @@ var Configuration_table_responsive_with_contenado_b= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table2').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -2591,6 +2720,9 @@ var Configuration_table_responsive_with_contenado_b= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table2').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn btn-info',
       },
       {
@@ -2599,6 +2731,9 @@ var Configuration_table_responsive_with_contenado_b= {
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table2').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -2682,6 +2817,9 @@ var Configuration_table_responsive_with_contenado_c= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table3').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn bg-olive custombtntable',
       },
       {
@@ -2691,6 +2829,9 @@ var Configuration_table_responsive_with_contenado_c= {
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table3').text();
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         className: 'btn btn-info',
       },
       {
@@ -2699,6 +2840,9 @@ var Configuration_table_responsive_with_contenado_c= {
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
           return $('#title').text() +' '+$('#client_name').text()  +'-'+ $('#title_table3').text();
+        },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
         },
         customize: function ( doc ) {
           doc.content.splice( 0, 0, {
@@ -2782,6 +2926,9 @@ var Configuration_table_responsive_with_pdf_enc_dominio= {
         title: function ( e, dt, node, config ) {
           return 'Relación Encuestados';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1, 2, 3, 4, 5]
         },
@@ -2794,6 +2941,9 @@ var Configuration_table_responsive_with_pdf_enc_dominio= {
         title: function ( e, dt, node, config ) {
           return 'Relación Encuestados';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1, 2, 3, 4, 5]
         },
@@ -2801,14 +2951,18 @@ var Configuration_table_responsive_with_pdf_enc_dominio= {
       },
       {
         extend: 'pdf',
+        // orientation: 'landscape',
         text: '<i class="fa fa-file-pdf-o"></i>  PDF',
         title: function ( e, dt, node, config ) {
           return 'Relación Encuestados';
         },
+        init: function(api, node, config) {
+           $(node).removeClass('btn-default')
+        },
         exportOptions: {
             columns: [ 0, 1, 2, 3, 4, 5],
             modifier: {
-                page: 'current',
+                page: 'all',
             }
         },
         className: 'btn btn-danger',
@@ -3044,7 +3198,7 @@ function graph_douhnut_two_default(title, titlepral, subtitlepral, positiontitle
             {
                 name: 'Información',
                 type: 'pie',
-                radius: ['25%', '50%'],
+                radius: ['15%', '25%'],
                 avoidLabelOverlap: false,
                 data:campob,
                 itemStyle: {
@@ -3107,7 +3261,7 @@ function graph_pie_default_four(title, campoa, campob, titlepral, subtitulopral,
             {
                 name: 'Información',
                 type: 'pie',
-                radius : '50%',
+                radius : '30%',
                 center: ['50%', '50%'],
                 data:campob,
                 itemStyle: {
@@ -3654,3 +3808,99 @@ function main_gra_grade_avg_per_month(title, campoa, campob, titlepral, subtitul
       }
   });
 }
+
+
+//Nuevas tablas con checkbox
+
+var Configuration_table_responsive_checkbox_one= {
+        "order": [[ 1, "asc" ]],
+        "select": true,
+        "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        "columnDefs": [
+            { //Subida 1
+                "targets": 0,
+                "checkboxes": {
+                  'selectRow': true
+                },
+                "width": "1%",
+            },
+            {
+                "targets": 4,
+                "className": "text-center",
+            }
+        ],
+        "select": {
+            'style': 'multi',
+        },
+        dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [
+          {
+            extend: 'excelHtml5',
+            text: '<i class="fa fa-file-excel-o"></i> Excel',
+            titleAttr: 'Excel',
+            title: function ( e, dt, node, config ) {
+              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+            },
+            init: function(api, node, config) {
+               $(node).removeClass('btn-default')
+            },
+            className: 'btn btn-success',
+          },
+          {
+            extend: 'csvHtml5',
+            text: '<i class="fa fa-file-text-o"></i> CSV',
+            titleAttr: 'CSV',
+            title: function ( e, dt, node, config ) {
+              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+            },
+            init: function(api, node, config) {
+               $(node).removeClass('btn-default')
+            },
+            className: 'btn btn-info',
+          },
+          {
+            extend: 'pdf',
+            text: '<i class="fa fa-file-pdf-o"></i>  PDF',
+            title: function ( e, dt, node, config ) {
+              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+            },
+            init: function(api, node, config) {
+               $(node).removeClass('btn-default')
+            },
+            className: 'btn btn-danger',
+          }
+        ],
+        language:{
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+              "sFirst":    "Primero",
+              "sLast":     "Último",
+              "sNext":     "Siguiente",
+              "sPrevious": "Anterior"
+            },
+            "oAria": {
+              "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            'select': {
+                'rows': {
+                    _: "%d Filas seleccionadas",
+                    0: "Haga clic en una fila para seleccionarla",
+                    1: "Fila seleccionada 1"
+                }
+            }
+        },
+    };

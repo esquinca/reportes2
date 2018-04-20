@@ -160,68 +160,8 @@
                         </table>
                     </div>
                   </div>
-
-                  <!-- <div  class="row text-center contact-info">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                      <hr />
-                        <span>
-                            <strong>Equipamientos</strong>
-                        </span>
-                      <hr />
-                    </div>
-                  </div>
-
-
-                  <div class="row pad-top-botm client-info">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        </br>
-                        <table id="table_rent_prest" class="table table-striped table-bordered table-hover">
-                          <thead>
-                            <tr>
-                              <th>Hotel.</th>
-                              <th>Rentas APS</th>
-                              <th>Rentas SW.</th>
-                              <th>Rentas ZD</th>
-                              <th>Prestamo APS</th>
-                              <th>Prestamo SW.</th>
-                              <th>Prestamo ZD</th>
-                              <th>Ventas APS</th>
-                              <th>Ventas SW.</th>
-                              <th>Ventas ZD</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-
-                          </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        </br>
-                        <table id="table_demo_stock" class="table table-striped table-bordered table-hover">
-                          <thead>
-                            <tr>
-                              <th>Hotel.</th>
-                              <th>Demo APS</th>
-                              <th>Demo SW.</th>
-                              <th>Demo ZD</th>
-                              <th>Stock APS</th>
-                              <th>Stock SW.</th>
-                              <th>Stock ZD</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                        </table>
-                    </div> -->
-
               </div>
-
             </div>
-
-
-
-
-
         </div>
     </div>
     @else

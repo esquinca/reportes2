@@ -14,7 +14,6 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('/bower_components/Ionicons/css/ionicons.min.css') }}" />
   <!-- Theme style -->
-  <!-- <link rel="stylesheet" href="{{ asset('/dist/css/AdminLTE.min.css') }}" /> -->
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
   <!--Skins. -->
   <link rel="stylesheet" href="{{ asset('dist/css/skins/skin-orange.css') }}"  />
@@ -25,7 +24,7 @@
   <!--Bootstrap Datepicker. -->
   <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}" type="text/css" />
   <!--DataTables. -->
-  <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.css') }}" type="text/css" />
+  <link rel="stylesheet" href="{{ asset('bower_components/datatables-bootstrap/datatables.css') }}" type="text/css" />
   <!--Select2-->
   <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}" type="text/css" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

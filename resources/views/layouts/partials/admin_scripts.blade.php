@@ -16,17 +16,7 @@
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js')}}" charset="UTF-8"></script>
 <!--DataTables. -->
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('bower_components/datatables.net/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/buttons.flash.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/jszip.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/1/vfs_fonts.js')}}"></script>
-<!-- <script src="{{ asset('bower_components/datatables.net/js/1/pdfmake.min.js.map')}}"></script> -->
-<script src="{{ asset('bower_components/datatables.net/js/buttons.html5.min.js')}}"></script>
-<script src="{{ asset('bower_components/datatables.net/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('bower_components/datatables-bootstrap/datatables.js') }}" type="text/javascript"></script>
 <!-- Select2 -->
 <script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
 <!-- Bootstrap Form Validation -->
