@@ -99,7 +99,7 @@
                 <div class="col-md-12 col-lg-12 col-xl-12">
                     <div class="form-row">
                       <div class="col-12 col-md-12 mb-12">
-                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Opcional" maxlength="512"></textarea>
+                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Opcional" maxlength="1024"></textarea>
                       </div>
                       <div class="col-12 col-md-12">
                         <br>

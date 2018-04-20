@@ -65,6 +65,32 @@
         <div id="preguntithas">
 
         </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row">
+            <div id="conteo_res">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row" style="display:block">
+            <table id="table_comments" class="table table-striped table-bordered table-hover" >
+              <thead>
+                <tr>
+                  <th>Comentarios</th>
+                  <th>Calificación</th>
+                  <th>Fecha de registro</th>
+                  <!-- <th>Servicio</th> -->
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     @else
@@ -95,7 +121,16 @@
     });
 
     $('.filtrarDashboard').on('click', function(){
-      consultar();
+      var date_cor = $('#date_to_search').val();
+      var enc = $('#select_surveys').val();
+      if (enc === "" || date_cor === "") {
+        menssage_toast('Mensaje', '2', 'Completa todos los campos.' , '3000');
+      }else{
+        consultar();
+        table_count();
+        table_comments_load();
+      }
+
     });
 
     function consultar() {
@@ -148,7 +183,91 @@
       });
     }
 
+    function table_count() {
+      var objData = $('#search_info').find("select,textarea, input").serialize();
+      var data_data = [];
+      $('#conteo_res').empty();
+      $.ajax({
+          type: "POST",
+          url: "/get_count_enc",
+          data: objData,
+          success: function (data){
+            console.log(data);
 
+            $("#conteo_res").append(
+              '<div class="col-md-4 pt-10"><div class="box box-widget widget-user-2"><div class="widget-user-header bg-green"><h5>Resultados de la encuesta.</h5></h5></div><div id="footer_conteo" class="box-footer no-padding">'
+            );
+            
+            $.each(JSON.parse(data),function(index, objdata){
+              //console.log(objdata.Concepto);
+              $('#footer_conteo').append(
+                '<ul class="nav nav-stacked"><li><a href="javascript: void(0);">'
+                + objdata.Concepto
+                + '<span class="pull-right badge bg-yellow">'
+                + objdata.cantidad
+                + '</span></a></li></ul>'
+                + '</ul></div></div></div>'
+              );
+            });
+
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            //alert('3');
+          }
+      });
+    }
+
+    function table_comments_load() {
+      var objData = $('#search_info').find("select,textarea, input").serialize();
+      var date_cor= $('#date_to_search').val();
+
+      var _token = $('input[name="_token"]').val();
+      var table_c = $('#table_comments');
+      var data_data = [];
+
+      $.ajax({
+          type: "POST",
+          url: "/get_table_comments_gnrl",
+          data: objData,
+          success: function (data){
+            //console.log(data);
+            $.each(JSON.parse(data),function(index, objdata){
+              data_data.push({"Comentario": objdata.Comentario,"Calificacion": objdata.Calificacion,"updated_at": objdata.updated_at});
+            });
+            //table_aps_top(data_data, $("#table_top_aps"));
+            //console.log(data_count);
+            create_table(data_data, table_c);
+          },
+          error: function (data) {
+            console.log('Error:', data);
+            //alert('3');
+          }
+      });
+    }
+
+    function getValueCali(qty) {
+        var retval;
+        var val=qty;
+        if (val == 'Pr') { retval = '<span class="label label-success">Promotor</span>';}
+        if (val == 'Ps') { retval = '<span class="label label-warning">Pasivo</span>';}
+        if (val == 'D') { retval = '<span class="label label-danger">Detractor</span>';}
+        return retval;
+    }
+
+    function create_table(datajson, table) {
+      table.DataTable().destroy();
+      var vartable = table.dataTable(Configuration_table_responsive_simple_two);
+      vartable.fnClearTable();
+      // $.each(JSON.parse(datajson), function(index, status){ //Este es el bueno
+      $.each(datajson, function(index, status){
+        vartable.fnAddData([
+          status.Comentario,
+          getValueCali(status.Calificacion),
+          status.updated_at
+        ]);
+      });
+    }
     </script>
   @else
     <!--NO VER-->

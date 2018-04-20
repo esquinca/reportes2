@@ -209,6 +209,26 @@ class ViewDashSitController extends Controller
     // return json_encode($result);
   }
 
+  public function table_comments(Request $request)
+  {
+    $id_enc = $request->select_surveys;
+    $date = $request->date_to_search;
+    $date_full = $date . '-01';
+    //$result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', '2'));
+    $result = DB::select('CALL comments_table(?, ?)', array($date_full, $id_enc));
+    return json_encode($result);
+  }
+
+  public function conteoEncuestas(Request $request)
+  {
+    $id_enc = $request->select_surveys;
+    $date = $request->date_to_search;
+    $date_full = $date . '-01';
+    //$result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', '2'));
+    $result = DB::select('CALL conteo_survey(?, ?)', array($id_enc, $date_full));
+    return json_encode($result);
+  }
+
   public function sentSurveyEmail($email, $data)
   {
 
