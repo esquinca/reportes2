@@ -43,13 +43,13 @@
                         {{ csrf_field() }}
                         <div class="input-group">
                           <span class="input-group-addon">RFC <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                          <input name="provider_rfc" type="text" class="form-control" placeholder="RFC">
+                          <input id="provider_rfc" name="provider_rfc" type="text" class="form-control" placeholder="RFC" maxlength="500" title=""/>
                         </div>
                         <br>
 
                         <div class="input-group">
                           <span class="input-group-addon">Razón social (Nombre) <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                          <input name="provider_name"  type="text" class="form-control" placeholder="Username">
+                          <input id="provider_name" name="provider_name"  type="text" class="form-control" placeholder="Username" >
                         </div>
                         <br>
 
@@ -57,13 +57,13 @@
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Tipo fiscal <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                              <input name="provider_tf"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_tf" name="provider_tf"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Delegación o Municipio</span>
-                              <input name="provider_municipality"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_municipality" name="provider_municipality"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                         </div>
@@ -71,7 +71,7 @@
                         <br>
                         <div class="input-group">
                           <span class="input-group-addon">Dirección <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                          <input name="provider_address"  type="text" class="form-control" placeholder="Username">
+                          <input id="provider_address" name="provider_address"  type="text" class="form-control" placeholder="Username">
                         </div>
                         <br>
 
@@ -79,13 +79,13 @@
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Estado <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                              <input name="provider_estate"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_estate" name="provider_estate"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">País <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                              <input name="provider_country"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_country" name="provider_country"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                         </div>
@@ -95,13 +95,13 @@
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">C.P</span>
-                              <input name="provider_postcode"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_postcode" name="provider_postcode"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Telefono</span>
-                              <input name="provider_phone"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_phone" name="provider_phone"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                         </div>
@@ -111,13 +111,13 @@
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Fax</span>
-                              <input name="provider_fax"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_fax" name="provider_fax"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Email</span>
-                              <input name="provider_email"  type="text" class="form-control" placeholder="Username">
+                              <input id="provider_email" name="provider_email"  type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                         </div>
@@ -126,13 +126,13 @@
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Nombre</span>
-                              <input name="agent_name" type="text" class="form-control" placeholder="Username">
+                              <input id="agent_name" name="agent_name" type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                           <div class="col-lg-6">
                             <div class="input-group">
                               <span class="input-group-addon">Telefono</span>
-                              <input name="agent_phone" type="text" class="form-control" placeholder="Username">
+                              <input id="agent_phone" name="agent_phone" type="text" class="form-control" placeholder="Username">
                             </div>
                           </div>
                         </div>
@@ -151,7 +151,7 @@
               @if( auth()->user()->can('Create provider') )
                 <button type="button" class="btn bg-navy create_provider"><i class="fa fa-plus-square-o" style="margin-right: 4px;"></i>{{ trans('message.create') }}</button>
               @endif
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+              <button type="button" class="btn btn-danger delete_provider" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
             </div>
           </div>
         </div>
@@ -175,13 +175,13 @@
                            <input id='rec_provider' name='rec_provider' type="hidden" class="form-control" placeholder="">
                            <div class="input-group">
                              <span class="input-group-addon">RFC <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                             <input name="provider_rfc" type="text" class="form-control" placeholder="RFC">
+                             <input name="provider_rfc1" id="provider_rfc1" type="text" class="form-control" placeholder="RFC">
                            </div>
                            <br>
 
                            <div class="input-group">
                              <span class="input-group-addon">Razón social (Nombre) <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                             <input name="provider_name"  type="text" class="form-control" placeholder="Username">
+                             <input name="provider_name1" id="provider_name1" type="text" class="form-control" placeholder="Username">
                            </div>
                            <br>
 
@@ -189,13 +189,13 @@
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Tipo fiscal <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                 <input name="provider_tf"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_tf1" id="provider_tf1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Delegación o Municipio</span>
-                                 <input name="provider_municipality"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_municipality1" id="provider_municipality1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                            </div>
@@ -203,7 +203,7 @@
                            <br>
                            <div class="input-group">
                              <span class="input-group-addon">Dirección <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                             <input name="provider_address"  type="text" class="form-control" placeholder="Username">
+                             <input name="provider_address1" id="provider_address1" type="text" class="form-control" placeholder="Username">
                            </div>
                            <br>
 
@@ -211,13 +211,13 @@
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Estado <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                 <input name="provider_estate"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_estate1" id="provider_estate1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">País <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                 <input name="provider_country"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_country1" id="provider_country1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                            </div>
@@ -227,13 +227,13 @@
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">C.P</span>
-                                 <input name="provider_postcode"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_postcode1" id="provider_postcode1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Telefono</span>
-                                 <input name="provider_phone"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_phone1" id="provider_phone1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                            </div>
@@ -243,13 +243,13 @@
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Fax</span>
-                                 <input name="provider_fax"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_fax1" id="provider_fax1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Email</span>
-                                 <input name="provider_email"  type="text" class="form-control" placeholder="Username">
+                                 <input name="provider_email1" id="provider_email1"  type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                            </div>
@@ -258,13 +258,13 @@
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Nombre</span>
-                                 <input name="agent_name" type="text" class="form-control" placeholder="Username">
+                                 <input name="agent_name1" id="agent_name1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                              <div class="col-lg-6">
                                <div class="input-group">
                                  <span class="input-group-addon">Telefono</span>
-                                 <input name="agent_phone" type="text" class="form-control" placeholder="Username">
+                                 <input name="agent_phone1" id="agent_phone1" type="text" class="form-control" placeholder="Username">
                                </div>
                              </div>
                            </div>
@@ -370,7 +370,16 @@
 
 @push('scripts')
   @if( auth()->user()->can('View provider') )
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+  
     <script src="{{ asset('js/admin/equipment/provider.js')}}"></script>
+ <!--    <link href="/plugins/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('plugins/sweetalert-master/dist/sweetalert.min.js') }}"></script> -->
+
+
   @else
     <!--NO VER-->
   @endif

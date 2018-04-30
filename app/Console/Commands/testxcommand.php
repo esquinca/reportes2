@@ -50,7 +50,7 @@ class testxcommand extends Command
         //$res3 = DB::table('encuesta_users')->where('id', 2)->get();
 
         //$res4 = DB::select('CALL buscar_venue_user(?)', array($res2[0]->user_id));
-        $res5 = DB::select('CALL list_user_unanswer(?, ?)', array(2, '2018-04-01'));
+        //$res5 = DB::select('CALL list_user_unanswer(?, ?)', array(2, '2018-04-01'));
 
 
         // $count = count($res4);
@@ -61,9 +61,12 @@ class testxcommand extends Command
         // }
         // $string1 = substr($string1, 0, -2);
         
-        $res6= DB::select('CALL delivery_letter_venue_header(?)', array(4));
-        $result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', 2));
-        $result1 = DB::select('CALL conteo_survey(?, ?)', array(2, '2018-04-01'));
-        dd($res5);
+        // $res6= DB::select('CALL delivery_letter_venue_header(?)', array(4));
+        // $result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', 2));
+        // $result1 = DB::select('CALL conteo_survey(?, ?)', array(2, '2018-04-01'));
+        $res7 = DB::table('listar_grupos')->get();
+        //  01 Sw Cisco Modelo SF 302-08MP Para el Hotel Dorado Royale- Cambio de daño - 05 de Abril de 2018
+        $res8 = DB::select('CALL get_devices_group(?)', array(' 01 Sw Cisco Modelo SF 302-08MP Para el Hotel Dorado Royale- Cambio de daño - 05 de Abril de 2018'));
+        dd($res8);
     }
 }

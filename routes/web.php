@@ -74,6 +74,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/provider', 'ProviderController@index');
     Route::post('/search_rem_equipament_hotel', 'RemovedEquipmentController@show');
     Route::post('/send_item_drops_hotels', 'RemovedEquipmentController@edit');
+    Route::post('/update_group_equipment', 'GroupEquipmentController@update_group');
+    Route::post('/get_table_group', 'GroupEquipmentController@table_group');
+    Route::post('/get_new_groups', 'GroupEquipmentController@update_select');
+    Route::post('/insertProveedor', 'ProviderController@insertnewprovider');
+    Route::post('/getTableProvider', 'ProviderController@getTableProviders');
+    Route::post('/show_updateinfo', 'ProviderController@showUpdate');
+    Route::post('/update_provider', 'ProviderController@updateprov');
+    Route::post('/delete_provider', 'ProviderController@deleteprov');
+
   //- Reportes
     Route::get('/type_report' , 'AssignTypeController@index');
     Route::post('/data_type_report' , 'AssignTypeController@show');
