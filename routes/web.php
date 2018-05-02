@@ -67,13 +67,23 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/detailed_equipament_all', 'DistributionController@show_device');
   //- Equipos
     Route::get('/up_equipment', 'AddEquipmentController@index');
+    Route::post('/search_key_group', 'AddEquipmentController@search');
+
     Route::get('/down_equipment', 'RemovedEquipmentController@index');
     Route::get('/detailed_search', 'SearchEquipmentController@index');
+
     Route::get('/move_equipment', 'MoveEquipmentController@index');
+    Route::post('/send_item_move_hotels', 'MoveEquipmentController@edit');
+    Route::post('/search_item_descript_hotels', 'MoveEquipmentController@descrip');
+    Route::post('/save_description_move_hotels', 'MoveEquipmentController@update');
+    Route::post('/search_range_equipament_all', 'SearchEquipmentController@search_range');
+
     Route::get('/group_equipment', 'GroupEquipmentController@index');
     Route::get('/provider', 'ProviderController@index');
+
     Route::post('/search_rem_equipament_hotel', 'RemovedEquipmentController@show');
     Route::post('/send_item_drops_hotels', 'RemovedEquipmentController@edit');
+
     Route::post('/update_group_equipment', 'GroupEquipmentController@update_group');
     Route::post('/get_table_group', 'GroupEquipmentController@table_group');
     Route::post('/get_new_groups', 'GroupEquipmentController@update_select');

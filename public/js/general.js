@@ -1746,7 +1746,6 @@ var Configuration_table_one= {
     }
 };
 
-
 var Configuration_table_responsive= {
   dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
           "<'row'<'col-sm-12'tr>>" +
@@ -2422,7 +2421,6 @@ var Configuration_table_responsive_with_cont_two_pdf= {
   }
 };
 
-
 var Configuration_table_responsive_with_pdf_client_hotel= {
   dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
           "<'row'<'col-sm-12'tr>>" +
@@ -2560,7 +2558,7 @@ var Configuration_table_responsive_with_pdf_survey_nps= {
       }
   ],
   "processing": true,
-"aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+  "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
   language:{
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -3283,7 +3281,7 @@ function graph_pie_default_four(title, campoa, campob, titlepral, subtitulopral,
   });
 }
 function graph_gauge(title, grapname, valuemin, valuemax, valor) {
-//function graph_gauge(title, campoa, campob) {
+  //function graph_gauge(title, campoa, campob) {
   var myChart = echarts.init(document.getElementById(title));
   var option = {
     tooltip : {
@@ -3424,7 +3422,6 @@ function graph_pie_default_four_with_porcent(title, campoa, campob, titlepral, s
       }
   });
 }
-
 
 function graph_bar_with_three_val_insideRight(title, data_name, campom, campoa, campob, campoc){
   var myChart = echarts.init(document.getElementById(title));
@@ -3841,10 +3838,16 @@ var Configuration_table_responsive_checkbox_one= {
             text: '<i class="fa fa-file-excel-o"></i> Excel',
             titleAttr: 'Excel',
             title: function ( e, dt, node, config ) {
-              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+              return 'Reporte de Bajas.';
             },
             init: function(api, node, config) {
                $(node).removeClass('btn-default')
+            },
+            exportOptions: {
+                columns: [ 1,2,3,4,5,6,7,8],
+                modifier: {
+                    page: 'all',
+                }
             },
             className: 'btn btn-success',
           },
@@ -3853,10 +3856,16 @@ var Configuration_table_responsive_checkbox_one= {
             text: '<i class="fa fa-file-text-o"></i> CSV',
             titleAttr: 'CSV',
             title: function ( e, dt, node, config ) {
-              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+              return 'Reporte de Bajas.';
             },
             init: function(api, node, config) {
                $(node).removeClass('btn-default')
+            },
+            exportOptions: {
+                columns: [ 1,2,3,4,5,6,7,8],
+                modifier: {
+                    page: 'all',
+                }
             },
             className: 'btn btn-info',
           },
@@ -3864,10 +3873,16 @@ var Configuration_table_responsive_checkbox_one= {
             extend: 'pdf',
             text: '<i class="fa fa-file-pdf-o"></i>  PDF',
             title: function ( e, dt, node, config ) {
-              return 'Reporte de Bajas. Periodo -'+ $('#select_one').val();
+              return 'Reporte de Bajas.';
             },
             init: function(api, node, config) {
                $(node).removeClass('btn-default')
+            },
+            exportOptions: {
+                columns: [ 1,2,3,4,5,6,7,8],
+                modifier: {
+                    page: 'all',
+                }
             },
             className: 'btn btn-danger',
           }
@@ -3904,3 +3919,275 @@ var Configuration_table_responsive_checkbox_one= {
             }
         },
     };
+
+
+    var Configuration_table_responsive_checkbox_move= {
+            "order": [[ 1, "asc" ]],
+            "select": true,
+            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+            "columnDefs": [
+                { //Subida 1
+                    "targets": 0,
+                    "checkboxes": {
+                      'selectRow': true
+                    },
+                    "width": "1%",
+                },
+                {
+                    "targets": 4,
+                    "className": "text-center",
+                },
+                { //option edit
+                    "targets": 9,
+                    "width": "1%",
+                },
+            ],
+            "select": {
+                'style': 'multi',
+            },
+            dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+                  "<'row'<'col-sm-12'tr>>" +
+                  "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [
+              {
+                extend: 'excelHtml5',
+                text: '<i class="fa fa-file-excel-o"></i> Excel',
+                titleAttr: 'Excel',
+                title: function ( e, dt, node, config ) {
+                  return 'Reporte de equipamiento.';
+                },
+                init: function(api, node, config) {
+                   $(node).removeClass('btn-default')
+                },
+                exportOptions: {
+                    columns: [ 1,2,3,4,5,6,7,8],
+                    modifier: {
+                        page: 'all',
+                    }
+                },
+                className: 'btn btn-success',
+              },
+              {
+                extend: 'csvHtml5',
+                text: '<i class="fa fa-file-text-o"></i> CSV',
+                titleAttr: 'CSV',
+                title: function ( e, dt, node, config ) {
+                  return 'Reporte de equipamiento.';
+                },
+                init: function(api, node, config) {
+                   $(node).removeClass('btn-default')
+                },
+                exportOptions: {
+                    columns: [ 1,2,3,4,5,6,7,8],
+                    modifier: {
+                        page: 'all',
+                    }
+                },
+                className: 'btn btn-info',
+              },
+              {
+                extend: 'pdf',
+                text: '<i class="fa fa-file-pdf-o"></i>  PDF',
+                title: function ( e, dt, node, config ) {
+                  return 'Reporte de equipamiento.';
+                },
+                init: function(api, node, config) {
+                   $(node).removeClass('btn-default')
+                },
+                exportOptions: {
+                    columns: [ 1,2,3,4,5,6,7,8],
+                    modifier: {
+                        page: 'all',
+                    }
+                },
+                className: 'btn btn-danger',
+              }
+            ],
+            language:{
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+                },
+                "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                'select': {
+                    'rows': {
+                        _: "%d Filas seleccionadas",
+                        0: "Haga clic en una fila para seleccionarla",
+                        1: "Fila seleccionada 1"
+                    }
+                }
+            },
+        };
+        var Configuration_table_responsive_remove_item= {
+                "order": [[ 1, "asc" ]],
+                "select": true,
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "columnDefs": [
+                    {
+                        "targets": 6,
+                        "width": "1%",
+                        "className": "text-center",
+                    }
+                ],
+                dom: "<'row'<'col-sm-4'B><'col-sm-4'l><'col-sm-4'f>>" +
+                      "<'row'<'col-sm-12'tr>>" +
+                      "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                  {
+                    extend: 'excelHtml5',
+                    text: '<i class="fa fa-file-excel-o"></i> Excel',
+                    titleAttr: 'Excel',
+                    title: function ( e, dt, node, config ) {
+                      return 'Reporte de bajas - ' + $('input[name="date_start"]').val() +' a '+$('input[name="date_end"]').val();
+                    },
+                    init: function(api, node, config) {
+                       $(node).removeClass('btn-default')
+                    },
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                        }
+                    },
+                    className: 'btn btn-success',
+                  },
+                  {
+                    extend: 'csvHtml5',
+                    text: '<i class="fa fa-file-text-o"></i> CSV',
+                    titleAttr: 'CSV',
+                    title: function ( e, dt, node, config ) {
+                      return 'Reporte de bajas - ' + $('input[name="date_start"]').val() +' a '+$('input[name="date_end"]').val();
+                    },
+                    init: function(api, node, config) {
+                       $(node).removeClass('btn-default')
+                    },
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                        }
+                    },
+                    className: 'btn btn-info',
+                  },
+                  {
+                    extend: 'pdf',
+                    text: '<i class="fa fa-file-pdf-o"></i>  PDF',
+                    title: function ( e, dt, node, config ) {
+                      return 'Reporte de bajas - ' + $('input[name="date_start"]').val() +' a '+$('input[name="date_end"]').val();
+                    },
+                    init: function(api, node, config) {
+                       $(node).removeClass('btn-default')
+                    },
+                    exportOptions: {
+                        modifier: {
+                            page: 'all',
+                        }
+                    },
+                    className: 'btn btn-danger',
+                  }
+                ],
+                language:{
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                      "sFirst":    "Primero",
+                      "sLast":     "Último",
+                      "sNext":     "Siguiente",
+                      "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    'select': {
+                        'rows': {
+                            _: "%d Filas seleccionadas",
+                            0: "Haga clic en una fila para seleccionarla",
+                            1: "Fila seleccionada 1"
+                        }
+                    }
+                },
+            };
+        var Configuration_table_clear= {
+              "order": [[ 0, "asc" ]],
+              "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+              "columnDefs": [
+                  {
+                      "targets": 4,
+                      "className": "text-center",
+                      "width": "1%",
+                  },
+              ],
+              Filter: false,
+              searching: true,
+              bInfo: false,
+              "processing": true,
+              "columnDefs": [
+                    { //Subida 1
+                        "targets": [3],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    { //Bajada 1
+                        "targets": [4],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ],
+                language:{
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "<i class='fa fa-search'></i> Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                      "sFirst":    "Primero",
+                      "sLast":     "Último",
+                      "sNext":     "Siguiente",
+                      "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                      "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    },
+                    'select': {
+                        'rows': {
+                            _: "%d Filas seleccionadas",
+                            0: "Haga clic en una fila para seleccionarla",
+                            1: "Fila seleccionada 1"
+                        }
+                    }
+                },
+        };

@@ -59,7 +59,7 @@
                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                  <div class="table-responsive">
                    <form id="table_check" method="POST">
-                      <table id="table_qualification" cellspacing="0" class="table table-striped table-bordered table-hover">
+                      <table id="table_move" cellspacing="0" class="table table-striped table-bordered table-hover">
                         <thead>
                           <tr class="bg-primary" style="background: #088A68;">
                             <th> <small>0</small> </th>
@@ -71,6 +71,7 @@
                             <th> <small>Modelo.</small> </th>
                             <th> <small>Estado.</small> </th>
                             <th> <small>Fecha Alta.</small> </th>
+                            <th> <small>Acción</small> </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -92,8 +93,8 @@
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="select_two" class="control-label">Estatus: </label>
-                          <select id="select_two" name="select_two"  class="form-control select2" required>
+                          <label for="select_three" class="control-label">Estatus: </label>
+                          <select id="select_three" name="select_three"  class="form-control select2" required>
                              <option value=""> Elija </option>
                              <option value="999" selected> Conservar estados </option>
                              @forelse ($estados as $data_estados)
@@ -105,7 +106,6 @@
                         <div class="form-group">
                            <button type="button" class="btn btn-info btnconf">Mover</button>
                         </div>
-                        <pre id="example-console-rows"></pre>
                       </div>
                       <!-- <p><b>Selected rows data:</b></p>
                       <pre id="example-console-rows"></pre> -->
@@ -114,6 +114,67 @@
                </div>
              </div>
            </div>
+           <!--Modal confirmación-->
+           <div class="modal modal-default fade" id="modal-confirmation" data-backdrop="static">
+             <div class="modal-dialog" >
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title"><i class="fa fa-bookmark" style="margin-right: 4px;"></i>Confirmación</h4>
+                 </div>
+                 <div class="modal-body">
+                   <div class="box-body">
+                     <div class="row">
+                       <div class="col-xs-12">
+                         <h4 style="font-weight: bold;">¿Are you sure you want to continue?</h4>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-danger btn-conf-action"><i class="fa fa-trash" style="margin-right: 4px;"></i>Confirmar</button>
+                   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+         <!--Modal confirmación-->
+
+         <!--Modal Descripción-->
+         <div class="modal modal-default fade" id="modal-comments" data-backdrop="static">
+           <div class="modal-dialog" >
+             <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title"><i class="fa fa-id-card-o" style="margin-right: 4px;"></i>Descripción</h4>
+               </div>
+               <div class="modal-body">
+                 <div class="box-body table-responsive">
+                   <div class="box-body">
+                     <div class="row">
+                       <div class="col-xs-12">
+                         <div class="form-group">
+                           <div class="col-sm-12">
+                             <input id="token_min" name="token_min" type="hidden" class="form-control" placeholder="">
+                             <textarea id="comment_a" name="comment_a"  class="form-control" style="min-width: 100%" maxlength="150"></textarea>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-success btn-update-descrip">Actualizar</button>
+                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+               </div>
+             </div>
+           </div>
+         </div>
+         <!--Modal Descripción-->
+
+
+         </div>
 
 
         </div>
@@ -125,6 +186,9 @@
 
 @push('scripts')
   @if( auth()->user()->can('View move equipment') )
+  <!--Extra Datatable--->
+    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.10/css/dataTables.checkboxes.css" rel="stylesheet" />
+    <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.10/js/dataTables.checkboxes.min.js"></script>
     <script src="{{ asset('js/admin/equipment/move_equipment.js')}}"></script>
   @else
     <!--NO VER-->
