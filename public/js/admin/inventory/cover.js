@@ -23,7 +23,7 @@ $('#btn_generar').on('click', function(e){
 function headersEmpty() {
   $("#name_htl").empty();
   // URL de imagen
-  $("#client_img").attr("src","../images/hotel/Sin_imagen.png");
+  $("#client_img").attr("src","../images/hotel/Default.svg");
 
   $("#email").empty();
   $("#tel").empty();
@@ -83,7 +83,7 @@ function fillHeaders() {
         // alert('sindatos');
         $("#name_htl").text('');
         // URL de imagen
-        $("#client_img").attr("src","../images/hotel/default.svg");
+        $("#client_img").attr("src","../images/hotel/Default.svg");
         $("#email").text('');
         $("#tel").text('');
         $("#empresa").text('');

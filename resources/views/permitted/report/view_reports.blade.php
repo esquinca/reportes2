@@ -253,7 +253,7 @@
                       </div>
                     </div>
 
-                    <div  class="row text-center contact-info">
+                    <div  class="row text-center contact-info" style="display:none;">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                         <hr />
                           <span>
@@ -262,7 +262,7 @@
                         <hr />
                       </div>
                     </div>
-                    <div class="row pad-top-botm client-info">
+                    <div class="row pad-top-botm client-info" style="display:none;">
                       <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="clearfix">
                             <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>

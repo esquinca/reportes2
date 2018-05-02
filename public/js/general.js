@@ -1875,7 +1875,7 @@ var Configuration_table_responsive_with_pdf_two= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -1985,7 +1985,7 @@ var Configuration_table_responsive_with_pdf= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -2287,7 +2287,7 @@ var Configuration_table_responsive_with_cont_one_pdf= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -2387,7 +2387,7 @@ var Configuration_table_responsive_with_cont_two_pdf= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -2660,7 +2660,7 @@ var Configuration_table_responsive_with_contenado_a= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -2769,7 +2769,7 @@ var Configuration_table_responsive_with_contenado_b= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',
@@ -2878,7 +2878,7 @@ var Configuration_table_responsive_with_contenado_c= {
         },
         exportOptions: {
             modifier: {
-                page: 'current'
+                page: 'all'
             }
         },
         className: 'btn btn-danger',

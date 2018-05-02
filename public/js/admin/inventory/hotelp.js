@@ -120,7 +120,7 @@ function headersEmpty() {
   $("#tel").empty();
 
   // URL de imagen
-  $("#img_htl").attr("src","../images/hotel/Sin_imagen.png");
+  $("#img_htl").attr("src","../images/hotel/Default.svg");
 
   //$("#client").text();
 }
@@ -142,7 +142,7 @@ function fillHeaders() {
       $("#tel").text(datax[0].phone);
 
       //URL de imagen
-      $("#client_img").attr("src","../images/hotel/"+datax[0].dirlogo1);
+      $("#img_htl").attr("src","../images/hotel/"+datax[0].dirlogo1);
 
     },
     error: function (data) {

@@ -84,7 +84,7 @@ $('#btn_generar').on('click', function(e){
 function empty_header() {
   $("#client_name").empty();
   // URL de imagen
-  $("#client_img").attr("src","../images/hotel/Sin_imagen.png");
+  $("#client_img").attr("src","../images/hotel/Default.svg");
 
   $("#email").empty();
   $("#tel").empty();
