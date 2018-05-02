@@ -31,7 +31,7 @@ use App\Jefedirecto;
 use App\Marca;
 use App\Modelo;
 use App\Estado;
-class UsersTableSeeder extends Seeder
+class UsersTableSeederPRUEBAS extends Seeder
 {
     /**
      * Run the database seeds.
