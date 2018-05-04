@@ -153,6 +153,9 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
    $encuestasitwifivconfig= Permission::create(['name' => 'View config sitwifi']);
    $encuestasitwifidconfig= Permission::create(['name' => 'Delete config sitwifi']);
    $encuestasitwifisend= Permission::create(['name' => 'Send mail sitwifi']);
+   
+   $vcreatmodel= Permission::create(['name' => 'Create model']);
+   $vcreatmarcas= Permission::create(['name' => 'Create marcas']);
 
    //Creamos los usuarios por default
      $user_default_0 = new User;

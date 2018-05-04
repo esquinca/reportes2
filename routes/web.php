@@ -68,6 +68,13 @@ Route::group(['middleware' => ['auth']], function() {
   //- Equipos
     Route::get('/up_equipment', 'AddEquipmentController@index');
     Route::post('/search_key_group', 'AddEquipmentController@search');
+    Route::post('/search_provider', 'AddEquipmentController@search_provider');
+    Route::post('/insertModel', 'AddEquipmentController@create_Model');
+    Route::post('/search_modelo', 'AddEquipmentController@search_modelo');
+
+    Route::post('/insertMarca', 'AddEquipmentController@create_marca');
+    Route::post('/search_marcas', 'AddEquipmentController@search_marca');
+    Route::post('/search_marca_all', 'AddEquipmentController@search_marca_all');
 
     Route::get('/down_equipment', 'RemovedEquipmentController@index');
     Route::get('/detailed_search', 'SearchEquipmentController@index');

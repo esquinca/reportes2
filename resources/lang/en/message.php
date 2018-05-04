@@ -157,6 +157,7 @@ return [
     'meansnotrequired' => 'Significa no requerido',
     'maxcarveint' => 'Maximo 20 caracteres',
     'maxcardiez' => 'Maximo 10 caracteres',
+    'maxcarcincuent' => 'Maximo 50 caracteres',
     'importarimg'=>'Cargar imagen',
     'zonedirect' => 'ZD',
 
@@ -192,4 +193,6 @@ return [
     'subtitle_survey_nps' => 'NPS',
     'domain' => 'Dominios',
     'monthtocorrespond' => 'Mes corresponde',
+    'distribuidor' => 'Distribuidor',
+    'marcas' => 'Marcas',
 ];
