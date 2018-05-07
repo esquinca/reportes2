@@ -32,7 +32,7 @@ class RemovedEquipmentController extends Controller
     $equipos = json_decode($request->idents);
     $valor= 'false';
     for ($i=0; $i <= (count($equipos)-1); $i++) {
-      $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['estados_id' => '2', 'updated_at' => Carbon::now()]);
+      $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['estados_id' => '2', 'Fecha_Baja' => date('Y-m-d'), 'updated_at' => Carbon::now()]);
       $valor= 'true';
     }
     return $valor;

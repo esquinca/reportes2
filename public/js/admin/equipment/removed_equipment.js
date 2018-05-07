@@ -32,7 +32,13 @@ function general_table_equipment() {
 }
 
 $(".darbajas").on("click", function () {
-  $('#modal-confirmation').modal('show');
+  var count= $("#table_qualification").DataTable().rows( '.selected' ).count();
+  if ( count != '0') {
+    $('#modal-confirmation').modal('show');
+  }
+  else {
+    menssage_toast('Mensaje', '2', 'Operation Abort! - Seleccione uno o mas registros' , '3000');
+  }
 });
 
 function table_consumption_remove(datajson, table, form){
