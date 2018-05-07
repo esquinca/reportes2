@@ -72,6 +72,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/insertModel', 'AddEquipmentController@create_Model');
     Route::post('/search_modelo', 'AddEquipmentController@search_modelo');
 
+    Route::post('/create_equipament_n', 'AddEquipmentController@create_equipament_n');
+    Route::post('/create_equipament_nd', 'AddEquipmentController@create_equipament_nd');
+
+
     Route::post('/insertMarca', 'AddEquipmentController@create_marca');
     Route::post('/search_marcas', 'AddEquipmentController@search_marca');
     Route::post('/search_marca_all', 'AddEquipmentController@search_marca_all');

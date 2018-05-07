@@ -41,7 +41,7 @@ $(function() {
     minLength: 0,
     items: 9999,
     source: function(query, process) {
-      console.log(query);
+      // console.log(query);
         return $.ajax({
             url: "/search_key_group",
             type: 'post',
@@ -51,7 +51,7 @@ $(function() {
               $.each(JSON.parse(data), function(index, status){
                 dataArray.push(status.Nombre_Grupo);
               });
-              console.log(dataArray);
+              // console.log(dataArray);
               // var json = JSON.parse(data); // string to json
               return process(dataArray);
               //console.log(json);
@@ -61,6 +61,8 @@ $(function() {
   });
 
   var vartable = $("#table_temporality").dataTable(Configuration_table_clearx2);
+  input_mac('add_mac_eq');
+  input_number('add_num_se');
 
 });
 
@@ -86,9 +88,15 @@ $(".create_provider").on("click", function () {
   let provider_estate = $('#provider_estate').val();
   let provider_country = $('#provider_country').val();
   var objData = $("#reg_provider").find("select,textarea, input").serialize();
-  if (provider_rfc === "" || provider_name === "" || provider_tf === "" || provider_address === "" || provider_estate === "" || provider_country === "") {
-    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos con "*"' , '3000');
-  }else{
+
+  $obligatorio_a = validarespacioinputlength('provider_rfc', 13);
+  $obligatorio_b = validarespacioinput('provider_name');
+  $obligatorio_c = validarespacioinput('provider_tf');
+  $obligatorio_d = validarespacioinput('provider_address');
+  $obligatorio_e = validarespacioinput('provider_estate');
+  $obligatorio_f = validarespacioinput('provider_country');
+  if ($obligatorio_a == true && $obligatorio_b == true && $obligatorio_c == true &&
+      $obligatorio_d == true && $obligatorio_e == true && $obligatorio_f == true ) {
     $.ajax({
       type: "POST",
       url: '/insertProveedor',
@@ -108,6 +116,9 @@ $(".create_provider").on("click", function () {
        menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
       }
     })
+  }
+  else {
+    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos con "*" y con el numero mínimo de caracteres' , '3000');
   }
 });
 function recargar_proveedor(){
@@ -267,10 +278,12 @@ $(".btn_rmd").on("click", function () {
 $(".create_model").on("click", function () {
   let modelitho = $('#add_modelitho').val();
   let marquithas_p = $('#marcas_current').val();
+
+  $obligatorio_a = validarSelect('marcas_current');
+  $obligatorio_b = validarespacioinput('add_modelitho');
+
   var objData = $("#form_model").find("select,textarea, input").serialize();
-  if (modelitho === "" || marquithas_p === "") {
-    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos' , '3000');
-  }else{
+  if ($obligatorio_a == true && $obligatorio_b == true) {
     $.ajax({
       type: "POST",
       url: '/insertModel',
@@ -286,9 +299,11 @@ $(".create_model").on("click", function () {
         }
       },
       error: function (data) {
-       menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+        menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
       }
     })
+  }else{
+    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos' , '3000');
   }
 });
 function reset_fact() {
@@ -297,39 +312,254 @@ function reset_fact() {
   reset_select2('select_one');
 }
 
-$(".btn-save").on("click", function () {
-    var type = $("#type_equipment").select2('data')[0]['text'];
-    var marca = $("#Marcas").select2('data')[0]['text'];
-    var venue = $("#venue").select2('data')[0]['text'];
-    var serie = $("#add_num_se").val();
-    var mac = $('#add_mac_eq').val();
-    var descripcion = $('#add_descrip').val();
-    var grupo =$('#grupitho').val();
-
-    if ( ! $('#table_temporality').DataTable().data().count() ) {
-
-        $('#table_temporality').DataTable().destroy();
-        $('#table_temporality').DataTable(Configuration_table_clearx2).row.add( [
-          venue,
-          type,
-          marca,
-          mac,
-          serie,
-          grupo,
-          descripcion
-        ] ).draw( false );
+function validarespacioinput(campo){
+  if( $("#"+campo).val().trim()==='' || $("#"+campo).val().length < 4 ) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+function validarespacioinputlength(campo, campob){
+  if( $("#"+campo).val().trim()==='' || $("#"+campo).val().length < campob ) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+function validarSelect(campo) {
+  if (campo != '') {
+    select=document.getElementById(campo).selectedIndex;
+    if( select == null || select == 0 ) {
+      return false;
     }
     else {
-      $('#table_temporality').DataTable().row.add( [
-        venue,
-        type,
-        marca,
-        mac,
-        serie,
-        grupo,
-        descripcion
-      ] ).draw();
+      return true;
     }
+  }
+  else {
+    return false;
+  }
+}
 
+$(".btn-save").on("click", function () {
+  if ($("input[name='facturitha']:checked").val()  == 'yes') {
+    $obligatorio_a = validarespacioinputlength('nfactura',8);
+    $obligatorio_b = validarespacioinput('date_fact');
+    $obligatorio_c = validarSelect('select_one');
 
+    $obligatorio_d = validarespacioinputlength('add_mac_eq',17);
+    $obligatorio_e = validarespacioinputlength('add_num_se', 10);
+    $obligatorio_f = validarespacioinput('add_descrip');
+
+    $obligatorio_g = validarSelect('type_equipment');
+    $obligatorio_h = validarSelect('Marcas');
+    $obligatorio_i = validarSelect('mmodelo');
+    $obligatorio_j = validarSelect('add_estado');
+    $obligatorio_k = validarSelect('venue');
+
+    if ($obligatorio_a == true && $obligatorio_b == true && $obligatorio_c == true) {
+      if ($obligatorio_d == true && $obligatorio_e == true && $obligatorio_f == true &&
+          $obligatorio_g == true && $obligatorio_h == true && $obligatorio_i == true &&
+          $obligatorio_j == true && $obligatorio_k == true) {
+              /*------------------------------------------------------------------------------------------------------*/
+              var objData = $("#add_equipitho").find("select,textarea, input").serialize();
+              var $d_venue = $("#venue").select2('data')[0]['text'];
+              var $d_type = $("#type_equipment").select2('data')[0]['text'];
+              var $d_marcas = $("#Marcas").select2('data')[0]['text'];
+              var $d_mac = $('#add_mac_eq').val();
+              var $d_num = $('#add_num_se').val();
+              var $d_grup = $('#grupitho').val();
+              var $d_desc = $('#add_descrip').val();
+              var $d_estado = $("#add_estado").select2('data')[0]['text'];
+              var $d_modelo = $("#mmodelo").select2('data')[0]['text'];
+
+              var num_factura = $('#nfactura').val();
+              var dat_factura = $('#date_fact').val();
+              var num_proveed = $('#select_one').val();
+
+              $.ajax({
+                type: "POST",
+                url: '/create_equipament_n',
+                data: objData + "&nfactura=" + num_factura + "&date_fact=" + dat_factura + "&select_one=" + num_proveed,
+                success: function (data) {
+                  if (data === "3") { menssage_toast('Mensaje', '2', 'Operation Abort- Serie, already registered' , '3000'); }
+                  else if (data === "2") { menssage_toast('Mensaje', '2', 'Operation Abort- MAC, already registered' , '3000'); }
+                  else if (data === "1") {
+                    if ( ! $('#table_temporality').DataTable().data().count() ) {
+                        menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+                        $('#table_temporality').DataTable().destroy();
+                        $('#table_temporality').DataTable(Configuration_table_clearx2).row.add(
+                          [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
+                        ).draw( );
+                    }
+                    else {
+                      menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+                      $('#table_temporality').DataTable().row.add(
+                        [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
+                      ).draw();
+                    }
+                    $('#add_equipitho')[0].reset();
+                    reset_select2('type_equipment');
+                    reset_select2('Marcas');
+                    reset_select2('mmodelo');
+                    reset_select2('add_estado');
+                    reset_select2('venue');
+                  }
+                  else { menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000'); }
+                },
+                error: function (data) {
+                 menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+                }
+              });
+              /*------------------------------------------------------------------------------------------------------*/
+      }
+      else {
+        menssage_toast('Mensaje', '2', 'Completa los datos de obligatorios, para el registro de equipos' , '3000');
+      }
+    }
+    else {
+      menssage_toast('Mensaje', '2', 'Completa los datos de facturación' , '3000');
+    }
+  }
+  if ($("input[name='facturitha']:checked").val() == 'no') {
+    if ($obligatorio_d == true && $obligatorio_e == true && $obligatorio_f == true &&
+        $obligatorio_g == true && $obligatorio_h == true && $obligatorio_i == true &&
+        $obligatorio_j == true && $obligatorio_k == true) {
+          /*------------------------------------------------------------------------------------------------------*/
+          var objData = $("#add_equipitho").find("select,textarea, input").serialize();
+          var $d_venue = $("#venue").select2('data')[0]['text'];
+          var $d_type = $("#type_equipment").select2('data')[0]['text'];
+          var $d_marcas = $("#Marcas").select2('data')[0]['text'];
+          var $d_mac = $('#add_mac_eq').val();
+          var $d_num = $('#add_num_se').val();
+          var $d_grup = $('#grupitho').val();
+          var $d_desc = $('#add_descrip').val();
+          var $d_estado = $("#add_estado").select2('data')[0]['text'];
+          var $d_modelo = $("#mmodelo").select2('data')[0]['text'];
+          $.ajax({
+            type: "POST",
+            url: '/create_equipament_nd',
+            data: objData,
+            success: function (data) {
+              if (data === "3") { menssage_toast('Mensaje', '2', 'Operation Abort- Serie, already registered' , '3000'); }
+              else if (data === "2") { menssage_toast('Mensaje', '2', 'Operation Abort- MAC, already registered' , '3000'); }
+              else if (data === "1") {
+                if ( ! $('#table_temporality').DataTable().data().count() ) {
+                    menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+                    $('#table_temporality').DataTable().destroy();
+                    $('#table_temporality').DataTable(Configuration_table_clearx2).row.add(
+                      [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
+                    ).draw( );
+                }
+                else {
+                  menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+                  $('#table_temporality').DataTable().row.add(
+                    [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
+                  ).draw();
+                }
+                $('#add_equipitho')[0].reset();
+                reset_select2('type_equipment');
+                reset_select2('Marcas');
+                reset_select2('mmodelo');
+                reset_select2('add_estado');
+                reset_select2('venue');
+              }
+              else { menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000'); }
+            },
+            error: function (data) {
+             menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+            }
+          });
+          /*------------------------------------------------------------------------------------------------------*/
+    }
+    else {
+      menssage_toast('Mensaje', '2', 'Completa los datos de obligatorios, para el registro de equipos' , '3000');
+    }
+  }
 });
+
+$(".btn-clear").on("click", function () {
+  $('#add_equipitho')[0].reset();
+  reset_select2('type_equipment');
+  reset_select2('Marcas');
+  reset_select2('mmodelo');
+  reset_select2('add_estado');
+  reset_select2('venue');
+});
+$(".btn-cancel").on("click", function () {
+  reset_fact();
+
+  $('#add_equipitho')[0].reset();
+  reset_select2('type_equipment');
+  reset_select2('Marcas');
+  reset_select2('mmodelo');
+  reset_select2('add_estado');
+  reset_select2('venue');
+
+  $('input[name="facturitha"]').iCheck('uncheck');
+
+  $('.data_fact').hide();
+  $('.data_equipament').hide();
+  $('.data_temporal').hide();
+
+  $('#table_temporality').DataTable().clear().draw();
+  $("#table_temporality").DataTable().destroy();
+});
+
+$(".create_marca").on("click", function () {
+  let marquita = $('#add_marquitha').val();
+  let distribuidor = $('#add_distribuidor').val();
+
+  $obligatorio_a = validarespacioinput('add_marquitha');
+  $obligatorio_b = validarespacioinput('add_distribuidor');
+
+  var objData = $("#form_marca").find("select,textarea, input").serialize();
+  if ($obligatorio_a == true && $obligatorio_b == true) {
+    $.ajax({
+      type: "POST",
+      url: '/insertMarca',
+      data: objData,
+      success: function (data) {
+        if (data === "1") {
+          menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+          $('#add_marca_4').modal('toggle');
+          recargar_marcas();
+          $('#form_marca')[0].reset();
+        }else{
+          menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000');
+        }
+      },
+      error: function (data) {
+       menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+      }
+    });
+  }
+  else{
+    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos' , '3000');
+  }
+});
+
+function recargar_marcas(){
+  var _token = $('input[name="_token"]').val();
+  let count = 0;
+  $.ajax({
+    type: "POST",
+    url: '/search_marcas',
+    data: { _token : _token },
+    success: function (data) {
+      countH = data.length;
+      $('#Marcas').empty();
+      $('#Marcas').append('<option value="" selected>Elije</option>');
+      if (countH > 0) {
+        $.each(JSON.parse(data),function(index, objdata){
+          $('#Marcas').append('<option value="'+objdata.id+'">'+ objdata.Nombre_marca +'</option>');
+        });
+      }
+    },
+    error: function (data) {
+     menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+    }
+  })
+}

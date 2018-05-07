@@ -4238,3 +4238,17 @@ var Configuration_table_responsive_checkbox_one= {
                     }
                 },
         };
+        function input_mac(name_d){
+          $("#"+name_d).keyup(function(){
+            this.value =
+              (this.value.toUpperCase()
+              .replace(/[^\d|A-Z]/g, '')
+              .match(/.{1,2}/g) || [])
+              .join(":")
+        	});
+        }
+        function input_number(name_d){
+          $('#'+name_d).on('input', function () {
+              this.value = this.value.replace(/[^0-9]/g,'');
+          });
+        }

@@ -52,7 +52,7 @@
                  {{ csrf_field() }}
                   <div class="form-group">
                     <label for="nfactura">Factura:</label>
-                    <input type="text" class="form-control" id="nfactura" name="nfactura" maxlength="25" >
+                    <input type="text" class="form-control" id="nfactura" name="nfactura" maxlength="25" placeholder="Mínimo 8 caracteres">
                   </div>
                   <div class="form-group">
                     <label for="date_fact">Fecha de factura:</label>
@@ -79,17 +79,17 @@
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 ocultar data_equipament">
           <div class="box box-solid">
             <div class="box-body">
-              <div class="form-horizontal">
+              <form class="form-horizontal" id='add_equipitho'>
                  {{ csrf_field() }}
                  <div class="input-group">
                    <span class="input-group-addon">MAC <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                   <input id="add_mac_eq" name="add_mac_eq" type="text" class="form-control" maxlength="15" placeholder="MAC">
+                   <input id="add_mac_eq" name="add_mac_eq" type="text" class="form-control" maxlength="17" placeholder="MAC. Mínimo 15 caracteres">
                  </div>
                  <br>
 
                  <div class="input-group">
                    <span class="input-group-addon">Núm. Serie <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                   <input id="add_num_se"  name="add_num_se"  type="text" class="form-control" placeholder="Núm. Serie" maxlength="20">
+                   <input id="add_num_se"  name="add_num_se"  type="text" class="form-control" placeholder="Núm. Serie. Mínimo 10 caracteres" maxlength="20">
                  </div>
                  <br>
 
@@ -97,13 +97,13 @@
                    <div class="col-lg-6">
                      <div class="input-group">
                        <span class="input-group-addon">Grupo</span>
-                       <input id="grupitho" name="grupitho" maxlength="50" type="text" placeholder="Grupo" class="form-control typeahead" data-provide="typeahead">
+                       <input id="grupitho" name="grupitho" maxlength="150" type="text" placeholder="Grupo" class="form-control typeahead" data-provide="typeahead">
                      </div>
                    </div>
                    <div class="col-lg-6">
                      <div class="input-group">
                        <span class="input-group-addon">Descripción <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                       <input id="add_descrip" name="add_descrip" maxlength="150" type="text" class="form-control" placeholder="Descripción">
+                       <input id="add_descrip" name="add_descrip" maxlength="150" type="text" class="form-control" placeholder="Descripción. Mínimo 4 caracteres.">
                      </div>
                    </div>
                  </div>
@@ -113,7 +113,7 @@
                    <div class="col-lg-6">
                      <div class="input-group">
                        <span class="input-group-addon">Tipo equipo <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                       <select class="form-control select2" id="type_equipment">
+                       <select class="form-control select2" id="type_equipment" name="type_equipment">
                          <option value="" selected> Elija </option>
                          @forelse ($especificaciones as $data_especificaciones)
                            <option value="{{ $data_especificaciones->id }}"> {{ $data_especificaciones->name }} </option>
@@ -129,7 +129,7 @@
                          <option value="" selected> Elija </option>
 
                        </select>
-                       <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_marca">
+                       <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_marca_4">
                          <i class="fa fa-plus-square"></i>
                        </button>
                      </div>
@@ -187,7 +187,7 @@
                    </div>
                  </div>
                  <br>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -262,7 +262,7 @@
       </div>
     </div>
 
-    <div class="modal modal-default fade" id="add_marca" data-backdrop="static">
+    <div class="modal modal-default fade" id="add_marca_4" data-backdrop="static">
       <div class="modal-dialog" >
         <div class="modal-content">
           <div class="modal-header">
@@ -279,14 +279,14 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="add_marquitha">{{ trans('message.marcas')}} </label>
                       <div class="col-md-8">
-                        <input id="add_marquitha" name="add_marquitha"  type="text"  maxlength="50" placeholder="{{ trans('message.maxcarcincuent')}}"
+                        <input id="add_marquitha" name="add_marquitha"  type="text"  maxlength="50" placeholder="Min. 4 Caracteres. {{ trans('message.maxcarcincuent')}}"
                           class="form-control input-md"/>
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="add_distribuidor">{{ trans('message.distribuidor')}} </label>
                       <div class="col-md-8">
-                        <input id="add_distribuidor" name="add_distribuidor"  type="text"  maxlength="50" placeholder="{{ trans('message.maxcarcincuent')}}"
+                        <input id="add_distribuidor" name="add_distribuidor"  type="text"  maxlength="50" placeholder="Min. 4 Caracteres. {{ trans('message.maxcarcincuent')}}"
                           class="form-control input-md"/>
                       </div>
                     </div>
@@ -327,45 +327,45 @@
                       {{ csrf_field() }}
                       <div class="input-group">
                         <span class="input-group-addon">RFC <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                        <input id="provider_rfc" name="provider_rfc" type="text" class="form-control" placeholder="RFC" maxlength="500" title=""/>
+                        <input id="provider_rfc" name="provider_rfc" type="text" class="form-control" placeholder="RFC. Obligatorio 13 Caracteres" maxlength="13" title=""/>
                       </div>
                       <br>
                       <div class="input-group">
                         <span class="input-group-addon">Razón social (Nombre) <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                        <input id="provider_name" name="provider_name"  type="text" class="form-control" placeholder="Username" >
+                        <input id="provider_name" name="provider_name"  type="text" class="form-control" placeholder="Razón social. Minimo 4 Caracteres" >
                       </div>
                       <br>
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Tipo fiscal <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                            <input id="provider_tf" name="provider_tf"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_tf" name="provider_tf"  type="text" class="form-control" placeholder="Tipo fiscal. Minimo 4 Caracteres">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Delegación o Municipio</span>
-                            <input id="provider_municipality" name="provider_municipality"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_municipality" name="provider_municipality"  type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                       </div>
                       <br>
                       <div class="input-group">
                         <span class="input-group-addon">Dirección <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                        <input id="provider_address" name="provider_address"  type="text" class="form-control" placeholder="Username">
+                        <input id="provider_address" name="provider_address"  type="text" class="form-control" placeholder="Minimo 4 Caracteres">
                       </div>
                       <br>
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Estado <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                            <input id="provider_estate" name="provider_estate"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_estate" name="provider_estate"  type="text" class="form-control" placeholder="Minimo 4 Caracteres">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">País <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                            <input id="provider_country" name="provider_country"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_country" name="provider_country"  type="text" class="form-control" placeholder="Minimo 4 Caracteres">
                           </div>
                         </div>
                       </div>
@@ -374,13 +374,13 @@
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">C.P</span>
-                            <input id="provider_postcode" name="provider_postcode"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_postcode" name="provider_postcode"  type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Telefono</span>
-                            <input id="provider_phone" name="provider_phone"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_phone" name="provider_phone"  type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                       </div>
@@ -389,13 +389,13 @@
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Fax</span>
-                            <input id="provider_fax" name="provider_fax"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_fax" name="provider_fax"  type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Email</span>
-                            <input id="provider_email" name="provider_email"  type="text" class="form-control" placeholder="Username">
+                            <input id="provider_email" name="provider_email"  type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                       </div>
@@ -404,13 +404,13 @@
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Nombre</span>
-                            <input id="agent_name" name="agent_name" type="text" class="form-control" placeholder="Username">
+                            <input id="agent_name" name="agent_name" type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="input-group">
                             <span class="input-group-addon">Telefono</span>
-                            <input id="agent_phone" name="agent_phone" type="text" class="form-control" placeholder="Username">
+                            <input id="agent_phone" name="agent_phone" type="text" class="form-control" placeholder="Opcional">
                           </div>
                         </div>
                       </div>
