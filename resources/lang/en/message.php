@@ -195,4 +195,9 @@ return [
     'monthtocorrespond' => 'Mes corresponde',
     'distribuidor' => 'Distribuidor',
     'marcas' => 'Marcas',
+    'transmitidosgb'=>'Cant. Actual de GB Registrados',
+    'newtransmitidosgb'=>'Nueva Cant. de GB Transmitidos',
+
+    'transmitidosuser'=>'Cant. Actual de usuarios registrados',
+    'newtransmitidosuser'=>'Nueva Cant. de usuarios transmitidos',
 ];
