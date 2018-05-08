@@ -277,6 +277,19 @@
                   <form class="form-horizontal" id="form_marca" name="form_marca">
                     {{ csrf_field() }}
                     <div class="form-group">
+                     <label class="col-md-3 control-label" for="modelitho_current">Tipo equipo:</label>
+                     <div class="col-md-8">
+                       <select class="form-control select2" id="modelitho_current" name="modelitho_current">
+                         <option value="" selected> Elija </option>
+                         @forelse ($especificaciones as $data_especificaciones)
+                           <option value="{{ $data_especificaciones->id }}"> {{ $data_especificaciones->name }} </option>
+                         @empty
+                         @endforelse
+                       </select>
+                     </div>
+                    </div>
+
+                    <div class="form-group">
                       <label class="col-md-3 control-label" for="add_marquitha">{{ trans('message.marcas')}} </label>
                       <div class="col-md-8">
                         <input id="add_marquitha" name="add_marquitha"  type="text"  maxlength="50" placeholder="Min. 4 Caracteres. {{ trans('message.maxcarcincuent')}}"

@@ -109,6 +109,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_type_report' , 'AssignTypeController@show');
     Route::post('/show_edit_type_report' , 'AssignTypeController@edit');
 
+    Route::post('/get_user_type' , 'AssignTypeController@table');
+    Route::post('/reg_user_type' , 'AssignTypeController@create_rel_user');
+    Route::post('/delete_assign_hotel_cl' , 'AssignTypeController@delete_rel_user');
+
     Route::get('/viewreports' , 'ViewReportsController@index');
     Route::post('/typereport','ViewReportsController@typerep');
     Route::post('/view_reports_header', 'ViewReportsController@report_header');

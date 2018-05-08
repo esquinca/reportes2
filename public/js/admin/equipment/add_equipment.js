@@ -236,13 +236,13 @@ function reset_modelithos(){
     success: function (data){
       countH = data.length;
       if (countH === 0) {
-        $('#Modelo').empty();
-        $('#Modelo').append('<option value="" selected>Elija</option>');
+        $('#mmodelo').empty();
+        $('#mmodelo').append('<option value="" selected>Elija</option>');
       }else{
-        $('#Modelo').empty();
-        $('#Modelo').append('<option value="" selected>Elija</option>');
+        $('#mmodelo').empty();
+        $('#mmodelo').append('<option value="" selected>Elija</option>');
         $.each(JSON.parse(data),function(index, objdata){
-          $('#Modelo').append('<option value="'+objdata.id+'">'+ objdata.ModeloNombre +'</option>');
+          $('#mmodelo').append('<option value="'+objdata.id+'">'+ objdata.ModeloNombre +'</option>');
         });
       }
     },
@@ -514,9 +514,10 @@ $(".create_marca").on("click", function () {
 
   $obligatorio_a = validarespacioinput('add_marquitha');
   $obligatorio_b = validarespacioinput('add_distribuidor');
+  $obligatorio_c = validarSelect('modelitho_current');
 
   var objData = $("#form_marca").find("select,textarea, input").serialize();
-  if ($obligatorio_a == true && $obligatorio_b == true) {
+  if ($obligatorio_a == true && $obligatorio_b == true && $obligatorio_c == true) {
     $.ajax({
       type: "POST",
       url: '/insertMarca',
@@ -543,11 +544,13 @@ $(".create_marca").on("click", function () {
 
 function recargar_marcas(){
   var _token = $('input[name="_token"]').val();
+  var type = $('#type_equipment').val();
+
   let count = 0;
   $.ajax({
     type: "POST",
     url: '/search_marcas',
-    data: { _token : _token },
+    data: { numero: type, _token : _token },
     success: function (data) {
       countH = data.length;
       $('#Marcas').empty();

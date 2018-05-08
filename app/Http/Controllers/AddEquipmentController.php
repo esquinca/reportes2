@@ -57,10 +57,17 @@ class AddEquipmentController extends Controller
   public function create_marca(Request $request){
     $name = $request->add_marquitha;
     $dist = $request->add_distribuidor;
+    $type = $request->modelitho_current;
+
     $flag = 0;
     $count_md = DB::table('marcas')->where('Nombre_marca', $name)->where('Distribuidor', $dist)->count();
     if ($count_md == '0') {
       $result = DB::table('marcas')->insertGetId(['Nombre_marca' => $name, 'Distribuidor' => $dist ]);
+      $eq_prt = DB::table('especification_marcas')->insertGetId([
+        'especification_id' => $type,
+        'marca_id' => $result,
+        'created_at' => \Carbon\Carbon::now(),
+      ]);
       if($result != '0'){
         $flag =1;
       }

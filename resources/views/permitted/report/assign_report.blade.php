@@ -31,7 +31,7 @@
               <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="box box-solid">
                   <div class="box-body">
-                    <div class="form-inline">
+                    <form class="form-inline" id="re_data_type">
                         {{ csrf_field() }}
                         <div class="form-group">
                           <label for="select_one" class="control-label">{{ trans('message.hotel') }}: </label>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <button type="button" class="btn btn-info btngeneral"><i class="fa fa-bullseye margin-r5"></i> {{ trans('message.generate') }}</button>
                         </div>
-                    </div>
+                    </form>
                    </div>
                 </div>
               </div>
@@ -145,68 +145,6 @@
         </div>
       </div>
 
-      <div class="modal modal-default fade" id="modal-edit" data-backdrop="static">
-        <div class="modal-dialog" >
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title"><i class="fa fa-id-card-o" style="margin-right: 4px;"></i>{{ trans('message.editusers') }}</h4>
-            </div>
-            <div class="modal-body">
-              <div class="box-body table-responsive">
-                <div class="box-body">
-                  <div class="row">
-                    @if( auth()->user()->can('Edit assign report') )
-                    <div class="col-xs-12">
-                        <form id="edit_type" name="edit_type" action="">
-                          {{ csrf_field() }}
-                           <input id='id_recibido' name='id_recibido' type="hidden" class="form-control" placeholder="">
-
-                           <div class="form-group">
-                             <label for="select_hotel" class="col-sm-4 control-label">{{ trans('message.hotel') }}<span style="color: red;">*</span></label>
-                             <div class="col-sm-8">
-                               <select id="select_hotel" name="select_hotel"  class="form-control" required>
-                                   <option value="">{{ trans('message.selectopt') }}</option>
-                                   @forelse ($hotels as $data_hotel)
-                                     <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
-                                   @empty
-                                   @endforelse
-                               </select>
-                             </div>
-                           </div>
-
-                            <div class="form-group">
-                              <label for="select_type" class="col-sm-4 control-label">{{ trans('message.type') }}<span style="color: red;">*</span></label>
-                              <div class="col-sm-8">
-                                <select id="select_type" name="select_type"  class="form-control" required>
-            				                <option value="">{{ trans('message.selectopt') }}</option>
-                                    @forelse ($types as $data_types)
-                                      <option value="{{ $data_types->id }}"> {{ $data_types->name }} </option>
-                                    @empty
-                                    @endforelse
-            				            </select>
-                              </div>
-                            </div>
-                        </form>
-                    </div>
-                    @else
-                      <div class="col-xs-12">
-                        @include('default.deniedmodule')
-                      </div>
-                    @endif
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              @if( auth()->user()->can('Edit assign report') )
-                <button type="button" class="btn bg-navy update_user_data"><i class="fa fa-pencil-square-o" style="margin-right: 4px;"></i>{{ trans('message.actualizar') }}</button>
-              @endif
-              <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
-            </div>
-          </div>
-        </div>
-    </div>
 
     @else
       @include('default.denied')
@@ -215,7 +153,7 @@
 
 @push('scripts')
   @if( auth()->user()->can('View assign report') )
-    <script src="{{ asset('js/admin/report/assign_reports.js')}}"></script>
+    <script src="{{ asset('js/admin/report/assign_report_one.js')}}"></script>
   @else
     <!--NO VER-->
   @endif
