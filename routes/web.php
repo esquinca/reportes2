@@ -205,8 +205,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/acm1pt', 'ResultsSurveyController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
+    Route::post('/get_zd_hotel', 'IndividualController@get_zd_hotel');
+    
     Route::post('/upload_client', 'IndividualController@upload_client');
     Route::post('/upload_banda', 'IndividualController@upload_banda');
+    Route::post('/upload_gigs', 'IndividualController@upload_gigs');
+    Route::post('/upload_users', 'IndividualController@upload_users');
+    Route::post('/upload_mostap', 'IndividualController@upload_mostap');
+    Route::post('/upload_mostwlan', 'IndividualController@upload_mostwlan');
   //- Editar individual
     Route::get('/edit_report', 'EditReportController@index');
     Route::post('/search_info_zdhtl', 'EditReportController@search_zd');
