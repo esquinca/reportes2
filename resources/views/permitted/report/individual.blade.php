@@ -188,10 +188,18 @@
                         <div class="form-group">
       										<label class="col-md-2 control-label" for="month_trans_zd">{{ trans('message.date')}} </label>
       										<div class="col-md-10">
-      											<input id="month_trans_zd" name="month_trans_zd"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
-      												class="form-control input-md">
+      											<input id="month_trans_zd" name="month_trans_zd"  type="text"
+      												class="form-control input-md datepickermonth">
       										</div>
       									</div>
+
+                        <div class="form-group">
+                          <label for="valorgb_trans"  class="col-md-2 control-label">{{ trans('message.gbtrans')}}: </label>
+                          <div class="col-md-10">
+                            <input type="number" class="form-control" id="valorgb_trans" name="valorgb_trans" placeholder="Máximo 5 digitos." maxlength="5" title="{{ trans('message.gbtrans')}}" class="form-control input-md">
+                          </div>
+                        </div>
+
                         <div class="form-group">
                           <div class="col-md-12">
                             <a id="generateGbInfo" class="btn btn-success"><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</a>
@@ -240,19 +248,29 @@
                             </select>
                           </div>
                         </div>
+
                         <div class="form-group">
       										<label class="col-md-2 control-label" for="month_device">{{ trans('message.date')}} </label>
       										<div class="col-md-10">
-      											<input id="month_device" name="month_device"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
-      												class="form-control input-md">
+      											<input id="month_device" name="month_device" type="text"  maxlength="10"
+      												class="form-control input-md datepickermonth">
       										</div>
       									</div>
+                        
+                        <div class="form-group">
+                          <label for="valor_users"  class="col-md-2 control-label">{{ trans('message.usersauth')}}: </label>
+                          <div class="col-md-10">
+                            <input type="number" class="form-control" id="valor_users" name="valor_users" placeholder="Máximo 5 digitos." maxlength="5" title="{{ trans('message.usersauth')}}" class="form-control input-md">
+                          </div>
+                        </div>
+
                         <div class="form-group">
                           <div class="col-md-12">
                             <a id="generateUserInfo" class="btn btn-success"><i class="fa fa-bookmark-o"></i> {{ trans('message.capturar')}}</a>
                             <a id="generateUserClear" class="btn btn-danger"><i class="fa fa-ban"></i> {{ trans('message.cancelar')}}</a>
                           </div>
                           </br></br></br></br>
+                          <!-- </br></br></br></br> -->
                         </div>
                       </form>
                     </div>
@@ -280,25 +298,29 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-sm-12">
-                      {{ csrf_field() }}
                       <form id="form_aps" name="form_aps" class="form-inline" action="">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                          <label for="select_three" class="control-label">{{ trans('message.hotel') }}: </label>
+                          <select id="select_three" name="select_three"  class="form-control select2" required>
+                            <option value="" selected> Elija </option>
+                            @forelse ($hotels as $data_hotel)
+                              <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
+                            @empty
+                            @endforelse
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="fecha_aps" class=" col-md-2 control-label">{{ trans('message.date') }}: </label>
+                          <div class="col-md-10">
+                            <input id="fecha_aps" name="fecha_aps" type="text"  maxlength="10"
+                              class="form-control input-md datepickermonth">
+                          </div>
+                        </div>
+
                         <ul class="list-group">
-                          <li class="list-group-item">
-                            <div class="form-group">
-                              <label for="select_three" class="control-label">{{ trans('message.hotel') }}: </label>
-                              <select id="select_three" name="select_three"  class="form-control select2" required>
-                                <option value="" selected> Elija </option>
-                                @forelse ($hotels as $data_hotel)
-                                  <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
-                                @empty
-                                @endforelse
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="fecha_aps" class="control-label">{{ trans('message.date') }}: </label>
-                              <input type="text" class="form-control" id="fecha_aps" name="fecha_aps" placeholder=" " maxlength="10" title="{{ trans('message.maxcardiez')}}">
-                            </div>
-                          </li>
                           <li class="list-group-item">
                             <div class="row">
                               <small class="col-md-12 control-label">
@@ -306,20 +328,20 @@
                               </small>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="mac1"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="mac1" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac1">
+                                  <span class="input-group-addon" ><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="mac1" id="mac1" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac1">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="modelo1"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="modelo1" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo1">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="modelo1" id="modelo1" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo1">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="cliente1"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="cliente1" type="text" class="form-control" placeholder="{{ trans('message.ingclient')}}" aria-describedby="cliente1">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="cliente1" id="cliente1" type="number" class="form-control" placeholder="Máximo 5 digitos." maxlength="5" aria-describedby="cliente1">
                                 </div>
                               </div>
                             </div>
@@ -331,20 +353,20 @@
                               </small>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="mac2"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="mac2" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac2">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="mac2" id="mac2" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac2">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="modelo2"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="modelo2" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo2">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="modelo2" id="modelo2" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo2">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="cliente2"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="cliente2" type="text" class="form-control" placeholder="{{ trans('message.ingclient')}}" aria-describedby="cliente2">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="cliente2" id="cliente2" type="number" class="form-control" placeholder="Máximo 5 digitos." maxlength="5" aria-describedby="cliente2">
                                 </div>
                               </div>
                             </div>
@@ -356,20 +378,20 @@
                               </small>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="mac3"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="mac3" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac3">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="mac3" id="mac3" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac3">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="modelo3"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="modelo3" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo3">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="modelo3" id="modelo3" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo3">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="cliente3"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="cliente3" type="text" class="form-control" placeholder="{{ trans('message.ingclient')}}" aria-describedby="cliente3">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="cliente3" id="cliente3" type="number" class="form-control" placeholder="Máximo 5 digitos." maxlength="5" aria-describedby="cliente3">
                                 </div>
                               </div>
                             </div>
@@ -381,20 +403,20 @@
                               </small>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="mac4"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="mac4" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac4">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="mac4" id="mac4" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac4">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="modelo4"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="modelo4" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo4">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="modelo4" id="modelo4" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo4">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="cliente4"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="cliente4" type="text" class="form-control" placeholder="{{ trans('message.ingclient')}}" aria-describedby="cliente4">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="cliente4" id="cliente4" type="number" class="form-control" placeholder="Máximo 5 digitos." maxlength="5" aria-describedby="cliente4">
                                 </div>
                               </div>
                             </div>
@@ -406,20 +428,20 @@
                               </small>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="mac5"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="mac5" type="text" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac5">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="mac5" type="text" id="mac5" class="form-control" placeholder="{{ trans('message.ingmac')}}" aria-describedby="mac5">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="modelo5"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="modelo5" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo5">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="modelo5" id="modelo5" type="text" class="form-control" placeholder="{{ trans('message.ingmod')}}" aria-describedby="modelo5">
                                 </div>
                               </div>
                               <div class="col-lg-4">
                                 <div class="input-group">
-                                  <span class="input-group-addon" id="cliente5"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                  <input name="cliente5" type="text" class="form-control" placeholder="{{ trans('message.ingclient')}}" aria-describedby="cliente5">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                  <input name="cliente5" id="cliente5" type="number" class="form-control" placeholder="Máximo 5 digitos." maxlength="5" aria-describedby="cliente5">
                                 </div>
                               </div>
                             </div>
@@ -452,25 +474,29 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-sm-12">
-                      {{ csrf_field() }}
                       <form id="form_wlan" name="form_wlan" class="form-inline" action="">
+                      {{ csrf_field() }}
+                            
+                          <div class="form-group">
+                            <label for="select_four" class="control-label">{{ trans('message.hotel') }}: </label>
+                            <select id="select_four" name="select_four"  class="form-control select2" required>
+                              <option value="" selected> Elija </option>
+                              @forelse ($hotels as $data_hotel)
+                                <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
+                              @empty
+                              @endforelse
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="fecha_nwlan" class=" col-md-2 control-label">{{ trans('message.date') }}: </label>
+                            <div class="col-md-10">
+                              <input id="fecha_nwlan" name="fecha_nwlan" type="text"  maxlength="10"
+                                class="form-control input-md datepickermonth">
+                            </div>
+                          </div>
+                            
                           <ul class="list-group">
-                            <li class="list-group-item">
-                              <div class="form-group">
-                                <label for="select_four" class="control-label">{{ trans('message.hotel') }}: </label>
-                                <select id="select_four" name="select_four"  class="form-control select2" required>
-                                  <option value="" selected> Elija </option>
-                                  @forelse ($hotels as $data_hotel)
-                                    <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
-                                  @empty
-                                  @endforelse
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="fecha_nwlan" class="control-label">{{ trans('message.date') }}: </label>
-                                <input type="text" class="form-control" id="fecha_nwlan" name="fecha_nwlan" placeholder=" " maxlength="10" title="{{ trans('message.maxcardiez')}}">
-                              </div>
-                            </li>
                             <li class="list-group-item">
                               <div class="row">
                                 <small class="col-md-12 control-label">
@@ -478,14 +504,14 @@
                                 </small>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="nombrew1"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                    <input name="nombrew1" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew1">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                    <input name="nombrew1" id="nombrew1" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew1">
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="clientew1"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                    <input name="clientew1" type="text" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew1">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-asteris text-danger">*</i></span>
+                                    <input name="clientew1" id="clientew1" type="number" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew1">
                                   </div>
                                 </div>
                               </div>
@@ -497,14 +523,14 @@
                                 </small>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="nombrew2"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="nombrew2" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew2">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="nombrew2" id="nombrew2" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew2">
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="clientew2"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="clientew2" type="text" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew2">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="clientew2" id="clientew2" type="number" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew2">
                                   </div>
                                 </div>
                               </div>
@@ -516,14 +542,14 @@
                                 </small>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="nombrew3"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="nombrew3" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew3">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="nombrew3" id="nombrew3" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew3">
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="clientew3"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="clientew3" type="text" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew3">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="clientew3" id="clientew3" type="number" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew3">
                                   </div>
                                 </div>
                               </div>
@@ -535,14 +561,14 @@
                                 </small>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="nombrew4"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="nombrew4" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew4">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="nombrew4" id="nombrew4" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew4">
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="clientew4"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="clientew4" type="text" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew4">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="clientew4" id="clientew4" type="number" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew4">
                                   </div>
                                 </div>
                               </div>
@@ -554,14 +580,14 @@
                                 </small>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="nombrew5"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="nombrew5" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew5">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="nombrew5" id="nombrew5" type="text" class="form-control" placeholder="{{ trans('message.ingnombw')}}" aria-describedby="nombrew5">
                                   </div>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
-                                    <span class="input-group-addon" id="clientew5"><i class="glyphicon glyphicon-minus"></i></span>
-                                    <input name="clientew5" type="text" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew5">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-minus"></i></span>
+                                    <input name="clientew5" id="clientew5" type="number" class="form-control" placeholder="{{ trans('message.ingnumcw')}}" aria-describedby="clientew5">
                                   </div>
                                 </div>
                               </div>
@@ -594,120 +620,13 @@
 @if( auth()->user()->can('View individual capture') )
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
-<script src="{{ asset('js/admin/report/assign_reports.js')}}"></script>
+<script src="{{ asset('js/admin/report/individual.js')}}"></script>
 <style media="screen">
   .list-group-item{
     border: 0;
   }
 </style>
-<script type="text/javascript">
-  Dropzone.autoDiscover = false;
-  $(function() {
-    $(".select2").select2();
-    new Dropzone('#dropzone_client' ,{
-      url: "/upload_client",
-      paramName: 'phone_client',
-      autoProcessQueue: false,
-      acceptedFiles:'image/*',
-      maxFilesize: 1,
-      maxFiles: 1,
-      addRemoveLinks: true,
-      uploadMultiple: true,
-      headers: {
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-      },
-      dictDefaultMessage: 'Arrastra la imagen para subirla',
-      init: function() {
-        var myDropzone = this;
-        // this.on("addedfile", function(file) { menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000'); });
-        // this.on("complete", function(file) {  myDropzone.removefile(file); });
-        // this.on("errormultiple", function (file) { myDropzone.removefile(file); }););
-        this.on("maxfilesexceeded", function(file){
-          menssage_toast('Mensaje', '3', 'Se cambio la imagen anterior por la actual' , '3000');
-          myDropzone.removeAllFiles();
-          myDropzone.addFile(file);
-        });
-        this.on('error', function(file, response) {
-            myDropzone.removeFile(file);
-        });
-        var submitImgClient = document.getElementById('cargarimgclient');
-        submitImgClient.addEventListener("click", function(e) {
-          // Make sure that the form isn't actually being sent.
-          e.preventDefault();
-          e.stopPropagation();
-          myDropzone.processQueue();
-        });
-        //send all the form data along with the files:
-        this.on("sendingmultiple", function(data, xhr, formData) {
-            formData.append("select_one_type", $('#select_one_type').val());
-            formData.append("month_upload_type", $("#month_upload_type").val());
-        });
-        this.on("successmultiple", function(files, response) {
-          // Gets triggered when the files have successfully been sent.
-          // Redirect user or notify of success
-          myDropzone.removeAllFiles();
-          $('#form_img_upload_type')[0].reset();
-          $('#select_one_type').prop('selectedIndex',0);
-          $("#select_one_type").select2({placeholder: "Elija"});
-          menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
-        });
-      }
-    });
 
-    new Dropzone('#dropzone_band' ,{
-      url: "/upload_banda",
-      paramName: 'phone_band',
-      autoProcessQueue: false,
-      acceptedFiles:'image/*',
-      maxFilesize: 1,
-      maxFiles: 1,
-      addRemoveLinks: true,
-      uploadMultiple: true,
-      headers: {
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-      },
-      dictDefaultMessage: 'Arrastra la imagen para subirla',
-      init: function() {
-        var myDropzone = this;
-        // this.on("addedfile", function(file) { menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000'); });
-        // this.on("complete", function(file) {  myDropzone.removefile(file); });
-        // this.on("errormultiple", function (file) { myDropzone.removefile(file); }););
-        this.on("maxfilesexceeded", function(file){
-          menssage_toast('Mensaje', '3', 'Se cambio la imagen anterior por la actual' , '3000');
-          myDropzone.removeAllFiles();
-          myDropzone.addFile(file);
-        });
-        this.on('error', function(file, response) {
-            myDropzone.removeFile(file);
-        });
-        var submitImgClient = document.getElementById('cargarimgband');
-        submitImgClient.addEventListener("click", function(e) {
-          // Make sure that the form isn't actually being sent.
-          e.preventDefault();
-          e.stopPropagation();
-          myDropzone.processQueue();
-        });
-        //send all the form data along with the files:
-        this.on("sendingmultiple", function(data, xhr, formData) {
-            formData.append("select_one_band", $('#select_one_band').val());
-            formData.append("month_upload_band", $("#month_upload_band").val());
-        });
-        this.on("successmultiple", function(files, response) {
-          // Gets triggered when the files have successfully been sent.
-          // Redirect user or notify of success
-          myDropzone.removeAllFiles();
-          $('#form_img_band_upload')[0].reset();
-          $('#select_one_band').prop('selectedIndex',0);
-          $("#select_one_band").select2({placeholder: "Elija"});
-          menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
-        });
-      }
-    });
-
-
-
-  });
-</script>
 @else
 <!--NO VER-->
 @endif

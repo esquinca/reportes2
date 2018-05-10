@@ -148,6 +148,8 @@ return [
 
     'ingnombw' => 'Ingresar nombre de WLAN',
     'ingnumcw' => 'Ingresar num. de clientes',
+    'gbtrans' => 'GB. trans',
+    'usersauth' => 'Usuarios',
 
     'ingmac' => 'MAC',
     'ingmod' => 'Modelo',
