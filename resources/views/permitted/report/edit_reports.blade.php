@@ -58,9 +58,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-2 control-label" for="inputSupervisor">{{ trans('message.date')}} </label>
+                      <label class="col-md-2 control-label" for="date_type_device">{{ trans('message.date')}} </label>
                       <div class="col-md-10">
-                        <input id="month_upload_type" name="month_upload_type"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                        <input id="date_type_device" name="date_type_device"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
                           class="form-control input-md">
                       </div>
                     </div>
@@ -118,9 +118,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-2 control-label" for="month_upload_band">{{ trans('message.date')}} </label>
+                      <label class="col-md-2 control-label" for="date_type_banda">{{ trans('message.date')}} </label>
                       <div class="col-md-10">
-                        <input id="month_upload_band" name="month_upload_band"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                        <input id="date_type_banda" name="date_type_banda"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
                           class="form-control input-md">
                       </div>
                     </div>
@@ -166,7 +166,14 @@
                   <form id="form_gb" name="form_gb" class="form-horizontal" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                      <label for="select_onet" class="col-md-2 control-label">{{ trans('message.hotel') }}</label>
+                      <label class="col-md-2 control-label" for="date_trans_gb">{{ trans('message.date')}} (*) </label>
+                      <div class="col-md-10">
+                        <input id="date_trans_gb" name="date_trans_gb"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                          class="form-control input-md">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="select_onet" class="col-md-2 control-label">{{ trans('message.hotel') }} (*)</label>
                       <div class="col-md-10 selectContainer">
                         <select id="select_onet" name="select_onet" class="form-control select2">
                           <option value="" selected> Elija </option>
@@ -178,29 +185,22 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="select_two_zd" class="col-md-2 control-label">{{ trans('message.zonedirect') }}</label>
+                      <label for="select_two_zd" class="col-md-2 control-label">{{ trans('message.zonedirect') }} (*)</label>
                       <div class="col-md-10 selectContainer">
                         <select id="select_two_zd" name="select_two_zd" class="form-control select2">
-                          <option value="" selected> Elija </option>
+                          <!-- <option value="" selected> Elija </option> -->
                         </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-md-2 control-label" for="month_trans_zd">{{ trans('message.date')}} </label>
-                      <div class="col-md-10">
-                        <input id="month_trans_zd" name="month_trans_zd"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
-                          class="form-control input-md">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-md-5 control-label" for="data_trans_gb">{{ trans('message.transmitidosgb')}} </label>
                       <div class="col-md-7">
                         <input id="data_trans_gb" name="data_trans_gb"  type="text"  maxlength="20" placeholder="{{ trans('message.maxcarveint')}}"
-                          class="form-control input-md">
+                          class="form-control input-md" readonly>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-5 control-label" for="newdata_trans_gb">{{ trans('message.newtransmitidosgb')}} </label>
+                      <label class="col-md-5 control-label" for="newdata_trans_gb">{{ trans('message.newtransmitidosgb')}} (*)</label>
                       <div class="col-md-7">
                         <input id="newdata_trans_gb" name="newdata_trans_gb"  type="text"  maxlength="20" placeholder="{{ trans('message.maxcarveint')}}"
                           class="form-control input-md">
@@ -240,8 +240,15 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-sm-12">
-                  <form id="form_device" name="form_device" class="form-horizontal" method="POST">
+                  <form id="form_user" name="form_user" class="form-horizontal" method="POST">
                     {{ csrf_field() }}
+                    <div class="form-group">
+                      <label class="col-md-2 control-label" for="date_trans_user">{{ trans('message.date')}} </label>
+                      <div class="col-md-10">
+                        <input id="date_trans_user" name="date_trans_user"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                          class="form-control input-md">
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label for="select_one_device" class="col-md-2 control-label">{{ trans('message.hotel') }}</label>
                       <div class="col-md-10 selectContainer">
@@ -255,17 +262,10 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-md-2 control-label" for="month_device">{{ trans('message.date')}} </label>
-                      <div class="col-md-10">
-                        <input id="month_device" name="month_device"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
-                          class="form-control input-md">
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label class="col-md-6 control-label" for="data_trans_user">{{ trans('message.transmitidosuser')}} </label>
                       <div class="col-md-6">
                         <input id="data_trans_user" name="data_trans_user"  type="text"  maxlength="20" placeholder="{{ trans('message.maxcarveint')}}"
-                          class="form-control input-md">
+                          class="form-control input-md" readonly>
                       </div>
                     </div>
                     <div class="form-group">
@@ -301,9 +301,9 @@
 
 @push('scripts')
 @if( auth()->user()->can('View individual general report') )
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
-<script src="{{ asset('js/admin/report/assign_reports.js')}}"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script> -->
+<script src="{{ asset('js/admin/report/edit_reports.js')}}"></script>
 @else
 <!--NO VER-->
 @endif

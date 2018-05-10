@@ -253,27 +253,30 @@
                       </div>
                     </div>
 
-                    <div  class="row text-center contact-info" style="display:none;">
+                    <div  class="row text-center contact-info" style="display:block;">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                         <hr />
                           <span>
-                              <strong>Adicional</strong>
+                              <strong>Consumo promedio del enlace de 50 MB</strong>
                           </span>
                         <hr />
                       </div>
                     </div>
-                    <div class="row pad-top-botm client-info" style="display:none;">
-                      <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="row pad-top-botm client-info" style="display:block;">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="clearfix">
-                            <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div>
+                          <center>
+                            <img class="" id="client_img" src="{{ asset('images/band/imagen.png') }}"  />
+                          </center>
+                            <!-- <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;"></div> -->
                           </div>
                       </div>
 
-                      <div class="col-lg-6 col-md-6 col-sm-6">
+                      <!-- <div class="col-lg-6 col-md-6 col-sm-6" style="display:block;">
                         <div class="clearfix">
                             <div id="main_modelos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;">tabla</div>
                           </div>
-                      </div>
+                      </div> -->
                     </div>
 
 

@@ -209,6 +209,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/upload_banda', 'IndividualController@upload_banda');
   //- Editar individual
     Route::get('/edit_report', 'EditReportController@index');
+    Route::post('/search_info_zdhtl', 'EditReportController@search_zd');
+    Route::post('/search_infogb', 'EditReportController@search_gb');
+    Route::post('/update_infogb', 'EditReportController@update_gb');
+
+    Route::post('/search_info_user', 'EditReportController@search_user');
+    Route::post('/update_infouser', 'EditReportController@update_user');
+
   //- Aproval concierge
     Route::get('/approval', 'ApprovalConciergeController@index');
   //- Aproval admin

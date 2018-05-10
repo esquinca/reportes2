@@ -196,7 +196,7 @@ return [
     'distribuidor' => 'Distribuidor',
     'marcas' => 'Marcas',
     'transmitidosgb'=>'Cant. Actual de GB Registrados',
-    'newtransmitidosgb'=>'Nueva Cant. de GB Transmitidos',
+    'newtransmitidosgb'=>'Nueva Cant. de GB',
 
     'transmitidosuser'=>'Cant. Actual de usuarios registrados',
     'newtransmitidosuser'=>'Nueva Cant. de usuarios transmitidos',
