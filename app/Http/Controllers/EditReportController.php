@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Carbon\Carbon;
-
+use File;
+use Storage;
 class EditReportController extends Controller
 {
   public function index()
@@ -92,28 +93,74 @@ class EditReportController extends Controller
     }
     return $flag;
   }
-  // {
-  //   $hotel = $request->htl;
-  //   $date = $request->dt;
-  //   $giga = $request->user;
-  //   $count_md = DB::table('marcas')->where('Nombre_marca', $name)->where('Distribuidor', $dist)->count();
-  //   if ($count_md == '0') {
-  //     return '0';
-  //   }
-  //
-  //   $res = DB::table('gbxdias')
-  //          ->where('Fecha', '=', $date)
-  //          ->where('hotels_id', '=', $hotel)
-  //          ->where('ZD', '=', $ip)
-  //          ->update(
-  //           [
-  //             'CantidadBytes' => $bytes,
-  //             'ConsumoReal' => $bytes,
-  //             'updated_at' => \Carbon\Carbon::now()
-  //           ]);
-  //   return $res;
-  // }
+  public function reupload_client(Request $request)
+  {
+    $flag = 0;
+    $hotel = $request->select_one_type;
+    $months = $request->date_type_device;
+    $date = $months.'-01';
+    $photo = $request->file('phone_client');
 
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '0'],
+          ['Fecha', '=' , $date]
+        ])->count();
 
+    if ($find != '0') {
+      $val_exist = DB::table('report_hotel_bandas')->select('img')
+      ->where('hotels_id', '=', $hotel)
+      ->where('type', '=', '0')
+      ->where('Fecha', '=', $date)
+      ->value('img');
+      $file = public_path('images/storage/' . $val_exist);
 
+      if (File::exists($file)) {
+        File::delete($file);
+        $almacenar_store = $photo[0]->store('device');
+        $sql = DB::table('report_hotel_bandas')
+        ->where('hotels_id', '=', $hotel)
+        ->where('type', '=', '0')
+        ->where('Fecha','=',  $date)
+        ->update(['img' => $almacenar_store]);
+        $flag =1;
+      }
+    }
+    return $flag;
+  }
+
+  public function reupload_banda(Request $request)
+  {
+    $flag = 0;
+    $hotel = $request->select_one_band;
+    $months = $request->date_type_banda;
+    $date = $months.'-01';
+    $photo = $request->file('phone_band');
+
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '1'],
+          ['Fecha', '=' , $date]
+        ])->count();
+    if ($find != '0') {
+      $val_exist = DB::table('report_hotel_bandas')->select('img')
+      ->where('hotels_id', '=', $hotel)
+      ->where('type', '=', '1')
+      ->where('Fecha', '=', $date)
+      ->value('img');
+      $file = public_path('images/storage/' . $val_exist);
+      if (File::exists($file)) {
+        File::delete($file);
+        $almacenar_store = $photo[0]->store('band');
+        $sql = DB::table('report_hotel_bandas')
+        ->where('hotels_id', '=', $hotel)
+        ->where('type', '=', '1')
+        ->where('Fecha','=',  $date)
+        ->update(['img' => $almacenar_store]);
+        $flag =1;
+      }
+
+    }
+    return $flag;
+  }
 }

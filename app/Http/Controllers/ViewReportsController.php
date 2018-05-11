@@ -150,4 +150,42 @@ class ViewReportsController extends Controller
 
     return json_encode($result1);
   }
+  public function view_band(Request $request){
+    $hotel = $request->data_one;
+    $months = $request->data_two;
+    $date = $months.'-01';
+    $val_exist = '';
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '1'],
+          ['Fecha', '=' , $date]
+        ])->count();
+    if ($find != '0') {
+      $val_exist = DB::table('report_hotel_bandas')->select('img')
+      ->where('hotels_id', '=', $hotel)
+      ->where('type', '=', '1')
+      ->where('Fecha', '=', $date)
+      ->value('img');
+    }
+    return 'images/storage/'.$val_exist;
+  }
+  public function view_device(Request $request){
+    $hotel = $request->data_one;
+    $months = $request->data_two;
+    $date = $months.'-01';
+    $val_exist = '';
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '0'],
+          ['Fecha', '=' , $date]
+        ])->count();
+    if ($find != '0') {
+      $val_exist = DB::table('report_hotel_bandas')->select('img')
+      ->where('hotels_id', '=', $hotel)
+      ->where('type', '=', '0')
+      ->where('Fecha', '=', $date)
+      ->value('img');
+    }
+    return 'images/storage/'.$val_exist;
+  }
 }

@@ -256,7 +256,7 @@
       												class="form-control input-md datepickermonth">
       										</div>
       									</div>
-                        
+
                         <div class="form-group">
                           <label for="valor_users"  class="col-md-2 control-label">{{ trans('message.usersauth')}}: </label>
                           <div class="col-md-10">
@@ -476,7 +476,7 @@
                     <div class="col-sm-12">
                       <form id="form_wlan" name="form_wlan" class="form-inline" action="">
                       {{ csrf_field() }}
-                            
+
                           <div class="form-group">
                             <label for="select_four" class="control-label">{{ trans('message.hotel') }}: </label>
                             <select id="select_four" name="select_four"  class="form-control select2" required>
@@ -495,7 +495,7 @@
                                 class="form-control input-md datepickermonth">
                             </div>
                           </div>
-                            
+
                           <ul class="list-group">
                             <li class="list-group-item">
                               <div class="row">

@@ -76,6 +76,9 @@ $('#btn_generar').on('click', function(e){
 
     graph_top_aps_table();
     general_table_comparative();
+
+    fill_banda();
+    fill_device();
   }
 
 
@@ -450,3 +453,54 @@ $('.btn-export').on('click', function(){
           $('#captura_table_general').show(); //muestro mediante id
     });
 });
+
+function fill_banda() {
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
+  var _token = $('input[name="_token"]').val();
+  var datax;
+  $.ajax({
+    type: "POST",
+    url: "/view_reports_band",
+    data: { data_one : cadena , data_two : date , _token : _token },
+    success: function (data){
+      if (data == 'images/storage/') {
+        $('#main_modelos').hide();
+        $("#client_band").attr("src","../images/hotel/Default.svg");
+      }
+      else {
+        $('#main_modelos').show();
+        $("#client_band").attr("src",data);
+      }
+
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}
+
+function fill_device() {
+  var cadena= $('#select_one').val();
+  var date = $('#calendar_fecha').val();
+  var _token = $('input[name="_token"]').val();
+  var datax;
+  $.ajax({
+    type: "POST",
+    url: "/view_reports_device",
+    data: { data_one : cadena , data_two : date , _token : _token },
+    success: function (data){
+      if (data == 'images/storage/') {
+        $('#main_equipos').hide();
+        $("#client_device").attr("src","../images/hotel/Default.svg");
+      }
+      else {
+        $('#main_equipos').show();
+        $("#client_device").attr("src",data);
+      }
+    },
+    error: function (data) {
+      console.log('Error:', data);
+    }
+  });
+}

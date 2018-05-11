@@ -21,13 +21,62 @@ class IndividualController extends Controller
   }
   public function upload_client(Request $request)
   {
+    // $this->validate($request, [
+    //   'phone_client' => 'required | mimes:jpeg,jpg,png'
+    // ]);
+    $flag = 0;
+    $hotel = $request->select_one_type;
+    $months = $request->month_upload_type;
+    $date = $months.'-01';
+    $photo = $request->file('phone_client');
 
-    return $request;
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '0'],
+          ['Fecha', '=' , $date]
+        ])->count();
+    if ($find == '0') {
+      $almacenar_store = $photo[0]->store('device');
+      $result = DB::table('report_hotel_bandas')
+      ->insertGetId([
+        'hotels_id' => $hotel,
+        'Fecha' => $date,
+        'img' => $almacenar_store,
+        'type' => '0'
+      ]);
+      if($result != '0'){
+        $flag =1;
+      }
+    }
+    return $flag;
   }
   public function upload_banda(Request $request)
   {
+    $flag = 0;
+    $hotel = $request->select_one_band;
+    $months = $request->month_upload_band;
+    $date = $months.'-01';
+    $photo = $request->file('phone_band');
 
-    return $request;
+    $find = DB::table('report_hotel_bandas')->where([
+          ['hotels_id', '=' , $hotel],
+          ['type', '=' , '1'],
+          ['Fecha', '=' , $date]
+        ])->count();
+    if ($find == '0') {
+      $almacenar_store = $photo[0]->store('band');
+      $result = DB::table('report_hotel_bandas')
+                ->insertGetId([
+                  'hotels_id' => $hotel,
+                  'Fecha' => $date,
+                  'img' => $almacenar_store,
+                  'type' => '1'
+                ]);
+      if($result != '0'){
+        $flag =1;
+      }
+    }
+    return $flag;
   }
 
   public function insertGig($data)
@@ -130,7 +179,7 @@ class IndividualController extends Controller
     $res = DB::table('usuariosxdias')->where([
       ['hotels_id', '=' , $hotelid],
       ['Fecha', '=' , $date]
-    ])->count(); 
+    ])->count();
 
     if ($res === 0) {
       $datos = [

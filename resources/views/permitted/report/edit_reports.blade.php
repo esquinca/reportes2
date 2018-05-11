@@ -60,7 +60,7 @@
                     <div class="form-group">
                       <label class="col-md-2 control-label" for="date_type_device">{{ trans('message.date')}} </label>
                       <div class="col-md-10">
-                        <input id="date_type_device" name="date_type_device"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                        <input id="date_type_device" name="date_type_device"  type="text"  maxlength="7"
                           class="form-control input-md">
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                     <div class="form-group">
                       <label class="col-md-2 control-label" for="date_type_banda">{{ trans('message.date')}} </label>
                       <div class="col-md-10">
-                        <input id="date_type_banda" name="date_type_banda"  type="text"  maxlength="10" placeholder="{{ trans('message.maxcardiez')}}"
+                        <input id="date_type_banda" name="date_type_banda"  type="text"  maxlength="7"
                           class="form-control input-md">
                       </div>
                     </div>
@@ -301,8 +301,8 @@
 
 @push('scripts')
 @if( auth()->user()->can('View individual general report') )
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.2.0/min/dropzone.min.js"></script>
 <script src="{{ asset('js/admin/report/edit_reports.js')}}"></script>
 @else
 <!--NO VER-->

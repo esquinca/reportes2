@@ -122,6 +122,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_gb_month', 'ViewReportsController@gb_month');
     Route::post('/get_mostAP_top5', 'ViewReportsController@mostAP_top5');
     Route::post('/get_comparative', 'ViewReportsController@tab_comparativa');
+
+    Route::post('/view_reports_band' , 'ViewReportsController@view_band');
+    Route::post('/view_reports_device' , 'ViewReportsController@view_device');
+
   //Reporte concatenado
     Route::get('/viewreportscont', 'ViewReportContController@index');
     Route::post('/get_user_cont', 'ViewReportContController@table_user');
@@ -206,7 +210,7 @@ Route::group(['middleware' => ['auth']], function() {
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/get_zd_hotel', 'IndividualController@get_zd_hotel');
-    
+
     Route::post('/upload_client', 'IndividualController@upload_client');
     Route::post('/upload_banda', 'IndividualController@upload_banda');
     Route::post('/upload_gigs', 'IndividualController@upload_gigs');
@@ -221,6 +225,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/search_info_user', 'EditReportController@search_user');
     Route::post('/update_infouser', 'EditReportController@update_user');
+
+    Route::post('/reupload_client', 'EditReportController@reupload_client');
+    Route::post('/reupload_banda', 'EditReportController@reupload_banda');
 
   //- Aproval concierge
     Route::get('/approval', 'ApprovalConciergeController@index');

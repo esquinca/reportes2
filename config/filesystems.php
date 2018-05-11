@@ -39,13 +39,19 @@ return [
     |
     | Supported Drivers: "local", "ftp", "s3", "rackspace"
     |
+
+    'local' => [
+        'driver' => 'local',
+        'root' => storage_path('app'),
+    ],
+
     */
 
     'disks' => [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('images/storage'),
         ],
 
         'public' => [

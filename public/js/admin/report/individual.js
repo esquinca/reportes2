@@ -13,6 +13,25 @@ $(function() {
     clearBtn: true
   });
 
+  $('#month_upload_type').datepicker({
+    language: 'es',
+    format: "yyyy-mm",
+    viewMode: "months",
+    minViewMode: "months",
+    endDate: '-1m',
+    autoclose: true,
+    clearBtn: true
+  });
+  $('#month_upload_band').datepicker({
+    language: 'es',
+    format: "yyyy-mm",
+    viewMode: "months",
+    minViewMode: "months",
+    endDate: '-1m',
+    autoclose: true,
+    clearBtn: true
+  });
+
   new Dropzone('#dropzone_client' ,{
     url: "/upload_client",
     paramName: 'phone_client',
@@ -23,7 +42,7 @@ $(function() {
     addRemoveLinks: true,
     uploadMultiple: true,
     headers: {
-      'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     dictDefaultMessage: 'Arrastra la imagen para subirla',
     init: function() {
@@ -37,7 +56,7 @@ $(function() {
         myDropzone.addFile(file);
       });
       this.on('error', function(file, response) {
-          myDropzone.removeFile(file);
+        myDropzone.removeFile(file);
       });
       var submitImgClient = document.getElementById('cargarimgclient');
       submitImgClient.addEventListener("click", function(e) {
@@ -54,11 +73,17 @@ $(function() {
       this.on("successmultiple", function(files, response) {
         // Gets triggered when the files have successfully been sent.
         // Redirect user or notify of success
-        myDropzone.removeAllFiles();
-        $('#form_img_upload_type')[0].reset();
-        $('#select_one_type').prop('selectedIndex',0);
-        $("#select_one_type").select2({placeholder: "Elija"});
-        menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
+        if (response == '0') {
+          myDropzone.removeAllFiles();
+          menssage_toast('Mensaje', '2', 'Operation Abort - Este día ya fue capturado.' , '3000');
+        }
+        else {
+          myDropzone.removeAllFiles();
+          $('#form_img_upload_type')[0].reset();
+          $('#select_one_type').prop('selectedIndex',0);
+          $("#select_one_type").select2({placeholder: "Elija"});
+          menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
+        }
       });
     }
   });
@@ -73,7 +98,7 @@ $(function() {
     addRemoveLinks: true,
     uploadMultiple: true,
     headers: {
-      'X-CSRF-TOKEN': '{{ csrf_token() }}'
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     dictDefaultMessage: 'Arrastra la imagen para subirla',
     init: function() {
@@ -104,11 +129,17 @@ $(function() {
       this.on("successmultiple", function(files, response) {
         // Gets triggered when the files have successfully been sent.
         // Redirect user or notify of success
-        myDropzone.removeAllFiles();
-        $('#form_img_band_upload')[0].reset();
-        $('#select_one_band').prop('selectedIndex',0);
-        $("#select_one_band").select2({placeholder: "Elija"});
-        menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
+        if (response == '0') {
+          myDropzone.removeAllFiles();
+          menssage_toast('Mensaje', '2', 'Operation Abort - Este día ya fue capturado.' , '3000');
+        }
+        else {
+          myDropzone.removeAllFiles();
+          $('#form_img_band_upload')[0].reset();
+          $('#select_one_band').prop('selectedIndex',0);
+          $("#select_one_band").select2({placeholder: "Elija"});
+          menssage_toast('Mensaje', '4', 'Imagen cargada con exito' , '3000');
+        }
       });
     }
   });
@@ -149,7 +180,7 @@ $('#select_onet').on('change', function(){
           console.log('Error:', data);
         }
     });
-  
+
 
 });
 
@@ -158,7 +189,7 @@ $('#generateGbInfo').on('click', function(){
   var select2 = $('#select_two_zd').val();
   var month = $('#month_trans_zd').val();
   var valuegb = $('#valorgb_trans').val();
-  
+
   if (select1 === "" || select2 === "" || month === "" || valuegb.length === 0 || valuegb.length > 5) {
     menssage_toast('Mensaje', '2', 'LLene todos los campos correctamente.' , '3000');
   }else{
@@ -221,7 +252,7 @@ $('#generateUserInfo').on('click', function(){
 
   var month = $('#month_device').val();
   var valueuser = $('#valor_users').val();
-  
+
   if (select === "" || month === "" || valueuser.length === 0 || valueuser.length > 5) {
     menssage_toast('Mensaje', '2', 'LLene todos los campos correctamente.' , '3000');
   }else{
@@ -267,7 +298,7 @@ function device_authclient() {
         console.log('Error:', data);
       }
   });
-  
+
 }
 
 function checkMAC(value) {
@@ -345,7 +376,7 @@ $('#generateapsInfo').on('click', function(){
       mac2 === '' || modelo2 === '' || cliente2 === '' ||
       mac3 === '' || modelo3 === '' || cliente3 === '' ||
       mac4 === '' || modelo4 === '' || cliente4 === '' ||
-      mac5 === '' || modelo5 === '' || cliente5 === '') 
+      mac5 === '' || modelo5 === '' || cliente5 === '')
   {
     menssage_toast('Mensaje', '2', 'Complete todos los campos correctamente.' , '3000');
   }else{
@@ -457,7 +488,7 @@ $('#generatewlanInfo').on('click', function(){
   // let clientew5 = $('#clientew5').val();
 
   if (select_wlan === '' || fecha_wlan === '' ||
-      nombrew1 === '' || clientew1 === '') 
+      nombrew1 === '' || clientew1 === '')
   {
     menssage_toast('Mensaje', '2', 'Complete todos los campos correctamente.' , '3000');
   }else{
@@ -528,5 +559,5 @@ function top_five_wlan() {
         console.log('Error:', data);
       }
   });
-  
+
 }
