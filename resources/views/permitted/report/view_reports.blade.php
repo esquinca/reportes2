@@ -266,6 +266,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-6" style="display:block;">
                         <div class="clearfix">
                             <div id="main_equipos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;">
+                              <strong>Tipos de dispositivos</strong>
                               <img id="client_device" src="{{ asset('images/hotel/Default.svg') }}" style="padding-bottom:20px; width: 100%;" />
 
                             </div>
@@ -275,6 +276,7 @@
                       <div class="col-lg-6 col-md-6 col-sm-6" style="display:block;">
                         <div class="clearfix">
                             <div id="main_modelos" style="width: 100%; min-height: 400px; border:1px solid #ccc;padding:10px;">
+                              <strong>Ancho de banda</strong>
                               <img id="client_band" src="{{ asset('images/hotel/Default.svg') }}" style="padding-bottom:20px; width: 100%;" />
 
                             </div>
