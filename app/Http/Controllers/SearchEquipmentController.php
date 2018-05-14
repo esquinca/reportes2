@@ -27,4 +27,10 @@ class SearchEquipmentController extends Controller
     $result = DB::select('CALL detail_device_baja (?, ?)', array($data_a, $data_b));
     return json_encode($result);
   }
+  public function search_mac(Request $request)
+  {
+    $mac = $request->mac_input;
+    $result = DB::select('CALL detail_device_mac_serie(?)', array($mac));
+    return json_encode($result);
+  }
 }

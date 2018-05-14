@@ -36,6 +36,18 @@
               <div class="box-body">
                 <div class="form-inline">
                     {{ csrf_field() }}
+                    <div class="form-group">
+                      <label for="select_one_type" class="control-label">{{ trans('message.hotel') }}</label>
+                      <div class="selectContainer">
+                        <select id="select_one" name="select_one" class="form-control select2">
+                          <option value="" selected> Elija </option>
+                          @forelse ($hotels as $data_hotel)
+                            <option value="{{ $data_hotel->id }}"> {{ $data_hotel->Nombre_hotel }} </option>
+                          @empty
+                          @endforelse
+                        </select>
+                      </div>
+                    </div>
 
                     <div class="form-group">
                       <label for="direccion_ip"  class="control-label">{{ trans('message.direccionip')}}</label>
@@ -75,3 +87,4 @@
   @else
     <!--NO VER-->
   @endif
+@endpush
