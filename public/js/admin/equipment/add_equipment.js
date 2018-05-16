@@ -15,18 +15,24 @@ $(function() {
       $('.data_equipament').show();
       $('.data_temporal').show();
       reset_fact();
-      $('#form_marca')[0].reset();
-      $('#form_model')[0].reset();
-      $('#reg_provider')[0].reset();
+      if ($('#form_marca').length > 0) { $('#form_marca')[0].reset(); }
+      if ($('#form_model').length > 0) { $('#form_model')[0].reset(); }
+      if ($('#reg_provider').length > 0) { $('#reg_provider')[0].reset(); }
+      // $('#form_marca')[0].reset();
+      // $('#form_model')[0].reset();
+      // $('#reg_provider')[0].reset();
     }
     if (this.value == 'no') {
       $('.data_fact').hide();
       $('.data_equipament').show();
       $('.data_temporal').show();
       reset_fact();
-      $('#form_marca')[0].reset();
-      $('#form_model')[0].reset();
-      $('#reg_provider')[0].reset();
+      if ($('#form_marca').length > 0) { $('#form_marca')[0].reset(); }
+      if ($('#form_model').length > 0) { $('#form_model')[0].reset(); }
+      if ($('#reg_provider').length > 0) { $('#reg_provider')[0].reset(); }
+      // $('#form_marca')[0].reset();
+      // $('#form_model')[0].reset();
+      // $('#reg_provider')[0].reset();
     }
   });
 
@@ -62,7 +68,7 @@ $(function() {
 
   var vartable = $("#table_temporality").dataTable(Configuration_table_clearx2);
   input_mac('add_mac_eq');
-  input_number('add_num_se');
+  // input_number('add_num_se');
 
 });
 
@@ -424,6 +430,16 @@ $(".btn-save").on("click", function () {
     }
   }
   if ($("input[name='facturitha']:checked").val() == 'no') {
+    $obligatorio_d = validarespacioinputlength('add_mac_eq',17);
+    $obligatorio_e = validarespacioinputlength('add_num_se', 10);
+    $obligatorio_f = validarespacioinput('add_descrip');
+
+    $obligatorio_g = validarSelect('type_equipment');
+    $obligatorio_h = validarSelect('Marcas');
+    $obligatorio_i = validarSelect('mmodelo');
+    $obligatorio_j = validarSelect('add_estado');
+    $obligatorio_k = validarSelect('venue');
+
     if ($obligatorio_d == true && $obligatorio_e == true && $obligatorio_f == true &&
         $obligatorio_g == true && $obligatorio_h == true && $obligatorio_i == true &&
         $obligatorio_j == true && $obligatorio_k == true) {

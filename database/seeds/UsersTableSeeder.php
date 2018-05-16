@@ -153,10 +153,19 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
    $encuestasitwifivconfig= Permission::create(['name' => 'View config sitwifi']);
    $encuestasitwifidconfig= Permission::create(['name' => 'Delete config sitwifi']);
    $encuestasitwifisend= Permission::create(['name' => 'Send mail sitwifi']);
-   
+
    $vcreatmodel= Permission::create(['name' => 'Create model']);
    $vcreatmarcas= Permission::create(['name' => 'Create marcas']);
-
+   //- Viaticos
+   $vcreatviatic1= Permission::create(['name' => 'View dashboard travel expenses']);
+   $vcreatviatic2= Permission::create(['name' => 'View add request of travel expenses']);
+   $vcreatviatic3= Permission::create(['name' => 'View history travel requests']);
+   $viaticoperm1= Permission::create(['name' => 'Create add request of travel expenses']);
+   $viaticoperm2= Permission::create(['name' => 'Edit request of travel expenses']);
+   $viaticoperm3= Permission::create(['name' => 'Checking request of travel expenses']);
+   $viaticoperm4= Permission::create(['name' => 'Reuse request of travel expenses']);
+   $viaticoperm5= Permission::create(['name' => 'Approve request of travel expenses']);
+   $viaticoperm6= Permission::create(['name' => 'Travel allowance notification']);
    //Creamos los usuarios por default
      $user_default_0 = new User;
      $user_default_0->name='SuperAdmin';
@@ -2596,6 +2605,12 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
          $seccion_admin_e->icons='fa fa-wrench';
          $seccion_admin_e->save();
 
+         $seccion_admin_f = new Section;
+         $seccion_admin_f->name='viaticos';
+         $seccion_admin_f->display_name='Viáticos';
+         $seccion_admin_f->icons='fa fa-wrench';
+         $seccion_admin_f->save();
+
        //Menu Inventario
          $menu_inv_000 = new Menu;
          $menu_inv_000->name='detailed_hotel';
@@ -2992,6 +3007,51 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
          $assigned_menu_her_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_her_002->id]);
          $assigned_menu_her_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_her_002->id]);
 
+       //Menu Viaticos
+         $menu_via_000 = new Menu;
+         $menu_via_000->name='dashboard_viaticos';
+         $menu_via_000->display_name='Dashboard Viaticos';
+         $menu_via_000->description='Permite visualizar el dashboard de viaticos anual';
+         $menu_via_000->url='dashboard_viaticos';
+         $menu_via_000->section_id=$seccion_admin_f->id;
+         $menu_via_000->icons='fa fa-gg-circle';
+         $menu_via_000->save();
+         $assigned_menu_via_0_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_via_000->id]);
+         $assigned_menu_via_0_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_via_000->id]);
+         $assigned_menu_via_0_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_via_000->id]);
+         $assigned_menu_via_0_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_via_000->id]);
+         $assigned_menu_via_0_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_via_000->id]);
+         $assigned_menu_via_0_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_via_000->id]);
+
+         $menu_via_001 = new Menu;
+         $menu_via_001->name='add_request_via';
+         $menu_via_001->display_name='Solicitud Viaticos';
+         $menu_via_001->description='Permite solicitar viaticos';
+         $menu_via_001->url='add_request_via';
+         $menu_via_001->section_id=$seccion_admin_f->id;
+         $menu_via_001->icons='fa fa-angle-double-right';
+         $menu_via_001->save();
+         $assigned_menu_via_1_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_via_001->id]);
+         $assigned_menu_via_1_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_via_001->id]);
+         $assigned_menu_via_1_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_via_001->id]);
+         $assigned_menu_via_1_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_via_001->id]);
+         $assigned_menu_via_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_via_001->id]);
+         $assigned_menu_via_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_via_001->id]);
+
+         $menu_via_002 = new Menu;
+         $menu_via_002->name='history_travel_requests';
+         $menu_via_002->display_name='Historial Viaticos';
+         $menu_via_002->description='Permite visualizar las solicitudes de viaticos';
+         $menu_via_002->url='history_travel_requests';
+         $menu_via_002->section_id=$seccion_admin_f->id;
+         $menu_via_002->icons='fa fa-tasks';
+         $menu_via_002->save();
+         $assigned_menu_via_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_via_002->id]);
+         $assigned_menu_via_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_via_002->id]);
+         $assigned_menu_via_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_via_002->id]);
+         $assigned_menu_via_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_via_002->id]);
+         $assigned_menu_via_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_via_002->id]);
+         $assigned_menu_via_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_via_002->id]);
 
   }
 }

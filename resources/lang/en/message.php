@@ -202,4 +202,13 @@ return [
 
     'transmitidosuser'=>'Cant. Actual de usuarios registrados',
     'newtransmitidosuser'=>'Nueva Cant. de usuarios transmitidos',
+
+    'viaticos_dashboard_request'=>'Dashboard Viaticos',
+    'viaticos_add_request'=>'Solicitud Viaticos',
+    'viaticos_history_request'=>'Histoial',
+
+    'breadcrumb_dashboard_request' => 'Dashboard Viaticos',
+    'breadcrumb_viaticos_add' => 'Solicitud Viaticos',
+    'breadcrumb_viaticos_hist' => 'Historial Viaticos',
+    'viaticos' => 'Viático',
 ];
