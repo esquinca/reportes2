@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/search_item_descript_hotels', 'MoveEquipmentController@descrip');
     Route::post('/save_description_move_hotels', 'MoveEquipmentController@update');
     Route::post('/search_range_equipament_all', 'SearchEquipmentController@search_range');
+    Route::post('/get_mac_res', 'SearchEquipmentController@search_mac');
 
     Route::get('/group_equipment', 'GroupEquipmentController@index');
     Route::get('/provider', 'ProviderController@index');
@@ -182,6 +183,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/detailed_guest_review', 'GuestToolsController@index');
     Route::get('/detailed_server_review', 'ServerToolsController@index');
     Route::get('/testzone', 'ZoneToolsController@index');
+    Route::post('/getInfoZD', 'ZoneToolsController@getInfo');
 
     Route::get('/DiagHuespedAjax','GuestToolsController@checkGuest');
     Route::get('/DiagHuespedAjax2', 'GuestToolsController@checkWebSer');
@@ -239,5 +241,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/search_hotel_u' , 'ConfigurationSurveyController@search_hotel_user');
     Route::post('/send_unanswer', 'ConfigurationSurveyController@send_correo_unanswer');
     Route::post('/send_unanswer_sit', 'ConfigurationSitController@send_correo_unanswer_sit');
+
+
+  //- Funcion para probar mails.  
+    Route::get('mailable', function(){
+        $data = ['cliente_o' => 'Aldea Thai', 'cliente_d' => 'Aluxes', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4'];
+        $data2 = ['Jose Esquinca', 'Alonso cauich'];
+
+        return new App\Mail\MovimientosMail($data, $data2);
+    });
 
 });

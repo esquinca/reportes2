@@ -35,19 +35,68 @@ function general_table_equipment() {
   });
 }
 function table_consumption_remove(datajson, table){
-      table.DataTable().destroy();
-      var vartable = table.dataTable(Configuration_table_responsive_remove_item);
-      vartable.fnClearTable();
-      $.each(JSON.parse(datajson), function(index, status){
-        vartable.fnAddData([
-          status.Nombre_hotel,
-          status.name,
-          status.Nombre_marca,
-          status.MAC,
-          status.Serie,
-          status.ModeloNombre,
-          "<center><kbd style='background-color:grey'>"+status.Nombre_estado+"</kbd></center>",
-          status.Fecha_Baja,
-        ]);
-      });
+  table.DataTable().destroy();
+  var vartable = table.dataTable(Configuration_table_responsive_remove_item);
+  vartable.fnClearTable();
+  $.each(JSON.parse(datajson), function(index, status){
+    vartable.fnAddData([
+      status.Nombre_hotel,
+      status.name,
+      status.Nombre_marca,
+      status.MAC,
+      status.Serie,
+      status.ModeloNombre,
+      "<center><kbd style='background-color:grey'>"+status.Nombre_estado+"</kbd></center>",
+      status.Fecha_Baja,
+    ]);
+  });
+}
+
+$("#btn_search_mac").on("click", function () {
+  var mac = $('#mac_input').val();
+
+  if ( mac == '' || mac.length < 4){
+    menssage_toast('Mensaje', '2', 'Ingrese datos en el campo de mac, minimo 4 caracteres.' , '3000');
   }
+  else {
+    general_tabla_search();
+  }
+});
+
+function general_tabla_search() {
+  var _token = $('input[name="_token"]').val();
+  var mac = $('#mac_input').val();
+
+
+  $.ajax({
+      type: "POST",
+      url: "/get_mac_res",
+      data: { _token : _token, mac_input: mac },
+      success: function (data){
+        //console.log(data);
+        tabla_search_mac(data, $('#table_buscador'));
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+  });
+  
+}
+
+function tabla_search_mac(datajson, table) {
+  table.DataTable().destroy();
+  var vartable = table.dataTable(Configuration_table_responsive);
+  vartable.fnClearTable();
+  $.each(JSON.parse(datajson), function(index, status){
+    vartable.fnAddData([
+      status.Nombre_hotel,
+      status.name,
+      status.Nombre_marca,
+      status.MAC,
+      status.Serie,
+      status.ModeloNombre,
+      "<center><kbd style='background-color:grey'>"+status.Nombre_estado+"</kbd></center>",
+      status.Fecha_Registro,
+    ]);
+  });
+}

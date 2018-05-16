@@ -174,11 +174,60 @@
          <!--Modal Descripción-->
 
 
-         </div>
+        </div>
 
 
         </div>
+        </br>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="box box-solid">
+                <div class="box-body">
+                  <div class="form-horizontal">
+                      {{ csrf_field() }}
+                     <div class="form-group">
+                         <label class="col-md-2 control-label" for="mac_input">Mac o serie: </label>
+                         <div class="col-md-10">
+                          <div class="input-group ">
+                            <input name="mac_input" id="mac_input" placeholder="Minimo 4 digitos." minlength="4" type="text" class="form-control" value="">
+                          </div>
+                         </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-2 text-right">
+                        <button type="button" id="btn_search_mac" class="btn btn-info">Buscar Mac</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <div class="table-responsive">
+                   <table id="table_buscador" cellspacing="0" class="table table-striped table-bordered table-hover">
+                     <thead>
+                       <tr class="bg-primary" style="background: #088A68;">
+                         <th> <small>Cliente.</small> </th>
+                         <th> <small>Equipo.</small> </th>
+                         <th> <small>Marca.</small> </th>
+                         <th> <small>Mac.</small> </th>
+                         <th> <small>Serie.</small> </th>
+                         <th> <small>Modelo.</small> </th>
+                         <th> <small>Estado.</small> </th>
+                         <th> <small>Fecha Registro.</small> </th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                   </table>
+              </div>
+            </div>
+
+          </div>
       </div>
+
     @else
       @include('default.denied')
     @endif
