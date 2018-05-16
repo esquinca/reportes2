@@ -83,6 +83,7 @@
 
 @push('scripts')
   @if( auth()->user()->can('View test zd') )
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('js/admin/tools/zone.js')}}"></script>
   @else
     <!--NO VER-->

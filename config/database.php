@@ -98,7 +98,7 @@ return [
 
         'sunrisezq' => [
             'driver' => 'mysql',
-            'host' => '187.130.75.27',
+            'host' => '187.130.75.3',
             'port' => '3306',
             'database' => 'radius',
             'username' => 'admin',

@@ -40,7 +40,7 @@
   <div class="row invoice-info">
       <div class="col-sm-2"></div>
       <div class="col-sm-8 invoice-col">
-
+        {{ csrf_field() }}
         <div class="form-group">
           <label>Seleccione el hotel para diagnosticar.</label>
           <select id="codigoHotel" name="clienteProyectos" class="form-control select2">
@@ -73,6 +73,50 @@
 
       <div class="col-sm-2"></div>
 
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <h4>Radius Palace.</h4>
+          <div class="table-responsive">
+               <table id="table_guests" cellspacing="0" class="table table-striped table-bordered table-hover">
+                 <thead>
+                   <tr class="bg-primary" style="background: #088A68;">
+                     <th> <small>Usuario.</small> </th>
+                     <th> <small>Nombre.</small> </th>
+                     <th> <small>Expiración.</small> </th>
+                     <th> <small>Fecha de creación.</small> </th>
+                     <th> <small>Descripción.</small> </th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                 </tbody>
+                 <tfoot id='tfoot_average'>
+                   <tr>
+                   </tr>
+                 </tfoot>
+               </table>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <h4>Palace Webservice.</h4>
+          <div class="table-responsive">
+               <table id="table_palace" cellspacing="0" class="table table-striped table-bordered table-hover">
+                 <thead>
+                   <tr class="bg-primary" style="background: #088A68;">
+                     <th> <small>Apellido.</small> </th>
+                     <th> <small>Nombre.</small> </th>
+                     <th> <small>Noches(estancia).</small> </th>
+                     <th> <small>Errors.</small> </th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                 </tbody>
+                 <tfoot id='tfoot_average'>
+                   <tr>
+                   </tr>
+                 </tfoot>
+               </table>
+          </div>
+        </div>
 </div>
 </section>
 
@@ -86,7 +130,7 @@
   @if( auth()->user()->can('View guest review') )
     <link href="/plugins/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" />
     <script src="/plugins/sweetalert-master/dist/sweetalert-dev.js"></script>
-    <script src="{{ asset('js/admin/tools/guest.js')}}"></script>
+    <script src="{{ asset('js/admin/tools/guestDiag.js')}}"></script>
   @else
     <!--NO VER-->
   @endif

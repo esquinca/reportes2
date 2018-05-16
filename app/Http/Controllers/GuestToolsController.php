@@ -25,6 +25,69 @@ XML;
 		return view('permitted.tools.guest_tools');
 	}
 
+    public function getUsersHC(Request $request)
+    {
+        $hotel_code = $request->hotelCode;
+        $room = $request->roomNum;
+
+        $result = DB::connection('sunrisezq')->table('authtoken')->select([
+            'username',
+            'name',
+            'createdate',
+            'expiration',
+            'description'
+        ])->where([
+            ['username', 'like', '%'.$room.'%'],
+            ['description', '=', $hotel_code]
+        ])->get();
+
+        return $result;
+    }
+
+    public function getPortalUsers(Request $request)
+    {
+        $collection = collect();
+        $result1 = DB::connection('sunrisezq')->table('authtoken')->select([
+            'username',
+            'name',
+            'createdate',
+            'expiration',
+            'description'
+        ])->where([
+            ['description', '=', 'PL'],
+            //['description', '=', 'CZ'],
+            //['description', '=', 'ZCJG'],
+        ])->get();
+        $result2 = DB::connection('sunrisezq')->table('authtoken')->select([
+            'username',
+            'name',
+            'createdate',
+            'expiration',
+            'description'
+        ])->where([
+            //['description', '=', 'PL'],
+            ['description', '=', 'CZ'],
+            //['description', '=', 'ZCJG'],
+        ])->get();
+        $result3 = DB::connection('sunrisezq')->table('authtoken')->select([
+            'username',
+            'name',
+            'createdate',
+            'expiration',
+            'description'
+        ])->where([
+            //['description', '=', 'PL'],
+            //['description', '=', 'CZ'],
+            ['description', '=', 'ZCJG'],
+        ])->get();
+        $collection->push($result1);
+        $collection->push($result2);
+        $collection->push($result3);
+
+        return $collection;
+    }
+
+    //deprecated
 	public function checkGuest(Request $request)
 	{
 		$hotel_code = $request->input('hotelCode');

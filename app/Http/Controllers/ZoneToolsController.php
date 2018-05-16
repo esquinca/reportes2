@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Hotel;
 use Illuminate\Http\Request;
-
+use SNMP;
 use DB;
 
 class ZoneToolsController extends Controller
@@ -33,5 +33,23 @@ class ZoneToolsController extends Controller
 
     return $res;
   }
+  public function testRequest(Request $request)
+  {
+      $dir_ip = $request->num_dir;
+      $dir_puert = $request->num_port;
+      $nueva_dir =$dir_ip.':'.$dir_puert;
+      $boolean = 0;
 
+      $session = new SNMP(SNMP::VERSION_2C, $nueva_dir, "public");
+      try {
+        //$res = $session->walk("1.3.6.1.4.1.25053.1.2.2.1.1.4.1.1.2");
+        $res = $session->walk('1.3.6.1.4.1.25053.1.2.2.1.1.2.1.1.4'); //Model name
+      } catch (\Exception $e) {
+        //$boolean = $session->getErrno() == SNMP::ERRNO_TIMEOUT;
+        $boolean = 1;
+        return $boolean;
+      }
+      $session->close();
+      return $boolean;
+  }
 }
