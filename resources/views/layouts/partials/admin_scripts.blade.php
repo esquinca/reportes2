@@ -23,4 +23,5 @@
 <script src="{{ asset('/js/validator.js') }}"></script>
 <!-- Funciones reutilizables -->
 <script src="{{ asset('/js/general.js') }}"></script>
+<script src="{{ asset('/js/code_vue.js') }}"></script>
 @stack('scripts')

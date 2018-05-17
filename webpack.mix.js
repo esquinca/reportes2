@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
  */
 
  mix.less('resources/assets/less/AdminLTE.less', 'public/css/style.css');
+     // .js('resources/assets/js/app.js', 'public/js/code_vue.js');
  mix.browserSync('http://dev.reportes.com/');
  mix.options({
      processCssUrls: false

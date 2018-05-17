@@ -248,7 +248,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/send_unanswer_sit', 'ConfigurationSitController@send_correo_unanswer_sit');
 
 
-  //- Funcion para probar mails.  
+  //- Funcion para probar mails.
     Route::get('mailable', function(){
         $data = [];
         array_push($data, ['cliente_o' => 'Aldea Thai', 'cliente_d' => 'Aluxes', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4']);
@@ -257,5 +257,10 @@ Route::group(['middleware' => ['auth']], function() {
 
         return new App\Mail\MovimientosMail($data, $data2);
     });
-
+    //- Viaticos Dashboard
+    Route::get('/dashboard_viaticos', 'DashboardViaticController@index');
+    //- Viaticos Solicitud
+    Route::get('/add_request_via', 'AddViaticController@index');
+    //- Viaticos Historial
+    Route::get('/history_travel_requests', 'HistoryViaticController@index');
 });

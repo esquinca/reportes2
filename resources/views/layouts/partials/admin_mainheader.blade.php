@@ -22,46 +22,6 @@
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu" >
       <ul class="nav navbar-nav">
-        <!-- Messages: style can be found in dropdown.less-->
-        <li class="dropdown messages-menu" style="visibility: hidden;">
-          <!-- Menu toggle button -->
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-envelope-o"></i>
-            <span class="label label-success">4</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 4 messages</li>
-            <li>
-              <!-- inner menu: contains the messages -->
-              <ul class="menu">
-                <li><!-- start message -->
-                  <a href="#">
-                    <div class="pull-left">
-                      <!-- User Image -->
-                      @if (Auth::user()->avatar == null)
-                          <img src="dist/img/user.jpg" class="img-circle" alt="User Image">
-                      @else
-                          <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
-                      @endif
-                    </div>
-                    <!-- Message title and timestamp -->
-                    <h4>
-                      Support Team
-                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                    </h4>
-                    <!-- The message -->
-                    <p>Why not buy a new awesome theme?</p>
-                  </a>
-                </li>
-                <!-- end message -->
-              </ul>
-              <!-- /.menu -->
-            </li>
-            <li class="footer"><a href="#">See All Messages</a></li>
-          </ul>
-        </li>
-        <!-- /.messages-menu -->
-
         <!-- Notifications Menu -->
         <li class="dropdown notifications-menu" style="visibility: hidden;">
           <!-- Menu toggle button -->
@@ -120,6 +80,44 @@
             <li class="footer">
               <a href="#">View all tasks</a>
             </li>
+          </ul>
+        </li>
+        <!-- Messages: style can be found in dropdown.less-->
+        <li class="dropdown messages-menu" style="visibility: none;">
+          <!-- Menu toggle button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-envelope-o"></i>
+            <span class="label label-success">4</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="header">You have 4 messages</li>
+            <li>
+              <!-- inner menu: contains the messages -->
+              <ul class="menu">
+                <li><!-- start message -->
+                  <a href="#">
+                    <div class="pull-left">
+                      <!-- User Image -->
+                      @if (Auth::user()->avatar == null)
+                      <img src="dist/img/user.jpg" class="img-circle" alt="User Image">
+                      @else
+                      <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
+                      @endif
+                    </div>
+                    <!-- Message title and timestamp -->
+                    <h4>
+                      Support Team
+                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                    </h4>
+                    <!-- The message -->
+                    <p>Why not buy a new awesome theme?</p>
+                  </a>
+                </li>
+                <!-- end message -->
+              </ul>
+              <!-- /.menu -->
+            </li>
+            <li class="footer"><a href="#">See All Messages</a></li>
           </ul>
         </li>
         <!-- User Account Menu -->
@@ -189,6 +187,7 @@
             </li>
           </ul>
         </li>
+        <!-- /.messages-menu -->
         <!-- Control Sidebar Toggle Button -->
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
