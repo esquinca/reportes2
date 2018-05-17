@@ -105,6 +105,7 @@
                      <th> <small>Apellido.</small> </th>
                      <th> <small>Nombre.</small> </th>
                      <th> <small>Noches(estancia).</small> </th>
+                     <th> <small>País</small> </th>
                      <th> <small>Errors.</small> </th>
                    </tr>
                  </thead>

@@ -81,10 +81,59 @@ $('#btnDiag').on('click', function(e){
 			type: "error",
 		});
 	}else{
-		console.log('correcto todo');
+		//console.log('correcto todo');
 		refresh_table2(codigoH, roomNumba);
+		web_service();
 	}
 });
+
+function web_service() {
+	var codigoH = $('#codigoHotel').val();
+	var roomNumba = $('#numeroHab').val();
+	var _token = $('input[name="_token"]').val();
+	$.ajax({
+	    type: "POST",
+	    url: "/DiagHuespedAjax2",
+	    data: { _token : _token, hotelCode : codigoH, roomNum:  roomNumba},
+	    success: function (data){
+	      //console.log(data);
+	      var parseo2 = JSON.parse(data);
+	      if (parseo2.errores == "true"){
+	      	//console.log('contiene errores');
+	      	$('#table_palace').hide();
+			$('#fila-p2').show();
+			$('#results2').val("");
+			$('#results2').val("Web Service Palace:\n");
+			$('#results2').val($('#results2').val() + "Errores: " +parseo2.errores + "\n" + "Mensaje de Error: " + parseo2.mensaje);
+	      }else{
+	      	$('#table_palace').show();
+			$('#fila-p2').hide();
+			$('#results2').val("");
+	      	table_palace_web(data, $('#table_palace'));
+	      }
+
+	    },
+	    error: function (data) {
+	      console.log('Error:', data);
+	    }
+	});
+
+}
+
+function table_palace_web(datajson, table) {
+	table.DataTable().destroy();
+	var vartable = table.dataTable(Configuration_table_responsive_with_pdf_enc_dominio);
+	vartable.fnClearTable();
+	var parseo = JSON.parse(datajson);
+	vartable.fnAddData([
+	  parseo.apellido,
+	  parseo.nombre,
+	  parseo.noches,
+	  parseo.pais,
+	  parseo.errores,
+	]);
+
+}
 
 function refresh_table() {
 	var _token = $('input[name="_token"]').val();

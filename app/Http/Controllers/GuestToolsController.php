@@ -116,8 +116,11 @@ XML;
     public function checkWebSer(Request $request)
     {
 
-        $hotel_code = $request->input('hotelCode');
-        $room = $request->input('roomNum');
+        $hotel_code = $request->hotelCode;
+        $room = $request->roomNum;
+
+        // $hotel_code = 'PL';
+        // $room = '445';
 
         $XMLquery = $this->replaceXML($hotel_code, $room);
         $XMLresponse = $this->getInfoxHab($XMLquery);
@@ -135,11 +138,14 @@ XML;
                 $ApeXML = (string)$RmFolio->Rmfolio->last_name;
                 $NombreXML = (string)$RmFolio->Rmfolio->first_name;
                 $nochesXML = (string)$RmFolio->Rmfolio->nights;
+                $paisXML = (string)$RmFolio->Rmfolio->country;
+                $correoXML = (string)$RmFolio->Rmfolio->mail_name;
             }
             $results = array(
                 "errores" => $HasError,
                 "apellido" => $ApeXML,
                 "nombre" => $NombreXML,
+                "pais" => $paisXML,
                 "noches" => $nochesXML
             );
 
@@ -152,7 +158,6 @@ XML;
 
             return json_encode($resultsErr);
         }
-
     }
 
     public function replaceXML($hotelcode, $roominfo){

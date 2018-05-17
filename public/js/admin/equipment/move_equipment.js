@@ -92,7 +92,7 @@ $(".btn-conf-action").click(function(event) {
       url: "/send_item_move_hotels",
       data: { idents: JSON.stringify(valores), origen: hotel_origen, origen_t: hotel_origen_t, destino: hotel_destino, destino_t: hotel_destino_t, estatus: estatus, estatus_t: estatus_t, _token : _token },
       success: function (data){
-        console.log(data);
+        //console.log(data);
         if (data === 'true') {
           $('#modal-confirmation').modal('toggle');
           menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');

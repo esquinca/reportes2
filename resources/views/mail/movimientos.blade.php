@@ -92,15 +92,17 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr>
-                          <td>{{$data[0]['cliente_o']}}</td>
-                          <td>{{$data[0]['equipo']}}</td>
-                          <td>{{$data[0]['marca']}}</td>
-                          <td>{{$data[0]['mac']}}</td>
-                          <td>{{$data[0]['serie']}}</td>
-                          <td>{{$data[0]['modelo']}}</td>
-                          <td>{{$data[0]['estado_o']}}</td>
-                          </tr>
+                          @for ($i = 0; $i < count($data); $i++)
+                            <tr>
+                              <td>{{$data[$i]['cliente_o']}}</td>
+                              <td>{{$data[$i]['equipo']}}</td>
+                              <td>{{$data[$i]['marca']}}</td>
+                              <td>{{$data[$i]['mac']}}</td>
+                              <td>{{$data[$i]['serie']}}</td>
+                              <td>{{$data[$i]['modelo']}}</td>
+                              <td>{{$data[$i]['estado_o']}}</td>
+                            </tr>
+                          @endfor
                           </tbody>
                         </table>
 
@@ -121,15 +123,17 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr>
-                          <td>{{$data[0]['cliente_d']}}</td>
-                          <td>{{$data[0]['equipo']}}</td>
-                          <td>{{$data[0]['marca']}}</td>
-                          <td>{{$data[0]['mac']}}</td>
-                          <td>{{$data[0]['serie']}}</td>
-                          <td>{{$data[0]['modelo']}}</td>
-                          <td>{{$data[0]['estado_d']}}</td>
-                          </tr>
+                          @for ($i = 0; $i < count($data); $i++)                           
+                            <tr>
+                              <td>{{$data[$i]['cliente_d']}}</td>
+                              <td>{{$data[$i]['equipo']}}</td>
+                              <td>{{$data[$i]['marca']}}</td>
+                              <td>{{$data[$i]['mac']}}</td>
+                              <td>{{$data[$i]['serie']}}</td>
+                              <td>{{$data[$i]['modelo']}}</td>
+                              <td>{{$data[$i]['estado_d']}}</td>
+                            </tr>
+                          @endfor
                           </tbody>
                         </table>
 
