@@ -84,7 +84,7 @@ class wlanxdia extends Command
           ${"snmp_b".$i} = $this->trySNMP_oid($host, '1.3.6.1.4.1.25053.1.2.2.1.1.1.1.1.12');//Number of client devices
           $contar_wlan_act= count(${"snmp_a".$i}); //Cuento el tamaño del array anterior
           DB::beginTransaction();
-          for ($j=0; $j <$contar_wlan_act-1 ; $j++) {
+          for ($j=0; $j <$contar_wlan_act; $j++) {
             $contar_param_1= count(${"snmp_a".$i});
             $contar_param_2= count(${"snmp_b".$i});
             if ( empty($contar_param_1) || empty($contar_param_2)) {
