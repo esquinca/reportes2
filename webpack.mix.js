@@ -13,8 +13,8 @@ let mix = require('laravel-mix');
  .sass('resources/assets/sass/app.scss', 'public/css');
  */
 
- mix.less('resources/assets/less/AdminLTE.less', 'public/css/style.css');
-     // .js('resources/assets/js/app.js', 'public/js/code_vue.js');
+ mix.less('resources/assets/less/AdminLTE.less', 'public/css/style.css')
+     .js('resources/assets/js/app.js', 'public/js/code_vue.js');
  mix.browserSync('http://dev.reportes.com/');
  mix.options({
      processCssUrls: false

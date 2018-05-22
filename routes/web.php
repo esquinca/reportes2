@@ -263,4 +263,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_request_via', 'AddViaticController@index');
     //- Viaticos Historial
     Route::get('/history_travel_requests', 'HistoryViaticController@index');
+    //- Notification Viaticos
+    Route::post('statuses', 'ViaticNotificationController@index')->name('statuses.store');
+    Route::post('notification_s', 'ViaticNotificationController@show');
+
 });
