@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/update_group_equipment', 'GroupEquipmentController@update_group');
     Route::post('/get_table_group', 'GroupEquipmentController@table_group');
     Route::post('/get_new_groups', 'GroupEquipmentController@update_select');
+    Route::post('/group_insert', 'GroupEquipmentController@insertNewGroup');
     Route::post('/insertProveedor', 'ProviderController@insertnewprovider');
     Route::post('/getTableProvider', 'ProviderController@getTableProviders');
     Route::post('/show_updateinfo', 'ProviderController@showUpdate');

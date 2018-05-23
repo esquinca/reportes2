@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Hotel;
+use App\Estado;
 use DB;
-//use Carbon;
+use Carbon\Carbon;
 
 class GroupEquipmentController extends Controller
 {
@@ -16,7 +18,9 @@ class GroupEquipmentController extends Controller
   public function index()
   {
     $grupos = DB::table('listar_grupos')->get();
-    return view('permitted.equipment.group_equipment', compact('grupos'));
+    $hotels = Hotel::select('id', 'Nombre_hotel')->get();
+    $estados = Estado::select('id', 'Nombre_estado')->get();
+    return view('permitted.equipment.group_equipment', compact('grupos', 'hotels', 'estados'));
   }
 
   public function update_group(Request $request)
@@ -45,6 +49,13 @@ class GroupEquipmentController extends Controller
   {
     $grupos = DB::table('listar_grupos')->get();
     return json_encode($grupos);
+  }
+
+  public function insertNewGroup(Request $request)
+  {
+    $grouptext = $request->text;
+    $res = DB::table('groups')->insert(['name' => $grouptext, 'updated' => \Carbon\Carbon::now()]);
+    return (string)$res;
   }
 
 }

@@ -8,8 +8,8 @@ $('#select_one').on('change', function(e){
     general_table_equipment();
   }
   else {
-    menssage_toast('Mensaje', '2', 'Seleccione un hotel!' , '3000');
-    general_table_equipment();
+    //menssage_toast('Mensaje', '2', 'Seleccione un hotel!' , '3000');
+    //general_table_equipment();
   }
 });
 
@@ -164,9 +164,9 @@ $(".btn-update-descrip").click(function(event) {
   });
 });
 
-$("#btn_search_mac").on("click", function () {
-  var mac = $('#mac_input').val();
-
+$("#btn_search_mac1").on("click", function () {
+  var mac = $('#mac_input1').val();
+  $('#select_one').val('').trigger('change');
   if ( mac == '' || mac.length < 4){
     menssage_toast('Mensaje', '2', 'Ingrese datos en el campo de mac, minimo 4 caracteres.' , '3000');
   }
@@ -177,7 +177,7 @@ $("#btn_search_mac").on("click", function () {
 
 function general_tabla_search() {
   var _token = $('input[name="_token"]').val();
-  var mac = $('#mac_input').val();
+  var mac = $('#mac_input1').val();
 
 
   $.ajax({
@@ -186,7 +186,8 @@ function general_tabla_search() {
       data: { _token : _token, mac_input: mac },
       success: function (data){
         //console.log(data);
-        tabla_search_mac(data, $('#table_buscador'));
+        //tabla_search_mac(data, $('#table_buscador'));
+        table_move_equipament(data, $("#table_move"), $("#table_check"));
       },
       error: function (data) {
         console.log('Error:', data);

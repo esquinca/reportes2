@@ -32,13 +32,24 @@ class MoveEquipmentController extends Controller
       Mail::to($email)->cc(['aperez@sitwifi.com', 'marthaisabel@sitwifi.com'])->send(new MovimientosMail($data, $data2));
   }
 
+  public function getHotelName($id)
+  {
+
+    $valor = DB::select('CALL get_venue_id_device(?)', array($id));
+    //$valor = DB::table('hotels')->select('Nombre_hotel')->where('id', $id)->value('Nombre_hotel');
+    return $valor;
+  }
+
   public function edit(Request $request)
   {
     $valor = 'false';
     $equipos = json_decode($request->idents);
     $origen_n = $request->origen;
     $destino_n = $request->destino;
+
+    //$origen_ms = $this->getHotelName($equipos[0]);  
     $origen_t = $request->origen_t;
+
     $destino_t = $request->destino_t;
     $estatus_n = $request->estatus;
     $estatus_t = $request->estatus_t;
@@ -50,54 +61,104 @@ class MoveEquipmentController extends Controller
     $user_o = [];
     $user_d = [];
 
-    $email_r = DB::select('CALL get_email_movimientos(?)', array($origen_n));
-    $email_r2 = DB::select('CALL get_email_movimientos(?)', array($destino_n));
 
-    for ($j=0; $j < (count($email_r)); $j++) {
-      array_push($user_o, $email_r[$j]->name);
-      array_push($email_o, $email_r[$j]->email);
-    }
-    for ($k=0; $k < (count($email_r2)); $k++) {
-      array_push($user_d, $email_r2[$k]->name);
-      array_push($email_d, $email_r2[$k]->email);
-    }
+    if (empty($origen_n)) {
+      //$origen_ms = $this->getHotelName($equipos[0]);
+        $datos_o = $this->getHotelName($equipos[0]);
 
-    if ($origen_n === $destino_n) {      
-      for ($i=0; $i <= (count($equipos)-1); $i++) { 
-        if ($estatus_n == '999') {
-          $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
-          array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
-            $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
+        $email_r = DB::select('CALL get_email_movimientos(?)', array($datos_o[0]->id));
+        $email_r2 = DB::select('CALL get_email_movimientos(?)', array($destino_n));
+
+        for ($j=0; $j < (count($email_r)); $j++) {
+          array_push($user_o, $email_r[$j]->name);
+          array_push($email_o, $email_r[$j]->email);
         }
-        else {
-          $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
-          array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
-            $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
+        for ($k=0; $k < (count($email_r2)); $k++) {
+          array_push($user_d, $email_r2[$k]->name);
+          array_push($email_d, $email_r2[$k]->email);
         }
-        $valor= 'true';
-      }
-      //envio de correo.
-      $this->sentMovements($email_d, $data_origin, $user_d);
+        if ($datos_o[0]->id === $destino_n) {
+          for ($i=0; $i <= (count($equipos)-1); $i++) { 
+            if ($estatus_n == '999') {
+              $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+              array_push($data_origin, ['cliente_o' => $datos_o[0]->Nombre_hotel, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+                $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
+            }
+            else {
+              $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+              array_push($data_origin, ['cliente_o' => $datos_o[0]->Nombre_hotel, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+                $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
+            }
+            $valor= 'true';
+          }
+          //envio de correo.
+          $this->sentMovements($email_d, $data_origin, $user_d);
+        }else{
+          for ($i=0; $i <= (count($equipos)-1); $i++) { 
+            if ($estatus_n == '999') {
+              $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+              array_push($data_origin, ['cliente_o' => $datos_o[0]->Nombre_hotel, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+                $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
+            }
+            else {
+              $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+              array_push($data_origin, ['cliente_o' => $datos_o[0]->Nombre_hotel, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+
+                $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
+            }
+            $valor= 'true';
+          }
+          $this->sentMovements($email_o, $data_origin, $user_o);
+          $this->sentMovements($email_d, $data_origin, $user_d);
+        }
     }else{
-      for ($i=0; $i <= (count($equipos)-1); $i++) { 
-        if ($estatus_n == '999') {
-          $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
-          array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
-            $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
-        }
-        else {
-          $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
-          array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+      $email_r = DB::select('CALL get_email_movimientos(?)', array($origen_n));
+      $email_r2 = DB::select('CALL get_email_movimientos(?)', array($destino_n));
 
-            $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
-        }
-        $valor= 'true';
+      for ($j=0; $j < (count($email_r)); $j++) {
+        array_push($user_o, $email_r[$j]->name);
+        array_push($email_o, $email_r[$j]->email);
       }
-      //envio de correos
-      $this->sentMovements($email_o, $data_origin, $user_o);
-      $this->sentMovements($email_d, $data_origin, $user_d);
-    }
+      for ($k=0; $k < (count($email_r2)); $k++) {
+        array_push($user_d, $email_r2[$k]->name);
+        array_push($email_d, $email_r2[$k]->email);
+      }
+      if ($origen_n === $destino_n) {      
+        for ($i=0; $i <= (count($equipos)-1); $i++) { 
+          if ($estatus_n == '999') {
+            $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+            array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+              $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
+          }
+          else {
+            $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+            array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+              $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
+          }
+          $valor= 'true';
+        }
+        //envio de correo.
+        $this->sentMovements($email_d, $data_origin, $user_d);
+      }else{
+        for ($i=0; $i <= (count($equipos)-1); $i++) { 
+          if ($estatus_n == '999') {
+            $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+            array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
+              $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'updated_at' => Carbon::now()]);
+          }
+          else {
+            $res = DB::select('CALL get_detail_register_inventory(?)', array($equipos[$i]));
+            array_push($data_origin, ['cliente_o' => $origen_t, 'cliente_d' => $destino_t, 'equipo' => $res[0]->name,'marca' => $res[0]->Nombre_marca, 'mac' => $res[0]->MAC, 'serie' => $res[0]->Serie, 'modelo' => $res[0]->ModeloNombre,'estado_o' => $res[0]->Nombre_estado, 'estado_d' => $estatus_t]);
 
+              $sql = DB::table('equipos')->where('id', '=', $equipos[$i])->update(['hotel_id' => $destino_n, 'estados_id' => $estatus_n, 'updated_at' => Carbon::now()]);
+          }
+          $valor= 'true';
+        }
+        //envio de correos
+        $this->sentMovements($email_o, $data_origin, $user_o);
+        $this->sentMovements($email_d, $data_origin, $user_d);
+      }
+    }
     return $valor;
   }
 

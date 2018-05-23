@@ -1,19 +1,69 @@
 $(function() {
   $(".select2").select2();
 
-
+  input_mac('mac_input');
 });
+
+// configuracion para pdf excel, etc..
+// Configuration_table_responsive_with_pdf_two
 
 // $('#select_one').on('change', function(e){
 // });
 
 $('#select_one').on('change', function(e){
 	//$('#new_group').val('');
+	console.log('change');
+
+	//ajax call function to show table...
+
 });
 
-
+$('#btn_create_group').on('click', function(e){
+	var newtext = $('#new_group').val();
+	var _token = $('input[name="_token"]').val();
+	if (newtext === "" || newtext.length < 4) {
+		menssage_toast('Mensaje', '2', 'Completa el campo correctamente.' , '3000');
+	}else{
+		// insert new group on new table.
+		$.ajax({
+			type: "POST",
+			url: "/group_insert",
+			data: { _token : _token,  text: newtext},
+			success: function (data){
+				//console.log(data);
+				if (data === '1') {
+					$('#new_group').val('');
+					update_select_group();
+					menssage_toast('Mensaje', '4', 'Datos insertados correctamente.' , '3000');
+				}else{
+					menssage_toast('Mensaje', '2', 'Error al momento de insertar, intenta nuevamente.' , '3000');
+				}
+			},
+			error: function (data) {
+			  console.log('Error:', data);
+			}
+		});
+	}
+});
 
 $('#btn_update_group').on('click', function(e){
+	var newtext = $('#new_group').val();
+	var select = $('#select_one').val();
+	var inputmac = $('#mac_input').val();
+
+	var status1 = validarespacioinputlength('mac_input', 17);
+	var status2 = validarSelect('select_one');
+	if ( status1 == true && status2 == true) {
+		console.log('OK');
+		//update group & show table with changes.
+
+
+	}else{
+		menssage_toast('Mensaje', '2', 'Completa correctamente los campos. Al menos 14 caracteres en el campo de mac.' , '3000');
+	}
+});
+
+$('#btn_update_group2').on('click', function(e){
 	var newtext = $('#new_group').val();
 	var select = $('#select_one').val();
 	var inputmac = $('#mac_input').val();
@@ -37,8 +87,31 @@ $('#btn_update_group').on('click', function(e){
 	}else{
 		menssage_toast('Mensaje', '2', 'Completa los campos necesarios.' , '3000');
 	}
-
 });
+
+function validarSelect(campo) {
+  if (campo != '') {
+    select=document.getElementById(campo).selectedIndex;
+    if( select == null || select == 0 ) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  else {
+    return false;
+  }
+}
+
+function validarespacioinputlength(campo, campob){
+  if( $("#"+campo).val().trim()==='' || $("#"+campo).val().length < campob ) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
 
 function convertMac(value) {
 	//DBDBDBDBDBDB 5 espacios.
@@ -86,9 +159,10 @@ function update_select_group() {
 		data: { _token : _token},
 		success: function (data){
 			//console.log(data);
+			emptySelect();
 			dataselect.push({id : "", text : "Elija"});
 			$.each(JSON.parse(data), function(index, datos){
-				dataselect.push({id: datos.Nombre_Grupo, text: datos.Nombre_Grupo});
+				dataselect.push({id: datos.id, text: datos.name});
 			});
 			//console.log(dataselect);
 			$('#select_one').select2({
@@ -114,7 +188,7 @@ function update_group(datos, mac) {
 		  	menssage_toast('Mensaje', '4', 'Datos actualizados.' , '3000');
 		  	refresh_table(datos, $('#table_group'));
 
-		  	$('#select_one').val('').trigger('change');
+		  	//$('#select_one').val('').trigger('change');
 		  	$('#mac_input').val("");
 
 		  }else{
@@ -134,18 +208,18 @@ function refresh_table(group, table) {
 		url: "/get_table_group",
 		data: { select1: group, _token: _token },
 		success: function (data){
-		  //console.log(data);
-		  table_group_content(data, table);
+			//console.log(data);
+			table_group_content(data, table);
 		},
 		error: function (data) {
-		  console.log('Error:', data);
+			console.log('Error:', data);
 		}
 	});
 }
 
 function table_group_content(datajson, table){
 	table.DataTable().destroy();
-	var vartable = table.dataTable(Configuration_table_responsive_with_pdf_enc_dominio);
+	var vartable = table.dataTable(Configuration_table_responsive_with_pdf_two);
 	vartable.fnClearTable();
 	$.each(JSON.parse(datajson), function(index, status){
 	  table.fnAddData([

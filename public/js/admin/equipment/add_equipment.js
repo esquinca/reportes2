@@ -406,12 +406,14 @@ $(".btn-save").on("click", function () {
                         [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
                       ).draw();
                     }
-                    $('#add_equipitho')[0].reset();
-                    reset_select2('type_equipment');
-                    reset_select2('Marcas');
-                    reset_select2('mmodelo');
-                    reset_select2('add_estado');
-                    reset_select2('venue');
+                    $('#add_mac_eq').val('');
+                    $('#add_num_se').val('');
+                    //$('#add_equipitho')[0].reset();
+                    //reset_select2('type_equipment');
+                    //reset_select2('Marcas');
+                    //reset_select2('mmodelo');
+                    //reset_select2('add_estado');
+                    //reset_select2('venue');
                   }
                   else { menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000'); }
                 },
@@ -475,12 +477,14 @@ $(".btn-save").on("click", function () {
                     [$d_venue, $d_type, $d_marcas, $d_mac, $d_num, $d_grup, $d_desc]
                   ).draw();
                 }
-                $('#add_equipitho')[0].reset();
-                reset_select2('type_equipment');
-                reset_select2('Marcas');
-                reset_select2('mmodelo');
-                reset_select2('add_estado');
-                reset_select2('venue');
+                $('#add_mac_eq').val('');
+                $('#add_num_se').val('');
+                // $('#add_equipitho')[0].reset();
+                // reset_select2('type_equipment');
+                // reset_select2('Marcas');
+                // reset_select2('mmodelo');
+                // reset_select2('add_estado');
+                // reset_select2('venue');
               }
               else { menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000'); }
             },
