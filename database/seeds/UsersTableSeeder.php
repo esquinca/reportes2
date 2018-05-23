@@ -165,7 +165,14 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
    $viaticoperm3= Permission::create(['name' => 'Checking request of travel expenses']);
    $viaticoperm4= Permission::create(['name' => 'Reuse request of travel expenses']);
    $viaticoperm5= Permission::create(['name' => 'Approve request of travel expenses']);
+   //-Viaticos notifications
    $viaticoperm6= Permission::create(['name' => 'Travel allowance notification']);
+   $viaticolevel0= Permission::create(['name' => 'View level zero notifications']);
+   $viaticolevel1= Permission::create(['name' => 'View level one notifications']);
+   $viaticolevel2= Permission::create(['name' => 'View level two notifications']);
+   $viaticolevel3= Permission::create(['name' => 'View level three notifications']);
+   $viaticolevel4= Permission::create(['name' => 'View level four notifications']);
+
    //Creamos los usuarios por default
      $user_default_0 = new User;
      $user_default_0->name='SuperAdmin';

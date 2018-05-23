@@ -39,20 +39,32 @@
     name: "StatusForm",
     data(){
       return {
-        statuses: []
+        statuses: [],
+         interval: null,
       }
     },
     mounted() {
-      axios.post('/notification_s')
-          .then(res => {
-            this.statuses = res.data;
-            console.log(res.data)
-          })
-          .catch(err => {
-            console.log(err.data)
-          })
+      this.loadData();
 
-    }
+       this.interval = setInterval(function () {
+         this.loadData();
+       }.bind(this), 30000);
+    },
+    methods: {
+        loadData: function () {
+          axios.post('/notification_s')
+              .then(res => {
+                this.statuses = res.data;
+                // console.log(res.data)
+              })
+              .catch(err => {
+                console.log(err.data)
+              })
+        }
+    },
+    beforeDestroy: function(){
+       clearInterval(this.interval);
+   }
   }
 </script>
 

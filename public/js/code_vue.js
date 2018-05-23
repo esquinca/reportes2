@@ -30400,7 +30400,7 @@ exports = module.exports = __webpack_require__(39)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -30904,18 +30904,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: "StatusForm",
   data: function data() {
     return {
-      statuses: []
+      statuses: [],
+      interval: null
     };
   },
   mounted: function mounted() {
-    var _this = this;
+    this.loadData();
 
-    axios.post('/notification_s').then(function (res) {
-      _this.statuses = res.data;
-      console.log(res.data);
-    }).catch(function (err) {
-      console.log(err.data);
-    });
+    this.interval = setInterval(function () {
+      this.loadData();
+    }.bind(this), 30000);
+  },
+
+  methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      axios.post('/notification_s').then(function (res) {
+        _this.statuses = res.data;
+        // console.log(res.data)
+      }).catch(function (err) {
+        console.log(err.data);
+      });
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    clearInterval(this.interval);
   }
 });
 

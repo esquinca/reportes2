@@ -30,9 +30,22 @@ class ViaticNotificationController extends Controller
     public function show()
     {
       if (auth()->user()->can('Travel allowance notification')) {
-        
+        if (auth()->user()->can('View level zero notifications')){
+        }
+        if (auth()->user()->can('View level one notifications')){
+        }
+        if (auth()->user()->can('View level two notifications')){
+        }
+        if (auth()->user()->can('View level three notifications')){
+        }
+        if (auth()->user()->can('View level four notifications')){
+        }
+        $users = User::all();
+        return json_encode($users);
       }
-      $users = User::all();
-      return json_encode($users);
+      else {
+        $array = array();
+        return json_encode($array);
+      }
     }
 }
