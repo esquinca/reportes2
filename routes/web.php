@@ -83,6 +83,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/down_equipment', 'RemovedEquipmentController@index');
     Route::get('/detailed_search', 'SearchEquipmentController@index');
 
+    Route::post('/insertGrupo', 'AddEquipmentController@create_group');
+    Route::post('/search_grupo', 'AddEquipmentController@search_grupo');
+
     Route::get('/move_equipment', 'MoveEquipmentController@index');
     Route::post('/send_item_move_hotels', 'MoveEquipmentController@edit');
     Route::post('/search_item_descript_hotels', 'MoveEquipmentController@descrip');

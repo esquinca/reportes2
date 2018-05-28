@@ -25,7 +25,8 @@ class AddEquipmentController extends Controller
     $estados = DB::table('get_estados_devices')->select('id', 'Nombre_estado')->get();
     $proveedores = DB::table('list_proveedores')->select('id', 'nombre')->get();
     $especificaciones = DB::table('especificacions')->select('id', 'name')->get();
-    return view('permitted.equipment.add_equipment',compact('hotels','estados', 'proveedores', 'especificaciones'));
+    $groups = DB::table('groups')->select('id', 'name')->get();
+    return view('permitted.equipment.add_equipment',compact('hotels','estados', 'proveedores', 'especificaciones', 'groups'));
   }
   public function search(Request $request){
     $considencia = $request->key;
@@ -79,6 +80,25 @@ class AddEquipmentController extends Controller
     $result = DB::select('CALL get_brand (?)', array($name));
     return json_encode($result);
   }
+  public function create_group(Request $request){
+    $name = $request->add_grupitho;
+    $flag = 0;
+    $count_md = DB::table('groups')->where('name', $name)->count();
+    if ($count_md == '0') {
+      $eq_prt = DB::table('groups')->insertGetId([
+        'name' => $name,
+        'created' => \Carbon\Carbon::now(),
+      ]);
+      if($eq_prt != '0'){
+        $flag =1;
+      }
+    }
+    return $flag;
+  }
+  public function search_grupo(Request $request){
+    $result = DB::table('groups')->select('id', 'name')->get();
+    return json_encode($result);
+  }
 
   public function search_marca_all(Request $request){
     $result = DB::table('marcas')->select('id', 'Nombre_marca')->orderBy('Nombre_marca', 'asc')->get();
@@ -120,9 +140,10 @@ class AddEquipmentController extends Controller
           'check_it_id' => '2',
           'hotel_id' => $eq_venue,
           'especificacions_id' => $eq_type,
-          'Nombre_Grupo' => $eq_grup,
           'created_at' => \Carbon\Carbon::now(),
         ]);
+        $result_match = DB::table('devices_groups')->insertGetId(['id_equipo' => $insert_eq, 'id_grupo' => $eq_grup ]);
+
       }
       else {
         $insert_eq = DB::table('equipos')->insertGetId([
@@ -184,9 +205,10 @@ class AddEquipmentController extends Controller
           'check_it_id' => '2',
           'hotel_id' => $eq_venue,
           'especificacions_id' => $eq_type,
-          'Nombre_Grupo' => $eq_grup,
           'created_at' => \Carbon\Carbon::now(),
         ]);
+        $result_match = DB::table('devices_groups')->insertGetId(['id_equipo' => $insert_eq, 'id_grupo' => $eq_grup ]);
+
       }
       else {
         $insert_eq = DB::table('equipos')->insertGetId([

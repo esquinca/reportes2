@@ -173,6 +173,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
    $viaticolevel3= Permission::create(['name' => 'View level three notifications']);
    $viaticolevel4= Permission::create(['name' => 'View level four notifications']);
 
+   $vcreatgroup= Permission::create(['name' => 'Create grupos']);
    //Creamos los usuarios por default
      $user_default_0 = new User;
      $user_default_0->name='SuperAdmin';

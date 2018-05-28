@@ -43,33 +43,64 @@ $(function() {
       autoclose: true
   });
 
-  $('input[name="grupitho"]').typeahead({
-    minLength: 0,
-    items: 9999,
-    source: function(query, process) {
-      // console.log(query);
-        return $.ajax({
-            url: "/search_key_group",
-            type: 'post',
-            data: {key: query, _token : $('input[name="_token"]').val()},
-            success: function(data) {
-              var dataArray = [];
-              $.each(JSON.parse(data), function(index, status){
-                dataArray.push(status.Nombre_Grupo);
-              });
-              // console.log(dataArray);
-              // var json = JSON.parse(data); // string to json
-              return process(dataArray);
-              //console.log(json);
-            }
-        });
-    }
-  });
+  // $('input[name="grupitho"]').typeahead({
+  //   minLength: 0,
+  //   items: 9999,
+  //   source: function(query, process) {
+  //     // console.log(query);
+  //       return $.ajax({
+  //           url: "/search_key_group",
+  //           type: 'post',
+  //           data: {key: query, _token : $('input[name="_token"]').val()},
+  //           success: function(data) {
+  //             var dataArray = [];
+  //             $.each(JSON.parse(data), function(index, status){
+  //               dataArray.push(status.Nombre_Grupo);
+  //             });
+  //             // console.log(dataArray);
+  //             // var json = JSON.parse(data); // string to json
+  //             return process(dataArray);
+  //             //console.log(json);
+  //           }
+  //       });
+  //   }
+  // });
 
   var vartable = $("#table_temporality").dataTable(Configuration_table_clearx2);
   input_mac('add_mac_eq');
   // input_number('add_num_se');
 
+});
+
+$(".create_grupo").on("click", function () {
+  let add_grupitho = $('#add_grupitho').val();
+  var objData = $("#form_group").find("select,textarea, input").serialize();
+
+  $obligatorio_a = validarespacioinputlength('add_grupitho', 4);
+  if ($obligatorio_a == true) {
+    $.ajax({
+      type: "POST",
+      url: '/insertGrupo',
+      data: objData,
+      success: function (data) {
+        //console.log(data);
+        if (data === "1") {
+          menssage_toast('Mensaje', '4', 'Datos insertados con exito' , '3000');
+          $('#add_grupo_1').modal('toggle');
+          recargar_grupos();
+          $('#form_group')[0].reset();
+        }else{
+          menssage_toast('Mensaje', '2', 'Hubo un error en la insercion, vuelva a intentar.' , '3000');
+        }
+      },
+      error: function (data) {
+       menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+      }
+    })
+  }
+  else {
+    menssage_toast('Mensaje', '2', 'Por favor complete todos los campos con "*" y con el numero mínimo de caracteres' , '3000');
+  }
 });
 
 function reset_fact() {
@@ -127,6 +158,30 @@ $(".create_provider").on("click", function () {
     menssage_toast('Mensaje', '2', 'Por favor complete todos los campos con "*" y con el numero mínimo de caracteres' , '3000');
   }
 });
+function recargar_grupos(){
+  var _token = $('input[name="_token"]').val();
+  let count = 0;
+  $.ajax({
+    type: "POST",
+    url: '/search_grupo',
+    data: { _token : _token },
+    success: function (data) {
+      countH = data.length;
+      $('#grupitho').empty();
+      $('#grupitho').append('<option value="" selected>Elije</option>');
+      if (countH > 0) {
+        $.each(JSON.parse(data),function(index, objdata){
+          $('#grupitho').append('<option value="'+objdata.id+'">'+ objdata.name +'</option>');
+        });
+      }
+    },
+    error: function (data) {
+     menssage_toast('Mensaje', '2', 'Operation Abort- Changes not made' , '3000');
+    }
+  })
+}
+
+
 function recargar_proveedor(){
   var _token = $('input[name="_token"]').val();
   let count = 0;
@@ -376,7 +431,7 @@ $(".btn-save").on("click", function () {
               var $d_marcas = $("#Marcas").select2('data')[0]['text'];
               var $d_mac = $('#add_mac_eq').val();
               var $d_num = $('#add_num_se').val();
-              var $d_grup = $('#grupitho').val();
+              var $d_grup = $("#grupitho").select2('data')[0]['text'];
               var $d_desc = $('#add_descrip').val();
               var $d_estado = $("#add_estado").select2('data')[0]['text'];
               var $d_modelo = $("#mmodelo").select2('data')[0]['text'];
@@ -452,7 +507,7 @@ $(".btn-save").on("click", function () {
           var $d_marcas = $("#Marcas").select2('data')[0]['text'];
           var $d_mac = $('#add_mac_eq').val();
           var $d_num = $('#add_num_se').val();
-          var $d_grup = $('#grupitho').val();
+          var $d_grup = $("#grupitho").select2('data')[0]['text'];
           var $d_desc = $('#add_descrip').val();
           var $d_estado = $("#add_estado").select2('data')[0]['text'];
           var $d_modelo = $("#mmodelo").select2('data')[0]['text'];

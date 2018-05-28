@@ -97,7 +97,17 @@
                    <div class="col-lg-6">
                      <div class="input-group">
                        <span class="input-group-addon">Grupo</span>
-                       <input id="grupitho" name="grupitho" maxlength="150" type="text" placeholder="Grupo" class="form-control typeahead" data-provide="typeahead">
+                       <!-- <input id="grupitho" name="grupitho" maxlength="150" type="text" placeholder="Grupo" class="form-control typeahead" data-provide="typeahead"> -->
+                       <select class="form-control select2" id="grupitho" name="grupitho">
+                         <option value="" selected> Elija </option>
+                         @forelse ($groups as $data_groups)
+                           <option value="{{ $data_groups->id }}"> {{ $data_groups->name }} </option>
+                         @empty
+                         @endforelse
+                       </select>
+                       <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_grupo_1">
+                         <i class="fa fa-plus-square"></i>
+                       </button>
                      </div>
                    </div>
                    <div class="col-lg-6">
@@ -261,6 +271,48 @@
         </div>
       </div>
     </div>
+
+    <div class="modal modal-default fade" id="add_grupo_1" data-backdrop="static">
+      <div class="modal-dialog" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-id-card-o" style="margin-right: 4px;"></i>{{ trans('message.grupo')}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <div class="box-body">
+                <div class="row">
+                  @if( auth()->user()->can('Create grupos') )
+                  <form class="form-horizontal" id="form_group" name="form_group">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                      <label class="col-md-3 control-label" for="add_grupitho">{{ trans('message.grupo')}} </label>
+                      <div class="col-md-8">
+                        <input id="add_grupitho" name="add_grupitho"  type="text"  maxlength="50" placeholder="Min. 4 Caracteres. {{ trans('message.maxcarcincuent')}}"
+                          class="form-control input-md"/>
+                      </div>
+                    </div>
+                  </form>
+                  @else
+                    <div class="col-xs-12">
+                      @include('default.deniedmodule')
+                    </div>
+                  @endif
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            @if( auth()->user()->can('Create grupos') )
+              <button type="button" class="btn bg-navy create_grupo"><i class="fa fa-plus-square-o" style="margin-right: 4px;"></i>{{ trans('message.create') }}</button>
+            @endif
+            <button type="button" class="btn btn-danger close_grupo" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <div class="modal modal-default fade" id="add_marca_4" data-backdrop="static">
       <div class="modal-dialog" >
