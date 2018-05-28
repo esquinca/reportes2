@@ -7,15 +7,9 @@ $(function() {
 // configuracion para pdf excel, etc..
 // Configuration_table_responsive_with_pdf_two
 
-// $('#select_one').on('change', function(e){
-// });
-
 $('#select_one').on('change', function(e){
-	//$('#new_group').val('');
-	console.log('change');
-
-	//ajax call function to show table...
-
+	var group = $(this).val();
+	refresh_table(group, $('#table_group'));
 });
 
 $('#btn_create_group').on('click', function(e){
@@ -47,20 +41,61 @@ $('#btn_create_group').on('click', function(e){
 });
 
 $('#btn_update_group').on('click', function(e){
-	var newtext = $('#new_group').val();
 	var select = $('#select_one').val();
 	var inputmac = $('#mac_input').val();
 
 	var status1 = validarespacioinputlength('mac_input', 17);
 	var status2 = validarSelect('select_one');
 	if ( status1 == true && status2 == true) {
-		console.log('OK');
+		//console.log('OK');
 		//update group & show table with changes.
-
+		update_group(select, inputmac);
 
 	}else{
 		menssage_toast('Mensaje', '2', 'Completa correctamente los campos. Al menos 14 caracteres en el campo de mac.' , '3000');
 	}
+});
+
+$('#btn_change_group').on('click', function(e){
+	var status1 = validarSelect('select_one');
+	var status2 = validarSelect('select_hotels');
+	var status3 = validarSelect('select_estados');
+
+	if (status1 == true && status2 == true && status3 == true) {
+		$('#modal-confirmation').modal('show');
+	}else{
+		menssage_toast('Mensaje', '2', 'Completa correctamente los campos. (Grupo Exs, Hotel, Estatus)' , '3000');
+	}
+});
+
+$(".btn-conf-action").click(function(event) {
+	var group_id = $('#select_one').val();
+	var hotel_id = $('#select_hotels').val();
+	var status_id = $('#select_estados').val();
+	var _token = $('input[name="_token"]').val();
+	$.ajax({
+		type: "POST",
+		url: "/move_group",
+		data: {  group : group_id, hotel : hotel_id, status : status_id, _token : _token  },
+		success: function (data){
+			console.log(data);
+			if (data === '1') {
+				menssage_toast('Mensaje', '4', 'Datos actualizados.' , '3000');
+				refresh_table(group_id, $('#table_group'));
+				$('#select_hotels').val('').trigger('change');
+				$('#select_estados').val('').trigger('change');
+				$('#mac_input').val("");
+				$('#modal-confirmation').modal('toggle');
+
+			}else{
+				$('#modal-confirmation').modal('toggle');
+				menssage_toast('Mensaje', '2', 'Se encontro un error: Revisar la mac address.' , '3000');
+			}
+		},
+		error: function (data) {
+			console.log('Error:', data);
+		}
+	});
 });
 
 $('#btn_update_group2').on('click', function(e){
@@ -89,64 +124,32 @@ $('#btn_update_group2').on('click', function(e){
 	}
 });
 
-function validarSelect(campo) {
-  if (campo != '') {
-    select=document.getElementById(campo).selectedIndex;
-    if( select == null || select == 0 ) {
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
-  else {
-    return false;
-  }
-}
+function update_group(datos, mac) {
+	var _token = $('input[name="_token"]').val();
+	$.ajax({
+		type: "POST",
+		url: "/update_group_equipment",
+		data: { select1: datos, mac: mac, _token: _token },
+		success: function (data){
+		  //console.log(data);
+		  if (data[0].valor === '1') {
+		  	menssage_toast('Mensaje', '4', 'Datos actualizados.' , '3000');
+		  	refresh_table(datos, $('#table_group'));
 
-function validarespacioinputlength(campo, campob){
-  if( $("#"+campo).val().trim()==='' || $("#"+campo).val().length < campob ) {
-    return false;
-  }
-  else {
-    return true;
-  }
-}
+		  	//$('#select_one').val('').trigger('change');
+		  	$('#mac_input').val("");
 
-function convertMac(value) {
-	//DBDBDBDBDBDB 5 espacios.
-	//12 + 5 = 17
-	//DB DB DB DB DB DB
-	let status = 0;
-	let newstr = "";
-	var parts = []
-	countstr = value.length;
-	//console.log(value.length);
-	if (countstr < 17) {
-		parts = value.match(/[\s\S]{1,2}/g) || [];
-		for (var i = 0; i < parts.length; i++) {
-			newstr = newstr + parts[i] + ':';
+		  }else{
+		  	menssage_toast('Mensaje', '2', 'La mac ya se encuentra en este grupo.' , '3000');
+		  	$('#mac_input').val("");
+		  }
+		},
+		error: function (data) {
+		  console.log('Error:', data);
 		}
-		//console.log(newstr);
-		newstr = newstr.substr(0, newstr.length - 1);
-		//console.log(newstr);
-		return status = 1;
-	}else if (countstr = 17) {
-		return status = 1;
-	}else{
-		//console.log('string > 17');
-		return status;
-	}
-	return status;
-	// count = parts.length;
-	// console.log(parts);
-	// console.log(count);
+	});
 }
 
-function emptySelect() {
-	$('#select_one').empty();
-	$('#select_one').select2("destroy");
-}
 
 function update_select_group() {
 	var _token = $('input[name="_token"]').val();
@@ -176,30 +179,6 @@ function update_select_group() {
 }
 
 
-function update_group(datos, mac) {
-	var _token = $('input[name="_token"]').val();
-	$.ajax({
-		type: "POST",
-		url: "/update_group_equipment",
-		data: { select1: datos, mac: mac, _token: _token },
-		success: function (data){
-		  //console.log(data);
-		  if (data === '1') {
-		  	menssage_toast('Mensaje', '4', 'Datos actualizados.' , '3000');
-		  	refresh_table(datos, $('#table_group'));
-
-		  	//$('#select_one').val('').trigger('change');
-		  	$('#mac_input').val("");
-
-		  }else{
-		  	menssage_toast('Mensaje', '2', 'Se encontro un error: Revisar la mac address.' , '3000');
-		  }
-		},
-		error: function (data) {
-		  console.log('Error:', data);
-		}
-	});
-}
 
 function refresh_table(group, table) {
 	var _token = $('input[name="_token"]').val();
@@ -230,4 +209,64 @@ function table_group_content(datajson, table){
 	    status.ModeloNombre
 	  ]);
 	});
+}
+
+function emptySelect() {
+	$('#select_one').empty();
+	$('#select_one').select2("destroy");
+}
+
+function validarSelect(campo) {
+  if (campo != '') {
+    select=document.getElementById(campo).selectedIndex;
+    if( select == null || select == 0 ) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  else {
+    return false;
+  }
+}
+
+function validarespacioinputlength(campo, campob){
+  if( $("#"+campo).val().trim()==='' || $("#"+campo).val().length < campob ) {
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+
+function convertMac(value) {
+	//DBDBDBDBDBDB 5 espacios.
+	//12 + 5 = 17
+	//DB DB DB DB DB DB
+	let status = 0;
+	let newstr = "";
+	var parts = []
+	countstr = value.length;
+	//console.log(value.length);
+	if (countstr < 17) {
+		parts = value.match(/[\s\S]{1,2}/g) || [];
+		for (var i = 0; i < parts.length; i++) {
+			newstr = newstr + parts[i] + ':';
+		}
+		//console.log(newstr);
+		newstr = newstr.substr(0, newstr.length - 1);
+		//console.log(newstr);
+		return status = 1;
+	}else if (countstr = 17) {
+		return status = 1;
+	}else{
+		//console.log('string > 17');
+		return status;
+	}
+	return status;
+	// count = parts.length;
+	// console.log(parts);
+	// console.log(count);
 }

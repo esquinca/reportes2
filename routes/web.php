@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/group_equipment', 'GroupEquipmentController@index');
     Route::get('/provider', 'ProviderController@index');
 
+    Route::post('/move_group', 'GroupEquipmentController@update_move_group');
+
     Route::post('/search_rem_equipament_hotel', 'RemovedEquipmentController@show');
     Route::post('/send_item_drops_hotels', 'RemovedEquipmentController@edit');
 
@@ -217,7 +219,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_edit_menu_config', 'ConfigurationController@update_menu');
     Route::post('/data_delete_config', 'ConfigurationController@destroy');
 
-    Route::get('/acm1pt', 'ResultsSurveyController@test');
   //- individual
     Route::get('/individual', 'IndividualController@index');
     Route::post('/get_zd_hotel', 'IndividualController@get_zd_hotel');
@@ -270,5 +271,10 @@ Route::group(['middleware' => ['auth']], function() {
     //- Notification Viaticos
     Route::post('statuses', 'ViaticNotificationController@index')->name('statuses.store');
     Route::post('notification_s', 'ViaticNotificationController@show');
+
+
+
+    //Función para tests.
+    Route::get('/acm1pt', 'GroupEquipmentController@test');
 
 });
