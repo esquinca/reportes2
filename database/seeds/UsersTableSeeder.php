@@ -30,6 +30,11 @@ use App\Jefedirecto;
 use App\Marca;
 use App\Modelo;
 use App\Estado;
+
+use App\Viatic_service;
+use App\Viatic_state;
+use App\Viatic_beneficiary;
+use App\Viatic_list_concept;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -62,6 +67,12 @@ class UsersTableSeeder extends Seeder
       Marca::truncate();
       Modelo::truncate();
       Estado::truncate();
+
+      Viatic_service::truncate();
+      Viatic_state::truncate();
+      Viatic_beneficiary::truncate();
+      Viatic_list_concept::truncate();
+
 //Creamos los roles predeterminados
 $superadminRole = Role::create(['name' => 'SuperAdmin']);
      $adminRole = Role::create(['name' => 'Admin']);
@@ -174,6 +185,7 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
    $viaticolevel4= Permission::create(['name' => 'View level four notifications']);
 
    $vcreatgroup= Permission::create(['name' => 'Create grupos']);
+   $vcreatgroup2= Permission::create(['name' => 'View group letter']);
    //Creamos los usuarios por default
      $user_default_0 = new User;
      $user_default_0->name='SuperAdmin';
@@ -3046,20 +3058,118 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
          $assigned_menu_via_1_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_via_001->id]);
          $assigned_menu_via_1_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_via_001->id]);
 
-         $menu_via_002 = new Menu;
-         $menu_via_002->name='history_travel_requests';
-         $menu_via_002->display_name='Historial Viaticos';
-         $menu_via_002->description='Permite visualizar las solicitudes de viaticos';
-         $menu_via_002->url='history_travel_requests';
-         $menu_via_002->section_id=$seccion_admin_f->id;
-         $menu_via_002->icons='fa fa-tasks';
-         $menu_via_002->save();
-         $assigned_menu_via_2_000 = DB::table('menu_user')->insert(['user_id' => $user_default_0->id ,'menu_id' => $menu_via_002->id]);
-         $assigned_menu_via_2_001 = DB::table('menu_user')->insert(['user_id' => $super_admin_a1->id ,'menu_id' => $menu_via_002->id]);
-         $assigned_menu_via_2_002 = DB::table('menu_user')->insert(['user_id' => $super_admin_a2->id ,'menu_id' => $menu_via_002->id]);
-         $assigned_menu_via_2_003 = DB::table('menu_user')->insert(['user_id' => $super_admin_a3->id ,'menu_id' => $menu_via_002->id]);
-         $assigned_menu_via_2_004 = DB::table('menu_user')->insert(['user_id' => $super_admin_a4->id ,'menu_id' => $menu_via_002->id]);
-         $assigned_menu_via_2_005 = DB::table('menu_user')->insert(['user_id' => $super_admin_a5->id ,'menu_id' => $menu_via_002->id]);
+         $menu_equips_001 = new Menu;
+         $menu_equips_001->name='group_equipment_letter';
+         $menu_equips_001->display_name='Carta de Grupos';
+         $menu_equips_001->description='Carta de entrega en base a grupos.';
+         $menu_equips_001->url='group_equipment_letter';
+         $menu_equips_001->section_id=$seccion_admin_d->id;
+         $menu_equips_001->icons='fa fa-tasks';
+         $menu_equips_001->save();
+
+         //Viaticos - Servicio
+         $viatic_service_001 = new Viatic_service;
+         $viatic_service_001->name='Levantamiento';
+         $viatic_service_001->save();
+
+         $viatic_service_002 = new Viatic_service;
+         $viatic_service_002->name='Instalación';
+         $viatic_service_002->save();
+
+         $viatic_service_003 = new Viatic_service;
+         $viatic_service_003->name='Mantenimiento';
+         $viatic_service_003->save();
+
+         $viatic_service_004 = new Viatic_service;
+         $viatic_service_004->name='Prospección';
+         $viatic_service_004->save();
+
+         $viatic_service_005 = new Viatic_service;
+         $viatic_service_005->name='Gastos de representación';
+         $viatic_service_005->save();
+
+         $viatic_service_001 = new Viatic_service;
+         $viatic_service_001->name='Levantamiento';
+         $viatic_service_001->save();
+
+         //Viaticos - Estatus
+         $viatic_status_001 = new Viatic_state;
+         $viatic_status_001->name='Nuevo';
+         $viatic_status_001->description='Todas las solicitudes nuevas';
+         $viatic_status_001->save();
+
+         $viatic_status_002 = new Viatic_state;
+         $viatic_status_002->name='Pendiente';
+         $viatic_status_002->description='Cuando viaticos se aprueben';
+         $viatic_status_002->save();
+
+         $viatic_status_003 = new Viatic_state;
+         $viatic_status_003->name='Verifica';
+         $viatic_status_003->description='Todo lo aprobado por viaticos - operacion';
+         $viatic_status_003->save();
+
+         $viatic_status_004 = new Viatic_state;
+         $viatic_status_004->name='Aprueba';
+         $viatic_status_004->description='Todo lo verificado por operacion - gerente';
+         $viatic_status_004->save();
+
+         $viatic_status_005 = new Viatic_state;
+         $viatic_status_005->name='Declina';
+         $viatic_status_005->description='Cuando no se aprueba un gasto';
+         $viatic_status_005->save();
+
+         $viatic_status_006 = new Viatic_state;
+         $viatic_status_006->name='Pagado';
+         $viatic_status_006->description='Cuando se notifica del deposito del viatico y ha sido aprobado por direccion';
+         $viatic_status_006->save();
+
+         //Viaticos - Beneficiarios
+         $viatic_beneficiary_001 = new Viatic_beneficiary;
+         $viatic_beneficiary_001->name='Empleado(s)';
+         $viatic_beneficiary_001->save();
+
+         $viatic_beneficiary_002 = new Viatic_beneficiary;
+         $viatic_beneficiary_002->name='Profesionista(s)';
+         $viatic_beneficiary_002->save();
+
+         $viatic_beneficiary_003 = new Viatic_beneficiary;
+         $viatic_beneficiary_003->name='Socio(s)';
+         $viatic_beneficiary_003->save();
+
+         //Viaticos - Conceptos
+         $viatic_list_concep_001 = new Viatic_list_concept;
+         $viatic_list_concep_001->name='Transportación Aerea';
+         $viatic_list_concep_001->save();
+
+         $viatic_list_concep_002 = new Viatic_list_concept;
+         $viatic_list_concep_002->name='Transportación Terrestre';
+         $viatic_list_concep_002->save();
+
+         $viatic_list_concep_003 = new Viatic_list_concept;
+         $viatic_list_concep_003->name='Hospedaje';
+         $viatic_list_concep_003->save();
+
+         $viatic_list_concep_004 = new Viatic_list_concept;
+         $viatic_list_concep_004->name='Alimentación';
+         $viatic_list_concep_004->save();
+
+         $viatic_list_concep_005 = new Viatic_list_concept;
+         $viatic_list_concep_005->name='Renta de autos';
+         $viatic_list_concep_005->save();
+
+         $viatic_list_concep_006 = new Viatic_list_concept;
+         $viatic_list_concep_006->name='Transportes menores';
+         $viatic_list_concep_006->save();
+
+         $viatic_list_concep_007 = new Viatic_list_concept;
+         $viatic_list_concep_007->name='Otros gastos';
+         $viatic_list_concep_007->save();
+
+         $viatic_list_concep_008 = new Viatic_list_concept;
+         $viatic_list_concep_008->name='Gasolina';
+         $viatic_list_concep_008->save();
+
+
 
   }
 }

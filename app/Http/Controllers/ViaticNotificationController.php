@@ -29,19 +29,29 @@ class ViaticNotificationController extends Controller
     }
     public function show()
     {
+      $user = Auth::user()->id;
+
       if (auth()->user()->can('Travel allowance notification')) {
-        if (auth()->user()->can('View level zero notifications')){
+        if (auth()->user()->can('View level zero notifications')){ /*Notificaciones del usuario, con todos sus estatus*/
+          $result = DB::select('CALL get_status_notification (?,?)', array($user, 5000));
+          return json_encode($result);
         }
-        if (auth()->user()->can('View level one notifications')){
+        if (auth()->user()->can('View level one notifications')){ /*Notificaciones del usuario, con estatus activo*/
+          $result = DB::select('CALL get_status_notification (?,?)', array($user, 1));
+          return json_encode($result);
         }
-        if (auth()->user()->can('View level two notifications')){
+        if (auth()->user()->can('View level two notifications')){ /*Notificaciones del usuario, con estatus pendiente*/
+          $result = DB::select('CALL get_status_notification (?,?)', array($user, 2));
+          return json_encode($result);
         }
-        if (auth()->user()->can('View level three notifications')){
+        if (auth()->user()->can('View level three notifications')){ /*Notificaciones del usuario, con estatus verifica*/
+          $result = DB::select('CALL get_status_notification (?,?)', array($user, 3));
+          return json_encode($result);
         }
-        if (auth()->user()->can('View level four notifications')){
+        if (auth()->user()->can('View level four notifications')){ /*Notificaciones del usuario, con estatus aprueba*/
+          $result = DB::select('CALL get_status_notification (?,?)', array($user, 4));
+          return json_encode($result);
         }
-        $users = User::all();
-        return json_encode($users);
       }
       else {
         $array = array();

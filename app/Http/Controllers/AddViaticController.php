@@ -8,6 +8,6 @@ class AddViaticController extends Controller
 {
   public function index()
   {
-      return view('permitted.viaticos.add_request');
+      return view('permitted.viaticos.add_request2');
   }
 }

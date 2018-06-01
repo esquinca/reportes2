@@ -201,13 +201,13 @@ $('#select_two_zd').on('change', function(e){
           if (data === '[]') {
             $('#date_trans_gb').val('');
              menssage_toast('Mensaje', '2', 'Dia no capturado' , '3000');
-             $('#date_trans_gb').val('');
+             $('#data_trans_gb').val('');
              $('#date_trans_gb').datepicker('setDate', null);
              $('#select_two_zd').val('').trigger('change');
           }
           else {
             var data_new = JSON.parse(data);
-            $('#date_trans_gb').val(data_new[0].gb);
+            $('#data_trans_gb').val(data_new[0].gb);
           }
         },
         error: function (data) {
