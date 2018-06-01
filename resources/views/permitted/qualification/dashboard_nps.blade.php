@@ -149,6 +149,16 @@
                           </div>
                         </div>
                       </div>
+                      <!-- /.col -->
+                      <div class="col-sm-12 col-xs-12">
+                        <div class="box box-solid">
+                          <div class="description-block box-body">
+                            <h3 id="check_venues" class="description-header text-yellow">0</h3>
+                            <b><span class="description-text">Sitios evaluados</span></b>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col -->
                     </div>
                   </div>
                   <!-- /.col -->
@@ -335,6 +345,7 @@
                   if(status.Concepto == 'Abstenidos') {   $('#unanswered').text(status.Count); }
                   if(status.Concepto == 'Respondieron') {   $('#answered').text(status.Count); }
                   if(status.Concepto == 'Encuestas Enviadas') {   $('#total_survey').text(status.Count); }
+                  if(status.Concepto == 'Sitios') {   $('#check_venues').text(status.Count); }
                 });
              },
              error: function (data) {
