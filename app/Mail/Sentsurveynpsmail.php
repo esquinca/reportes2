@@ -31,6 +31,6 @@ class Sentsurveynpsmail extends Mailable
     public function build()
     {
         //return $this->view('view.name');
-        return $this->subject('Encuesta')->view('mail.surveynps');
+        return $this->subject('Encuesta de calidad del servicio.')->view('mail.surveynps');
     }
 }

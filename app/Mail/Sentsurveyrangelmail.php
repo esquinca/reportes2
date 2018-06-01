@@ -31,6 +31,6 @@ class Sentsurveyrangelmail extends Mailable
     public function build()
     {
         //return $this->view('view.name');
-        return $this->subject('Encuesta')->view('mail.surveyrangel');
+        return $this->subject('Encuesta de calidad del servicio.')->view('mail.surveyrangel');
     }
 }

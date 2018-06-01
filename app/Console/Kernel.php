@@ -37,6 +37,7 @@ class Kernel extends ConsoleKernel
       $schedule->command('wlan:dia')->dailyAt('22:40');
       $schedule->command('rougue:mes')->monthly();
       //$schedule->command('survey:nps')->monthly(1,'1:00');
+      //$schedule->command('survey:especial')->monthly(1,'1:00');
       $schedule->command('termination:nps')->daily();
     }
 

@@ -45,19 +45,19 @@ class sentsurveyxnps extends Command
     {
         $data_emails = [];
         $data_insert = [];
-        $fechaini = "2018-04-01";
-        $fechafin = "2018-04-30";
-        $fecha_cur = "2018-04-01";
-        $mesanteriorfull = "2018-03-01";
+        // $fechaini = "2018-04-01";
+        // $fechafin = "2018-04-30";
+        // $fecha_cur = "2018-04-01";
+        // $mesanteriorfull = "2018-03-01";
 
-        // $fechaini = date('Y-m-01');
-        // $fechafin = date('Y-m-t');
-        // $fecha_cur = date('Y-m');
+        $fechaini = date('Y-m-01');
+        $fechafin = date('Y-m-t');
+        $fecha_cur = date('Y-m');
 
         $mesanterior = strtotime ( '-1 month' , strtotime ( $fecha_cur ) ) ;
         $mesanterior = date ( 'Y-m' , $mesanterior );
 
-        //$mesanteriorfull = $mesanterior . '-01';
+        $mesanteriorfull = $mesanterior . '-01';
 
 
         $sql = DB::select('CALL List_User_NPS(?)', array(6));
@@ -76,7 +76,8 @@ class sentsurveyxnps extends Command
                 'shell_data' => $encriptodata, 
                 'shell_status' => $encriptostatus
             ];
-            array_push($data_insert, [
+
+            $data_insert = [
                 'user_id' => $sql[$i]->id,
                 'encuesta_id' => 1,
                 'estatus_id' => 1,
@@ -86,17 +87,32 @@ class sentsurveyxnps extends Command
                 'fecha_fin' => $fechafin,
                 'shell_data' => $encriptodata,
                 'shell_status' => $encriptostatus
-            ]);
+            ];
+
+            // array_push($data_insert, [
+            //     'user_id' => $sql[$i]->id,
+            //     'encuesta_id' => 1,
+            //     'estatus_id' => 1,
+            //     'estatus_res' => 0,
+            //     'fecha_inicial' => $fechaini,
+            //     'fecha_corresponde' => $mesanteriorfull,
+            //     'fecha_fin' => $fechafin,
+            //     'shell_data' => $encriptodata,
+            //     'shell_status' => $encriptostatus
+            // ]);
             //
+            $this->line('email: ' . $sql[$i]->email);
+            $this->line('nombre: ' . $sql[$i]->name);
+            $res = DB::table('encuesta_users')->insert($data_insert);
+            if ($res) {
+                $this->line('Datos Insertados.');
+            }else{
+                $this->error('no se insertaron datos.');
+            }
+            
             $this->sentSurveyEmail($sql[$i]->email, $data_emails);
         }
 
-        //$res = DB::table('encuesta_users')->insert($data_insert);
-        // if ($res) {
-        //     $this->line('Datos Insertados.');
-        // }else{
-        //     $this->error('no se insertaron datos.');
-        // }
 
         
         //dd($sql);

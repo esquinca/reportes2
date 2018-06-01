@@ -257,11 +257,20 @@ Route::group(['middleware' => ['auth']], function() {
   //- Funcion para probar mails.
     Route::get('mailable', function(){
         $data = [];
-        array_push($data, ['cliente_o' => 'Aldea Thai', 'cliente_d' => 'Aluxes', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4']);
-        $data2 = ['Jose Esquinca', 'Alonso cauich'];
-        array_push($data, ['cliente_o' => 'coño', 'cliente_d' => 'vergbghjjmhd', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4']);
+        // array_push($data, ['cliente_o' => 'Aldea Thai', 'cliente_d' => 'Aluxes', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4']);
+        // $data2 = ['Jose Esquinca', 'Alonso cauich'];
+        // array_push($data, ['cliente_o' => 'coño', 'cliente_d' => 'vergbghjjmhd', 'equipo' => 'Antena', 'marca' => 'RUCKUS', 'mac' => 'D8:38:FC:0A:2A:30', 'serie' => '441602403933', 'modelo' => 'r300', 'estado_o' => 'baja', 'estado_d' => 'activo', 'origen' => '3', 'destino' => '4']);
 
-        return new App\Mail\MovimientosMail($data, $data2);
+
+            $data_emails = [
+            'nombre' => 'Mario olarte', 
+            'shell_data' => 'linksafhasfasfasf', 
+            'shell_status' => 'ashsfhdh'
+            ];
+            
+        return new App\Mail\Sentsurveyrangelmail($data_emails);
+        //return new App\Mail\Sentsurveynpsmail($data_emails);
+        //return new App\Mail\MovimientosMail($data, $data2);
     });
     //- Viaticos Dashboard
     Route::get('/dashboard_viaticos', 'DashboardViaticController@index');
