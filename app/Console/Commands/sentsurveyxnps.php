@@ -66,7 +66,7 @@ class sentsurveyxnps extends Command
         
         
         for ($i=0; $i < $sql_count; $i++) {
-            //$this->line('Current Iteration: ' . $i);
+            $this->line('Current Iteration: ' . $i);
             $nuevolink = $sql[$i]->id.'/'.'1'.'/'.$mesanteriorfull.'/'.$fechafin;
             $encriptodata= Crypt::encryptString($nuevolink);
             $encriptostatus= Crypt::encryptString('1');
@@ -123,7 +123,7 @@ class sentsurveyxnps extends Command
         //     ];
             $this->line('Sending Email to: ' . $data['nombre'] . ', ' . $correo);
             //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveynpsmail($datos));
-            //Mail::to($correo)->send(new Sentsurveynpsmail($data));
+            Mail::to($correo)->send(new Sentsurveynpsmail($data));
         //}
     }
 

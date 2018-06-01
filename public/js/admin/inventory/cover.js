@@ -51,14 +51,15 @@ function fillHeaders() {
   var cadena= $('#select_one').val();
   var _token = $('input[name="_token"]').val();
   var datax;
+  console.log(cadena);
   $.ajax({
     type: "POST",
     url: "/cover_header",
     data: { data_one : cadena,  _token : _token },
     success: function (data){
+      console.log(data);
       if (!$.trim(data)){
         datax = JSON.parse(data);
-        //console.log(data);
         $("#name_htl").text(datax[0].Nombre_hotel);
         // URL de imagen
         $("#client_img").attr("src","../images/hotel/"+datax[0].logo);

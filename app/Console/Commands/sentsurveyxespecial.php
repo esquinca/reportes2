@@ -123,7 +123,7 @@ class sentsurveyxespecial extends Command
         //     ];
             $this->line('Sending Email to: ' . $data['nombre'] . ', ' . $correo);
             //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveyrangelmail($datos));
-            //Mail::to('crangel@sitwifi.com')->send(new Sentsurveyrangelmail($data));
+            Mail::to('crangel@sitwifi.com')->send(new Sentsurveyrangelmail($data));
         //}
     }
 

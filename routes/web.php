@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_mac_res', 'SearchEquipmentController@search_mac');
 
     Route::get('/group_equipment', 'GroupEquipmentController@index');
+    Route::get('/group_equipment_letter', 'GroupLetterController@index');
     Route::get('/provider', 'ProviderController@index');
 
     Route::post('/move_group', 'GroupEquipmentController@update_move_group');
