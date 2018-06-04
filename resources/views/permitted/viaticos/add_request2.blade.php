@@ -51,134 +51,130 @@
                         {{ csrf_field() }}
                           <div class="wizard-content">
                               <div class="wizard-pane active" role="tabpanel">
-                                  <div class="form-group">
-                                      <label class="col-xs-3 control-label">Titulo</label>
-                                      <div class="col-xs-5">
-                                          <input type="text" class="form-control" name="title" />
-                                      </div>
-                                  </div>
-                                  <!--..........................................................................-->
                                   <div class="row">
                                     <div class="col-lg-6">
                                       <div class="form-group">
-                                          <label class="col-xs-3 control-label">Folio</label>
-                                          <div class="col-xs-5">
-                                              <input type="text" class="form-control" name="title" />
-                                          </div>
-                                      </div>
-
-
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Folio <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="folio_id" name="folio_id" maxlength="150" type="text" class="form-control">
+                                        <label class="col-xs-2 control-label">Servicio</label>
+                                        <div class="col-xs-10 selectContainer">
+                                            <select name="service_id" class="form-control">
+                                                <option value="" selected></option>
+                                                @forelse ($service as $data_service)
+                                                  <option value="{{ $data_service->id }}"> {{ $data_service->name }} </option>
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
                                       </div>
                                     </div>
+
                                     <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Id Proyecto <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="proyect_id" name="proyect_id" maxlength="150" type="text" class="form-control">
+                                      <div class="form-group">
+                                        <label class="col-xs-2 control-label">Gerente</label>
+                                        <div class="col-xs-10 selectContainer">
+                                            <select name="gerente_id" class="form-control">
+                                                <option value="" selected></option>
+                                                @forelse ($jefe as $data_jefe)
+                                                  <option value="{{ $data_jefe->id }}"> {{ $data_jefe->Nombre }} </option>
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
                                       </div>
                                     </div>
+
+
                                   </div>
-                                  <br>
 
                                   <div class="row">
                                     <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Servicio <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <select class="form-control select2" id="service_id" name="service_id">
-                                          <option value="" selected> Elija </option>
-                                        </select>
+                                      <div class="form-group">
+                                        <label class="col-xs-2 control-label">Beneficiario</label>
+                                        <div class="col-xs-10 selectContainer">
+                                            <select name="user_id" class="form-control">
+                                              <option value="" selected></option>
+                                              @forelse ($beneficiary as $data_beneficiary)
+                                                <option value="{{ $data_beneficiary->id }}"> {{ $data_beneficiary->name }} </option>
+                                              @empty
+                                              @endforelse
+                                            </select>
+                                        </div>
                                       </div>
                                     </div>
+
                                     <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Proyecto <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <select class="form-control select2" id="cadena_id" name="cadena_id">
-                                          <option value="" selected> Elija </option>
-                                        </select>
+                                      <div class="form-group">
+                                        <label class="col-xs-2 control-label">Solicitante</label>
+                                        <div class="col-xs-10 selectContainer">
+                                            <select name="user_id" class="form-control">
+                                              @forelse ($user as $data_user)
+                                                <option value="{{ $data_user->id }}"> {{ $data_user->name }} </option>
+                                              @empty
+                                              @endforelse
+                                            </select>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <br>
+
+
 
                                   <div class="row">
                                     <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Solicitante <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <select class="form-control select2" id="user_id" name="user_id">
-                                          <option value="" selected> Elija </option>
-                                        </select>
+                                      <div class="form-group">
+                                         <label class="col-xs-3 control-label">Fecha Inicio</label>
+                                         <div class="col-xs-9 dateContainer">
+                                             <div class="input-group input-append date" id="startDatePicker" name="startDatePicker">
+                                                 <input type="text" class="form-control" name="startDate" />
+                                                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                             </div>
+                                         </div>
                                       </div>
                                     </div>
+
                                     <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Gerente <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <select class="form-control select2" id="gerente_id" name="gerente_id">
-                                          <option value="" selected> Elija </option>
-                                        </select>
+                                      <div class="form-group">
+                                        <label class="col-xs-3 control-label">Fecha Fin</label>
+                                        <div class="col-xs-9 dateContainer">
+                                            <div class="input-group input-append date" id="endDatePicker" name="endDatePicker">
+                                                <input type="text" class="form-control" name="endDate" />
+                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <br>
+
+                                  <div class="row">
+                                    <div class="col-lg-6">
+                                      <div class="form-group">
+                                         <label class="col-xs-3 control-label">Lugar Origen</label>
+                                         <div class="col-xs-9">
+                                             <input type="text" class="form-control" name="place_o" />
+                                         </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                      <div class="form-group">
+                                         <label class="col-xs-3 control-label">Lugar Destino</label>
+                                         <div class="col-xs-9">
+                                             <input type="text" class="form-control" name="place_d" />
+                                         </div>
+                                      </div>
+                                    </div>
+                                  </div>
 
                                   <div class="row">
                                     <div class="col-lg-12">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Tipo de beneficiario <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <select class="form-control select2" id="beneficiario_id" name="beneficiario_id">
-                                          <option value="" selected> Elija </option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <br>
-
-                                  <div class="row">
-                                    <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Fecha Inicio: <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="date_start" name="date_start" maxlength="150" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Fecha Fin: <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="date_end" name="date_end" maxlength="150" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <br>
-
-                                  <div class="row">
-                                    <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Lugar Origen: <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="place_o" name="place_o" maxlength="150" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Lugar Destino: <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="place_d" name="place_d" maxlength="150" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <br>
-
-                                  <div class="row">
-                                    <div class="col-lg-6">
-                                      <div class="input-group">
-                                        <span class="input-group-addon">Descripción <i class="glyphicon glyphicon-asteris text-danger">*</i></span>
-                                        <input id="descripcion" name="descripcion" maxlength="150" type="text" class="form-control">
+                                      <div class="form-group">
+                                        <label class="col-xs-1 control-label">Descripción</label>
+                                        <div class="col-xs-11">
+                                            <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                   <!--..........................................................................-->
-
-
-
-
                               </div>
                               <div class="wizard-pane" role="tabpanel">
                                 <div class="form-group">
@@ -272,145 +268,164 @@
     </style>
     <script type="text/javascript">
       (function() {
-        // The maximum number of options
-       var MAX_OPTIONS = 3;
-                      //  $('#exampleValidator').find('li.done').removeClass( "done" );
-
-        $('#exampleValidator').wizard({
-            onInit: function() {
-                $('#validation').formValidation({
-                    framework: 'bootstrap',
-                    fields: {
-                        title: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The title is required'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 30,
-                                    message: 'The title must be more than 6 and less than 30 characters long'
-                                },
-                                regexp: {
-                                    regexp: /^[ña-zÑA-Z0-9_\.]+$/,
-                                    message: 'The title can only consist of alphabetical, number, dot and underscore'
-                                }
-                            }
+       // The maximum number of options
+       var MAX_OPTIONS = 5;
+       $('#exampleValidator').wizard({
+         onInit: function() {
+             $('#validation')
+             .find('[name="service_id"]')
+                .select2()
+                .change(function(e) {
+                    $('#validation').formValidation('revalidateField', 'service_id');
+                })
+                .end()
+             .find('[name="cadena_id"]')
+                 .select2()
+                 .change(function(e) {
+                     $('#validation').formValidation('revalidateField', 'cadena_id');
+                 })
+                 .end()
+             .find('[name="user_id"]')
+                 .select2()
+                 .change(function(e) {
+                     $('#validation').formValidation('revalidateField', 'user_id');
+                 })
+                 .end()
+             .find('[name="gerente_id"]')
+                 .select2()
+                 .change(function(e) {
+                     $('#validation').formValidation('revalidateField', 'gerente_id');
+                 })
+                 .end()
+             .find('[name="startDate"]')
+                 .datepicker({
+                     format: 'dd/mm/yyyy'
+                 })
+                 .on('changeDate', function(e) {
+                     $('#validation').formValidation('revalidateField', 'startDate');
+                 })
+                 .end()
+             .find('[name="endDate"]')
+                 .datepicker({
+                     format: 'dd/mm/yyyy'
+                 })
+                 .on('changeDate', function(e) {
+                     $('#validation').formValidation('revalidateField', 'endDate');
+                 })
+                 .end()
+             .formValidation({
+               framework: 'bootstrap',
+               excluded: ':disabled',
+               icon: {
+                   valid: 'glyphicon glyphicon-ok',
+                   invalid: 'glyphicon glyphicon-remove',
+                   validating: 'glyphicon glyphicon-refresh'
+               },
+               fields: {
+                 service_id: {
+                     validators: {
+                         notEmpty: {
+                             message: 'Please select a service.'
+                         }
+                     }
+                 },
+                 cadena_id: {
+                     validators: {
+                         notEmpty: {
+                             message: 'Please select a proyect.'
+                         }
+                     }
+                 },
+                 user_id: {
+                     validators: {
+                         notEmpty: {
+                             message: 'Please select a user.'
+                         }
+                     }
+                 },
+                 gerente_id: {
+                     validators: {
+                         notEmpty: {
+                             message: 'Please select a manager.'
+                         }
+                     }
+                 },
+                 startDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The start date is required'
                         },
-                        email: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The email address is required'
-                                },
-                                emailAddress: {
-                                    message: 'The input is not a valid email address'
-                                }
-                            }
-                        },
-                        password: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The password is required'
-                                },
-                                different: {
-                                    field: 'username',
-                                    message: 'The password cannot be the same as username'
-                                }
-                            }
-                        },
-                        'option[]': {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The option required and cannot be empty'
-                                },
-                                stringLength: {
-                                    max: 100,
-                                    message: 'The option must be less than 100 characters long'
-                                }
-                            }
+                        date: {
+                            format: 'DD/MM/YYYY',
+                            max: 'endDate',
+                            message: 'The start date is not a valid'
                         }
                     }
-                })
-                // Add button click handler
-               .on('click', '.addButton', function() {
-                   var $template = $('#optionTemplate'),
-                       $clone    = $template
-                                       .clone()
-                                       .removeClass('hide')
-                                       .removeAttr('id')
-                                       .insertBefore($template),
-                       $option   = $clone.find('[name="option[]"]');
-
-                   // Add new field
-                  //  alert('d');
-                   $('#validation').formValidation('addField', $option);
-               })
-               // Remove button click handler
-               .on('click', '.removeButton', function() {
-                   var $row    = $(this).parents('.form-group'),
-                       $option = $row.find('[name="option[]"]');
-
-                   // Remove element containing the option
-                   $row.remove();
-
-                   // Remove field
-                   $('#validation').formValidation('removeField', $option);
-               })
-
-               // Called after adding new field
-               .on('added.field.fv', function(e, data) {
-                   // data.field   --> The field name
-                   // data.element --> The new field element
-                   // data.options --> The new field options
-
-                   if (data.field === 'option[]') {
-                       if ($('#validation').find(':visible[name="option[]"]').length >= MAX_OPTIONS) {
-                           $('#validation').find('.addButton').attr('disabled', 'disabled');
-                       }
-                   }
-               })
-
-               // Called after removing the field
-               .on('removed.field.fv', function(e, data) {
-                  if (data.field === 'option[]') {
-                       if ($('#validation').find(':visible[name="option[]"]').length < MAX_OPTIONS) {
-                           $('#validation').find('.addButton').removeAttr('disabled');
-                       }
-                   }
-               });
-            },
-            validator: function() {
-                var fv = $('#validation').data('formValidation');
-                var $this = $(this);
-                // Validate the container
-                fv.validateContainer($this);
-                var isValidStep = fv.isValidContainer($this);
-                if (isValidStep === false || isValidStep === null) {
-                  //alert('false');
-                    return false;
+                 },
+                 endDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                            format: 'DD/MM/YYYY',
+                            min: 'startDate',
+                            message: 'The end date is not a valid'
+                        }
+                    }
+                 },
+                 place_o: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The origin place  is required'
+                        }
+                    }
+                 },
+                 place_d: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The destination place is required'
+                        }
+                    }
+                 },
+                 descripcion: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The description is required'
+                        },
+                        stringLength: {
+                            max: 700,
+                            message: 'The description must be less than 700 characters long'
+                        }
+                    }
+                 }
+               }
+             })
+             .on('success.field.fv', function(e, data) {
+                if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                    // We need to revalidate the end date
+                    data.fv.revalidateField('endDate');
                 }
-                return true;
-            },
-            onFinish: function() {
-                document.getElementById("validation").submit();
-                $('#validation')[0].reset();
-                $('#exampleValidator').wizard('first');
-                $('#exampleValidator').wizard('reset');
-                // menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
-                $('#validation').data('formValidation').resetForm('true');
+                if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                    // We need to revalidate the start date
+                    data.fv.revalidateField('startDate');
+                }
+            })
+         },
+         validator: function() {
+             var fv = $('#validation').data('formValidation');
+             var $this = $(this);
+             // Validate the container
+             fv.validateContainer($this);
+             var isValidStep = fv.isValidContainer($this);
+             if (isValidStep === false || isValidStep === null) {
+               //alert('false');
+                 return false;
+             }
+             return true;
+         },
 
-                $('#exampleValidator').find('li.done').removeClass( "done" );
-
-
-                //alert('Finalizado');
-                //swal("Message Finish!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
-            },
-            onSuccess: function(e) {
-              // menssage_toast('Mensaje', '4', 'Operation complete!' , '3000');
-              // $(".wizard-steps>li.done").removeClass( "done" );
-            }
         })
-
       })();
     </script>
 
