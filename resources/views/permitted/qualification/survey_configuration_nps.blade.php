@@ -26,6 +26,35 @@
 
 @section('content')
     @if( auth()->user()->can('View survey nps configuration') )
+
+
+    <!--Modal confirmación-->
+     <div class="modal modal-default fade" id="modal-confirmation" data-backdrop="static">
+       <div class="modal-dialog" >
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+             <h4 class="modal-title"><i class="fa fa-bookmark" style="margin-right: 4px;"></i>Confirmación</h4>
+           </div>
+           <div class="modal-body">
+             <div class="box-body">
+               <div class="row">
+                 <div class="col-xs-12">
+                   <h4 style="font-weight: bold;">¿Are you sure you want to resend all surveys?</h4>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-success btn-conf-action"><i class="fa fa-check" style="margin-right: 4px;"></i>Confirmar</button>
+             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times" style="margin-right: 4px;"></i>{{ trans('message.ccmodal') }}</button>
+           </div>
+         </div>
+       </div>
+     </div>
+    <!--Modal confirmación-->
+
+
     <div class="modal modal-default fade" id="modal-delrelacion" data-backdrop="static">
       <div class="modal-dialog" >
         <div class="modal-content">

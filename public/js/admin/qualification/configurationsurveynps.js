@@ -116,24 +116,32 @@ $('#btn-send_reenv_mail').on('click', function () {
     if (date == "") {
       menssage_toast('Mensaje', '2', 'Completa el campo de fecha.' , '3000');
     }else{
-      $.ajax({
-        type: "POST",
-        url: "/send_unanswer",
-        data: { date : date , _token : _token },
-        success: function (data){
-          console.log(data);
-          if (data == 1) {
-            menssage_toast('Mensaje', '3', 'Correos enviados exitosamente.' , '3000');
-          }else{
-            menssage_toast('Mensaje', '2', 'No hay clientes para enviar correo.' , '3000');
-          }
-        },
-        error: function (data) {
-          console.log('Error:', data);
-        }
-      });
+      $('#modal-confirmation').modal('show');
     }
 
+});
+
+$(".btn-conf-action").click(function(event) {
+  var date = $('#month_correspond_mail').val();
+  var _token = $('input[name="_token"]').val();
+    $.ajax({
+      type: "POST",
+      url: "/send_unanswer",
+      data: { date : date , _token : _token },
+      success: function (data){
+        //console.log(data);
+        if (data == 1) {
+          menssage_toast('Mensaje', '3', 'Correos enviados exitosamente.' , '6000');
+          $('#modal-confirmation').modal('toggle');
+        }else{
+          menssage_toast('Mensaje', '2', 'No hay clientes para enviar correo.' , '5000');
+          $('#modal-confirmation').modal('toggle');
+        }
+      },
+      error: function (data) {
+        console.log('Error:', data);
+      }
+    });
 });
 
 $('#cancela_cu').click(function(){
