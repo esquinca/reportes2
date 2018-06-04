@@ -45,6 +45,7 @@ class sentsurveyxespecial extends Command
     {
         $data_emails = [];
         $data_insert = [];
+        $string1 = "";
         // $fechaini = "2018-04-01";
         // $fechafin = "2018-04-30";
         // $fecha_cur = "2018-04-01";
@@ -65,14 +66,25 @@ class sentsurveyxespecial extends Command
         $sql_count = count($sql);
 
 
+
         for ($i=0; $i < $sql_count; $i++) {
             //$this->line('Current Iteration: ' . $i);
             $nuevolink = $sql[$i]->id.'/'.'1'.'/'.$mesanteriorfull.'/'.$fechafin;
             $encriptodata= Crypt::encryptString($nuevolink);
             $encriptostatus= Crypt::encryptString('1');
 
+            $res = DB::select('CALL buscar_venue_user(?)', array($sql[$i]->id));
+            $count = count($res);
+
+            for ($j=0; $j < $count; $j++) {
+                $string1 = $string1 . $res[$j]->Nombre_hotel . ", ";
+            }
+            $string1 = substr($string1, 0, -2);
+
+
             $data_emails = [
                 'nombre' => $sql[$i]->name,
+                'string' => $string1,
                 'shell_data' => $encriptodata,
                 'shell_status' => $encriptostatus
             ];
@@ -108,6 +120,8 @@ class sentsurveyxespecial extends Command
             }else{
                 $this->error('no se insertaron datos.');
             }
+            //print_r($data_emails);
+            
             $this->sentSurveyEmail($sql[$i]->email, $data_emails);
         }
 
@@ -135,8 +149,8 @@ class sentsurveyxespecial extends Command
         //         'shell_data' => $shell1,
         //         'shell_status' => $shell2,
         //     ];
-            $this->line('Sending Email to: ' . $data['nombre'] . ', ' . $correo);
-            //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveyrangelmail($datos));
+            $this->line('Sending Email to Rangel of the following client: ' . $data['nombre'] . ', ' . $correo);
+            //Mail::to('jesquinca@sitwifi.com')->send(new Sentsurveyrangelmail($data));
             Mail::to('crangel@sitwifi.com')->send(new Sentsurveyrangelmail($data));
         //}
     }
