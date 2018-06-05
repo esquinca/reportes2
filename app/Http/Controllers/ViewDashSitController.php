@@ -215,7 +215,17 @@ class ViewDashSitController extends Controller
     $date = $request->date_to_search;
     $date_full = $date . '-01';
     //$result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', '2'));
-    $result = DB::select('CALL comments_table(?, ?)', array($date_full, $id_enc));
+    $result = DB::select('CALL comments_table(?, ?)', array($date_full, 2));
+    return json_encode($result);
+  }
+
+  public function table_comments_nps(Request $request)
+  {
+    $id_enc = $request->select_surveys;
+    $date = $request->date_to_search;
+    $date_full = $date . '-01';
+    //$result = DB::select('CALL comments_table(?, ?)', array('2018-04-01', '2'));
+    $result = DB::select('CALL comments_table_nps(?, ?)', array($date_full, 1));
     return json_encode($result);
   }
 

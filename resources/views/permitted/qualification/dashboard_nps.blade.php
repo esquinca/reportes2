@@ -271,7 +271,35 @@
             </div>
           </div>
 
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 pt-10">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <div class="box box-solid">
 
+                  <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                      Comentarios de los clientes.
+                  </h4>
+                  <div class="description-block box-body">
+                    <div class="table-responsive" style="background: #ffffff;">
+                      <table id="table_comments" class="table table-striped table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>Cliente</th>
+                            <th>Comentario</th>
+                            <th>Calificación</th>
+                            <th>Fecha registro</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
 
 
         </div>
@@ -302,6 +330,7 @@
         main_grap_avg_per_month();
         table_comparative_v1();
         table_avg_vertical();
+        table_comments();
 
         $('#date_to_search').datepicker({
           language: 'es',
@@ -325,6 +354,7 @@
         main_grap_avg_per_month();
         table_comparative_v1();
         table_avg_vertical();
+        table_comments();
       });
 
 
@@ -612,6 +642,44 @@
             span_identificador,
           ]);
         });
+      }
+      function table_comments() {
+        var objData = $('#search_info').find("select,textarea, input").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/get_table_comments_nps",
+            data: objData,
+            success: function (data){
+              //console.log(data);              
+              table_com_nps(data, $("#table_comments"));
+            },
+            error: function (data) {
+              console.log('Error:', data);
+            }
+        });
+      }
+      function table_com_nps(datajson, table){
+        table.DataTable().destroy();
+        var vartable = table.dataTable(Configuration_table_responsive_simple_two);
+        vartable.fnClearTable();
+        $.each(JSON.parse(datajson), function(index, status){
+          vartable.fnAddData([
+            status.Cliente,
+            status.Comentario,
+            getValueCurrent(status.Calificacion),
+            status.updated_at,
+          ]);
+        });
+      }
+
+      function getValueCurrent(qty) {
+          var retval;
+          var val=qty;
+          if (val == 'Pr') { retval = '<span class="label label-success">Promotor</span>';}
+          if (val == 'Ps') { retval = '<span class="label label-warning">Pasivo</span>';}
+          if (val == 'D') { retval = '<span class="label label-danger">Detractor</span>';}
+          if (val == '') { retval = '';}
+          return retval;
       }
       //julio 2017 - febrero 2017
 

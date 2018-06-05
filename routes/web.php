@@ -172,7 +172,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/get_graph_uvsr' , 'ViewDashNPSController@graph_uvsr');
     Route::post('/get_graph_avgcal' , 'ViewDashNPSController@graph_avgcal');
     Route::post('/get_table_vert' , 'ViewDashNPSController@table_vert');
-
+    Route::post('/get_table_comments_nps', 'ViewDashNPSController@table_comments_nps');
 
   //Dashboard Sitwifi
     Route::get('/view_dashboard_survey_sit' , 'ViewDashSitController@index');
@@ -183,6 +183,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/create_manual_survey_record', 'ViewDashSitController@survey_record');
     Route::post('/show_survey_table_sit', 'ViewDashSitController@user_surveys_sitwifi');
     Route::post('/get_table_comments_gnrl', 'ViewDashSitController@table_comments');
+    Route::post('/get_table_comments_gnrl_nps', 'ViewDashSitController@table_comments_nps');
     Route::post('/get_count_enc', 'ViewDashSitController@conteoEncuestas');
 
   //- Herramientas

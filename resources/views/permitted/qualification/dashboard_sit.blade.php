@@ -75,7 +75,7 @@
         </div>
 
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-          <div class="row" style="display:block">
+          <div class="row" id="div_table" style="display:none;">
             <table id="table_comments" class="table table-striped table-bordered table-hover" >
               <thead>
                 <tr>
@@ -91,6 +91,26 @@
             </table>
           </div>
         </div>
+
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div class="row" id="div_table_nps" style="display:none;">
+            <table id="table_comments_nps" class="table table-striped table-bordered table-hover" >
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Comentarios</th>
+                  <th>Calificación</th>
+                  <th>Fecha de registro</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
       </div>
     </div>
     @else
@@ -126,11 +146,16 @@
       if (enc === "" || date_cor === "") {
         menssage_toast('Mensaje', '2', 'Completa todos los campos.' , '3000');
       }else{
-        consultar();
-        table_count();
-        table_comments_load();
+        if (enc === '1') {
+          consultar();
+          table_count();
+          tables_comments_nps();
+        }else{
+          consultar();
+          table_count();
+          table_comments_load();
+        }
       }
-
     });
 
     function consultar() {
@@ -192,7 +217,7 @@
           url: "/get_count_enc",
           data: objData,
           success: function (data){
-            console.log(data);
+            //console.log(data);
 
             $("#conteo_res").append(
               '<div class="col-md-4 pt-10"><div class="box box-widget widget-user-2"><div class="widget-user-header bg-green"><h5>Resultados de la encuesta.</h5></h5></div><div id="footer_conteo" class="box-footer no-padding">'
@@ -218,6 +243,30 @@
       });
     }
 
+    function tables_comments_nps() {
+      var objData = $('#search_info').find("select,textarea, input").serialize();
+      var date_cor= $('#date_to_search').val();
+
+      var _token = $('input[name="_token"]').val();
+      var table_c = $('#table_comments_nps');
+
+      $('#div_table').hide();
+      $('#div_table_nps').show();
+
+      $.ajax({
+          type: "POST",
+          url: "/get_table_comments_gnrl_nps",
+          data: objData,
+          success: function (data){
+            console.log(data);
+            create_table_nps(data, table_c);
+          },
+          error: function (data) {
+            console.log('Error:', data);
+          }
+      });
+    }
+
     function table_comments_load() {
       var objData = $('#search_info').find("select,textarea, input").serialize();
       var date_cor= $('#date_to_search').val();
@@ -225,6 +274,9 @@
       var _token = $('input[name="_token"]').val();
       var table_c = $('#table_comments');
       var data_data = [];
+      
+      $('#div_table').show();
+      $('#div_table_nps').hide();
 
       $.ajax({
           type: "POST",
@@ -253,6 +305,20 @@
         if (val == 'Ps') { retval = '<span class="label label-warning">Pasivo</span>';}
         if (val == 'D') { retval = '<span class="label label-danger">Detractor</span>';}
         return retval;
+    }
+
+    function create_table_nps(datajson, table) {
+      table.DataTable().destroy();
+      var vartable = table.dataTable(Configuration_table_responsive_simple_two);
+      vartable.fnClearTable();
+      $.each(JSON.parse(datajson), function(index, status){
+        vartable.fnAddData([
+          status.Cliente,
+          status.Comentario,
+          getValueCali(status.Calificacion),
+          status.updated_at
+        ]);
+      });
     }
 
     function create_table(datajson, table) {
