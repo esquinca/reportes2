@@ -98,6 +98,7 @@
               <thead>
                 <tr>
                   <th>Cliente</th>
+                  <th>Sitio</th>
                   <th>Comentarios</th>
                   <th>Calificación</th>
                   <th>Fecha de registro</th>
@@ -258,7 +259,7 @@
           url: "/get_table_comments_gnrl_nps",
           data: objData,
           success: function (data){
-            console.log(data);
+            //console.log(data);
             create_table_nps(data, table_c);
           },
           error: function (data) {
@@ -314,6 +315,7 @@
       $.each(JSON.parse(datajson), function(index, status){
         vartable.fnAddData([
           status.Cliente,
+          status.Sitios,
           status.Comentario,
           getValueCali(status.Calificacion),
           status.updated_at

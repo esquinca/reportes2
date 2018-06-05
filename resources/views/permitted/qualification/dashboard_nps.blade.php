@@ -285,6 +285,7 @@
                         <thead>
                           <tr>
                             <th>Cliente</th>
+                            <th>Sitio</th>
                             <th>Comentario</th>
                             <th>Calificación</th>
                             <th>Fecha registro</th>
@@ -665,6 +666,7 @@
         $.each(JSON.parse(datajson), function(index, status){
           vartable.fnAddData([
             status.Cliente,
+            status.Sitios,
             status.Comentario,
             getValueCurrent(status.Calificacion),
             status.updated_at,
