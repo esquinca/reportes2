@@ -15,6 +15,8 @@ use App\Viatic_beneficiary;
 use App\Viatic_state;
 use App\Viatic_list_concept;
 use App\Jefedirecto;
+use App\Hotel;
+use App\Reference;
 
 class AddViaticController extends Controller
 {
@@ -30,10 +32,10 @@ class AddViaticController extends Controller
     // return view('permitted.viaticos.add_request2');$concept = Viatic_list_concept::select('id', 'name')->get();
   }
 
-  public function find_hotel(Request $request) 
+  public function find_hotel(Request $request)
   {
     $value= $request->numero;
     $hoteles = Hotel::where('cadena_id', $value)->get();
-    return $hoteles;
+    return json_encode($hoteles);
   }
 }

@@ -263,11 +263,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 
             $data_emails = [
-            'nombre' => 'Mario olarte', 
-            'shell_data' => 'linksafhasfasfasf', 
+            'nombre' => 'Mario olarte',
+            'shell_data' => 'linksafhasfasfasf',
             'shell_status' => 'ashsfhdh'
             ];
-            
+
         return new App\Mail\Sentsurveyrangelmail($data_emails);
         //return new App\Mail\Sentsurveynpsmail($data_emails);
         //return new App\Mail\MovimientosMail($data, $data2);
@@ -276,6 +276,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard_viaticos', 'DashboardViaticController@index');
     //- Viaticos Solicitud
     Route::get('/add_request_via', 'AddViaticController@index');
+    Route::post('/viat_find_hotel', 'AddViaticController@find_hotel');
     //- Viaticos Firma.
     Route::get('/signature_v', 'SignatureController@index');
     //- Viaticos Historial

@@ -357,49 +357,88 @@
       function createEventListener (id) {
         const element = document.querySelector('[name="book['+id+'].venue"]')
         element.addEventListener('change', function() {
-          var name = this.name;
-          console.log(name);
-
+          // var name = this.name;
+          // console.log(name);
+          var _token = $('input[name="_token"]').val();
           $.ajax({
             type: "POST",
-            url: "./hotel_cadena_p",
-            data: { numero : id , _token : _token },
+            url: "./viat_find_hotel",
+            data: { numero : this.value , _token : _token },
             success: function (data){
-              //console.log(data);
-              countH = data.length;
-              //console.log(data.length);
-              if (countH === 0) {
-                //console.log('Nating');
-                $('#select_two').empty();
-                $('#select_two').append('<option value="" selected>Elije</option>');
-              }else{
-                $('#select_two').empty();
-                $('#select_two').append('<option value="" selected>Elije</option>');
-
-                for (var i = 0; i < countH; i++) {
-                  // console.log(data[i].id);
-                  // console.log(data[i].Nombre_hotel);
-                  $("#select_two option").prop("selected", false);
-                  $('#select_two').append('<option value="'+data[i].id+'" selected>'+ data[i].Nombre_hotel +'</option>');
-                  $('#select_two').val(data[i].id).trigger('change');
-                }
-
+              if (data === '[]') {
+                // $('[name="book['+id+'].hotel"]').empty();
+                $('[name="book['+id+'].hotel"] option[value!=""]').remove();
+                // $('[name="book['+id+'].hotel"]').append('<option value="" selected>Elige hotel</option>');
               }
-
+              else{
+                $('[name="book['+id+'].hotel"] option[value!=""]').remove();
+                // $('[name="book['+id+'].hotel"]').empty();
+                // $('[name="book['+id+'].hotel"]').append('<option value="" selected>Elige hotel</option>');
+                $.each(JSON.parse(data),function(index, objdata){
+                  $('[name="book['+id+'].hotel"]').append('<option value="'+objdata.id+'">'+ objdata.Nombre_hotel +'</option>');
+                });
+              }
             },
             error: function (data) {
               console.log('Error:', data);
             }
           });
-
+          $('#validation').data('formValidation').resetField($('[name="book['+id+'].hotel"]'));
         });
       }
-      function cadenithas(el){
-        var name = el.name;
-        console.log(name);
+      function createEventListener_amount (id) {
+        const element = document.querySelector('[name="book['+id+'].cant"]')
+        element.addEventListener('change', function() {
+          var total = 0,
+              valor = this.value;
+              valor = parseInt(valor); // Convertir el valor a un entero (número).
+
+              total = document.getElementsByName('book['+id+'].priceuni')[0].value;
+              console.log(total);
+
+              // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
+              total = (total == null || total == undefined || total == "") ? 0 : total;
+              console.log(total);
+
+              /* Esta es la suma.*/
+              var total2 = (parseInt(total) * parseInt(valor));
+              console.log(total2);
+              /* Cambiamos el valor del Subtotal*/
+              $('[name="book['+id+'].price"]').val(total2);
+
+          // $('#validation').data('formValidation').resetField($('[name="book['+id+'].hotel"]'));
+        });
       }
+
+      function createEventListener_priceuni (id) {
+        const element = document.querySelector('[name="book['+id+'].priceuni"]')
+        element.addEventListener('keyup', function() {
+          var total = 0,
+              valor = this.value;
+              valor = parseInt(valor); // Convertir el valor a un entero (número).
+
+              total = document.getElementsByName('book['+id+'].cant')[0].value;
+              console.log(total);
+
+              // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
+              total = (total == null || total == undefined || total == "") ? 0 : total;
+              console.log(total);
+
+              /* Esta es la suma.*/
+              var total2 = (parseInt(total) * parseInt(valor));
+              console.log(total2);
+              /* Cambiamos el valor del Subtotal*/
+              $('[name="book['+id+'].price"]').val(total2);
+
+          // $('#validation').data('formValidation').resetField($('[name="book['+id+'].hotel"]'));
+        });
+      }
+
+
       (function() {
        createEventListener (0);
+       createEventListener_amount(0);
+       createEventListener_priceuni(0);
        // The maximum number of options
        var conceptIndex = 0,
        venue= {
@@ -613,9 +652,9 @@
                       .find('[name="priceuni"]').attr('name', 'book[' + conceptIndex + '].priceuni').end()
                       .find('[name="price"]').attr('name', 'book[' + conceptIndex + '].price').end();
 
-                  $clone
-                      .find('[name="venue"]').attr('onchange', 'cadenithas[' + conceptIndex + '].venue').end()
                   createEventListener (conceptIndex);
+                  createEventListener_amount (conceptIndex);
+                  createEventListener_priceuni(conceptIndex);
                   // Add new fields
                   // Note that we also pass the validator rules for new field as the third parameter
                   $('#validation')
@@ -643,7 +682,7 @@
              // Validate the container
              fv.validateContainer($this);
              var isValidStep = fv.isValidContainer($this);
-             if (isValidStep === false || isValidStep === null) {
+             if (isValidStep === false || isValidStep === null  || isValidStep === '') {
                //alert('false');
                  return false;
              }
