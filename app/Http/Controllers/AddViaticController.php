@@ -29,4 +29,11 @@ class AddViaticController extends Controller
     return view('permitted.viaticos.add_request2',compact('cadena', 'service', 'beneficiary', 'concept', 'jefe', 'user'));
     // return view('permitted.viaticos.add_request2');$concept = Viatic_list_concept::select('id', 'name')->get();
   }
+
+  public function find_hotel(Request $request) 
+  {
+    $value= $request->numero;
+    $hoteles = Hotel::where('cadena_id', $value)->get();
+    return $hoteles;
+  }
 }

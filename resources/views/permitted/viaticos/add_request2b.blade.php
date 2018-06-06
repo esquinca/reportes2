@@ -180,7 +180,7 @@
                                   <div class="form-group">
                                     <div class="col-xs-2">
                                       <label for="ejemplo_email_3" class="control-label">Cadena</label>
-                                        <select name="book[0].venue" class="form-control info-cadena"  data_row="0">
+                                        <select name="book[0].venue" class="form-control"  data_row="0" onchange="cadenithas(this)">
                                             <option value="" selected>Elige cadena</option>
                                             @forelse ($cadena as $data_cadena)
                                               <option value="{{ $data_cadena->id }}"> {{ $data_cadena->name }} </option>
@@ -228,8 +228,8 @@
                                     </div>
                                   </div>
                                   <div class="form-group hide" id="optionTemplate">
-                                      <div class="col-xs-2 info-cadena">
-                                        <select name="venue" class="form-control info-cadena" data_row="">
+                                      <div class="col-xs-2">
+                                        <select name="venue" class="form-control" data_row="" onchange="cadenithas(this)">
                                             <option value="" selected>Elige cadena</option>
                                             @forelse ($cadena as $data_cadena)
                                               <option value="{{ $data_cadena->id }}"> {{ $data_cadena->name }} </option>
@@ -353,53 +353,12 @@
        }
     </style>
     <script type="text/javascript">
-
-      function createEventListener (id) {
-        const element = document.querySelector('[name="book['+id+'].venue"]')
-        element.addEventListener('change', function() {
-          var name = this.name;
-          console.log(name);
-
-          $.ajax({
-            type: "POST",
-            url: "./hotel_cadena_p",
-            data: { numero : id , _token : _token },
-            success: function (data){
-              //console.log(data);
-              countH = data.length;
-              //console.log(data.length);
-              if (countH === 0) {
-                //console.log('Nating');
-                $('#select_two').empty();
-                $('#select_two').append('<option value="" selected>Elije</option>');
-              }else{
-                $('#select_two').empty();
-                $('#select_two').append('<option value="" selected>Elije</option>');
-
-                for (var i = 0; i < countH; i++) {
-                  // console.log(data[i].id);
-                  // console.log(data[i].Nombre_hotel);
-                  $("#select_two option").prop("selected", false);
-                  $('#select_two').append('<option value="'+data[i].id+'" selected>'+ data[i].Nombre_hotel +'</option>');
-                  $('#select_two').val(data[i].id).trigger('change');
-                }
-
-              }
-
-            },
-            error: function (data) {
-              console.log('Error:', data);
-            }
-          });
-
-        });
-      }
       function cadenithas(el){
         var name = el.name;
         console.log(name);
       }
       (function() {
-       createEventListener (0);
+
        // The maximum number of options
        var conceptIndex = 0,
        venue= {
@@ -615,7 +574,7 @@
 
                   $clone
                       .find('[name="venue"]').attr('onchange', 'cadenithas[' + conceptIndex + '].venue').end()
-                  createEventListener (conceptIndex);
+
                   // Add new fields
                   // Note that we also pass the validator rules for new field as the third parameter
                   $('#validation')

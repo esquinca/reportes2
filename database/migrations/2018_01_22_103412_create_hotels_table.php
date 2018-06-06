@@ -18,13 +18,15 @@ class CreateHotelsTable extends Migration
             $table->string('Nombre_hotel');
             $table->string('Direccion');
             $table->string('Telefono');
-            $table->string('Pais');
-            $table->string('Estado');
+            // $table->string('Pais');
+            // $table->string('Estado');
             //Checar con gabo
             // $table->text('Vertical')->nullable();
             $table->text('dirlogo1')->nullable();
             $table->text('Fecha_inicioP')->nullable();
             $table->text('Fecha_terminoP')->nullable();
+            $table->string('clave_geoestadistica')->nullable();
+
             $table->text('Latitude')->nullable();
             $table->text('Longitude')->nullable();
             $table->integer('RM')->nullable();
@@ -51,6 +53,10 @@ class CreateHotelsTable extends Migration
             $table->integer('sucursal_id')->unsigned();
             $table->foreign('sucursal_id')->references('id')->on('sucursals');
 
+            $table->integer('estado_id')->unsigned();
+            $table->foreign('estado_id')->references('id')->on('country_states');
+
+            $table->text('id_proyecto')->nullable();
             //---------------------
             //---------------------
             // $table->binary('temp')->nullable();
