@@ -276,6 +276,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard_viaticos', 'DashboardViaticController@index');
     //- Viaticos Solicitud
     Route::get('/add_request_via', 'AddViaticController@index');
+    //- Viaticos Firma.
+    Route::get('/signature_v', 'SignatureController@index');
     //- Viaticos Historial
     Route::get('/history_travel_requests', 'HistoryViaticController@index');
     //- Notification Viaticos
