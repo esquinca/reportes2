@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="col-xs-1">
                                         <label for="ejemplo_email_3" class="col-xs-12">Subtotal</label>
-                                        <input type="text" class="form-control" name="book[0].price" placeholder="Price" readonly/>
+                                        <input type="text" class="form-control subtotal" name="book[0].price" placeholder="Price" readonly/>
                                     </div>
                                     <div class="col-xs-1">
                                         <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
@@ -263,7 +263,7 @@
                                         <input type="text" class="form-control" name="priceuni" placeholder="Costo" />
                                       </div>
                                       <div class="col-xs-1">
-                                        <input type="text" class="form-control" name="price" placeholder="Price" readonly/>
+                                        <input type="text" class="form-control subtotal" name="price" placeholder="Price" readonly/>
                                       </div>
                                       <div class="col-xs-1">
                                           <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
@@ -274,7 +274,7 @@
                                       <div class="form-group pull-right">
                                          <label class="col-xs-2 control-label">Total</label>
                                          <div class="col-xs-10">
-                                             <input type="text" class="form-control" name="" readonly/>
+                                             <input type="text" class="form-control" name="totales" readonly/>
                                          </div>
                                       </div>
                                     </div>
@@ -353,7 +353,17 @@
        }
     </style>
     <script type="text/javascript">
-
+      function eventListenerSubtotal(){
+        var valor = 0,
+            subtotal = 0;
+        $( ".subtotal" ).each(function( index ) {
+          subtotal = document.getElementsByName('book['+index+'].price')[0].value;
+          console.log(subtotal);
+          valor = parseInt(valor) + subtotal;
+          // console.log(valor);
+        });
+        $('[name="totales"]').val(valor);
+      }
       function createEventListener (id) {
         const element = document.querySelector('[name="book['+id+'].venue"]')
         element.addEventListener('change', function() {
@@ -394,17 +404,19 @@
               valor = parseInt(valor); // Convertir el valor a un entero (número).
 
               total = document.getElementsByName('book['+id+'].priceuni')[0].value;
-              console.log(total);
+              // console.log(total);
 
               // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
               total = (total == null || total == undefined || total == "") ? 0 : total;
-              console.log(total);
+              // console.log(total);
 
               /* Esta es la suma.*/
               var total2 = (parseInt(total) * parseInt(valor));
-              console.log(total2);
+              // console.log(total2);
+
               /* Cambiamos el valor del Subtotal*/
               $('[name="book['+id+'].price"]').val(total2);
+              eventListenerSubtotal();
 
           // $('#validation').data('formValidation').resetField($('[name="book['+id+'].hotel"]'));
         });
@@ -418,17 +430,19 @@
               valor = parseInt(valor); // Convertir el valor a un entero (número).
 
               total = document.getElementsByName('book['+id+'].cant')[0].value;
-              console.log(total);
+              // console.log(total);
 
               // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
               total = (total == null || total == undefined || total == "") ? 0 : total;
-              console.log(total);
+              // console.log(total);
 
               /* Esta es la suma.*/
               var total2 = (parseInt(total) * parseInt(valor));
-              console.log(total2);
+              // console.log(total2);
+
               /* Cambiamos el valor del Subtotal*/
               $('[name="book['+id+'].price"]').val(total2);
+              eventListenerSubtotal();
 
           // $('#validation').data('formValidation').resetField($('[name="book['+id+'].hotel"]'));
         });
