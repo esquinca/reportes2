@@ -211,4 +211,7 @@ return [
     'breadcrumb_viaticos_add' => 'Solicitud Viaticos',
     'breadcrumb_viaticos_hist' => 'Historial Viaticos',
     'viaticos' => 'Viático',
+    'title_cover_delivery' => 'Caratula de entrega',
+    'subtitle_cover_delivery' => '',
+    'breadcrumb_cover_delivery' => 'Caratula de entrega',
 ];

@@ -186,6 +186,8 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
 
    $vcreatgroup= Permission::create(['name' => 'Create grupos']);
    $vcreatgroup2= Permission::create(['name' => 'View group letter']);
+
+   $vcoverdelivery1= Permission::create(['name' => 'View cover delivery']);
    //Creamos los usuarios por default
      $user_default_0 = new User;
      $user_default_0->name='SuperAdmin';
@@ -3066,6 +3068,15 @@ $superadminRole = Role::create(['name' => 'SuperAdmin']);
          $menu_equips_001->section_id=$seccion_admin_d->id;
          $menu_equips_001->icons='fa fa-tasks';
          $menu_equips_001->save();
+
+         $menu_equips_002 = new Menu;
+         $menu_equips_002->name='cover_equipment_delivery';
+         $menu_equips_002->display_name='Caratula de entrega';
+         $menu_equips_002->description='Caratula de entrega de equipos';
+         $menu_equips_002->url='cover_equipment_delivery';
+         $menu_equips_002->section_id=$seccion_admin_d->id;
+         $menu_equips_002->icons='fa fa-tasks';
+         $menu_equips_002->save();
 
          //Viaticos - Servicio
          $viatic_service_001 = new Viatic_service;
