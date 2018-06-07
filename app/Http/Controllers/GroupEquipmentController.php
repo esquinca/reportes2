@@ -29,7 +29,7 @@ class GroupEquipmentController extends Controller
     $group_selected = $request->select1;
     $mac_input = $request->mac;
     $id_equipo = DB::select('CALL recover_id_device(?)', array($mac_input));
-    //test mac 2C:5D:93:3A:1F:E0 grupo real: Antenas retiradas del Nivel 12, 10 y 9 de Seadust 
+    //test mac 2C:5D:93:3A:1F:E0 grupo real: Antenas retiradas del Nivel 12, 10 y 9 de Seadust
 
     //2C:5D:93:3A:1F:E0 - Hotel Seadust.
     // CALL A verify_group_exist.
@@ -78,8 +78,8 @@ class GroupEquipmentController extends Controller
     $count = count($collection);
 
     if ($collection != []) {
-    
-      for ($i=0; $i < $count; $i++) { 
+
+      for ($i=0; $i < $count; $i++) {
         DB::table('equipos')->where('id', $collection[$i]->id_device)->update(
           [
             'estados_id' => $status,

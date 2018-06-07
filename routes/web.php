@@ -289,5 +289,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Función para tests.
     Route::get('/acm1pt', 'GroupEquipmentController@test');
+    //Caratula entregas
+    Route::get('/cover_equipment_delivery', 'CoverDeliveryEquipmentController@index');
 
 });
